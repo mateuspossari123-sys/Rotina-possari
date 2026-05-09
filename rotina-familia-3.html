@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rotina da Família</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:     #f2f0e8;
+  --s1:     #faf8f0;
+  --s2:     #e8e4d4;
+  --border: #ccc8a8;
+  --text:   #1e2a12;
+  --muted:  #6a7a4a;
+  --subtle: #a8b888;
+
+  --manha:  #c8832a;
+  --tarde:  #4a7a3a;
+  --noite:  #3a5a7a;
+
+  --trabalho: #2e6e3e;
+  --exercicio:#8a4a1a;
+  --estudos:  #3a5a8a;
+  --casa:     #7a5a2a;
+
+  --p1: #2d5e2e;
+  --p2: #6b3a1e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ── HERO BANNER ── */
+.hero-banner {
+  background: #2d3a1e;
+  border-bottom: 3px solid #b8963e;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+/* grain texture overlay */
+.hero-banner::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  padding: 22px 20px 18px;
+  display: flex; flex-direction: column; align-items: center;
+}
+/* ornamental top border line */
+.hero-ornament-top {
+  width: 100%; text-align: center;
+  color: #b8963e; font-size: 13px; letter-spacing: 6px;
+  margin-bottom: 10px; opacity: 0.8;
+}
+/* crest / medallion SVG */
+.hero-crest { display: block; margin: 0 auto 10px; }
+
+.hero-family-label {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: #8fa870; margin-bottom: 4px; text-align: center;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: 28px; font-weight: 700;
+  color: #d4a83c; letter-spacing: .5px; line-height: 1.15;
+  text-align: center; margin-bottom: 2px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.hero-subtitle {
+  font-family: 'Fraunces', serif;
+  font-size: 15px; font-style: italic; font-weight: 300;
+  color: #c8d8b0; text-align: center; margin-bottom: 14px;
+  letter-spacing: .5px;
+}
+/* divider line with diamonds */
+.hero-divider {
+  width: 100%; text-align: center;
+  color: #b8963e; font-size: 11px; letter-spacing: 5px;
+  margin-bottom: 12px; opacity: 0.7;
+}
+.hero-quote-wrap {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(184,150,62,0.35);
+  border-radius: 4px;
+  padding: 12px 16px;
+  width: 100%;
+  text-align: center;
+}
+.hero-quote-text {
+  font-family: 'Fraunces', serif;
+  font-size: 13.5px; font-style: italic;
+  color: #e8dbb0; line-height: 1.6;
+}
+.hero-quote-author {
+  font-size: 9px; color: #b8963e; margin-top: 6px;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  font-family: 'Instrument Sans', sans-serif; font-weight: 600;
+}
+/* ornamental bottom border */
+.hero-ornament-bot {
+  width: 100%; text-align: center;
+  color: #b8963e; font-size: 11px; letter-spacing: 4px;
+  margin-top: 14px; opacity: 0.6;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: #1e2a12;
+  padding: 11px 20px 10px;
+  position: sticky; top: 0; z-index: 300;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.app-name {
+  font-family: 'Fraunces', serif;
+  font-size: 20px; font-weight: 700;
+  color: #f5f0eb; letter-spacing: -.3px;
+}
+.app-name span { color: #d4a83c; }
+.clock-box { text-align: right; }
+.clock { font-size: 19px; color: #f5f0eb; font-weight: 300; letter-spacing: 2px; font-variant-numeric: tabular-nums; }
+.greeting-top { font-size: 9px; color: var(--subtle); text-transform: uppercase; letter-spacing: 1.2px; }
+
+/* ── PEOPLE BAR ── */
+.people-bar {
+  background: var(--s1);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  padding: 0;
+}
+.person-tab {
+  flex: 1; padding: 12px 10px; text-align: center;
+  cursor: pointer; transition: all .18s;
+  border: none; background: transparent;
+  font-family: 'Instrument Sans', sans-serif;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+.person-tab .p-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; margin: 0 auto 5px; font-weight: 700;
+  color: #fff; transition: all .18s;
+}
+.person-tab .p-name { font-size: 12px; font-weight: 600; color: var(--muted); transition: color .18s; }
+.person-tab.p1 .p-avatar { background: var(--p1); }
+.person-tab.p2 .p-avatar { background: var(--p2); }
+.person-tab.p1.active { border-bottom-color: var(--p1); }
+.person-tab.p2.active { border-bottom-color: var(--p2); }
+.person-tab.active .p-name { color: var(--text); }
+.person-tab.all-tab .p-avatar { background: var(--text); font-size: 11px; }
+.person-tab.all-tab.active { border-bottom-color: var(--text); }
+
+/* ── DAY STRIP ── */
+.day-strip-wrap {
+  background: var(--s1);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  position: sticky; top: 57px; z-index: 200;
+}
+.week-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; padding: 0 2px;
+}
+.week-nav-label {
+  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600;
+  color: var(--text); letter-spacing: .2px;
+}
+.week-nav-sub { font-size: 10px; color: var(--muted); font-family: 'Instrument Sans', sans-serif; font-weight: 400; margin-left: 6px; }
+.week-arrow {
+  background: var(--s2); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 4px 12px;
+  font-size: 14px; cursor: pointer; color: var(--text);
+  font-family: 'Instrument Sans', sans-serif; font-weight: 600;
+  transition: all .15s;
+}
+.week-arrow:hover { background: var(--border); }
+.week-arrow.today-btn {
+  font-size: 10px; padding: 4px 10px; color: var(--muted);
+  letter-spacing: .3px;
+}
+.day-strip { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.day-strip::-webkit-scrollbar { display: none; }
+.day-btn {
+  flex-shrink: 0; min-width: 44px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 7px 8px; border-radius: 10px;
+  border: 1.5px solid transparent; background: transparent;
+  cursor: pointer; font-family: 'Instrument Sans', sans-serif;
+  transition: all .18s;
+}
+.day-btn .dname { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+.day-btn .dnum  { font-size: 16px; font-weight: 600; color: var(--muted); font-family: 'Fraunces', serif; }
+.day-btn .ddots { display: flex; gap: 2px; margin-top: 1px; min-height: 5px; }
+.day-btn .ddot  { width: 5px; height: 5px; border-radius: 50%; }
+.day-btn.is-today { border-color: var(--border); background: var(--s2); }
+.day-btn.is-today .dname, .day-btn.is-today .dnum { color: var(--text); }
+.day-btn.is-sel  { background: var(--text); border-color: var(--text); }
+.day-btn.is-sel .dname, .day-btn.is-sel .dnum { color: #f5f0eb; }
+
+/* ── PERIOD FILTER ── */
+.period-bar {
+  display: flex; gap: 6px;
+  padding: 12px 16px;
+  max-width: 600px; margin: 0 auto;
+  overflow-x: auto; scrollbar-width: none;
+}
+.period-bar::-webkit-scrollbar { display: none; }
+.period-btn {
+  flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
+  border: 1.5px solid var(--border); background: var(--s1);
+  font-family: 'Instrument Sans', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--muted); cursor: pointer; transition: all .18s;
+}
+.period-btn.manha.active  { background: #fff4ed; border-color: var(--manha);  color: var(--manha); }
+.period-btn.tarde.active  { background: #edf4fc; border-color: var(--tarde);  color: var(--tarde); }
+.period-btn.noite.active  { background: #f3eefa; border-color: var(--noite);  color: var(--noite); }
+.period-btn.todos.active  { background: var(--s2); border-color: var(--text); color: var(--text); }
+
+/* ── MAIN ── */
+.wrap { max-width: 600px; margin: 0 auto; padding: 6px 16px 0; }
+
+/* ── ADD FORM ── */
+.add-form {
+  background: var(--s1); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 14px; margin-bottom: 20px;
+  animation: fup .3s ease both;
+}
+.add-form-title {
+  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+  margin-bottom: 12px; color: var(--text);
+  display: flex; align-items: center; gap: 6px;
+}
+.form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.add-form input, .add-form select {
+  background: var(--bg); border: 1.5px solid var(--border);
+  color: var(--text); border-radius: 9px; padding: 8px 12px;
+  font-size: 13px; font-family: 'Instrument Sans', sans-serif;
+  outline: none; transition: border-color .2s;
+}
+.add-form input:focus, .add-form select:focus { border-color: var(--text); }
+.input-task { flex: 1; min-width: 160px; }
+.input-time { width: 95px; }
+.btn-save {
+  width: 100%; border: none; border-radius: 10px; padding: 11px;
+  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: opacity .15s; color: #fff;
+  margin-top: 4px;
+}
+.btn-save:hover { opacity: .88; }
+
+/* ── PERIOD SECTION ── */
+.period-section { margin-bottom: 24px; animation: fup .3s ease both; }
+.period-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.period-icon { font-size: 20px; }
+.period-title {
+  font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600;
+  letter-spacing: -.2px;
+}
+.period-count {
+  margin-left: auto; font-size: 11px; color: var(--muted);
+  background: var(--s2); border-radius: 20px; padding: 2px 9px;
+}
+
+/* ── TASK CARD ── */
+.tasks { display: flex; flex-direction: column; gap: 8px; }
+.empty { text-align: center; color: var(--subtle); padding: 24px 0; font-size: 13px; font-style: italic; }
+
+.task-card {
+  background: var(--s1); border: 1.5px solid var(--border);
+  border-radius: 13px; padding: 11px 14px;
+  display: flex; gap: 11px; align-items: flex-start;
+  transition: opacity .2s; animation: fup .22s ease both;
+  position: relative; overflow: hidden;
+}
+.task-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; border-radius: 13px 0 0 13px;
+}
+.task-card.cat-trabalho::before  { background: var(--trabalho); }
+.task-card.cat-exercicio::before { background: var(--exercicio); }
+.task-card.cat-estudos::before   { background: var(--estudos); }
+.task-card.cat-casa::before      { background: var(--casa); }
+.task-card.done { opacity: .38; }
+
+.task-check {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--border); background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; margin-top: 1px; transition: all .18s; color: #fff;
+}
+.task-check.checked.cat-trabalho  { background: var(--trabalho);  border-color: var(--trabalho); }
+.task-check.checked.cat-exercicio { background: var(--exercicio); border-color: var(--exercicio); }
+.task-check.checked.cat-estudos   { background: var(--estudos);   border-color: var(--estudos); }
+.task-check.checked.cat-casa      { background: var(--casa);      border-color: var(--casa); }
+
+.task-body { flex: 1; min-width: 0; }
+.task-name { font-size: 14px; font-weight: 500; line-height: 1.4; }
+.task-name.struck { text-decoration: line-through; color: var(--subtle); }
+.task-meta { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.task-time { font-size: 11px; color: var(--muted); }
+.cat-badge {
+  font-size: 10px; padding: 1px 7px; border-radius: 20px;
+  font-weight: 600; letter-spacing: .2px;
+}
+.cat-badge.trabalho  { background: #e8f4ef; color: var(--trabalho); }
+.cat-badge.exercicio { background: #fdf0eb; color: var(--exercicio); }
+.cat-badge.estudos   { background: #edf2fb; color: var(--estudos); }
+.cat-badge.casa      { background: #f5ede4; color: var(--casa); }
+.person-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.person-dot.p1 { background: var(--p1); }
+.person-dot.p2 { background: var(--p2); }
+.person-dot.ambos { background: linear-gradient(135deg, var(--p1) 50%, var(--p2) 50%); }
+
+.task-actions { flex-shrink: 0; }
+.btn-del {
+  background: none; border: none; color: var(--subtle);
+  cursor: pointer; font-size: 13px; padding: 3px 4px;
+  border-radius: 5px; transition: color .15s;
+}
+.btn-del:hover { color: #c0392b; }
+
+/* ── WEEK OVERVIEW ── */
+.week-overview {
+  background: var(--s1); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 16px;
+}
+.wo-title {
+  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600;
+  color: var(--muted); margin-bottom: 10px; letter-spacing: .2px;
+}
+.wo-grid { display: flex; gap: 4px; }
+.wo-day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.wo-dname { font-size: 9px; color: var(--subtle); text-transform: uppercase; letter-spacing: .5px; }
+.wo-bar-wrap { display: flex; gap: 1px; height: 28px; align-items: flex-end; }
+.wo-bar {
+  width: 5px; border-radius: 3px 3px 0 0;
+  min-height: 3px; transition: height .3s;
+}
+
+@keyframes fup {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+select option { background: #fdfaf7; }
+</style>
+</head>
+<body>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-inner">
+
+    <!-- Top ornament -->
+    <div class="hero-ornament-top">✦ ── ✦ ── ✦ ── ✦ ── ✦</div>
+
+    <!-- Central crest SVG (inspired by the book cover style) -->
+    <svg class="hero-crest" viewBox="0 0 220 90" width="220" height="90" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="cg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4a83c" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#2d3a1e" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Left medallion: Cross with rays -->
+      <circle cx="38" cy="45" r="30" fill="none" stroke="#b8963e" stroke-width="1.2"/>
+      <circle cx="38" cy="45" r="26" fill="rgba(0,0,0,0.2)" stroke="#b8963e" stroke-width=".4" stroke-dasharray="3 2"/>
+      <!-- Rays -->
+      <line x1="38" y1="19" x2="38" y2="15" stroke="#b8963e" stroke-width="1"/>
+      <line x1="38" y1="71" x2="38" y2="75" stroke="#b8963e" stroke-width="1"/>
+      <line x1="12" y1="45" x2="8"  y2="45" stroke="#b8963e" stroke-width="1"/>
+      <line x1="64" y1="45" x2="68" y2="45" stroke="#b8963e" stroke-width="1"/>
+      <line x1="20" y1="27" x2="17" y2="24" stroke="#b8963e" stroke-width=".8"/>
+      <line x1="56" y1="27" x2="59" y2="24" stroke="#b8963e" stroke-width=".8"/>
+      <line x1="20" y1="63" x2="17" y2="66" stroke="#b8963e" stroke-width=".8"/>
+      <line x1="56" y1="63" x2="59" y2="66" stroke="#b8963e" stroke-width=".8"/>
+      <!-- Cross -->
+      <line x1="38" y1="28" x2="38" y2="62" stroke="#d4a83c" stroke-width="2.5"/>
+      <line x1="24" y1="40" x2="52" y2="40" stroke="#d4a83c" stroke-width="2.5"/>
+
+      <!-- Center medallion: IHS monogram -->
+      <circle cx="110" cy="45" r="32" fill="rgba(184,150,62,0.08)" stroke="#b8963e" stroke-width="1.5"/>
+      <circle cx="110" cy="45" r="27" fill="none" stroke="#b8963e" stroke-width=".5" stroke-dasharray="2 3"/>
+      <!-- IHS text -->
+      <text x="110" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#d4a83c" letter-spacing="3">IHS</text>
+      <line x1="92" y1="46" x2="128" y2="46" stroke="#b8963e" stroke-width=".8"/>
+      <text x="110" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#a0b888" letter-spacing="1.5">POSSARI</text>
+      <!-- Small cross on top of H -->
+      <line x1="110" y1="24" x2="110" y2="30" stroke="#d4a83c" stroke-width="1.5"/>
+      <line x1="107" y1="26" x2="113" y2="26" stroke="#d4a83c" stroke-width="1.5"/>
+
+      <!-- Right medallion: Dove / Holy Spirit -->
+      <circle cx="182" cy="45" r="30" fill="none" stroke="#b8963e" stroke-width="1.2"/>
+      <circle cx="182" cy="45" r="26" fill="rgba(0,0,0,0.2)" stroke="#b8963e" stroke-width=".4" stroke-dasharray="3 2"/>
+      <!-- Stylized family house -->
+      <path d="M167 55 L167 42 L182 32 L197 42 L197 55 Z" fill="none" stroke="#d4a83c" stroke-width="1.8" stroke-linejoin="round"/>
+      <rect x="176" y="46" width="12" height="9" fill="none" stroke="#d4a83c" stroke-width="1.2"/>
+      <!-- Heart inside house -->
+      <path d="M182 50 C182 50 178 47 178 44.5 C178 43 179.5 42 181 43 C181.5 43.3 182 43.8 182 43.8 C182 43.8 182.5 43.3 183 43 C184.5 42 186 43 186 44.5 C186 47 182 50 182 50Z" fill="#d4a83c"/>
+    </svg>
+
+    <div class="hero-title">Rotina da Família Possari</div>
+
+    <div class="hero-divider">❧ ── ✦ ── ❧</div>
+
+    <div class="hero-quote-wrap">
+      <div class="hero-quote-text">"Começar é de muitos, perseverar é de santos."</div>
+      <div class="hero-quote-author">— São Josemaría Escrivá</div>
+    </div>
+
+    <div class="hero-ornament-bot">✦ ── ✦ ── ✦ ── ✦ ── ✦</div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    <div class="app-name" style="font-family:'Fraunces',serif;color:#e8dbb0;letter-spacing:.5px">Rotina <span style="color:#d4a83c">Possari</span></div>
+  </div>
+  <div class="clock-box">
+    <div class="clock" id="clock">--:--</div>
+    <div class="greeting-top" id="greeting"></div>
+    <div style="font-size:9px;color:#a8b888;margin-top:1px" id="sync-status">💾 Local</div>
+  </div>
+</div>
+
+<!-- PEOPLE BAR -->
+<div class="people-bar" id="people-bar">
+  <button class="person-tab all-tab active" onclick="setPerson('todos')">
+    <div class="p-avatar">👪</div>
+    <div class="p-name">Todos</div>
+  </button>
+  <button class="person-tab p1" onclick="setPerson('p1')">
+    <div class="p-avatar" id="av1">P1</div>
+    <div class="p-name" id="nm1">Pessoa 1</div>
+  </button>
+  <button class="person-tab p2" onclick="setPerson('p2')">
+    <div class="p-avatar" id="av2">P2</div>
+    <div class="p-name" id="nm2">Pessoa 2</div>
+  </button>
+</div>
+
+<!-- DAY STRIP -->
+<div class="day-strip-wrap">
+  <div class="week-nav">
+    <button class="week-arrow" onclick="changeWeek(-1)">‹ Anterior</button>
+    <div>
+      <span class="week-nav-label" id="week-label">Esta semana</span>
+      <span class="week-nav-sub" id="week-range"></span>
+    </div>
+    <button class="week-arrow" onclick="changeWeek(1)">Próxima ›</button>
+  </div>
+  <div class="day-strip" id="day-strip"></div>
+</div>
+
+<div class="wrap">
+  <!-- WEEK OVERVIEW -->
+  <div style="margin-top:14px">
+    <div class="week-overview">
+      <div class="wo-title">📊 Visão da semana</div>
+      <div class="wo-grid" id="wo-grid"></div>
+    </div>
+  </div>
+
+  <!-- PERIOD FILTER -->
+  <div class="period-bar">
+    <button class="period-btn todos active" onclick="setPeriod('todos')">🗓 Todos</button>
+    <button class="period-btn manha" onclick="setPeriod('manha')">🌅 Manhã</button>
+    <button class="period-btn tarde" onclick="setPeriod('tarde')">☀️ Tarde</button>
+    <button class="period-btn noite" onclick="setPeriod('noite')">🌙 Noite</button>
+  </div>
+
+  <!-- ADD FORM -->
+  <div class="add-form">
+    <div class="add-form-title">✏️ Nova atividade</div>
+    <div class="form-row">
+      <input class="input-task" id="new-name" type="text" placeholder="Nome da atividade..." onkeydown="if(event.key==='Enter')addTask()"/>
+      <input class="input-time" id="new-time" type="time"/>
+    </div>
+    <div class="form-row">
+      <select id="new-cat" style="flex:1">
+        <option value="trabalho">💼 Trabalho</option>
+        <option value="exercicio">🏃 Atividade Física</option>
+        <option value="estudos">📚 Estudos</option>
+        <option value="casa">🏠 Casa</option>
+      </select>
+      <select id="new-period" style="flex:1">
+        <option value="manha">🌅 Manhã</option>
+        <option value="tarde">☀️ Tarde</option>
+        <option value="noite">🌙 Noite</option>
+      </select>
+      <select id="new-person" style="flex:1">
+        <option value="p1" id="opt-p1">Pessoa 1</option>
+        <option value="p2" id="opt-p2">Pessoa 2</option>
+        <option value="ambos">👪 Ambos</option>
+      </select>
+    </div>
+    <button class="btn-save" id="btn-save" onclick="addTask()" style="background:var(--text)">+ Adicionar Atividade</button>
+  </div>
+
+  <!-- TASK LISTS BY PERIOD -->
+  <div id="task-area"></div>
+</div>
+
+<!-- NAMES MODAL -->
+<div id="name-modal" style="
+  display:flex; position:fixed; inset:0; z-index:999;
+  background:rgba(42,32,24,0.6); align-items:center; justify-content:center;
+  padding:20px; backdrop-filter:blur(4px);
+">
+  <div style="
+    background:var(--s1); border-radius:20px; padding:28px 24px;
+    max-width:360px; width:100%; border:2px solid var(--border);
+    animation: fup .3s ease both;
+  ">
+    <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;margin-bottom:6px">👋 Bem-vindos!</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Como chamamos as duas pessoas da família?</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--p1);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">🟢 Pessoa 1</div>
+        <input id="modal-name1" type="text" placeholder="Nome..." autocomplete="off"
+          style="width:100%;background:var(--bg);border:1.5px solid var(--border);
+          color:var(--text);border-radius:10px;padding:10px 14px;
+          font-size:16px;font-family:'Instrument Sans',sans-serif;outline:none;-webkit-appearance:none;"
+        />
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--p2);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">🟣 Pessoa 2</div>
+        <input id="modal-name2" type="text" placeholder="Nome..." autocomplete="off"
+          style="width:100%;background:var(--bg);border:1.5px solid var(--border);
+          color:var(--text);border-radius:10px;padding:10px 14px;
+          font-size:16px;font-family:'Instrument Sans',sans-serif;outline:none;-webkit-appearance:none;"
+        />
+      </div>
+      <button id="btn-start" style="
+        background:#1e2a12;color:#f5f0eb;border:none;border-radius:12px;
+        padding:14px;font-family:'Fraunces',serif;font-size:16px;font-weight:700;
+        cursor:pointer;margin-top:4px;width:100%;-webkit-appearance:none;
+        touch-action:manipulation;
+      ">Vamos começar! 🚀</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONSTANTS ─────────────────────────────────────────────────────────────────
+const DAY_NAMES  = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const MONTHS     = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+const CAT_LABELS = {trabalho:'Trabalho',exercicio:'Atividade Física',estudos:'Estudos',casa:'Casa'};
+const CAT_ICONS  = {trabalho:'💼',exercicio:'🏃',estudos:'📚',casa:'🏠'};
+const PER_ICONS  = {manha:'🌅',tarde:'☀️',noite:'🌙'};
+const PER_LABELS = {manha:'Manhã',tarde:'Tarde',noite:'Noite'};
+const PER_COLORS = {manha:'var(--manha)',tarde:'var(--tarde)',noite:'var(--noite)'};
+const CAT_COLORS = {trabalho:'var(--trabalho)',exercicio:'var(--exercicio)',estudos:'var(--estudos)',casa:'var(--casa)'};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const today = new Date(); today.setHours(0,0,0,0);
+let selectedDate = today.toDateString();
+let selectedPeriod = 'todos';
+let selectedPerson = 'todos';
+let names = {p1:'Pessoa 1', p2:'Pessoa 2'};
+let tasks = {};
+
+function getDay(ds) {
+  if (!tasks[ds]) tasks[ds] = [];
+  return tasks[ds];
+}
+// ── FIREBASE CONFIG ───────────────────────────────────────────────────────────
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAsw1lFVY4XgOsh_QnyJp4UtHVEJxioAeY",
+  authDomain: "roteiro-possari.firebaseapp.com",
+  databaseURL: "https://roteiro-possari-default-rtdb.firebaseio.com",
+  projectId: "roteiro-possari",
+  storageBucket: "roteiro-possari.firebasestorage.app",
+  messagingSenderId: "272718215059",
+  appId: "1:272718215059:web:2bcad6b2fed18d76929a66"
+};
+
+let db = null;
+let syncEnabled = false;
+
+async function initFirebase() {
+  if (!FIREBASE_CONFIG) return Promise.resolve();
+  try {
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const { getDatabase, ref, set, onValue } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
+    const app = initializeApp(FIREBASE_CONFIG);
+    db = getDatabase(app);
+    syncEnabled = true;
+
+    // Listen for real-time updates
+    const dataRef = ref(db, 'rotina_possari');
+    onValue(dataRef, (snapshot) => {
+      const val = snapshot.val();
+      if (val) {
+        tasks = val.tasks || {};
+        if (val.names) {
+          names = val.names;
+          applyNames();
+          // Hide modal if names are already set
+          if (names.p1 !== 'Pessoa 1') {
+            document.getElementById('name-modal').style.display = 'none';
+            seedData();
+          }
+        }
+        render();
+      }
+    });
+
+    document.getElementById('sync-status').textContent = '🟢 Sincronizado';
+    document.getElementById('sync-status').style.color = '#3a8a3a';
+    return Promise.resolve();
+  } catch(e) {
+    console.log('Firebase init error:', e);
+    return Promise.resolve();
+  }
+}
+
+function save() {
+  // Always save locally
+  try {
+    localStorage.setItem('rotina_v1', JSON.stringify({tasks, names}));
+  } catch(e) {}
+
+  // Also sync to Firebase if enabled
+  if (syncEnabled && db) {
+    try {
+      const { ref, set } = window._fbRefs || {};
+      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js').then(({ref, set}) => {
+        set(ref(db, 'rotina_possari'), {tasks, names, updatedAt: Date.now()});
+      });
+    } catch(e) {}
+  }
+}
+
+function load() {
+  try {
+    const s = localStorage.getItem('rotina_v1');
+    if (s) { const d = JSON.parse(s); tasks = d.tasks||{}; names = d.names||names; }
+  } catch(e) {}
+}
+
+// ── CLOCK ─────────────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date(), h = now.getHours();
+  document.getElementById('clock').textContent =
+    String(h).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('greeting').textContent =
+    h<12 ? '☀️ Bom dia' : h<18 ? '🌤 Boa tarde' : '🌙 Boa noite';
+}
+updateClock(); setInterval(updateClock, 1000);
+
+// ── NAMES ─────────────────────────────────────────────────────────────────────
+function applyNames() {
+  document.getElementById('nm1').textContent   = names.p1;
+  document.getElementById('nm2').textContent   = names.p2;
+  document.getElementById('av1').textContent   = names.p1.charAt(0).toUpperCase();
+  document.getElementById('av2').textContent   = names.p2.charAt(0).toUpperCase();
+  document.getElementById('opt-p1').textContent = names.p1;
+  document.getElementById('opt-p2').textContent = names.p2;
+}
+function saveNames() {
+  const n1 = document.getElementById('modal-name1').value.trim();
+  const n2 = document.getElementById('modal-name2').value.trim();
+  if (!n1 || !n2) return;
+  names.p1 = n1; names.p2 = n2;
+  applyNames(); save();
+  document.getElementById('name-modal').style.display = 'none';
+  seedData(); render();
+}
+
+// ── WEEK DATES ────────────────────────────────────────────────────────────────
+let weekOffset = 0; // 0 = current week, 1 = next, -1 = previous
+
+function getWeekDates(offset) {
+  const dow = today.getDay();
+  const mon = new Date(today);
+  mon.setDate(today.getDate() - ((dow+6)%7) + (offset * 7));
+  return Array.from({length:7},(_,i)=>{ const d=new Date(mon); d.setDate(mon.getDate()+i); return d; });
+}
+
+function changeWeek(dir) {
+  weekOffset += dir;
+  const dates = getWeekDates(weekOffset);
+  selectedDate = dates[0].toDateString(); // select Monday of new week
+  render();
+}
+
+function getWeekLabel() {
+  if (weekOffset === 0) return 'Esta semana';
+  if (weekOffset === 1) return 'Próxima semana';
+  if (weekOffset === -1) return 'Semana passada';
+  if (weekOffset > 0) return `+${weekOffset} semanas`;
+  return `${weekOffset} semanas`;
+}
+
+function getWeekRange(dates) {
+  const s = dates[0], e = dates[6];
+  const ms = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return `${s.getDate()} ${ms[s.getMonth()]} – ${e.getDate()} ${ms[e.getMonth()]}`;
+}
+
+// ── DAY STRIP ─────────────────────────────────────────────────────────────────
+function buildDayStrip() {
+  const weekDates = getWeekDates(weekOffset);
+  const strip = document.getElementById('day-strip');
+  strip.innerHTML = '';
+
+  // Update week label
+  document.getElementById('week-label').textContent = getWeekLabel();
+  document.getElementById('week-range').textContent = getWeekRange(weekDates);
+
+  weekDates.forEach(d => {
+    const ds = d.toDateString();
+    const dayTasks = tasks[ds]||[];
+    const btn = document.createElement('button');
+    btn.className = 'day-btn'+
+      (ds===today.toDateString()?' is-today':'')+
+      (ds===selectedDate?' is-sel':'');
+
+    // dots by category
+    const cats = [...new Set(dayTasks.map(t=>t.cat))].slice(0,3);
+    const dotsHtml = cats.map(c=>`<div class="ddot" style="background:${CAT_COLORS[c]}"></div>`).join('');
+
+    btn.innerHTML = `
+      <span class="dname">${DAY_NAMES[d.getDay()]}</span>
+      <span class="dnum">${d.getDate()}</span>
+      <div class="ddots">${dotsHtml}</div>`;
+    btn.onclick = ()=>{ selectedDate=ds; render(); };
+    strip.appendChild(btn);
+  });
+}
+
+// ── WEEK OVERVIEW ─────────────────────────────────────────────────────────────
+function buildWeekOverview() {
+  const weekDates = getWeekDates(weekOffset);
+  const grid = document.getElementById('wo-grid');
+  const grid2 = document.getElementById('wo-grid');
+  grid2.innerHTML = weekDates.map(d => {
+    const ds = d.toDateString();
+    const list = (tasks[ds]||[]);
+    const total = list.length;
+    const maxH = 28;
+    const barH = total ? Math.max(4, Math.round((total/8)*maxH)) : 3;
+    const done  = list.filter(t=>t.done).length;
+    const doneH = done ? Math.max(2, Math.round((done/Math.max(total,1))*barH)) : 0;
+
+    return `<div class="wo-day">
+      <span class="wo-dname">${DAY_NAMES[d.getDay()]}</span>
+      <div class="wo-bar-wrap">
+        <div class="wo-bar" style="height:${barH}px;background:var(--border)"></div>
+        <div class="wo-bar" style="height:${doneH}px;background:var(--trabalho)"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FILTER STATE ──────────────────────────────────────────────────────────────
+function setPerson(p) {
+  selectedPerson = p;
+  document.querySelectorAll('.person-tab').forEach(el => el.classList.remove('active'));
+  const map = {todos:0, p1:1, p2:2};
+  document.querySelectorAll('.person-tab')[map[p]].classList.add('active');
+  render();
+}
+function setPeriod(p) {
+  selectedPeriod = p;
+  document.querySelectorAll('.period-btn').forEach(el=>el.classList.remove('active'));
+  document.querySelector('.period-btn.'+p).classList.add('active');
+  render();
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  buildDayStrip();
+  buildWeekOverview();
+
+  const allTasks = getDay(selectedDate);
+
+  // Filter by person
+  const byPerson = allTasks.filter(t =>
+    selectedPerson === 'todos' ? true :
+    t.person === selectedPerson || t.person === 'ambos'
+  );
+
+  const periods = selectedPeriod === 'todos'
+    ? ['manha','tarde','noite']
+    : [selectedPeriod];
+
+  const area = document.getElementById('task-area');
+  area.innerHTML = '';
+
+  periods.forEach(period => {
+    const list = byPerson.filter(t=>t.period===period);
+    const sec = document.createElement('div');
+    sec.className = 'period-section';
+
+    const done = list.filter(t=>t.done).length;
+    sec.innerHTML = `
+      <div class="period-header">
+        <span class="period-icon">${PER_ICONS[period]}</span>
+        <span class="period-title" style="color:${PER_COLORS[period]}">${PER_LABELS[period]}</span>
+        <span class="period-count">${done}/${list.length} feito${list.length!==1?'s':''}</span>
+      </div>
+      <div class="tasks" id="tasks-${period}">
+        ${!list.length ? '<p class="empty">Nenhuma atividade aqui 🌿</p>' : ''}
+      </div>`;
+    area.appendChild(sec);
+
+    const tasksEl = document.getElementById('tasks-'+period);
+    list
+      .sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'))
+      .forEach(t => {
+        const personName = t.person==='ambos'?'Ambos':names[t.person]||t.person;
+        const dotClass = t.person==='ambos'?'ambos':t.person;
+        const card = document.createElement('div');
+        card.className = `task-card cat-${t.cat} ${t.done?'done':''}`;
+        card.innerHTML = `
+          <button class="task-check ${t.done?'checked':''} cat-${t.cat}"
+            onclick="toggleTask('${t.id}')">${t.done?'✓':''}</button>
+          <div class="task-body">
+            <div class="task-name ${t.done?'struck':''}">${esc(t.name)}</div>
+            <div class="task-meta">
+              ${t.time?`<span class="task-time">⏰ ${t.time}</span>`:''}
+              <span class="cat-badge ${t.cat}">${CAT_ICONS[t.cat]} ${CAT_LABELS[t.cat]}</span>
+              <span class="person-dot ${dotClass}" title="${personName}">${personName.charAt(0)}</span>
+            </div>
+          </div>
+          <div class="task-actions">
+            <button class="btn-del" onclick="deleteTask('${t.id}')">✕</button>
+          </div>`;
+        tasksEl.appendChild(card);
+      });
+  });
+}
+
+// ── ADD / DELETE / TOGGLE ─────────────────────────────────────────────────────
+function addTask() {
+  const name = document.getElementById('new-name').value.trim();
+  if (!name) return;
+  const task = {
+    id: Date.now().toString(),
+    name,
+    time:   document.getElementById('new-time').value,
+    cat:    document.getElementById('new-cat').value,
+    period: document.getElementById('new-period').value,
+    person: document.getElementById('new-person').value,
+    done:   false,
+  };
+  getDay(selectedDate).push(task);
+  document.getElementById('new-name').value = '';
+  document.getElementById('new-time').value = '';
+  save(); render();
+}
+
+function toggleTask(id) {
+  const list = getDay(selectedDate);
+  const t = list.find(x=>x.id===id);
+  if (t) t.done = !t.done;
+  save(); render();
+}
+function deleteTask(id) {
+  tasks[selectedDate] = getDay(selectedDate).filter(t=>t.id!==id);
+  save(); render();
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── SEED DATA ─────────────────────────────────────────────────────────────────
+function seedData() {
+  const ds = today.toDateString();
+  if ((tasks[ds]||[]).length) return;
+  tasks[ds] = [
+    {id:'s1',name:'Café da manhã juntos',time:'07:30',cat:'casa',period:'manha',person:'ambos',done:false},
+    {id:'s2',name:`Academia — ${names.p1}`,time:'06:30',cat:'exercicio',period:'manha',person:'p1',done:false},
+    {id:'s3',name:'Reunião de equipe',time:'09:00',cat:'trabalho',period:'manha',person:'p1',done:false},
+    {id:'s4',name:'Almoço',time:'12:00',cat:'casa',period:'tarde',person:'ambos',done:false},
+    {id:'s5',name:`Curso online — ${names.p2}`,time:'14:00',cat:'estudos',period:'tarde',person:'p2',done:false},
+    {id:'s6',name:'Limpar a casa',time:'16:00',cat:'casa',period:'tarde',person:'ambos',done:false},
+    {id:'s7',name:'Jantar',time:'19:30',cat:'casa',period:'noite',person:'ambos',done:false},
+    {id:'s8',name:'Leitura / descanso',time:'21:00',cat:'estudos',period:'noite',person:'ambos',done:false},
+  ];
+  save();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+load();
+// Show modal by default, Firebase will dismiss it if data exists
+document.getElementById('name-modal').style.display = 'flex';
+applyNames();
+initFirebase().then(() => {
+  // After Firebase loads, check if names are set
+  setTimeout(() => {
+    if (names.p1 !== 'Pessoa 1') {
+      document.getElementById('name-modal').style.display = 'none';
+      applyNames();
+      seedData();
+      render();
+    }
+  }, 1500);
+});
+</script>
+</body>
+</html>
