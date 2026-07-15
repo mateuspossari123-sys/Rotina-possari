@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fotos dos Eventos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:      #f4f1ea;
+  --s1:      #fffdf8;
+  --s2:      #eae4d4;
+  --border:  #d8d0b8;
+  --text:    #2a2418;
+  --muted:   #7a7258;
+  --subtle:  #ada584;
+  --accent:  #b8823e;
+  --accent-d:#8a5e26;
+  --danger:  #a83e3e;
+  --shadow:  0 8px 24px rgba(42,36,24,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: #26210f;
+  border-bottom: 3px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+  padding: 34px 20px 26px;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 2; }
+.hero-ornament {
+  color: var(--accent); font-size: 12px; letter-spacing: 6px;
+  margin-bottom: 10px; opacity: 0.85; text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(28px, 6vw, 44px);
+  color: #f4f1ea;
+  letter-spacing: 0.5px;
+}
+.hero p {
+  color: var(--subtle);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ── CONTAINER ── */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 18px 0; }
+
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 22px;
+}
+.toolbar h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+.btn {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s ease, transform .1s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn:hover { background: var(--accent-d); }
+.btn:active { transform: scale(0.97); }
+.btn.secondary {
+  background: transparent;
+  color: var(--accent-d);
+  border: 1.5px solid var(--border);
+}
+.btn.secondary:hover { background: var(--s2); }
+.btn.danger { background: var(--danger); }
+.btn.danger:hover { background: #832f2f; }
+
+/* ── EVENTS GRID ── */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+.event-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease;
+  display: flex; flex-direction: column;
+}
+.event-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(42,36,24,0.16); }
+.event-cover {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--s2);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  color: var(--subtle);
+  font-size: 34px;
+}
+.event-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.event-info { padding: 14px 16px 16px; }
+.event-info h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.event-meta { font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  border: 1.5px dashed var(--border);
+  border-radius: 14px;
+  background: var(--s1);
+}
+.empty-state .glyph { font-size: 40px; margin-bottom: 12px; }
+.empty-state h3 { font-family: 'Fraunces', serif; font-size: 19px; color: var(--text); margin-bottom: 6px; }
+.empty-state p { font-size: 14px; }
+
+/* ── EVENT DETAIL ── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent-d); font-weight: 600; font-size: 14px;
+  cursor: pointer; margin-bottom: 16px; background: none; border: none;
+  font-family: 'Instrument Sans', sans-serif;
+}
+.back-link:hover { text-decoration: underline; }
+
+.event-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.event-header h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; }
+.event-header .sub { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+.event-header .actions { display: flex; gap: 8px; }
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  background: var(--s1);
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.dropzone.drag { background: var(--s2); border-color: var(--accent); }
+.dropzone strong { color: var(--accent-d); }
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.photo-thumb {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--s2);
+}
+.photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .2s ease; }
+.photo-thumb:hover img { transform: scale(1.05); }
+.photo-thumb .del {
+  position: absolute; top: 6px; right: 6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(30,26,16,0.65); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; opacity: 0; transition: opacity .15s ease;
+  border: none; cursor: pointer;
+}
+.photo-thumb:hover .del { opacity: 1; }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  position: fixed; inset: 0; background: rgba(20,17,10,0.94);
+  display: none; align-items: center; justify-content: center;
+  z-index: 200; flex-direction: column;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 78vh; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.lightbox-bar { display: flex; align-items: center; gap: 18px; margin-top: 18px; }
+.lightbox-bar button {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+}
+.lightbox-bar button:hover { background: rgba(255,255,255,0.2); }
+.lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none; color: #fff; font-size: 28px; cursor: pointer;
+}
+.lightbox-count { color: #cfc8ae; font-size: 13px; margin-top: 10px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(20,17,10,0.55);
+  display: none; align-items: center; justify-content: center; z-index: 150;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--s1); border-radius: 14px; padding: 26px;
+  width: 100%; max-width: 420px; box-shadow: var(--shadow);
+}
+.modal h3 { font-family: 'Fraunces', serif; font-size: 20px; margin-bottom: 16px; }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+.field input, .field textarea {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-family: inherit; font-size: 14px; background: var(--bg);
+  color: var(--text);
+}
+.field textarea { resize: vertical; min-height: 60px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 480px) {
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .event-header { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-ornament">✦ Galeria ✦</div>
+    <h1>Fotos dos Eventos</h1>
+    <p>Organize e reviva os momentos, evento por evento</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- LISTA DE EVENTOS -->
+  <div id="view-events">
+    <div class="toolbar">
+      <h2>Meus eventos</h2>
+      <button class="btn" id="btn-new-event">+ Novo evento</button>
+    </div>
+    <div id="events-grid" class="events-grid"></div>
+    <div id="events-empty" class="empty-state hidden">
+      <div class="glyph">📷</div>
+      <h3>Nenhum evento ainda</h3>
+      <p>Crie um evento para começar a guardar suas fotos.</p>
+    </div>
+  </div>
+
+  <!-- DETALHE DO EVENTO -->
+  <div id="view-event-detail" class="hidden">
+    <button class="back-link" id="btn-back">← Voltar aos eventos</button>
+    <div class="event-header">
+      <div>
+        <h2 id="detail-title"></h2>
+        <div class="sub" id="detail-sub"></div>
+      </div>
+      <div class="actions">
+        <button class="btn secondary" id="btn-edit-event">Editar</button>
+        <button class="btn danger" id="btn-delete-event">Excluir evento</button>
+      </div>
+    </div>
+
+    <div class="dropzone" id="dropzone">
+      <div><strong>Clique para enviar</strong> ou arraste as fotos aqui</div>
+    </div>
+    <input type="file" id="file-input" accept="image/*" multiple class="hidden"/>
+
+    <div id="photos-grid" class="photos-grid"></div>
+    <div id="photos-empty" class="empty-state hidden">
+      <div class="glyph">🖼️</div>
+      <h3>Sem fotos ainda</h3>
+      <p>Envie as primeiras fotos deste evento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOVO/EDITAR EVENTO -->
+<div class="modal-overlay" id="event-modal">
+  <div class="modal">
+    <h3 id="event-modal-title">Novo evento</h3>
+    <div class="field">
+      <label>Nome do evento</label>
+      <input type="text" id="input-event-name" placeholder="Ex: Aniversário da Ana"/>
+    </div>
+    <div class="field">
+      <label>Data</label>
+      <input type="date" id="input-event-date"/>
+    </div>
+    <div class="field">
+      <label>Descrição (opcional)</label>
+      <textarea id="input-event-desc" placeholder="Detalhes sobre o evento..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" id="btn-cancel-event">Cancelar</button>
+      <button class="btn" id="btn-save-event">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <div class="lightbox-bar">
+    <button id="lightbox-prev">‹</button>
+    <button id="lightbox-next">›</button>
+  </div>
+  <div class="lightbox-count" id="lightbox-count"></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- IndexedDB layer ---------- */
+  const DB_NAME = "eventPhotosDB";
+  const DB_VERSION = 1;
+  let db;
+
+  function openDB() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = () => {
+        const _db = req.result;
+        if (!_db.objectStoreNames.contains("events")) {
+          _db.createObjectStore("events", { keyPath: "id" });
+        }
+        if (!_db.objectStoreNames.contains("photos")) {
+          const store = _db.createObjectStore("photos", { keyPath: "id" });
+          store.createIndex("eventId", "eventId", { unique: false });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function tx(storeNames, mode) {
+    return db.transaction(storeNames, mode);
+  }
+
+  function addRecord(store, record) {
+    return new Promise((resolve, reject) => {
+      const t = tx([store], "readwrite");
+      t.objectStore(store).put(record);
+      t.oncomplete = () => resolve();
+      t.onerror = () => reject(t.error);
+    });
+  }
+
+  function deleteRecord(store, id) {
+    return new Promise((resolve, reject) => {
+      const t = tx([store], "readwrite");
+      t.objectStore(store).delete(id);
+      t.oncomplete = () => resolve();
+      t.onerror = () => reject(t.error);
+    });
+  }
+
+  function getAll(store) {
+    return new Promise((resolve, reject) => {
+      const t = tx([store], "readonly");
+      const req = t.objectStore(store).getAll();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function getByIndex(store, indexName, value) {
+    return new Promise((resolve, reject) => {
+      const t = tx([store], "readonly");
+      const req = t.objectStore(store).index(indexName).getAll(value);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  /* ---------- State ---------- */
+  let events = [];
+  let currentEventId = null;
+  let currentPhotos = [];
+  let lightboxIndex = 0;
+  let editingEventId = null;
+
+  const $ = (id) => document.getElementById(id);
+
+  function uid() {
+    return (crypto.randomUUID && crypto.randomUUID()) ||
+      "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+  }
+
+  function formatDate(iso) {
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-");
+    return `${d}/${m}/${y}`;
+  }
+
+  /* ---------- Rendering: events list ---------- */
+  async function renderEvents() {
+    events = await getAll("events");
+    events.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    const grid = $("events-grid");
+    const empty = $("events-empty");
+    grid.innerHTML = "";
+
+    if (events.length === 0) {
+      empty.classList.remove("hidden");
+      grid.classList.add("hidden");
+      return;
+    }
+    empty.classList.add("hidden");
+    grid.classList.remove("hidden");
+
+    for (const ev of events) {
+      const photos = await getByIndex("photos", "eventId", ev.id);
+      const card = document.createElement("div");
+      card.className = "event-card";
+      const coverPhoto = photos[0];
+      card.innerHTML = `
+        <div class="event-cover">${coverPhoto ? "" : "📷"}</div>
+        <div class="event-info">
+          <h3></h3>
+          <div class="event-meta">
+            <span class="ev-date"></span>
+            <span>${photos.length} foto${photos.length === 1 ? "" : "s"}</span>
+          </div>
+        </div>`;
+      card.querySelector("h3").textContent = ev.name;
+      card.querySelector(".ev-date").textContent = formatDate(ev.date);
+      if (coverPhoto) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(coverPhoto.blob);
+        card.querySelector(".event-cover").appendChild(img);
+      }
+      card.addEventListener("click", () => openEvent(ev.id));
+      grid.appendChild(card);
+    }
+  }
+
+  /* ---------- Event detail ---------- */
+  async function openEvent(id) {
+    currentEventId = id;
+    const ev = events.find((e) => e.id === id) || (await getAll("events")).find((e) => e.id === id);
+    if (!ev) return;
+    $("view-events").classList.add("hidden");
+    $("view-event-detail").classList.remove("hidden");
+    $("detail-title").textContent = ev.name;
+    $("detail-sub").textContent = [formatDate(ev.date), ev.description].filter(Boolean).join(" · ");
+    await renderPhotos();
+  }
+
+  function closeEvent() {
+    currentEventId = null;
+    $("view-event-detail").classList.add("hidden");
+    $("view-events").classList.remove("hidden");
+    renderEvents();
+  }
+
+  async function renderPhotos() {
+    currentPhotos = await getByIndex("photos", "eventId", currentEventId);
+    currentPhotos.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+    const grid = $("photos-grid");
+    const empty = $("photos-empty");
+    grid.innerHTML = "";
+
+    if (currentPhotos.length === 0) {
+      empty.classList.remove("hidden");
+      grid.classList.add("hidden");
+      return;
+    }
+    empty.classList.add("hidden");
+    grid.classList.remove("hidden");
+
+    currentPhotos.forEach((photo, idx) => {
+      const thumb = document.createElement("div");
+      thumb.className = "photo-thumb";
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(photo.blob);
+      img.loading = "lazy";
+      thumb.appendChild(img);
+
+      const del = document.createElement("button");
+      del.className = "del";
+      del.textContent = "✕";
+      del.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        if (confirm("Excluir esta foto?")) {
+          await deleteRecord("photos", photo.id);
+          await renderPhotos();
+        }
+      });
+      thumb.appendChild(del);
+
+      thumb.addEventListener("click", () => openLightbox(idx));
+      grid.appendChild(thumb);
+    });
+  }
+
+  /* ---------- Upload ---------- */
+  async function handleFiles(fileList) {
+    const files = Array.from(fileList).filter((f) => f.type.startsWith("image/"));
+    for (const file of files) {
+      await addRecord("photos", {
+        id: uid(),
+        eventId: currentEventId,
+        blob: file,
+        name: file.name,
+        createdAt: Date.now(),
+      });
+    }
+    await renderPhotos();
+  }
+
+  $("dropzone").addEventListener("click", () => $("file-input").click());
+  $("file-input").addEventListener("change", (e) => {
+    handleFiles(e.target.files);
+    e.target.value = "";
+  });
+  $("dropzone").addEventListener("dragover", (e) => {
+    e.preventDefault();
+    $("dropzone").classList.add("drag");
+  });
+  $("dropzone").addEventListener("dragleave", () => $("dropzone").classList.remove("drag"));
+  $("dropzone").addEventListener("drop", (e) => {
+    e.preventDefault();
+    $("dropzone").classList.remove("drag");
+    handleFiles(e.dataTransfer.files);
+  });
+
+  /* ---------- Lightbox ---------- */
+  function openLightbox(idx) {
+    lightboxIndex = idx;
+    updateLightbox();
+    $("lightbox").classList.add("open");
+  }
+  function updateLightbox() {
+    const photo = currentPhotos[lightboxIndex];
+    if (!photo) return;
+    $("lightbox-img").src = URL.createObjectURL(photo.blob);
+    $("lightbox-count").textContent = `${lightboxIndex + 1} / ${currentPhotos.length}`;
+  }
+  function closeLightbox() { $("lightbox").classList.remove("open"); }
+  $("lightbox-close").addEventListener("click", closeLightbox);
+  $("lightbox").addEventListener("click", (e) => { if (e.target.id === "lightbox") closeLightbox(); });
+  $("lightbox-prev").addEventListener("click", () => {
+    lightboxIndex = (lightboxIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    updateLightbox();
+  });
+  $("lightbox-next").addEventListener("click", () => {
+    lightboxIndex = (lightboxIndex + 1) % currentPhotos.length;
+    updateLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!$("lightbox").classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") $("lightbox-prev").click();
+    if (e.key === "ArrowRight") $("lightbox-next").click();
+  });
+
+  /* ---------- Event modal (create/edit) ---------- */
+  function openEventModal(editId) {
+    editingEventId = editId || null;
+    const ev = editId ? events.find((e) => e.id === editId) : null;
+    $("event-modal-title").textContent = editId ? "Editar evento" : "Novo evento";
+    $("input-event-name").value = ev ? ev.name : "";
+    $("input-event-date").value = ev ? ev.date : "";
+    $("input-event-desc").value = ev ? ev.description || "" : "";
+    $("event-modal").classList.add("open");
+    setTimeout(() => $("input-event-name").focus(), 50);
+  }
+  function closeEventModal() { $("event-modal").classList.remove("open"); }
+
+  $("btn-new-event").addEventListener("click", () => openEventModal(null));
+  $("btn-cancel-event").addEventListener("click", closeEventModal);
+  $("event-modal").addEventListener("click", (e) => { if (e.target.id === "event-modal") closeEventModal(); });
+
+  $("btn-save-event").addEventListener("click", async () => {
+    const name = $("input-event-name").value.trim();
+    if (!name) { alert("Digite o nome do evento."); return; }
+    const date = $("input-event-date").value;
+    const description = $("input-event-desc").value.trim();
+
+    if (editingEventId) {
+      const ev = events.find((e) => e.id === editingEventId);
+      ev.name = name; ev.date = date; ev.description = description;
+      await addRecord("events", ev);
+    } else {
+      await addRecord("events", {
+        id: uid(), name, date, description, createdAt: Date.now(),
+      });
+    }
+    closeEventModal();
+    if (currentEventId && currentEventId === editingEventId) {
+      await openEvent(currentEventId);
+    }
+    await renderEvents();
+  });
+
+  $("btn-edit-event").addEventListener("click", () => openEventModal(currentEventId));
+
+  $("btn-delete-event").addEventListener("click", async () => {
+    if (!confirm("Excluir este evento e todas as suas fotos?")) return;
+    const photos = await getByIndex("photos", "eventId", currentEventId);
+    for (const p of photos) await deleteRecord("photos", p.id);
+    await deleteRecord("events", currentEventId);
+    closeEvent();
+  });
+
+  $("btn-back").addEventListener("click", closeEvent);
+
+  /* ---------- Init ---------- */
+  openDB().then((_db) => {
+    db = _db;
+    renderEvents();
+  });
+})();
+</script>
+</body>
+</html>
