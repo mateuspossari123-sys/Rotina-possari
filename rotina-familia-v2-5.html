@@ -3,1331 +3,282 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxZTJhMTI7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzJlNGExYTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2YwYzA0MDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNkNGE4M2M7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2I4ODMwYTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImNhbEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmRmYWYwO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGVhZDA7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGZpbHRlciBpZD0ic2hhZG93IiB4PSItMTAlIiB5PSItMTAlIiB3aWR0aD0iMTIwJSIgaGVpZ2h0PSIxMjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iOCIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9IjAuNCIvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJnbG93Ij4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMyIgcmVzdWx0PSJibHVyIi8+CiAgICAgIDxmZU1lcmdlPjxmZU1lcmdlTm9kZSBpbj0iYmx1ciIvPjxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIHJvdW5kZWQgcmVjdCAtLT4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjkwIiByeT0iOTAiIGZpbGw9InVybCgjYmdHcmFkKSIvPgoKICA8IS0tIE91dGVyIGdvbGQgYm9yZGVyIC0tPgogIDxyZWN0IHg9IjE4IiB5PSIxOCIgd2lkdGg9IjQ3NiIgaGVpZ2h0PSI0NzYiIHJ4PSI3NiIgcnk9Ijc2IgogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iNiIvPgoKICA8IS0tIElubmVyIGdvbGQgYm9yZGVyICh0aGluKSAtLT4KICA8cmVjdCB4PSIzMCIgeT0iMzAiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiByeD0iNjYiIHJ5PSI2NiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CgogIDwhLS0gQ29ybmVyIG9ybmFtZW50cyAtLT4KICA8ZyBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIgb3BhY2l0eT0iMC44NSI+CiAgICA8IS0tIHRvcCBsZWZ0IC0tPgogICAgPGNpcmNsZSBjeD0iNTUiIGN5PSI1NSIgcj0iNSIvPgogICAgPGxpbmUgeDE9IjU1IiB5MT0iNDIiIHgyPSI1NSIgeTI9IjY4IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDIiIHkxPSI1NSIgeDI9IjY4IiB5Mj0iNTUiIHN0cm9rZT0iI2Q0YTgzYyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDwhLS0gdG9wIHJpZ2h0IC0tPgogICAgPGNpcmNsZSBjeD0iNDU3IiBjeT0iNTUiIHI9IjUiLz4KICAgIDxsaW5lIHgxPSI0NTciIHkxPSI0MiIgeDI9IjQ1NyIgeTI9IjY4IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDQ0IiB5MT0iNTUiIHgyPSI0NzAiIHkyPSI1NSIgc3Ryb2tlPSIjZDRhODNjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPCEtLSBib3R0b20gbGVmdCAtLT4KICAgIDxjaXJjbGUgY3g9IjU1IiBjeT0iNDU3IiByPSI1Ii8+CiAgICA8bGluZSB4MT0iNTUiIHkxPSI0NDQiIHgyPSI1NSIgeTI9IjQ3MCIgc3Ryb2tlPSIjZDRhODNjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGxpbmUgeDE9IjQyIiB5MT0iNDU3IiB4Mj0iNjgiIHkyPSI0NTciIHN0cm9rZT0iI2Q0YTgzYyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDwhLS0gYm90dG9tIHJpZ2h0IC0tPgogICAgPGNpcmNsZSBjeD0iNDU3IiBjeT0iNDU3IiByPSI1Ii8+CiAgICA8bGluZSB4MT0iNDU3IiB5MT0iNDQ0IiB4Mj0iNDU3IiB5Mj0iNDcwIiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDQ0IiB5MT0iNDU3IiB4Mj0iNDcwIiB5Mj0iNDU3IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPC9nPgoKICA8IS0tIENhbGVuZGFyIGJvZHkgKHNoYWRvdykgLS0+CiAgPHJlY3QgeD0iMTA2IiB5PSIxNDgiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjI1IiBmaWx0ZXI9InVybCgjc2hhZG93KSIvPgoKICA8IS0tIENhbGVuZGFyIGJvZHkgLS0+CiAgPHJlY3QgeD0iMTAwIiB5PSIxNDAiIHdpZHRoPSIzMTIiIGhlaWdodD0iMjQ0IiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSJ1cmwoI2NhbEdyYWQpIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjQiLz4KCiAgPCEtLSBDYWxlbmRhciBoZWFkZXIgYmFyIC0tPgogIDxyZWN0IHg9IjEwMCIgeT0iMTQwIiB3aWR0aD0iMzEyIiBoZWlnaHQ9IjcyIiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiLz4KICA8cmVjdCB4PSIxMDAiIHk9IjE4MiIgd2lkdGg9IjMxMiIgaGVpZ2h0PSIzMCIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiLz4KCiAgPCEtLSBHb2xkIGhlYWRlciBib3JkZXIgYm90dG9tIC0tPgogIDxsaW5lIHgxPSIxMDAiIHkxPSIyMTIiIHgyPSI0MTIiIHkyPSIyMTIiCiAgICAgICAgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIzIi8+CgogIDwhLS0gUmluZyBoYW5nZXJzIC0tPgogIDxyZWN0IHg9IjE2OCIgeT0iMTE4IiB3aWR0aD0iMjIiIGhlaWdodD0iNDYiIHJ4PSIxMSIgcnk9IjExIgogICAgICAgIGZpbGw9InVybCgjYmdHcmFkKSIgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIzLjUiLz4KICA8cmVjdCB4PSIyNDUiIHk9IjExOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjQ2IiByeD0iMTEiIHJ5PSIxMSIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgPHJlY3QgeD0iMzIyIiB5PSIxMTgiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0NiIgcng9IjExIiByeT0iMTEiCiAgICAgICAgZmlsbD0idXJsKCNiZ0dyYWQpIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjMuNSIvPgoKICA8IS0tIE1vbnRoIHRleHQgaW4gaGVhZGVyIC0tPgogIDx0ZXh0IHg9IjI1NiIgeT0iMTg2IiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMjYiCiAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9InVybCgjZ29sZEdyYWQpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGxldHRlci1zcGFjaW5nPSIzIj5BR0VOREE8L3RleHQ+CgogIDwhLS0gQ2FsZW5kYXIgZ3JpZCBkb3RzIChkYXlzKSAtLT4KICA8ZyBmaWxsPSIjMmU0YTFhIiBvcGFjaXR5PSIwLjciPgogICAgPCEtLSBSb3cgMSAtLT4KICAgIDxyZWN0IHg9IjEyOCIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIxNjYiIHk9IjIyOCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjA0IiB5PSIyMjgiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjI0MiIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyODAiIHk9IjIyOCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzE4IiB5PSIyMjgiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjM1NiIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8IS0tIFJvdyAyIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjE2NiIgeT0iMjYyIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyMDQiIHk9IjI2MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjQyIiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiMxZTJhMTIiLz4KICAgIDxyZWN0IHg9IjI4MCIgeT0iMjYyIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIzMTgiIHk9IjI2MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzU2IiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDwhLS0gUm93IDMgLS0+CiAgICA8cmVjdCB4PSIxMjgiIHk9IjI5NiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMTY2IiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjIwNCIgeT0iMjk2IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyNDIiIHk9IjI5NiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjgwIiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNiODgzMGEiIG9wYWNpdHk9IjAuOCIvPgogICAgPHJlY3QgeD0iMzE4IiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjM1NiIgeT0iMjk2IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8IS0tIFJvdyA0IC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjE2NiIgeT0iMzMwIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyMDQiIHk9IjMzMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjQyIiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjI4MCIgeT0iMzMwIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIzMTgiIHk9IjMzMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzU2IiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICA8L2c+CgogIDwhLS0gU3Rhci9jcm9zcyBvbiBoaWdobGlnaHRlZCBkYXkgLS0+CiAgPHRleHQgeD0iMjU2IiB5PSIyNzkiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjE2IgogICAgICAgIGZpbGw9IiNmMGMwNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKcpjwvdGV4dD4KCiAgPCEtLSBTbWFsbCBjcm9zcyBvbiBnb2xkZW4gZGF5IC0tPgogIDx0ZXh0IHg9IjI5NCIgeT0iMzEzIiBmb250LWZhbWlseT0iR2VvcmdpYSIgZm9udC1zaXplPSIxNCIKICAgICAgICBmaWxsPSIjZmRmYWYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7inJ08L3RleHQ+CgogIDwhLS0gQm90dG9tIHRleHQgLS0+CiAgPHRleHQgeD0iMjU2IiB5PSI0MzAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIyOCIKICAgICAgICBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgbGV0dGVyLXNwYWNpbmc9IjEiPkZhbcOtbGlhPC90ZXh0PgoKICA8IS0tIERlY29yYXRpdmUgbGluZSB1bmRlciB0ZXh0IC0tPgogIDxsaW5lIHgxPSIxNTYiIHkxPSI0NDIiIHgyPSIzNTYiIHkyPSI0NDIiCiAgICAgICAgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuNyIvPgoKICA8IS0tIFNtYWxsIG9ybmFtZW50IC0tPgogIDx0ZXh0IHg9IjI1NiIgeT0iNDY4IiBmb250LWZhbWlseT0iR2VvcmdpYSIgZm9udC1zaXplPSIxNiIKICAgICAgICBmaWxsPSIjZDRhODNjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBvcGFjaXR5PSIwLjgiPuKcpiDilIDilIAg4pymIOKUgOKUgCDinKY8L3RleHQ+Cgo8L3N2Zz4K"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxZTJhMTI7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzJlNGExYTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2YwYzA0MDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNkNGE4M2M7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2I4ODMwYTtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImNhbEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmRmYWYwO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGVhZDA7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGZpbHRlciBpZD0ic2hhZG93IiB4PSItMTAlIiB5PSItMTAlIiB3aWR0aD0iMTIwJSIgaGVpZ2h0PSIxMjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iOCIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9IjAuNCIvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJnbG93Ij4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMyIgcmVzdWx0PSJibHVyIi8+CiAgICAgIDxmZU1lcmdlPjxmZU1lcmdlTm9kZSBpbj0iYmx1ciIvPjxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIHJvdW5kZWQgcmVjdCAtLT4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjkwIiByeT0iOTAiIGZpbGw9InVybCgjYmdHcmFkKSIvPgoKICA8IS0tIE91dGVyIGdvbGQgYm9yZGVyIC0tPgogIDxyZWN0IHg9IjE4IiB5PSIxOCIgd2lkdGg9IjQ3NiIgaGVpZ2h0PSI0NzYiIHJ4PSI3NiIgcnk9Ijc2IgogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iNiIvPgoKICA8IS0tIElubmVyIGdvbGQgYm9yZGVyICh0aGluKSAtLT4KICA8cmVjdCB4PSIzMCIgeT0iMzAiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiByeD0iNjYiIHJ5PSI2NiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CgogIDwhLS0gQ29ybmVyIG9ybmFtZW50cyAtLT4KICA8ZyBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIgb3BhY2l0eT0iMC44NSI+CiAgICA8IS0tIHRvcCBsZWZ0IC0tPgogICAgPGNpcmNsZSBjeD0iNTUiIGN5PSI1NSIgcj0iNSIvPgogICAgPGxpbmUgeDE9IjU1IiB5MT0iNDIiIHgyPSI1NSIgeTI9IjY4IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDIiIHkxPSI1NSIgeDI9IjY4IiB5Mj0iNTUiIHN0cm9rZT0iI2Q0YTgzYyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDwhLS0gdG9wIHJpZ2h0IC0tPgogICAgPGNpcmNsZSBjeD0iNDU3IiBjeT0iNTUiIHI9IjUiLz4KICAgIDxsaW5lIHgxPSI0NTciIHkxPSI0MiIgeDI9IjQ1NyIgeTI9IjY4IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDQ0IiB5MT0iNTUiIHgyPSI0NzAiIHkyPSI1NSIgc3Ryb2tlPSIjZDRhODNjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPCEtLSBib3R0b20gbGVmdCAtLT4KICAgIDxjaXJjbGUgY3g9IjU1IiBjeT0iNDU3IiByPSI1Ii8+CiAgICA8bGluZSB4MT0iNTUiIHkxPSI0NDQiIHgyPSI1NSIgeTI9IjQ3MCIgc3Ryb2tlPSIjZDRhODNjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGxpbmUgeDE9IjQyIiB5MT0iNDU3IiB4Mj0iNjgiIHkyPSI0NTciIHN0cm9rZT0iI2Q0YTgzYyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDwhLS0gYm90dG9tIHJpZ2h0IC0tPgogICAgPGNpcmNsZSBjeD0iNDU3IiBjeT0iNDU3IiByPSI1Ii8+CiAgICA8bGluZSB4MT0iNDU3IiB5MT0iNDQ0IiB4Mj0iNDU3IiB5Mj0iNDcwIiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iNDQ0IiB5MT0iNDU3IiB4Mj0iNDcwIiB5Mj0iNDU3IiBzdHJva2U9IiNkNGE4M2MiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPC9nPgoKICA8IS0tIENhbGVuZGFyIGJvZHkgKHNoYWRvdykgLS0+CiAgPHJlY3QgeD0iMTA2IiB5PSIxNDgiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjI1IiBmaWx0ZXI9InVybCgjc2hhZG93KSIvPgoKICA8IS0tIENhbGVuZGFyIGJvZHkgLS0+CiAgPHJlY3QgeD0iMTAwIiB5PSIxNDAiIHdpZHRoPSIzMTIiIGhlaWdodD0iMjQ0IiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSJ1cmwoI2NhbEdyYWQpIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjQiLz4KCiAgPCEtLSBDYWxlbmRhciBoZWFkZXIgYmFyIC0tPgogIDxyZWN0IHg9IjEwMCIgeT0iMTQwIiB3aWR0aD0iMzEyIiBoZWlnaHQ9IjcyIiByeD0iMjIiIHJ5PSIyMiIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiLz4KICA8cmVjdCB4PSIxMDAiIHk9IjE4MiIgd2lkdGg9IjMxMiIgaGVpZ2h0PSIzMCIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiLz4KCiAgPCEtLSBHb2xkIGhlYWRlciBib3JkZXIgYm90dG9tIC0tPgogIDxsaW5lIHgxPSIxMDAiIHkxPSIyMTIiIHgyPSI0MTIiIHkyPSIyMTIiCiAgICAgICAgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIzIi8+CgogIDwhLS0gUmluZyBoYW5nZXJzIC0tPgogIDxyZWN0IHg9IjE2OCIgeT0iMTE4IiB3aWR0aD0iMjIiIGhlaWdodD0iNDYiIHJ4PSIxMSIgcnk9IjExIgogICAgICAgIGZpbGw9InVybCgjYmdHcmFkKSIgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIzLjUiLz4KICA8cmVjdCB4PSIyNDUiIHk9IjExOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjQ2IiByeD0iMTEiIHJ5PSIxMSIKICAgICAgICBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgPHJlY3QgeD0iMzIyIiB5PSIxMTgiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0NiIgcng9IjExIiByeT0iMTEiCiAgICAgICAgZmlsbD0idXJsKCNiZ0dyYWQpIiBzdHJva2U9InVybCgjZ29sZEdyYWQpIiBzdHJva2Utd2lkdGg9IjMuNSIvPgoKICA8IS0tIE1vbnRoIHRleHQgaW4gaGVhZGVyIC0tPgogIDx0ZXh0IHg9IjI1NiIgeT0iMTg2IiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMjYiCiAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9InVybCgjZ29sZEdyYWQpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGxldHRlci1zcGFjaW5nPSIzIj5BR0VOREE8L3RleHQ+CgogIDwhLS0gQ2FsZW5kYXIgZ3JpZCBkb3RzIChkYXlzKSAtLT4KICA8ZyBmaWxsPSIjMmU0YTFhIiBvcGFjaXR5PSIwLjciPgogICAgPCEtLSBSb3cgMSAtLT4KICAgIDxyZWN0IHg9IjEyOCIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIxNjYiIHk9IjIyOCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjA0IiB5PSIyMjgiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjI0MiIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyODAiIHk9IjIyOCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzE4IiB5PSIyMjgiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjM1NiIgeT0iMjI4IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8IS0tIFJvdyAyIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjE2NiIgeT0iMjYyIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyMDQiIHk9IjI2MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjQyIiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiMxZTJhMTIiLz4KICAgIDxyZWN0IHg9IjI4MCIgeT0iMjYyIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIzMTgiIHk9IjI2MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzU2IiB5PSIyNjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDwhLS0gUm93IDMgLS0+CiAgICA8cmVjdCB4PSIxMjgiIHk9IjI5NiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMTY2IiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjIwNCIgeT0iMjk2IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyNDIiIHk9IjI5NiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjgwIiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNiODgzMGEiIG9wYWNpdHk9IjAuOCIvPgogICAgPHJlY3QgeD0iMzE4IiB5PSIyOTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjM1NiIgeT0iMjk2IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8IS0tIFJvdyA0IC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjE2NiIgeT0iMzMwIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIyMDQiIHk9IjMzMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMjQyIiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICAgIDxyZWN0IHg9IjI4MCIgeT0iMzMwIiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjZThlNGQ0Ii8+CiAgICA8cmVjdCB4PSIzMTgiIHk9IjMzMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI0IiByeD0iNSIgZmlsbD0iI2U4ZTRkNCIvPgogICAgPHJlY3QgeD0iMzU2IiB5PSIzMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNlOGU0ZDQiLz4KICA8L2c+CgogIDwhLS0gU3Rhci9jcm9zcyBvbiBoaWdobGlnaHRlZCBkYXkgLS0+CiAgPHRleHQgeD0iMjU2IiB5PSIyNzkiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjE2IgogICAgICAgIGZpbGw9IiNmMGMwNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKcpjwvdGV4dD4KCiAgPCEtLSBTbWFsbCBjcm9zcyBvbiBnb2xkZW4gZGF5IC0tPgogIDx0ZXh0IHg9IjI5NCIgeT0iMzEzIiBmb250LWZhbWlseT0iR2VvcmdpYSIgZm9udC1zaXplPSIxNCIKICAgICAgICBmaWxsPSIjZmRmYWYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7inJ08L3RleHQ+CgogIDwhLS0gQm90dG9tIHRleHQgLS0+CiAgPHRleHQgeD0iMjU2IiB5PSI0MzAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIyOCIKICAgICAgICBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgbGV0dGVyLXNwYWNpbmc9IjEiPkZhbcOtbGlhPC90ZXh0PgoKICA8IS0tIERlY29yYXRpdmUgbGluZSB1bmRlciB0ZXh0IC0tPgogIDxsaW5lIHgxPSIxNTYiIHkxPSI0NDIiIHgyPSIzNTYiIHkyPSI0NDIiCiAgICAgICAgc3Ryb2tlPSJ1cmwoI2dvbGRHcmFkKSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuNyIvPgoKICA8IS0tIFNtYWxsIG9ybmFtZW50IC0tPgogIDx0ZXh0IHg9IjI1NiIgeT0iNDY4IiBmb250LWZhbWlseT0iR2VvcmdpYSIgZm9udC1zaXplPSIxNiIKICAgICAgICBmaWxsPSIjZDRhODNjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBvcGFjaXR5PSIwLjgiPuKcpiDilIDilIAg4pymIOKUgOKUgCDinKY8L3RleHQ+Cgo8L3N2Zz4K"/>
-<meta name="application-name" content="Agenda da Família"/>
-<meta name="apple-mobile-web-app-title" content="Agenda da Família"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<title>Rotina da Família</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<title>Ora et Labora</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#223361">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ora et Labora">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:     #f2f0e8;
-  --s1:     #faf8f0;
-  --s2:     #e8e4d4;
-  --border: #ccc8a8;
-  --text:   #1e2a12;
-  --muted:  #6a7a4a;
-  --subtle: #a8b888;
+  * { box-sizing: border-box; }
+  body { margin: 0; background: oklch(0.965 0.006 75); font-family: 'Work Sans', sans-serif; }
+  ::-webkit-scrollbar { display: none; }
 
-  --manha:  #c8832a;
-  --tarde:  #4a7a3a;
-  --noite:  #3a5a7a;
+  .page {
+    min-height: 100vh; width: 100%; display: flex; justify-content: center;
+    align-items: flex-start; padding: 32px 16px; background: oklch(0.965 0.006 75);
+  }
+  .card {
+    width: 402px; max-width: 100%; min-height: 840px;
+    background: oklch(0.995 0.004 75); border-radius: 28px;
+    box-shadow: 0 24px 60px -20px oklch(0.3 0.02 40 / 0.35);
+    overflow: hidden; display: flex; flex-direction: column; position: relative;
+  }
 
-  --trabalho: #2e6e3e;
-  --exercicio:#8a4a1a;
-  --estudos:  #3a5a8a;
-  --igreja:   #7a3a6a;
+  /* HEADER */
+  .header {
+    padding: 28px 24px 20px; text-align: center; position: relative;
+    background: oklch(0.26 0.06 255);
+  }
+  .header .glyph { font-family:'Source Serif 4',serif; font-size:15px; letter-spacing:.3em; color:oklch(0.74 0.11 85); margin:0 0 6px; }
+  .header .title { font-family:'Source Serif 4',serif; font-weight:600; font-size:26px; color:oklch(0.82 0.09 85); letter-spacing:.01em; }
+  .header .subtitle { font-family:'Source Serif 4',serif; font-style:italic; font-size:12.5px; color:oklch(0.68 0.07 85); margin-top:5px; letter-spacing:.02em; }
+  .header .rule { width:36px; height:2px; background:oklch(0.74 0.11 85); margin:14px auto 0; border-radius:2px; }
 
-  --p1: #2d5e2e;
-  --p2: #6b3a1e;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
+  /* CONTENT */
+  .content { flex:1; overflow-y:auto; padding:4px 20px 108px; }
+  .tab-view { display:none; }
+  .tab-view.active { display:block; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Instrument Sans', sans-serif;
-  min-height: 100vh;
-  padding-bottom: 80px;
-}
+  .section-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin:16px 0 10px; }
 
-/* ── HERO BANNER ── */
-.hero-banner {
-  background: #2d3a1e;
-  border-bottom: 3px solid #b8963e;
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-}
-/* grain texture overlay */
-.hero-banner::before {
-  content: '';
-  position: absolute; inset: 0; z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-.hero-inner {
-  position: relative; z-index: 2;
-  padding: 10px 20px 10px;
-  display: flex; flex-direction: column; align-items: center;
-}
-/* ornamental top border line */
-.hero-ornament-top { display: none; }
-/* crest / medallion SVG */
-.hero-crest { display: block; margin: 0 auto 6px; }
+  /* WEEK STRIP */
+  .week-strip { display:flex; gap:6px; margin-bottom:18px; }
+  .week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:9px 0; border-radius:12px; cursor:pointer; border:1px solid oklch(0.91 0.01 60); background:oklch(0.98 0.004 75); }
+  .week-day .wd-label { font-size:10px; font-weight:600; letter-spacing:.04em; color:oklch(0.4 0.02 40); }
+  .week-day .wd-date { font-size:13px; font-weight:600; color:oklch(0.4 0.02 40); }
+  .week-day.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); }
+  .week-day.active .wd-label, .week-day.active .wd-date { color:oklch(0.82 0.09 85); }
 
-.hero-family-label {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: #8fa870; margin-bottom: 4px; text-align: center;
-}
-.hero-title {
-  font-family: 'Fraunces', serif;
-  font-size: 28px; font-weight: 700;
-  color: #d4a83c; letter-spacing: .5px; line-height: 1.15;
-  text-align: center; margin-bottom: 2px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-}
-.hero-subtitle {
-  font-family: 'Fraunces', serif;
-  font-size: 15px; font-style: italic; font-weight: 300;
-  color: #c8d8b0; text-align: center; margin-bottom: 14px;
-  letter-spacing: .5px;
-}
-/* divider line with diamonds */
-.hero-divider {
-  width: 100%; text-align: center;
-  color: #b8963e; font-size: 11px; letter-spacing: 5px;
-  margin-bottom: 8px; opacity: 0.7;
-}
-.hero-quote-wrap {
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(184,150,62,0.35);
-  border-radius: 4px;
-  padding: 8px 14px;
-  width: 100%;
-  text-align: center;
-}
-.hero-quote-text {
-  font-family: 'Fraunces', serif;
-  font-size: 13.5px; font-style: italic;
-  color: #e8dbb0; line-height: 1.6;
-}
-.hero-quote-author {
-  font-size: 9px; color: #b8963e; margin-top: 6px;
-  letter-spacing: 1.8px; text-transform: uppercase;
-  font-family: 'Instrument Sans', sans-serif; font-weight: 600;
-}
-/* ornamental bottom border */
-.hero-ornament-bot {
-  width: 100%; text-align: center;
-  color: #b8963e; font-size: 11px; letter-spacing: 4px;
-  margin-top: 8px; opacity: 0.6;
-}
+  /* TIMELINE */
+  .timeline { display:flex; flex-direction:column; margin-bottom:14px; }
+  .tl-row { display:flex; gap:14px; }
+  .tl-time-col { display:flex; flex-direction:column; align-items:center; width:44px; flex:0 0 auto; }
+  .tl-time { font-size:12px; font-weight:600; color:oklch(0.26 0.06 255); padding-top:8px; }
+  .tl-line { width:1px; flex:1; background:oklch(0.88 0.01 60); margin-top:6px; }
+  .tl-card-wrap { flex:1; padding:8px 14px 20px; margin-top:2px; }
+  .tl-card { padding:11px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:8px; position:relative; }
+  .tl-card .tl-label { font-size:13.5px; color:oklch(0.25 0.02 40); font-weight:500; }
+  .tl-card .tl-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; flex:0 0 auto; }
+  .tl-del { position:absolute; right:6px; top:-8px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); color:oklch(0.6 0.03 40); cursor:pointer; font-size:10px; padding:1px 5px; border-radius:8px; }
+  .tl-empty { font-size:12.5px; color:oklch(0.6 0.03 40); text-align:center; padding:6px 0 14px; }
 
-/* ── TOP BAR ── */
-.topbar {
-  background: #1e2a12;
-  padding: 11px 20px 10px;
-  position: sticky; top: 0; z-index: 300;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.app-name {
-  font-family: 'Fraunces', serif;
-  font-size: 20px; font-weight: 700;
-  color: #f5f0eb; letter-spacing: -.3px;
-}
-.app-name span { color: #d4a83c; }
-.clock-box { text-align: right; }
-.clock { font-size: 19px; color: #f5f0eb; font-weight: 300; letter-spacing: 2px; font-variant-numeric: tabular-nums; }
-.greeting-top { font-size: 9px; color: var(--subtle); text-transform: uppercase; letter-spacing: 1.2px; }
+  .dashed-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1.5px dashed oklch(0.8 0.02 60); border-radius:14px; color:oklch(0.5 0.03 40); font-size:13.5px; font-weight:500; cursor:pointer; margin-bottom:20px; }
+  .dashed-btn .plus { font-size:16px; line-height:1; }
 
-/* ── PEOPLE BAR ── */
-.people-bar {
-  background: var(--s1);
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  padding: 0;
-}
-.person-tab {
-  flex: 1; padding: 12px 10px; text-align: center;
-  cursor: pointer; transition: all .18s;
-  border: none; background: transparent;
-  font-family: 'Instrument Sans', sans-serif;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
-}
-.person-tab .p-avatar {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; margin: 0 auto 5px; font-weight: 700;
-  color: #fff; transition: all .18s;
-}
-.person-tab .p-name { font-size: 12px; font-weight: 600; color: var(--muted); transition: color .18s; }
-.person-tab.p1 .p-avatar { background: var(--p1); }
-.person-tab.p2 .p-avatar { background: var(--p2); }
-.person-tab.p1.active { border-bottom-color: var(--p1); }
-.person-tab.p2.active { border-bottom-color: var(--p2); }
-.person-tab.active .p-name { color: var(--text); }
-.person-tab.all-tab .p-avatar { background: var(--text); font-size: 11px; }
-.person-tab.all-tab.active { border-bottom-color: var(--text); }
+  .inline-form { display:flex; gap:8px; margin-bottom:20px; }
+  .inline-form input { font-family:'Work Sans',sans-serif; font-size:13.5px; outline:none; border-radius:12px; border:1px solid oklch(0.85 0.01 60); padding:11px 14px; }
+  .inline-form .f-time { width:70px; text-align:center; padding:11px 10px; }
+  .inline-form .f-label { flex:1; }
+  .inline-form .f-ok { padding:11px 16px; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); border-radius:12px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; }
 
-/* ── DAY STRIP ── */
-.day-strip-wrap {
-  background: var(--s1);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 12px;
-  position: sticky; top: 57px; z-index: 200;
-}
-.week-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 8px; padding: 0 2px;
-}
-.week-nav-label {
-  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600;
-  color: var(--text); letter-spacing: .2px;
-}
-.week-nav-sub { font-size: 10px; color: var(--muted); font-family: 'Instrument Sans', sans-serif; font-weight: 400; margin-left: 6px; }
-.week-arrow {
-  background: var(--s2); border: 1.5px solid var(--border);
-  border-radius: 8px; padding: 4px 12px;
-  font-size: 14px; cursor: pointer; color: var(--text);
-  font-family: 'Instrument Sans', sans-serif; font-weight: 600;
-  transition: all .15s;
-}
-.week-arrow:hover { background: var(--border); }
-.week-arrow.today-btn {
-  font-size: 10px; padding: 4px 10px; color: var(--muted);
-  letter-spacing: .3px;
-}
-.day-strip { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
-.day-strip::-webkit-scrollbar { display: none; }
-.day-btn {
-  flex-shrink: 0; min-width: 44px;
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 7px 8px; border-radius: 10px;
-  border: 1.5px solid transparent; background: transparent;
-  cursor: pointer; font-family: 'Instrument Sans', sans-serif;
-  transition: all .18s;
-}
-.day-btn .dname { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
-.day-btn .dnum  { font-size: 16px; font-weight: 600; color: var(--muted); font-family: 'Fraunces', serif; }
-.day-btn .ddots { display: flex; gap: 2px; margin-top: 1px; min-height: 5px; }
-.day-btn .ddot  { width: 5px; height: 5px; border-radius: 50%; }
-.day-btn.is-today { border-color: var(--border); background: var(--s2); }
-.day-btn.is-today .dname, .day-btn.is-today .dnum { color: var(--text); }
-.day-btn.is-sel  { background: var(--text); border-color: var(--text); }
-.day-btn.is-sel .dname, .day-btn.is-sel .dnum { color: #f5f0eb; }
+  /* CATEGORY PILLS */
+  .cat-pills { display:flex; gap:8px; margin-bottom:16px; }
+  .cat-pill { flex:0 0 auto; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); font-size:13px; font-weight:500; color:oklch(0.5 0.03 40); }
+  .cat-pill.active { background:oklch(0.93 0.015 255); border-color:oklch(0.26 0.06 255); color:oklch(0.26 0.06 255); }
 
-/* ── PERIOD FILTER ── */
-.period-bar {
-  display: flex; gap: 6px;
-  padding: 12px 16px;
-  max-width: 600px; margin: 0 auto;
-  overflow-x: auto; scrollbar-width: none;
-}
-.period-bar::-webkit-scrollbar { display: none; }
-.period-btn {
-  flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
-  border: 1.5px solid var(--border); background: var(--s1);
-  font-family: 'Instrument Sans', sans-serif; font-size: 12px; font-weight: 600;
-  color: var(--muted); cursor: pointer; transition: all .18s;
-}
-.period-btn.manha.active  { background: #fff4ed; border-color: var(--manha);  color: var(--manha); }
-.period-btn.tarde.active  { background: #edf4fc; border-color: var(--tarde);  color: var(--tarde); }
-.period-btn.noite.active  { background: #f3eefa; border-color: var(--noite);  color: var(--noite); }
-.period-btn.todos.active  { background: var(--s2); border-color: var(--text); color: var(--text); }
+  /* CHECKLIST */
+  .progress-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .progress-label { font-size:12.5px; color:oklch(0.5 0.02 40); font-weight:500; }
+  .progress-pct { font-size:12.5px; color:oklch(0.26 0.06 255); font-weight:600; }
+  .progress-track { width:100%; height:6px; background:oklch(0.92 0.01 60); border-radius:4px; margin-bottom:22px; overflow:hidden; }
+  .progress-fill { height:100%; background:oklch(0.26 0.06 255); border-radius:4px; transition:width .25s; }
+  .period-group { margin-bottom:20px; }
+  .period-title { font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin-bottom:8px; }
+  .item-list { display:flex; flex-direction:column; gap:8px; }
+  .check-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
+  .check-box { width:22px; height:22px; flex:0 0 auto; border-radius:7px; border:1.5px solid oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .check-box.checked { background:oklch(0.26 0.06 255); }
+  .check-box .mark { color:oklch(0.78 0.1 85); font-size:13px; font-weight:700; }
+  .check-text { flex:1; font-size:14px; color:oklch(0.25 0.02 40); }
+  .check-text.done { color:oklch(0.6 0.02 40); text-decoration:line-through; }
+  .check-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; }
+  .check-del { background:none; border:none; color:oklch(0.7 0.02 40); cursor:pointer; font-size:12px; padding:2px 4px; }
 
-/* ── MAIN ── */
-.wrap { max-width: 600px; margin: 0 auto; padding: 6px 16px 0; }
+  /* CALENDARIO */
+  .cal-header { display:flex; align-items:center; justify-content:space-between; margin:16px 0 16px; }
+  .cal-month { font-size:16px; font-weight:600; font-family:'Source Serif 4',serif; color:oklch(0.22 0.02 40); text-transform:capitalize; }
+  .cal-nav { display:flex; gap:6px; color:oklch(0.5 0.02 40); font-size:15px; }
+  .cal-nav span { cursor:pointer; padding:4px 8px; }
+  .cal-weekdays, .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+  .cal-weekdays { margin-bottom:6px; }
+  .cal-weekdays div { text-align:center; font-size:10.5px; font-weight:600; color:oklch(0.6 0.02 40); padding:4px 0; }
+  .cal-grid { margin-bottom:24px; }
+  .cal-day { aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:10px; font-size:12.5px; cursor:pointer; color:oklch(0.3 0.02 40); font-weight:500; background:transparent; }
+  .cal-day.today { background:oklch(0.26 0.06 255); color:oklch(0.995 0.004 75); font-weight:700; }
+  .cal-day .dot { width:4px; height:4px; border-radius:50%; background:oklch(0.72 0.1 85); margin-top:2px; }
+  .cal-day.today .dot { background:oklch(0.78 0.1 85); }
+  .upcoming-item { display:flex; align-items:center; gap:12px; padding:13px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:10px; position:relative; }
+  .upcoming-item .dot { width:8px; height:8px; border-radius:50%; background:oklch(0.26 0.06 255); flex:0 0 auto; }
+  .upcoming-item .u-label { font-size:13.5px; color:oklch(0.22 0.02 40); font-weight:500; }
+  .upcoming-item .u-date { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .upcoming-item .u-del { position:absolute; right:10px; top:10px; background:none; border:none; color:oklch(0.65 0.02 40); cursor:pointer; font-size:11px; }
 
-/* ── ADD FORM ── */
-.add-form {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 16px; padding: 14px; margin-bottom: 20px;
-  animation: fup .3s ease both;
-}
-.add-form-title {
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
-  margin-bottom: 12px; color: var(--text);
-  display: flex; align-items: center; gap: 6px;
-}
-.form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-.add-form input, .add-form select {
-  background: var(--bg); border: 1.5px solid var(--border);
-  color: var(--text); border-radius: 9px; padding: 8px 12px;
-  font-size: 13px; font-family: 'Instrument Sans', sans-serif;
-  outline: none; transition: border-color .2s;
-}
-.add-form input:focus, .add-form select:focus { border-color: var(--text); }
-.input-task { flex: 1; min-width: 160px; }
-.input-time { width: 95px; }
-.btn-save {
-  width: 100%; border: none; border-radius: 10px; padding: 11px;
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
-  cursor: pointer; transition: opacity .15s; color: #fff;
-  margin-top: 4px;
-}
-.btn-save:hover { opacity: .88; }
+  /* ORACAO */
+  .oracao-card { display:flex; align-items:center; gap:14px; padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:16px; cursor:pointer; margin-bottom:10px; }
+  .oracao-card .o-glyph { width:38px; height:38px; border-radius:50%; background:oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; color:oklch(0.78 0.1 85); font-family:'Source Serif 4',serif; font-size:17px; flex:0 0 auto; }
+  .oracao-card .o-title { font-size:14.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .oracao-card .o-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .oracao-card .o-chevron { color:oklch(0.65 0.02 40); font-size:15px; }
 
-/* ── PERIOD SECTION ── */
-.period-section { margin-bottom: 24px; animation: fup .3s ease both; }
-.period-header {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 12px; padding-bottom: 8px;
-  border-bottom: 2px solid var(--border);
-}
-.period-icon { font-size: 20px; }
-.period-title {
-  font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600;
-  letter-spacing: -.2px;
-}
-.period-count {
-  margin-left: auto; font-size: 11px; color: var(--muted);
-  background: var(--s2); border-radius: 20px; padding: 2px 9px;
-}
+  .back-link { display:flex; align-items:center; gap:6px; color:oklch(0.26 0.06 255); font-size:13px; font-weight:600; cursor:pointer; margin:10px 0 16px; }
+  .oracao-h1 { font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:2px; }
+  .oracao-sub { font-size:12.5px; color:oklch(0.55 0.03 40); margin-bottom:16px; }
+  .oracao-sub.italic { font-style:italic; }
+  .oracao-body { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; margin-bottom:16px; }
 
-/* ── TASK CARD ── */
-.tasks { display: flex; flex-direction: column; gap: 8px; }
-.empty { text-align: center; color: var(--subtle); padding: 24px 0; font-size: 13px; font-style: italic; }
+  .mist-item { padding:15px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .mist-item .m-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .mist-item .m-days { font-size:12px; color:oklch(0.55 0.03 40); margin-top:3px; }
+  .mist-step { display:flex; gap:12px; align-items:center; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; margin-bottom:8px; }
+  .mist-step .m-n { width:24px; height:24px; border-radius:50%; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .mist-step .m-text { font-size:13.5px; color:oklch(0.3 0.02 40); }
 
-.task-card {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 13px; padding: 11px 14px;
-  display: flex; gap: 11px; align-items: flex-start;
-  transition: opacity .2s; animation: fup .22s ease both;
-  position: relative; overflow: hidden;
-}
-.task-card::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; border-radius: 13px 0 0 13px;
-}
-.task-card.cat-trabalho::before  { background: var(--trabalho); }
-.task-card.cat-exercicio::before { background: var(--exercicio); }
-.task-card.cat-estudos::before   { background: var(--estudos); }
-.task-card.cat-igreja::before    { background: var(--igreja); }
-.task-card.done { opacity: .38; }
+  .prayer-block { padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:14px; }
+  .prayer-block.navy { background:oklch(0.26 0.06 255); border:none; }
+  .prayer-block .p-label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.26 0.06 255); margin-bottom:6px; }
+  .prayer-block.navy .p-label { color:oklch(0.74 0.11 85); }
+  .prayer-block .p-text { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; }
+  .prayer-block.navy .p-text { color:oklch(0.86 0.07 85); }
+  .prayer-center { text-align:center; font-size:12.5px; font-style:italic; color:oklch(0.55 0.03 40); padding:6px 0; }
 
-.task-check {
-  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-  border: 2px solid var(--border); background: transparent;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; margin-top: 1px; transition: all .18s; color: #fff;
-}
-.task-check.checked.cat-trabalho  { background: var(--trabalho);  border-color: var(--trabalho); }
-.task-check.checked.cat-exercicio { background: var(--exercicio); border-color: var(--exercicio); }
-.task-check.checked.cat-estudos   { background: var(--estudos);   border-color: var(--estudos); }
-.task-check.checked.cat-igreja    { background: var(--igreja);    border-color: var(--igreja); }
+  .accordion { border:1px solid oklch(0.91 0.01 60); border-radius:14px; overflow:hidden; background:oklch(0.98 0.004 75); margin-bottom:8px; }
+  .accordion-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px; cursor:pointer; }
+  .accordion-head .a-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .accordion-head .a-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .accordion-head .a-chevron { color:oklch(0.55 0.02 40); font-size:14px; }
+  .accordion-body { padding:0 16px 16px; display:flex; flex-direction:column; gap:10px; }
+  .accordion-q { display:flex; gap:8px; font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.55; }
+  .accordion-q .q-n { color:oklch(0.26 0.06 255); font-weight:700; flex:0 0 auto; }
+  .accordion-simple-body { padding:0 16px 16px; font-size:13px; color:oklch(0.3 0.02 40); line-height:1.7; }
 
-.task-body { flex: 1; min-width: 0; }
-.task-name { font-size: 14px; font-weight: 500; line-height: 1.4; }
-.task-name.struck { text-decoration: line-through; color: var(--subtle); }
-.task-meta { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
-.task-time { font-size: 11px; color: var(--muted); }
-.cat-badge {
-  font-size: 10px; padding: 1px 7px; border-radius: 20px;
-  font-weight: 600; letter-spacing: .2px;
-}
-.cat-badge.trabalho  { background: #e8f4ef; color: var(--trabalho); }
-.cat-badge.exercicio { background: #fdf0eb; color: var(--exercicio); }
-.cat-badge.estudos   { background: #edf2fb; color: var(--estudos); }
-.cat-badge.igreja    { background: #f5eaf5; color: var(--igreja); }
-.person-dot {
-  width: 16px; height: 16px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 8px; font-weight: 700; color: #fff; flex-shrink: 0;
-}
-.person-dot.p1 { background: var(--p1); }
-.person-dot.p2 { background: var(--p2); }
-.person-dot.ambos { background: linear-gradient(135deg, var(--p1) 50%, var(--p2) 50%); }
+  .novena-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .novena-item .n-icon { width:36px; height:36px; border-radius:50%; background:oklch(0.93 0.015 255); display:flex; align-items:center; justify-content:center; font-size:16px; flex:0 0 auto; }
+  .novena-item .n-title { font-size:13.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .novena-item .n-sub { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .novena-intro { font-size:12.5px; color:oklch(0.55 0.03 40); line-height:1.6; margin-bottom:16px; }
+  .novena-day-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .novena-day-btn { width:32px; height:32px; border-radius:50%; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); color:oklch(0.4 0.02 40); font-size:12.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Work Sans',sans-serif; }
+  .novena-day-btn.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); color:oklch(0.82 0.09 85); }
+  .novena-text-card { padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
+  .novena-text-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:10px; }
+  .novena-text-body { font-size:13px; color:oklch(0.3 0.02 40); line-height:1.75; white-space:normal; }
 
-.task-actions { flex-shrink: 0; }
-.btn-del {
-  background: none; border: none; color: var(--subtle);
-  cursor: pointer; font-size: 13px; padding: 3px 4px;
-  border-radius: 5px; transition: color .15s;
-}
-.btn-del:hover { color: #c0392b; }
-
-/* ── WEEK OVERVIEW ── */
-.week-overview {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 14px; padding: 14px 16px; margin-bottom: 16px;
-}
-.wo-title {
-  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600;
-  color: var(--muted); margin-bottom: 10px; letter-spacing: .2px;
-}
-.wo-grid { display: flex; gap: 4px; }
-.wo-day { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.wo-dname { font-size: 9px; color: var(--subtle); text-transform: uppercase; letter-spacing: .5px; }
-.wo-bar-wrap { display: flex; gap: 1px; height: 28px; align-items: flex-end; }
-.wo-bar {
-  width: 5px; border-radius: 3px 3px 0 0;
-  min-height: 3px; transition: height .3s;
-}
-
-@keyframes fup {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-/* ── TIMELINE VIEW ── */
-.timeline-wrap {
-  padding: 4px 0 20px;
-}
-.timeline-header {
-  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600;
-  color: var(--muted); margin-bottom: 14px; letter-spacing: .2px;
-  display: flex; align-items: center; gap: 6px;
-}
-.timeline-list {
-  display: flex; flex-direction: column; gap: 0;
-  position: relative;
-}
-.timeline-list::before {
-  content: ''; position: absolute;
-  left: 38px; top: 0; bottom: 0; width: 2px;
-  background: var(--border); border-radius: 2px;
-}
-.tl-item {
-  display: flex; gap: 0; align-items: flex-start;
-  position: relative; padding-bottom: 16px;
-  animation: fup .22s ease both;
-}
-.tl-time-col {
-  width: 36px; flex-shrink: 0;
-  text-align: right; padding-top: 6px;
-  font-size: 10px; font-weight: 600; color: var(--muted);
-  font-variant-numeric: tabular-nums; line-height: 1.2;
-}
-.tl-dot-col {
-  width: 20px; flex-shrink: 0; display: flex;
-  justify-content: center; padding-top: 5px;
-}
-.tl-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2.5px solid var(--bg); position: relative; z-index: 2;
-  flex-shrink: 0; transition: transform .15s;
-}
-.tl-dot.done-dot { opacity: .4; }
-.tl-card {
-  flex: 1; min-width: 0;
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 11px; padding: 9px 12px;
-  margin-left: 6px; position: relative; overflow: hidden;
-  cursor: pointer; transition: box-shadow .18s, transform .12s;
-}
-.tl-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,.09); transform: translateY(-1px); }
-.tl-card::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; border-radius: 11px 0 0 11px;
-}
-.tl-card.cat-trabalho::before  { background: var(--trabalho); }
-.tl-card.cat-exercicio::before { background: var(--exercicio); }
-.tl-card.cat-estudos::before   { background: var(--estudos); }
-.tl-card.cat-igreja::before    { background: var(--igreja); }
-.tl-card.tl-done { opacity: .35; }
-.tl-name {
-  font-size: 13px; font-weight: 500; line-height: 1.35;
-}
-.tl-name.struck { text-decoration: line-through; color: var(--subtle); }
-.tl-meta {
-  display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 4px;
-}
-.tl-period-badge {
-  font-size: 9px; padding: 1px 6px; border-radius: 20px;
-  background: var(--s2); color: var(--muted); font-weight: 600;
-  letter-spacing: .3px;
-}
-.tl-del {
-  position: absolute; right: 8px; top: 8px;
-  background: none; border: none; color: var(--subtle);
-  cursor: pointer; font-size: 11px; padding: 2px 4px;
-  border-radius: 4px; transition: color .15s; opacity: 0;
-}
-.tl-card:hover .tl-del { opacity: 1; }
-.tl-del:hover { color: #c0392b; }
-.tl-empty {
-  text-align: center; color: var(--subtle); padding: 30px 0;
-  font-size: 13px; font-style: italic;
-  padding-left: 58px;
-}
-
-
-/* ── SAINT OF THE DAY ── */
-.saint-banner {
-  border-radius: 14px; padding: 12px 14px;
-  margin-bottom: 14px; display: flex; align-items: center; gap: 11px;
-  animation: fup .3s ease both; position: relative; overflow: hidden;
-  border: 1.5px solid var(--saint-border);
-  background: var(--saint-bg);
-}
-.saint-banner::before {
-  content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
-  background: var(--saint-accent); border-radius:14px 0 0 14px;
-}
-.saint-icon { font-size: 24px; flex-shrink: 0; }
-.saint-body { flex: 1; min-width: 0; }
-.saint-label {
-  font-size: 9px; font-weight: 700; color: var(--saint-accent);
-  text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 3px;
-  display:flex; align-items:center; gap:5px;
-}
-.saint-rank-pill {
-  font-size: 8px; padding: 1px 6px; border-radius: 20px;
-  background: var(--saint-accent); color: #fff; font-weight: 700;
-  letter-spacing: .3px; text-transform: uppercase;
-}
-.saint-name {
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 700;
-  color: var(--saint-text); line-height: 1.25;
-}
-.saint-desc { font-size: 10px; color: var(--saint-muted); margin-top: 3px; line-height: 1.4; }
-.saint-color-dot {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; background: var(--saint-accent);
-}
-
-/* Cor liturgica: branco/dourado */
-.lc-branco  { --saint-bg:#fdfaf0; --saint-border:#d4a83c; --saint-accent:#b8830a; --saint-text:#2a1e04; --saint-muted:#7a6030; }
-/* Cor liturgica: vermelho */
-.lc-vermelho{ --saint-bg:#fff5f5; --saint-border:#c0392b; --saint-accent:#a93226; --saint-text:#2a0808; --saint-muted:#7a3030; }
-/* Cor liturgica: roxo/violeta */
-.lc-roxo    { --saint-bg:#faf5ff; --saint-border:#7a3a9a; --saint-accent:#6a2a8a; --saint-text:#1e0a2a; --saint-muted:#6a4a7a; }
-/* Cor liturgica: verde */
-.lc-verde   { --saint-bg:#f3faf3; --saint-border:#2e7d32; --saint-accent:#1b5e20; --saint-text:#081a08; --saint-muted:#3a6a3a; }
-/* Cor liturgica: rosa */
-.lc-rosa    { --saint-bg:#fff5f8; --saint-border:#d4679a; --saint-accent:#b8477a; --saint-text:#2a0818; --saint-muted:#7a4060; }
-/* Cor liturgica: preto */
-.lc-preto   { --saint-bg:#f5f5f5; --saint-border:#333; --saint-accent:#222; --saint-text:#111; --saint-muted:#555; }
-
-/* view toggle */
-.view-toggle {
-  display: flex; gap: 0;
-  background: var(--s2); border-radius: 10px;
-  padding: 3px; margin: 0 16px 0; max-width: 600px;
-  margin-left: auto; margin-right: auto;
-}
-.view-btn {
-  flex: 1; padding: 6px 8px; border-radius: 8px;
-  border: none; background: transparent; cursor: pointer;
-  font-family: 'Instrument Sans', sans-serif; font-size: 11px;
-  font-weight: 600; color: var(--muted); transition: all .18s;
-  letter-spacing: .3px;
-}
-.view-btn.active {
-  background: var(--s1); color: var(--text);
-  box-shadow: 0 1px 4px rgba(0,0,0,.12);
-}
-
-select option { background: #fdfaf7; }
-
-/* ── BOTTOM NAV ── */
-.bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
-  background: #1e2a12; border-top: 2px solid #b8963e;
-  display: flex; height: 62px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
-}
-.bnav-btn {
-  flex: 1; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 3px; border: none; background: transparent;
-  cursor: pointer; transition: all .18s; padding: 8px 0;
-}
-.bnav-btn .bnav-icon { font-size: 20px; transition: transform .18s; }
-.bnav-btn .bnav-label {
-  font-size: 10px; font-weight: 600; color: #6a7a4a;
-  letter-spacing: .5px; text-transform: uppercase;
-  font-family: 'Instrument Sans', sans-serif; transition: color .18s;
-}
-.bnav-btn.active .bnav-label { color: #d4a83c; }
-.bnav-btn.active .bnav-icon  { transform: translateY(-2px); }
-.bnav-btn:hover .bnav-label  { color: #c8d8b0; }
-#cal-screen { display: none; }
-.cal-wrap { max-width: 600px; margin: 0 auto; padding: 12px 16px 20px; }
-.cal-month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.cal-month-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--text); }
-.cal-arrow { background: var(--s2); border: 1.5px solid var(--border); border-radius: 8px; padding: 5px 14px; font-size: 15px; cursor: pointer; color: var(--text); font-weight: 600; transition: all .15s; }
-.cal-arrow:hover { background: var(--border); }
-.cal-grid-head { display: grid; grid-template-columns: repeat(7,1fr); margin-bottom: 4px; }
-.cal-grid-head span { text-align: center; font-size: 9px; font-weight: 600; color: var(--subtle); text-transform: uppercase; letter-spacing: .8px; padding: 4px 0; }
-.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
-.cal-cell { aspect-ratio: 1; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 4px 2px 2px; cursor: pointer; border: 1.5px solid transparent; background: transparent; transition: all .15s; position: relative; min-height: 38px; }
-.cal-cell:hover { background: var(--s2); border-color: var(--border); }
-.cal-cell.is-today { background: var(--s2); border-color: var(--border); }
-.cal-cell.is-today .cal-day-num { color: var(--text); font-weight: 700; }
-.cal-cell.has-event { background: var(--s1); border-color: var(--border); }
-.cal-cell.other-month .cal-day-num { color: var(--subtle); opacity: .4; }
-.cal-day-num { font-size: 12px; font-weight: 500; color: var(--muted); font-family: 'Fraunces', serif; line-height: 1; }
-.cal-dots { display: flex; gap: 2px; flex-wrap: wrap; justify-content: center; margin-top: 2px; }
-.cal-dot  { width: 5px; height: 5px; border-radius: 50%; }
-.cal-events-section { margin-top: 20px; }
-.cal-events-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.cal-event-card { background: var(--s1); border: 1.5px solid var(--border); border-radius: 13px; padding: 12px 14px; margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; position: relative; overflow: hidden; animation: fup .22s ease both; }
-.cal-event-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 13px 0 0 13px; }
-.cal-event-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
-.cal-event-body { flex: 1; min-width: 0; }
-.cal-event-name { font-size: 14px; font-weight: 500; line-height: 1.3; }
-.cal-event-date { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.cal-event-del { background: none; border: none; color: var(--subtle); cursor: pointer; font-size: 13px; padding: 2px 4px; border-radius: 5px; transition: color .15s; }
-.cal-event-del:hover { color: #c0392b; }
-.cal-add-form { background: var(--s1); border: 1.5px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 20px; }
-.cal-add-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
-.cal-add-form input, .cal-add-form select { background: var(--bg); border: 1.5px solid var(--border); color: var(--text); border-radius: 9px; padding: 8px 12px; font-size: 13px; font-family: 'Instrument Sans', sans-serif; outline: none; transition: border-color .2s; width: 100%; }
-.cal-add-form input:focus, .cal-add-form select:focus { border-color: var(--text); }
-.cal-form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-.color-opt { width: 26px; height: 26px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; transition: all .15s; flex-shrink: 0; }
-.color-opt.selected { border-color: var(--text); transform: scale(1.2); }
-.upcoming-section { margin-top: 20px; }
-.upcoming-title { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
-.upcoming-item { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.upcoming-item:last-child { border-bottom: none; }
-.upcoming-date-box { text-align: center; min-width: 36px; flex-shrink: 0; background: var(--s2); border-radius: 8px; padding: 4px 6px; }
-.upcoming-day   { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; color: var(--text); line-height: 1; }
-.upcoming-month { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
-.upcoming-name  { font-size: 13px; font-weight: 500; color: var(--text); flex: 1; }
-.upcoming-dow   { font-size: 10px; color: var(--subtle); }
-
-.cal-saint-tag {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(122,58,106,0.15); border: 1px solid rgba(122,58,106,0.4);
-  border-radius: 20px; padding: 2px 8px; margin-top: 4px;
-  font-size: 10px; color: #9a6aaa; font-weight: 600;
-}
-
-
-/* ── PRAYER SCREEN ── */
-#prayer-screen { display: none; }
-.prayer-wrap { max-width: 600px; margin: 0 auto; padding: 12px 16px 20px; }
-
-.prayer-tabs {
-  display: flex; gap: 0; background: var(--s2);
-  border-radius: 12px; padding: 3px; margin-bottom: 16px;
-  overflow-x: auto; scrollbar-width: none;
-}
-.prayer-tabs::-webkit-scrollbar { display: none; }
-.prayer-tab-btn {
-  flex-shrink: 0; padding: 7px 12px; border-radius: 9px;
-  border: none; background: transparent; cursor: pointer;
-  font-family: 'Instrument Sans', sans-serif; font-size: 11px;
-  font-weight: 600; color: var(--muted); transition: all .18s;
-  white-space: nowrap;
-}
-.prayer-tab-btn.active {
-  background: var(--s1); color: var(--text);
-  box-shadow: 0 1px 4px rgba(0,0,0,.12);
-}
-
-.prayer-section { display: none; }
-.prayer-section.active { display: block; }
-
-/* Novena card */
-.novena-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-.novena-card {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 14px; overflow: hidden; cursor: pointer;
-  transition: box-shadow .18s;
-}
-.novena-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,.09); }
-.novena-card-header {
-  display: flex; align-items: center; gap: 12px; padding: 14px;
-  position: relative;
-}
-.novena-card-header::before {
-  content:''; position:absolute; left:0; top:0; bottom:0;
-  width:4px; background: var(--nc, var(--igreja));
-}
-.novena-card-icon { font-size: 26px; flex-shrink: 0; }
-.novena-card-body { flex: 1; }
-.novena-card-title {
-  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 700;
-  color: var(--text); line-height: 1.2;
-}
-.novena-card-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
-.novena-card-arrow { font-size: 16px; color: var(--subtle); flex-shrink: 0; }
-
-/* Novena reader */
-.novena-reader { display: none; }
-.novena-reader.open { display: block; }
-.novena-back {
-  display: flex; align-items: center; gap: 6px; padding: 10px 0 14px;
-  background: none; border: none; cursor: pointer;
-  font-family: 'Instrument Sans', sans-serif; font-size: 13px;
-  font-weight: 600; color: var(--muted);
-}
-.novena-reader-title {
-  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
-  color: var(--text); margin-bottom: 4px; line-height: 1.2;
-}
-.novena-reader-sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
-
-.novena-day-tabs {
-  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
-  margin-bottom: 16px; padding-bottom: 2px;
-}
-.novena-day-tabs::-webkit-scrollbar { display: none; }
-.novena-day-btn {
-  flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
-  border: 1.5px solid var(--border); background: var(--s2);
-  font-size: 11px; font-weight: 700; color: var(--muted);
-  cursor: pointer; transition: all .15s;
-  display: flex; align-items: center; justify-content: center;
-}
-.novena-day-btn.active {
-  background: var(--igreja); border-color: var(--igreja);
-  color: #fff;
-}
-
-.prayer-text-card {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 14px; padding: 18px;
-  margin-bottom: 12px;
-}
-.prayer-text-label {
-  font-size: 9px; font-weight: 700; color: var(--igreja);
-  text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 8px;
-}
-.prayer-text-title {
-  font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700;
-  color: var(--text); margin-bottom: 12px; line-height: 1.3;
-}
-.prayer-text-body {
-  font-size: 14px; color: var(--text); line-height: 1.85;
-  white-space: pre-line;
-}
-.prayer-text-body em {
-  font-style: italic; color: var(--muted);
-}
-.prayer-response {
-  background: rgba(122,58,106,0.08); border-left: 3px solid var(--igreja);
-  border-radius: 0 8px 8px 0; padding: 8px 12px; margin: 8px 0;
-  font-size: 13px; color: var(--text); font-style: italic; line-height: 1.7;
-}
-
-/* Completorium */
-.completorium-card {
-  background: #1e1a2e; border: 1.5px solid #4a3a6a;
-  border-radius: 16px; padding: 20px; margin-bottom: 12px;
-}
-.completorium-label {
-  font-size: 9px; font-weight: 700; color: #9a7ac8;
-  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;
-}
-.completorium-title {
-  font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700;
-  color: #e8d8f8; margin-bottom: 4px;
-}
-.completorium-sub { font-size: 11px; color: #7a6aa8; margin-bottom: 16px; }
-.completorium-text {
-  font-size: 14px; color: #d8c8f0; line-height: 2;
-  white-space: pre-line;
-}
-.completorium-response {
-  background: rgba(106,42,138,0.25); border-left: 3px solid #7a3a9a;
-  border-radius: 0 8px 8px 0; padding: 8px 12px; margin: 6px 0;
-  font-size: 13px; color: #c8b0e8; font-style: italic; line-height: 1.7;
-}
-.completorium-verse {
-  font-family: 'Fraunces', serif; font-size: 15px; font-style: italic;
-  color: #e8d0f8; line-height: 1.9; margin: 8px 0;
-}
-
-/* Exame / Trabalho */
-.exame-section { margin-bottom: 20px; }
-.exame-title {
-  font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700;
-  color: var(--text); margin-bottom: 4px;
-}
-.exame-intro { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
-.exame-item {
-  background: var(--s1); border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;
-  font-size: 13px; color: var(--text); line-height: 1.6;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.exame-num {
-  font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700;
-  color: var(--igreja); flex-shrink: 0; min-width: 18px;
-}
-
-.no-events { text-align: center; color: var(--subtle); padding: 20px 0; font-size: 13px; font-style: italic; }
-
+  /* BOTTOM NAV */
+  .bottom-nav { position:absolute; bottom:0; left:0; right:0; display:flex; background:oklch(0.995 0.004 75); border-top:1px solid oklch(0.91 0.01 60); padding:10px 12px 16px; }
+  .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; padding:4px 0; color:oklch(0.6 0.02 40); background:none; border:none; font-family:'Work Sans',sans-serif; }
+  .nav-btn.active { color:oklch(0.26 0.06 255); }
+  .nav-btn .n-label { font-size:10.5px; font-weight:600; }
 </style>
 </head>
 <body>
 
-<!-- HERO BANNER -->
-<div class="hero-banner">
-  <div class="hero-inner">
+<div class="page">
+  <div class="card">
 
-    <!-- Top ornament -->
-    <div class="hero-ornament-top">✦ ── ✦ ── ✦ ── ✦ ── ✦</div>
-
-    <!-- Central crest SVG (inspired by the book cover style) -->
-    <svg class="hero-crest" viewBox="0 0 220 90" width="160" height="65" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="cg" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#d4a83c" stop-opacity="0.15"/>
-          <stop offset="100%" stop-color="#2d3a1e" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <!-- Left medallion: Cross with rays -->
-      <circle cx="38" cy="45" r="30" fill="none" stroke="#b8963e" stroke-width="1.2"/>
-      <circle cx="38" cy="45" r="26" fill="rgba(0,0,0,0.2)" stroke="#b8963e" stroke-width=".4" stroke-dasharray="3 2"/>
-      <!-- Rays -->
-      <line x1="38" y1="19" x2="38" y2="15" stroke="#b8963e" stroke-width="1"/>
-      <line x1="38" y1="71" x2="38" y2="75" stroke="#b8963e" stroke-width="1"/>
-      <line x1="12" y1="45" x2="8"  y2="45" stroke="#b8963e" stroke-width="1"/>
-      <line x1="64" y1="45" x2="68" y2="45" stroke="#b8963e" stroke-width="1"/>
-      <line x1="20" y1="27" x2="17" y2="24" stroke="#b8963e" stroke-width=".8"/>
-      <line x1="56" y1="27" x2="59" y2="24" stroke="#b8963e" stroke-width=".8"/>
-      <line x1="20" y1="63" x2="17" y2="66" stroke="#b8963e" stroke-width=".8"/>
-      <line x1="56" y1="63" x2="59" y2="66" stroke="#b8963e" stroke-width=".8"/>
-      <!-- Cross -->
-      <line x1="38" y1="28" x2="38" y2="62" stroke="#d4a83c" stroke-width="2.5"/>
-      <line x1="24" y1="40" x2="52" y2="40" stroke="#d4a83c" stroke-width="2.5"/>
-
-      <!-- Center medallion: IHS monogram -->
-      <circle cx="110" cy="45" r="32" fill="rgba(184,150,62,0.08)" stroke="#b8963e" stroke-width="1.5"/>
-      <circle cx="110" cy="45" r="27" fill="none" stroke="#b8963e" stroke-width=".5" stroke-dasharray="2 3"/>
-      <!-- IHS text -->
-      <text x="110" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#d4a83c" letter-spacing="3">IHS</text>
-      <line x1="92" y1="46" x2="128" y2="46" stroke="#b8963e" stroke-width=".8"/>
-      <text x="110" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#a0b888" letter-spacing="1.5">POSSARI</text>
-      <!-- Small cross on top of H -->
-      <line x1="110" y1="24" x2="110" y2="30" stroke="#d4a83c" stroke-width="1.5"/>
-      <line x1="107" y1="26" x2="113" y2="26" stroke="#d4a83c" stroke-width="1.5"/>
-
-      <!-- Right medallion: Dove / Holy Spirit -->
-      <circle cx="182" cy="45" r="30" fill="none" stroke="#b8963e" stroke-width="1.2"/>
-      <circle cx="182" cy="45" r="26" fill="rgba(0,0,0,0.2)" stroke="#b8963e" stroke-width=".4" stroke-dasharray="3 2"/>
-      <!-- Stylized family house -->
-      <path d="M167 55 L167 42 L182 32 L197 42 L197 55 Z" fill="none" stroke="#d4a83c" stroke-width="1.8" stroke-linejoin="round"/>
-      <rect x="176" y="46" width="12" height="9" fill="none" stroke="#d4a83c" stroke-width="1.2"/>
-      <!-- Heart inside house -->
-      <path d="M182 50 C182 50 178 47 178 44.5 C178 43 179.5 42 181 43 C181.5 43.3 182 43.8 182 43.8 C182 43.8 182.5 43.3 183 43 C184.5 42 186 43 186 44.5 C186 47 182 50 182 50Z" fill="#d4a83c"/>
-    </svg>
-
-
-
-    <div class="hero-divider">❧ ── ✦ ── ❧</div>
-
-    <div class="hero-quote-wrap">
-      <div class="hero-quote-text">"Começar é de muitos, perseverar é de santos."</div>
-      <div class="hero-quote-author">— São Josemaría Escrivá</div>
+    <div class="header">
+      <div class="glyph">✦</div>
+      <div class="title">Ora et Labora</div>
+      <div class="subtitle">Christo nihil praeponere</div>
+      <div class="rule"></div>
     </div>
 
-    <div class="hero-ornament-bot">✦ ── ✦ ── ✦ ── ✦ ── ✦</div>
-  </div>
-</div>
+    <div class="content">
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div>
-    <div class="app-name" style="font-family:'Fraunces',serif;color:#e8dbb0;letter-spacing:.5px">Rotina <span style="color:#d4a83c">Possari</span></div>
-  </div>
-  <div class="clock-box">
-    <div class="clock" id="clock">--:--</div>
-    <div class="greeting-top" id="greeting"></div>
-    <div style="font-size:9px;color:#a8b888;margin-top:1px" id="sync-status">💾 Local</div>
-  </div>
-</div>
+      <!-- ROTINA -->
+      <div class="tab-view" id="tab-rotina">
+        <div class="section-label">Agenda da semana</div>
+        <div class="week-strip" id="week-strip"></div>
+        <div class="timeline" id="timeline"></div>
+        <div id="timeline-empty"></div>
+        <div id="timeline-form-wrap"></div>
 
-<!-- PEOPLE BAR -->
-<div class="people-bar" id="people-bar">
-  <button class="person-tab all-tab active" onclick="setPerson('todos')">
-    <div class="p-avatar">👪</div>
-    <div class="p-name">Todos</div>
-  </button>
-  <button class="person-tab p1" onclick="setPerson('p1')">
-    <div class="p-avatar" id="av1">P1</div>
-    <div class="p-name" id="nm1">Pessoa 1</div>
-  </button>
-  <button class="person-tab p2" onclick="setPerson('p2')">
-    <div class="p-avatar" id="av2">P2</div>
-    <div class="p-name" id="nm2">Pessoa 2</div>
-  </button>
-</div>
-
-<!-- DAY STRIP -->
-<div class="day-strip-wrap">
-  <div class="week-nav">
-    <button class="week-arrow" onclick="changeWeek(-1)">‹ Anterior</button>
-    <div>
-      <span class="week-nav-label" id="week-label">Esta semana</span>
-      <span class="week-nav-sub" id="week-range"></span>
-    </div>
-    <button class="week-arrow" onclick="changeWeek(1)">Próxima ›</button>
-  </div>
-  <div class="day-strip" id="day-strip"></div>
-</div>
-
-<div class="wrap">
-  <!-- WEEK OVERVIEW -->
-  <div style="margin-top:14px">
-    <div class="week-overview">
-      <div class="wo-title">📊 Visão da semana</div>
-      <div class="wo-grid" id="wo-grid"></div>
-    </div>
-  </div>
-
-  <!-- SAINT BANNER -->
-  <div id="saint-banner-area" style="margin-top:14px"></div>
-
-  <!-- VIEW TOGGLE -->
-  <div style="margin-top:14px;margin-bottom:8px">
-    <div class="view-toggle">
-      <button class="view-btn active" id="btn-view-lista" onclick="setView('lista')">📋 Lista</button>
-      <button class="view-btn" id="btn-view-timeline" onclick="setView('timeline')">⏱ Timeline</button>
-    </div>
-  </div>
-
-  <!-- PERIOD FILTER (only shown in lista view) -->
-  <div class="period-bar" id="period-bar-wrap">
-    <button class="period-btn todos active" onclick="setPeriod('todos')">🗓 Todos</button>
-    <button class="period-btn manha" onclick="setPeriod('manha')">🌅 Manhã</button>
-    <button class="period-btn tarde" onclick="setPeriod('tarde')">☀️ Tarde</button>
-    <button class="period-btn noite" onclick="setPeriod('noite')">🌙 Noite</button>
-  </div>
-
-  <!-- ADD FORM -->
-  <div class="add-form" id="add-form-wrap">
-    <div class="add-form-title">✏️ Nova atividade</div>
-    <div class="form-row">
-      <input class="input-task" id="new-name" type="text" placeholder="Nome da atividade..." onkeydown="if(event.key==='Enter')addTask()"/>
-      <input class="input-time" id="new-time" type="time"/>
-    </div>
-    <div class="form-row">
-      <select id="new-cat" style="flex:1">
-        <option value="trabalho">💼 Trabalho</option>
-        <option value="exercicio">🏃 Atividade Física</option>
-        <option value="estudos">📚 Estudos</option>
-        <option value="igreja">⛪ Igreja</option>
-      </select>
-      <select id="new-period" style="flex:1">
-        <option value="manha">🌅 Manhã</option>
-        <option value="tarde">☀️ Tarde</option>
-        <option value="noite">🌙 Noite</option>
-      </select>
-      <select id="new-person" style="flex:1">
-        <option value="p1" id="opt-p1">Pessoa 1</option>
-        <option value="p2" id="opt-p2">Pessoa 2</option>
-        <option value="ambos">👪 Ambos</option>
-      </select>
-    </div>
-    <button class="btn-save" id="btn-save" onclick="addTask()" style="background:var(--text)">+ Adicionar Atividade</button>
-  </div>
-
-  <!-- TASK LISTS BY PERIOD (lista view) -->
-  <div id="task-area"></div>
-
-  <!-- TIMELINE VIEW -->
-  <div id="timeline-area" style="display:none"></div>
-</div>
-
-<!-- NAMES MODAL -->
-<div id="name-modal" style="
-  display:flex; position:fixed; inset:0; z-index:999;
-  background:rgba(42,32,24,0.6); align-items:center; justify-content:center;
-  padding:20px; backdrop-filter:blur(4px);
-">
-  <div style="
-    background:var(--s1); border-radius:20px; padding:28px 24px;
-    max-width:360px; width:100%; border:2px solid var(--border);
-    animation: fup .3s ease both;
-  ">
-    <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;margin-bottom:6px">👋 Bem-vindos!</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Como chamamos as duas pessoas da família?</div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div>
-        <div style="font-size:11px;font-weight:600;color:var(--p1);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">🟢 Pessoa 1</div>
-        <input id="modal-name1" type="text" placeholder="Nome..." style="
-          width:100%;background:var(--bg);border:1.5px solid var(--border);
-          color:var(--text);border-radius:10px;padding:10px 14px;
-          font-size:14px;font-family:'Instrument Sans',sans-serif;outline:none;
-        "/>
+        <div class="cat-pills" id="cat-pills"></div>
+        <div id="checklist"></div>
       </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;color:var(--p2);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">🟣 Pessoa 2</div>
-        <input id="modal-name2" type="text" placeholder="Nome..." style="
-          width:100%;background:var(--bg);border:1.5px solid var(--border);
-          color:var(--text);border-radius:10px;padding:10px 14px;
-          font-size:14px;font-family:'Instrument Sans',sans-serif;outline:none;
-        "/>
+
+      <!-- CALENDARIO -->
+      <div class="tab-view" id="tab-calendario">
+        <div class="cal-header">
+          <div class="cal-month" id="cal-month"></div>
+          <div class="cal-nav">
+            <span onclick="calMonthShift(-1)">‹</span>
+            <span onclick="calMonthShift(1)">›</span>
+          </div>
+        </div>
+        <div class="cal-weekdays">
+          <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="section-label" style="margin-top:0;">Próximos eventos</div>
+        <div id="upcoming-list"></div>
+        <div id="cal-add-wrap"></div>
       </div>
-      <button onclick="saveNames()" style="
-        background:var(--text);color:#f5f0eb;border:none;border-radius:12px;
-        padding:12px;font-family:'Fraunces',serif;font-size:16px;font-weight:700;
-        cursor:pointer;margin-top:4px;
-      ">Vamos começar! 🚀</button>
+
+      <!-- ORACAO -->
+      <div class="tab-view" id="tab-oracao">
+        <div id="oracao-content"></div>
+      </div>
+
     </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" id="nav-rotina" onclick="setTab('rotina')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="4" height="4" rx="1"></rect><rect x="3" y="15" width="4" height="4" rx="1"></rect><line x1="10" y1="7" x2="21" y2="7"></line><line x1="10" y1="17" x2="21" y2="17"></line></svg>
+        <div class="n-label">Rotina</div>
+      </button>
+      <button class="nav-btn" id="nav-calendario" onclick="setTab('calendario')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <div class="n-label">Calendário</div>
+      </button>
+      <button class="nav-btn" id="nav-oracao" onclick="setTab('oracao')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="6" y1="9" x2="18" y2="9"></line></svg>
+        <div class="n-label">Oração</div>
+      </button>
+    </div>
+
   </div>
 </div>
 
 <script>
-// ── CONSTANTS ─────────────────────────────────────────────────────────────────
-const DAY_NAMES  = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
-const MONTHS     = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-const CAT_LABELS = {trabalho:'Trabalho',exercicio:'Atividade Física',estudos:'Estudos',igreja:'Igreja'};
-const CAT_ICONS  = {trabalho:'💼',exercicio:'🏃',estudos:'📚',igreja:'⛪'};
-const PER_ICONS  = {manha:'🌅',tarde:'☀️',noite:'🌙'};
-const PER_LABELS = {manha:'Manhã',tarde:'Tarde',noite:'Noite'};
-const PER_COLORS = {manha:'var(--manha)',tarde:'var(--tarde)',noite:'var(--noite)'};
-const CAT_COLORS = {trabalho:'var(--trabalho)',exercicio:'var(--exercicio)',estudos:'var(--estudos)',igreja:'var(--igreja)'};
+/* ============ DADOS FIXOS ============ */
+const ROTINA_DATA = {
+  trabalho: [
+    { id: 'trab-1', period: 'Manhã', text: 'Revisar e-mails e agenda', person: 'Mateus' },
+    { id: 'trab-2', period: 'Manhã', text: 'Responder e-mails pendentes', person: 'Mateus' },
+    { id: 'trab-3', period: 'Tarde', text: 'Bloco de trabalho focado', person: 'Ambos' },
+    { id: 'trab-4', period: 'Noite', text: 'Planejar o dia seguinte', person: 'Mateus' },
+  ],
+  oracao: [
+    { id: 'ora-1', period: 'Manhã', text: 'Oferecimento da manhã', person: 'Ambos' },
+    { id: 'ora-2', period: 'Tarde', text: 'Terço', person: 'Ambos' },
+    { id: 'ora-3', period: 'Noite', text: 'Exame de consciência', person: 'Ambos' },
+  ],
+  estudos: [
+    { id: 'est-1', period: 'Manhã', text: 'Leitura de teologia (30min)', person: 'Sofia' },
+    { id: 'est-2', period: 'Tarde', text: 'Curso online', person: 'Sofia' },
+    { id: 'est-3', period: 'Noite', text: 'Revisão do dia de estudos', person: 'Ambos' },
+  ],
+};
+const ROTINA_CATEGORIES = [
+  { id: 'trabalho', label: 'Trabalho' },
+  { id: 'oracao', label: 'Oração' },
+  { id: 'estudos', label: 'Estudos' },
+];
+const WEEKDAY_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const MONTH_LABELS = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-const today = new Date(); today.setHours(0,0,0,0);
-let selectedDate = today.toDateString();
-let selectedPeriod = 'todos';
-let selectedPerson = 'todos';
-let names = {p1:'Pessoa 1', p2:'Pessoa 2'};
-let tasks = {};
-
-function getDay(ds) {
-  if (!tasks[ds]) tasks[ds] = [];
-  return tasks[ds];
-}
-// ── FIREBASE CONFIG ───────────────────────────────────────────────────────────
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAsw1lFVY4XgOsh_QnyJp4UtHVEJxioAeY",
-  authDomain: "roteiro-possari.firebaseapp.com",
-  databaseURL: "https://roteiro-possari-default-rtdb.firebaseio.com",
-  projectId: "roteiro-possari",
-  storageBucket: "roteiro-possari.firebasestorage.app",
-  messagingSenderId: "272718215059",
-  appId: "1:272718215059:web:2bcad6b2fed18d76929a66"
+const MISTERIOS = {
+  gozosos:   { title:'Mistérios Gozosos',   days:'Segunda-feira e Sábado',        list:['Anunciação do Anjo a Maria','Visitação de Maria a Isabel','Natividade de Jesus','Apresentação de Jesus no Templo','Encontro do Menino Jesus no Templo'] },
+  luminosos: { title:'Mistérios Luminosos', days:'Quinta-feira',                  list:['Batismo de Jesus no Jordão','Autorrevelação nas bodas de Caná','Anúncio do Reino de Deus','Transfiguração de Jesus','Instituição da Eucaristia'] },
+  dolorosos: { title:'Mistérios Dolorosos', days:'Terça-feira e Sexta-feira',     list:['Agonia de Jesus no Horto','Flagelação de Jesus','Coroação de Espinhos','Jesus carrega a Cruz','Crucificação e Morte de Jesus'] },
+  gloriosos: { title:'Mistérios Gloriosos', days:'Quarta-feira e Domingo',        list:['Ressurreição de Jesus','Ascensão de Jesus ao Céu','Descida do Espírito Santo','Assunção de Maria ao Céu','Coroação de Maria como Rainha'] },
 };
 
-let db = null;
-let syncEnabled = false;
-
-async function initFirebase() {
-  if (!FIREBASE_CONFIG) return;
-  try {
-    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-    const { getDatabase, ref, set, onValue } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
-    const app = initializeApp(FIREBASE_CONFIG);
-    db = getDatabase(app);
-    syncEnabled = true;
-
-    // Listen for real-time updates
-    const dataRef = ref(db, 'rotina_possari');
-    onValue(dataRef, (snapshot) => {
-      const val = snapshot.val();
-      if (val) {
-        tasks = val.tasks || {};
-        if (val.names && names.p1 === 'Pessoa 1') {
-          names = val.names;
-          applyNames();
-        }
-        render();
-      }
-    });
-
-    document.getElementById('sync-status').textContent = '🟢 Sincronizado';
-    document.getElementById('sync-status').style.color = '#3a8a3a';
-  } catch(e) {
-    console.log('Firebase init error:', e);
-  }
-}
-
-function save() {
-  // Always save locally
-  try {
-    localStorage.setItem('rotina_v1', JSON.stringify({tasks, names}));
-  } catch(e) {}
-
-  // Also sync to Firebase if enabled
-  if (syncEnabled && db) {
-    try {
-      const { ref, set } = window._fbRefs || {};
-      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js').then(({ref, set}) => {
-        set(ref(db, 'rotina_possari'), {tasks, names, updatedAt: Date.now()});
-      });
-    } catch(e) {}
-  }
-}
-
-function load() {
-  try {
-    const s = localStorage.getItem('rotina_v1');
-    if (s) { const d = JSON.parse(s); tasks = d.tasks||{}; names = d.names||names; }
-  } catch(e) {}
-}
-
-// ── CLOCK ─────────────────────────────────────────────────────────────────────
-function updateClock() {
-  const now = new Date(), h = now.getHours();
-  document.getElementById('clock').textContent =
-    String(h).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('greeting').textContent =
-    h<12 ? '☀️ Bom dia' : h<18 ? '🌤 Boa tarde' : '🌙 Boa noite';
-}
-updateClock(); setInterval(updateClock, 1000);
-
-// ── NAMES ─────────────────────────────────────────────────────────────────────
-function applyNames() {
-  document.getElementById('nm1').textContent   = names.p1;
-  document.getElementById('nm2').textContent   = names.p2;
-  document.getElementById('av1').textContent   = names.p1.charAt(0).toUpperCase();
-  document.getElementById('av2').textContent   = names.p2.charAt(0).toUpperCase();
-  document.getElementById('opt-p1').textContent = names.p1;
-  document.getElementById('opt-p2').textContent = names.p2;
-  document.getElementById('cal-opt-p1').textContent = names.p1;
-  document.getElementById('cal-opt-p2').textContent = names.p2;
-}
-function saveNames() {
-  const n1 = document.getElementById('modal-name1').value.trim();
-  const n2 = document.getElementById('modal-name2').value.trim();
-  if (!n1 || !n2) return;
-  names.p1 = n1; names.p2 = n2;
-  applyNames(); save();
-  document.getElementById('name-modal').style.display = 'none';
-  seedData(); render();
-}
-
-
-// ── LITURGIA: CORES E CELEBRAÇÕES ────────────────────────────────────────────
-// cor: branco=solenidades/santos não-mártires, vermelho=mártires/Espírito Santo,
-//      roxo=Advento/Quaresma/penitência, verde=Tempo Comum, rosa=3ºAdvento/4ºQuaresma
-//      preto=Finados, dourado=grandes solenidades
-// rank: S=Solenidade, F=Festa, M=Memória obrigatória, m=Memória facultativa
-
-const LITURGIA = {
-  // ── JANEIRO ──
-  '01-01': {nome:'Solenidade de Maria, Mãe de Deus', desc:'A mais alta dignidade de Nossa Senhora', cor:'branco', rank:'S', icon:'👑'},
-  '01-06': {nome:'Epifania do Senhor', desc:'A manifestação de Jesus aos Reis Magos', cor:'branco', rank:'S', icon:'⭐'},
-  '01-13': {nome:'São Hilário de Poitiers', desc:'Bispo e Doutor da Igreja', cor:'branco', rank:'m', icon:'✝️'},
-  '01-17': {nome:'Santo Antônio do Deserto', desc:'Pai do monaquismo cristão', cor:'branco', rank:'M', icon:'🏜️'},
-  '01-20': {nome:'São Sebastião', desc:'Mártir romano, padroeiro do Brasil', cor:'vermelho', rank:'M', icon:'🏹'},
-  '01-21': {nome:'Santa Inês', desc:'Virgem e mártir de Roma', cor:'vermelho', rank:'M', icon:'🕊️'},
-  '01-24': {nome:'São Francisco de Sales', desc:'Bispo e Doutor da Igreja, padroeiro dos jornalistas', cor:'branco', rank:'M', icon:'✍️'},
-  '01-25': {nome:'Conversão de São Paulo', desc:'O perseguidor torna-se apóstolo', cor:'branco', rank:'F', icon:'⚡'},
-  '01-26': {nome:'São Timóteo e São Tito', desc:'Bispos, discípulos de Paulo', cor:'branco', rank:'M', icon:'✝️'},
-  '01-28': {nome:'São Tomás de Aquino', desc:'Doutor da Igreja, patrono dos estudantes', cor:'branco', rank:'M', icon:'📖'},
-  '01-31': {nome:'São João Bosco', desc:'Fundador dos Salesianos, apóstolo da juventude', cor:'branco', rank:'M', icon:'🎓'},
-  // ── FEVEREIRO ──
-  '02-02': {nome:'Apresentação do Senhor', desc:'A Purificação de Maria no Templo (Candelária)', cor:'branco', rank:'F', icon:'🕯️'},
-  '02-03': {nome:'São Brás', desc:'Bispo e mártir, padroeiro dos males da garganta', cor:'vermelho', rank:'m', icon:'🙏'},
-  '02-05': {nome:'Santa Águeda', desc:'Virgem e mártir siciliana', cor:'vermelho', rank:'M', icon:'🌸'},
-  '02-06': {nome:'São Paulo Miki e Companheiros', desc:'Mártires do Japão', cor:'vermelho', rank:'M', icon:'✝️'},
-  '02-11': {nome:'Nossa Senhora de Lourdes', desc:'Aparição a Santa Bernadette em 1858', cor:'branco', rank:'m', icon:'💧'},
-  '02-14': {nome:'Santos Cirilo e Metódio', desc:'Apóstolos dos eslavos, padroeiros da Europa', cor:'branco', rank:'M', icon:'📜'},
-  '02-22': {nome:'Cátedra de São Pedro', desc:'O primado do Apóstolo, fundamento da Igreja', cor:'branco', rank:'F', icon:'🪑'},
-  // ── MARÇO ──
-  '03-07': {nome:'Santas Perpétua e Felicidade', desc:'Mártires de Cartago', cor:'vermelho', rank:'M', icon:'✝️'},
-  '03-17': {nome:'São Patrício', desc:'Bispo e apóstolo da Irlanda', cor:'branco', rank:'m', icon:'☘️'},
-  '03-19': {nome:'São José', desc:'Esposo de Maria, padroeiro da Igreja Universal', cor:'branco', rank:'S', icon:'⚒️'},
-  '03-25': {nome:'Anunciação do Senhor', desc:'O Anjo Gabriel anuncia a encarnação do Filho de Deus', cor:'branco', rank:'S', icon:'🌹'},
-  // ── ABRIL ──
-  '04-02': {nome:'São Francisco de Paula', desc:'Fundador dos Mínimos, eremita', cor:'branco', rank:'m', icon:'⚓'},
-  '04-05': {nome:'São Vicente Ferrer', desc:'Sacerdote dominicano, grande pregador', cor:'branco', rank:'m', icon:'🔥'},
-  '04-07': {nome:'São João Batista de La Salle', desc:'Fundador dos Irmãos das Escolas Cristãs', cor:'branco', rank:'M', icon:'📚'},
-  '04-11': {nome:'São Estanislau', desc:'Bispo e mártir da Polônia', cor:'vermelho', rank:'M', icon:'✝️'},
-  '04-21': {nome:'São Anselmo', desc:'Bispo e Doutor da Igreja', cor:'branco', rank:'m', icon:'📖'},
-  '04-23': {nome:'São Jorge', desc:'Mártir, padroeiro da Inglaterra e de várias nações', cor:'vermelho', rank:'m', icon:'⚔️'},
-  '04-24': {nome:'São Fidélis de Sigmaringa', desc:'Sacerdote e mártir', cor:'vermelho', rank:'M', icon:'✝️'},
-  '04-25': {nome:'São Marcos', desc:'Evangelista, discípulo de Pedro', cor:'vermelho', rank:'F', icon:'✍️'},
-  '04-28': {nome:'São Luís Maria Grignion de Montfort', desc:'Apóstolo da devoção mariana', cor:'branco', rank:'m', icon:'🌹'},
-  '04-29': {nome:'Santa Catarina de Sena', desc:'Doutora da Igreja, padroeira da Itália e da Europa', cor:'branco', rank:'M', icon:'🌺'},
-  '04-30': {nome:'São Pio V', desc:'Papa da Contra-Reforma e do Concílio de Trento', cor:'branco', rank:'m', icon:'⚜️'},
-  // ── MAIO ──
-  '05-01': {nome:'São José Operário', desc:'Padroeiro dos trabalhadores', cor:'branco', rank:'m', icon:'⚒️'},
-  '05-02': {nome:'São Atanásio', desc:'Bispo e Doutor da Igreja, defensor da divindade de Cristo', cor:'branco', rank:'M', icon:'✝️'},
-  '05-03': {nome:'São Filipe e São Tiago', desc:'Apóstolos de Cristo', cor:'vermelho', rank:'F', icon:'✝️'},
-  '05-12': {nome:'São Nereo e São Aquileu', desc:'Mártires romanos', cor:'vermelho', rank:'m', icon:'✝️'},
-  '05-13': {nome:'Nossa Senhora de Fátima', desc:'Aparição de 1917 às três pastorinhas', cor:'branco', rank:'m', icon:'🌙'},
-  '05-14': {nome:'São Matias', desc:'Apóstolo, escolhido para substituir Judas', cor:'vermelho', rank:'F', icon:'✝️'},
-  '05-20': {nome:'São Bernardino de Sena', desc:'Frade franciscano, pregador do Nome de Jesus', cor:'branco', rank:'m', icon:'☀️'},
-  '05-21': {nome:'São Cristóvão Magallanes e Companheiros', desc:'Mártires do México', cor:'vermelho', rank:'M', icon:'✝️'},
-  '05-22': {nome:'Santa Rita de Cássia', desc:'Viúva religiosa, padroeira das causas impossíveis', cor:'branco', rank:'m', icon:'🌹'},
-  '05-25': {nome:'São Gregório VII', desc:'Papa reformador da Igreja', cor:'branco', rank:'m', icon:'⚜️'},
-  '05-26': {nome:'São Filipe Néri', desc:'Apóstolo de Roma, fundador do Oratório', cor:'branco', rank:'M', icon:'😊'},
-  '05-27': {nome:'São Agostinho de Cantuária', desc:'Monge beneditino, apóstolo da Inglaterra', cor:'branco', rank:'m', icon:'✝️'},
-  '05-31': {nome:'Visitação de Maria', desc:'Maria visita sua prima Isabel, carregando Jesus', cor:'branco', rank:'F', icon:'🤰'},
-  // ── JUNHO ──
-  '06-01': {nome:'São Justino', desc:'Filósofo e mártir, defensor da fé', cor:'vermelho', rank:'M', icon:'📜'},
-  '06-02': {nome:'Santos Marcelino e Pedro', desc:'Mártires romanos', cor:'vermelho', rank:'m', icon:'✝️'},
-  '06-05': {nome:'São Bonifácio', desc:'Bispo e mártir, apóstolo da Germânia', cor:'vermelho', rank:'M', icon:'⚔️'},
-  '06-06': {nome:'São Norberto', desc:'Bispo, fundador dos Premonstratenses', cor:'branco', rank:'m', icon:'✝️'},
-  '06-09': {nome:'São Efrém', desc:'Diácono e Doutor da Igreja síria', cor:'branco', rank:'m', icon:'🎶'},
-  '06-11': {nome:'São Barnabé', desc:'Apóstolo, companheiro de Paulo', cor:'vermelho', rank:'M', icon:'✝️'},
-  '06-13': {nome:'Santo Antônio de Pádua', desc:'Sacerdote e Doutor da Igreja, padroeiro de Portugal e dos pobres', cor:'branco', rank:'M', icon:'🌸'},
-  '06-19': {nome:'São Romualdo', desc:'Abade, fundador dos Camaldulenses', cor:'branco', rank:'m', icon:'🏔️'},
-  '06-21': {nome:'São Luís Gonzaga', desc:'Religioso, padroeiro da juventude cristã', cor:'branco', rank:'M', icon:'🎓'},
-  '06-22': {nome:'São João Fisher e São Tomás Moro', desc:'Mártires da Inglaterra', cor:'vermelho', rank:'m', icon:'⚔️'},
-  '06-24': {nome:'Natividade de São João Batista', desc:'O precursor de Cristo, voz que clama no deserto', cor:'branco', rank:'S', icon:'🌊'},
-  '06-27': {nome:'São Cirilo de Alexandria', desc:'Bispo e Doutor da Igreja', cor:'branco', rank:'m', icon:'✝️'},
-  '06-28': {nome:'São Ireneu', desc:'Bispo e mártir, defensor da fé', cor:'vermelho', rank:'M', icon:'📖'},
-  '06-29': {nome:'São Pedro e São Paulo', desc:'Os Príncipes dos Apóstolos, pilares da Igreja', cor:'vermelho', rank:'S', icon:'⚓'},
-  '06-30': {nome:'Primeiros Mártires da Igreja de Roma', desc:'Os cristãos mortos por Nero', cor:'vermelho', rank:'m', icon:'🔥'},
-  // ── JULHO ──
-  '07-03': {nome:'São Tomé', desc:'Apóstolo, evangelizou a Índia — "Meu Senhor e meu Deus!"', cor:'vermelho', rank:'F', icon:'✋'},
-  '07-04': {nome:'Santa Isabel de Portugal', desc:'Rainha e peacemaker', cor:'branco', rank:'m', icon:'👑'},
-  '07-05': {nome:'Santo Antônio Maria Zaccaria', desc:'Sacerdote, fundador dos Barnabitas', cor:'branco', rank:'m', icon:'✝️'},
-  '07-06': {nome:'Santa Maria Goretti', desc:'Virgem e mártir, modelo de pureza', cor:'vermelho', rank:'m', icon:'🌸'},
-  '07-09': {nome:'São Agostinho Zhao Rong e Companheiros', desc:'Mártires da China', cor:'vermelho', rank:'M', icon:'✝️'},
-  '07-11': {nome:'São Bento', desc:'Abade, pai do monaquismo ocidental, padroeiro da Europa', cor:'branco', rank:'F', icon:'📿'},
-  '07-13': {nome:'São Henrique', desc:'Imperador, esposo fiel', cor:'branco', rank:'m', icon:'👑'},
-  '07-15': {nome:'São Boaventura', desc:'Bispo e Doutor da Igreja, príncipe dos místicos', cor:'branco', rank:'M', icon:'📖'},
-  '07-16': {nome:'Nossa Senhora do Carmo', desc:'Padroeira da Ordem do Carmo', cor:'branco', rank:'m', icon:'⭐'},
-  '07-20': {nome:'São Apolinar', desc:'Bispo e mártir', cor:'vermelho', rank:'m', icon:'✝️'},
-  '07-21': {nome:'São Lourenço de Brindisi', desc:'Sacerdote e Doutor da Igreja', cor:'branco', rank:'m', icon:'✝️'},
-  '07-22': {nome:'Santa Maria Madalena', desc:'A apóstola dos apóstolos, a primeira a ver o Ressuscitado', cor:'branco', rank:'F', icon:'💐'},
-  '07-23': {nome:'Santa Brígida da Suécia', desc:'Religiosa, padroeira da Europa', cor:'branco', rank:'m', icon:'✝️'},
-  '07-24': {nome:'São Charbel Makhlouf', desc:'Sacerdote e eremita libanês', cor:'branco', rank:'m', icon:'🕯️'},
-  '07-25': {nome:'São Tiago', desc:'Apóstolo, filho de Zebedeu, primeiro apóstolo mártir', cor:'vermelho', rank:'F', icon:'✝️'},
-  '07-26': {nome:'São Joaquim e Santa Ana', desc:'Pais de Nossa Senhora, avós de Jesus', cor:'branco', rank:'M', icon:'👴'},
-  '07-29': {nome:'Santa Marta, Maria e Lázaro', desc:'Amigos do Senhor em Betânia', cor:'branco', rank:'M', icon:'🏠'},
-  '07-30': {nome:'São Pedro Crisólogo', desc:'Bispo e Doutor da Igreja', cor:'branco', rank:'m', icon:'📖'},
-  '07-31': {nome:'Santo Inácio de Loyola', desc:'Sacerdote, fundador da Companhia de Jesus', cor:'branco', rank:'M', icon:'⚜️'},
-  // ── AGOSTO ──
-  '08-01': {nome:'Santo Afonso Maria de Ligório', desc:'Bispo e Doutor da Igreja, fundador dos Redentoristas', cor:'branco', rank:'M', icon:'📖'},
-  '08-02': {nome:'Santo Eusébio de Vercelli', desc:'Bispo', cor:'branco', rank:'m', icon:'✝️'},
-  '08-04': {nome:'São João Maria Vianney', desc:'O Cura d’Ars, padroeiro dos sacerdotes', cor:'branco', rank:'M', icon:'🙏'},
-  '08-05': {nome:'Dedicação da Basílica de Santa Maria Maior', desc:'A maior igreja mariana do mundo', cor:'branco', rank:'m', icon:'⛪'},
-  '08-06': {nome:'Transfiguração do Senhor', desc:'Jesus revela sua glória divina no Monte Tabor', cor:'branco', rank:'F', icon:'✨'},
-  '08-07': {nome:'São Sisto II e Companheiros', desc:'Papa e mártires', cor:'vermelho', rank:'m', icon:'✝️'},
-  '08-08': {nome:'São Domingos de Gusmão', desc:'Sacerdote, fundador dos Dominicanos', cor:'branco', rank:'M', icon:'📿'},
-  '08-09': {nome:'Santa Teresa Benedita da Cruz', desc:'Edith Stein, filósofa e mártir carmelita', cor:'vermelho', rank:'M', icon:'✝️'},
-  '08-10': {nome:'São Lourenço', desc:'Diácono e mártir, patrono dos pobres', cor:'vermelho', rank:'F', icon:'🔥'},
-  '08-11': {nome:'Santa Clara de Assis', desc:'Virgem, fundadora das Clarissas', cor:'branco', rank:'M', icon:'🌟'},
-  '08-13': {nome:'São Ponciano e São Hipólito', desc:'Mártires romanos', cor:'vermelho', rank:'m', icon:'✝️'},
-  '08-14': {nome:'São Maximiliano Maria Kolbe', desc:'Sacerdote e mártir da caridade em Auschwitz', cor:'vermelho', rank:'M', icon:'💫'},
-  '08-15': {nome:'Assunção de Nossa Senhora', desc:'Maria é elevada ao céu em corpo e alma', cor:'branco', rank:'S', icon:'👑'},
-  '08-16': {nome:'São Estêvão da Hungria', desc:'Rei, apóstolo do seu povo', cor:'branco', rank:'m', icon:'👑'},
-  '08-19': {nome:'São João Eudes', desc:'Sacerdote, apóstolo dos Sagrados Corações', cor:'branco', rank:'m', icon:'❤️'},
-  '08-20': {nome:'São Bernardo de Claraval', desc:'Abade e Doutor da Igreja, o Doutor Melifluo', cor:'branco', rank:'M', icon:'🌿'},
-  '08-21': {nome:'São Pio X', desc:'Papa da renovação eucarística', cor:'branco', rank:'M', icon:'⚜️'},
-  '08-22': {nome:'Nossa Senhora Rainha', desc:'A coroação de Maria como Rainha do Céu', cor:'branco', rank:'M', icon:'👑'},
-  '08-23': {nome:'Santa Rosa de Lima', desc:'Virgem, primeira santa das Américas', cor:'branco', rank:'M', icon:'🌹'},
-  '08-24': {nome:'São Bartolomeu', desc:'Apóstolo de Cristo', cor:'vermelho', rank:'F', icon:'✝️'},
-  '08-25': {nome:'São Luís, Rei da França', desc:'Rei e modelo de governante cristão', cor:'branco', rank:'m', icon:'👑'},
-  '08-27': {nome:'Santa Mônica', desc:'Mãe de Santo Agostinho, modelo de perseverança', cor:'branco', rank:'M', icon:'💧'},
-  '08-28': {nome:'Santo Agostinho', desc:'Bispo de Hipona e Doutor da Igreja', cor:'branco', rank:'M', icon:'📖'},
-  '08-29': {nome:'Martírio de São João Batista', desc:'O precursor de Cristo é decapitado por Herodes', cor:'vermelho', rank:'M', icon:'⚔️'},
-  // ── SETEMBRO ──
-  '09-03': {nome:'São Gregório Magno', desc:'Papa e Doutor da Igreja, o Grande', cor:'branco', rank:'M', icon:'📖'},
-  '09-05': {nome:'São Lourenço Justiniani', desc:'Bispo de Veneza', cor:'branco', rank:'m', icon:'✝️'},
-  '09-08': {nome:'Natividade de Nossa Senhora', desc:'O nascimento de Maria, a aurora que precede o Sol', cor:'branco', rank:'F', icon:'🌸'},
-  '09-09': {nome:'São Pedro Claver', desc:'Sacerdote, apóstolo dos escravos negros', cor:'branco', rank:'m', icon:'⛓️'},
-  '09-12': {nome:'Santíssimo Nome de Maria', desc:'A devoção ao Nome bendito de Maria', cor:'branco', rank:'m', icon:'🌹'},
-  '09-13': {nome:'São João Crisóstomo', desc:'Bispo e Doutor da Igreja, a Boca de Ouro', cor:'branco', rank:'M', icon:'🗣️'},
-  '09-14': {nome:'Exaltação da Santa Cruz', desc:'O triunfo da Cruz de Cristo sobre o pecado e a morte', cor:'vermelho', rank:'F', icon:'✝️'},
-  '09-15': {nome:'Nossa Senhora das Dores', desc:'Os sete sofrimentos de Maria, a Mãe Dolorosa', cor:'branco', rank:'M', icon:'💔'},
-  '09-16': {nome:'Santos Cornélio e Cipriano', desc:'Papa e bispo, mártires', cor:'vermelho', rank:'M', icon:'✝️'},
-  '09-17': {nome:'Santa Hildegarda de Bingen', desc:'Virgem e Doutora da Igreja, mística e cientista', cor:'branco', rank:'m', icon:'🌿'},
-  '09-19': {nome:'São Januário', desc:'Bispo e mártir, padroeiro de Nápoles', cor:'vermelho', rank:'m', icon:'✝️'},
-  '09-20': {nome:'São André Kim Tae-gon e Companheiros', desc:'Mártires da Coreia', cor:'vermelho', rank:'M', icon:'✝️'},
-  '09-21': {nome:'São Mateus', desc:'Apóstolo e Evangelista, o publicano chamado por Jesus', cor:'vermelho', rank:'F', icon:'💰'},
-  '09-23': {nome:'São Pio de Pietrelcina', desc:'Sacerdote, o Padre Pio dos estigmas', cor:'branco', rank:'M', icon:'🙏'},
-  '09-26': {nome:'Santos Cosme e Damião', desc:'Mártires, padroeiros dos médicos', cor:'vermelho', rank:'m', icon:'⚕️'},
-  '09-27': {nome:'São Vicente de Paulo', desc:'Sacerdote, apóstolo da caridade organizada', cor:'branco', rank:'M', icon:'❤️'},
-  '09-28': {nome:'São Venâncio Fortunato', desc:'Bispo e poeta', cor:'branco', rank:'m', icon:'✝️'},
-  '09-29': {nome:'São Miguel, Gabriel e Rafael', desc:'Os três Arcanjos, mensageiros de Deus', cor:'branco', rank:'F', icon:'⚔️'},
-  '09-30': {nome:'São Jerônimo', desc:'Sacerdote e Doutor da Igreja, tradutor da Bíblia (Vulgata)', cor:'branco', rank:'M', icon:'📜'},
-  // ── OUTUBRO ──
-  '10-01': {nome:'Santa Teresinha do Menino Jesus', desc:'Virgem e Doutora da Igreja, a pequena via', cor:'branco', rank:'M', icon:'🌸'},
-  '10-02': {nome:'Santos Anjos da Guarda', desc:'Os anjos que protegem cada pessoa', cor:'branco', rank:'M', icon:'😇'},
-  '10-04': {nome:'São Francisco de Assis', desc:'O pobrezinho de Assis, padroeiro da ecologia', cor:'branco', rank:'M', icon:'🕊️'},
-  '10-06': {nome:'São Bruno', desc:'Fundador dos Cartuxos, eremita', cor:'branco', rank:'m', icon:'🏔️'},
-  '10-07': {nome:'Nossa Senhora do Rosário', desc:'A Rainha do Rosário de Fátima', cor:'branco', rank:'M', icon:'📿'},
-  '10-09': {nome:'São Dionísio e Companheiros', desc:'Bispo e mártires', cor:'vermelho', rank:'m', icon:'✝️'},
-  '10-11': {nome:'São João XXIII', desc:'Papa do Concílio Vaticano II, o Papa Bom', cor:'branco', rank:'m', icon:'⚜️'},
-  '10-14': {nome:'São Calisto I', desc:'Papa e mártir', cor:'vermelho', rank:'m', icon:'✝️'},
-  '10-15': {nome:'Santa Teresa de Ávila', desc:'Virgem e Doutora da Igreja, reformadora do Carmelo', cor:'branco', rank:'M', icon:'🔥'},
-  '10-16': {nome:'Santa Edwiges', desc:'Religiosa, duquesa da Silésia', cor:'branco', rank:'m', icon:'👑'},
-  '10-17': {nome:'São Inácio de Antioquia', desc:'Bispo e mártir, discípulo dos Apóstolos', cor:'vermelho', rank:'M', icon:'🔥'},
-  '10-18': {nome:'São Lucas', desc:'Evangelista, médico, companheiro de Paulo', cor:'vermelho', rank:'F', icon:'⚕️'},
-  '10-19': {nome:'São João de Brébeuf e Companheiros', desc:'Mártires do Canadá', cor:'vermelho', rank:'m', icon:'✝️'},
-  '10-22': {nome:'São João Paulo II', desc:'Papa, o Grande Peregrino da fé', cor:'branco', rank:'m', icon:'✈️'},
-  '10-23': {nome:'São João de Capistrano', desc:'Sacerdote franciscano', cor:'branco', rank:'m', icon:'✝️'},
-  '10-24': {nome:'São Luís Bertran', desc:'Sacerdote dominicano', cor:'branco', rank:'m', icon:'✝️'},
-  '10-28': {nome:'São Simão e São Judas Tadeu', desc:'Apóstolos de Cristo', cor:'vermelho', rank:'F', icon:'✝️'},
-  // ── NOVEMBRO ──
-  '11-01': {nome:'Solenidade de Todos os Santos', desc:'A Igreja triunfante no Céu', cor:'branco', rank:'S', icon:'✨'},
-  '11-02': {nome:'Commemoração dos Fiéis Defuntos', desc:'Dia de Finados — rezamos pelos que partiram', cor:'preto', rank:'S', icon:'🕯️'},
-  '11-03': {nome:'São Martinho de Porres', desc:'Religioso dominicano, apóstolo dos pobres', cor:'branco', rank:'m', icon:'✝️'},
-  '11-04': {nome:'São Carlos Borromeu', desc:'Arcebispo de Milão, reformador do Concílio de Trento', cor:'branco', rank:'M', icon:'⚜️'},
-  '11-09': {nome:'Dedicação da Basílica de Latrão', desc:'A catedral do Papa, mãe de todas as igrejas', cor:'branco', rank:'F', icon:'⛪'},
-  '11-10': {nome:'São Leão Magno', desc:'Papa e Doutor da Igreja, o Grande', cor:'branco', rank:'M', icon:'📖'},
-  '11-11': {nome:'São Martinho de Tours', desc:'Bispo, o soldado que partiu a capa com o mendigo', cor:'branco', rank:'M', icon:'🪖'},
-  '11-12': {nome:'São Josafá', desc:'Bispo e mártir da Ucrânia', cor:'vermelho', rank:'M', icon:'✝️'},
-  '11-13': {nome:'São João Crisóstomo', desc:'Arcebispo de Constantinopla, Boca de Ouro', cor:'branco', rank:'m', icon:'🗣️'},
-  '11-15': {nome:'São Alberto Magno', desc:'Bispo e Doutor da Igreja, mestre de Tomás de Aquino', cor:'branco', rank:'m', icon:'🔬'},
-  '11-16': {nome:'Santa Margarida da Escócia', desc:'Rainha, modelo de santidade conjugal', cor:'branco', rank:'m', icon:'👑'},
-  '11-17': {nome:'Santa Isabel da Hungria', desc:'Rainha, padroeira das obras de caridade', cor:'branco', rank:'M', icon:'🌹'},
-  '11-18': {nome:'Dedicação das Basílicas de Pedro e Paulo', desc:'Os dois grandes santuários de Roma', cor:'branco', rank:'m', icon:'⛪'},
-  '11-21': {nome:'Apresentação de Maria no Templo', desc:'A menina Maria é consagrada a Deus', cor:'branco', rank:'M', icon:'🌸'},
-  '11-22': {nome:'Santa Cecília', desc:'Virgem e mártir, padroeira da música sacra', cor:'vermelho', rank:'M', icon:'🎶'},
-  '11-23': {nome:'São Clemente I', desc:'Papa e mártir, terceiro sucessor de Pedro', cor:'vermelho', rank:'m', icon:'✝️'},
-  '11-24': {nome:'São André Dung-Lac e Companheiros', desc:'Mártires do Vietnã', cor:'vermelho', rank:'M', icon:'✝️'},
-  '11-25': {nome:'Santa Catarina de Alexandria', desc:'Virgem e mártir, padroeira dos filósofos', cor:'vermelho', rank:'m', icon:'📜'},
-  '11-30': {nome:'São André', desc:'Apóstolo, irmão de Pedro, primeiro chamado', cor:'vermelho', rank:'F', icon:'✝️'},
-  // ── DEZEMBRO ──
-  '12-03': {nome:'São Francisco Xavier', desc:'Sacerdote, apóstolo das Índias e do Japão', cor:'branco', rank:'M', icon:'🌊'},
-  '12-04': {nome:'São João Damasceno', desc:'Sacerdote e Doutor da Igreja', cor:'branco', rank:'m', icon:'📖'},
-  '12-06': {nome:'São Nicolau', desc:'Bispo de Mira, a inspiração do Papai Noel', cor:'branco', rank:'m', icon:'🎁'},
-  '12-07': {nome:'São Ambrósio', desc:'Bispo de Milão e Doutor da Igreja', cor:'branco', rank:'M', icon:'🐝'},
-  '12-08': {nome:'Imaculada Conceição de Maria', desc:'Maria concebida sem pecado original, padroeira do Brasil', cor:'branco', rank:'S', icon:'🌹'},
-  '12-09': {nome:'São João Diego', desc:'O indígena a quem Nossa Senhora de Guadalupe apareceu', cor:'branco', rank:'m', icon:'🌺'},
-  '12-11': {nome:'São Dâmaso I', desc:'Papa, promotor da Vulgata de São Jerônimo', cor:'branco', rank:'m', icon:'⚜️'},
-  '12-12': {nome:'Nossa Senhora de Guadalupe', desc:'Padroeira das Américas, aparição a Juan Diego', cor:'branco', rank:'F', icon:'🌹'},
-  '12-13': {nome:'Santa Lúcia', desc:'Virgem e mártir, padroeira da visão e da luz', cor:'vermelho', rank:'M', icon:'🕯️'},
-  '12-14': {nome:'São João da Cruz', desc:'Sacerdote e Doutor da Igreja, místico da noite escura', cor:'branco', rank:'M', icon:'🌑'},
-  '12-21': {nome:'São Pedro Canísio', desc:'Sacerdote e Doutor da Igreja, apóstolo da Alemanha', cor:'branco', rank:'m', icon:'📖'},
-  '12-23': {nome:'São João de Kety', desc:'Sacerdote polonês', cor:'branco', rank:'m', icon:'✝️'},
-  '12-25': {nome:'Natividade do Senhor — Natal', desc:'O Filho de Deus nasce em Belém, a maior alegria do mundo', cor:'branco', rank:'S', icon:'🌟'},
-  '12-26': {nome:'São Estêvão', desc:'Diácono e primeiro mártir cristão', cor:'vermelho', rank:'F', icon:'⭐'},
-  '12-27': {nome:'São João Apóstolo', desc:'O discípulo amado, o único que permaneceu na Cruz', cor:'branco', rank:'F', icon:'❤️'},
-  '12-28': {nome:'Santos Inocentes', desc:'As crianças mortas por Herodes em busca do Menino Jesus', cor:'vermelho', rank:'F', icon:'👶'},
-  '12-29': {nome:'São Tomás Becket', desc:'Arcebispo de Cantuária e mártir', cor:'vermelho', rank:'m', icon:'⚔️'},
-  '12-31': {nome:'São Silvestre I', desc:'Papa, governou a Igreja no tempo de Constantino', cor:'branco', rank:'m', icon:'⚜️'},
-};
-
-// Nomes e paletas das cores litúrgicas
-const COR_LITURGICA = {
-  branco:   {label:'Branco',  bg:'#fdfaf0', border:'#d4a83c', accent:'#b8830a', text:'#2a1e04', muted:'#7a6030', pill:'#b8830a'},
-  vermelho: {label:'Vermelho',bg:'#fff5f5', border:'#c0392b', accent:'#a93226', text:'#2a0808', muted:'#7a3030', pill:'#a93226'},
-  roxo:     {label:'Roxo',    bg:'#faf5ff', border:'#7a3a9a', accent:'#6a2a8a', text:'#1e0a2a', muted:'#6a4a7a', pill:'#6a2a8a'},
-  verde:    {label:'Verde',   bg:'#f3faf3', border:'#2e7d32', accent:'#1b5e20', text:'#081a08', muted:'#3a6a3a', pill:'#1b5e20'},
-  rosa:     {label:'Rosa',    bg:'#fff5f8', border:'#d4679a', accent:'#b8477a', text:'#2a0818', muted:'#7a4060', pill:'#b8477a'},
-  preto:    {label:'Preto',   bg:'#f5f5f5', border:'#444',    accent:'#222',    text:'#111',    muted:'#555',    pill:'#222'},
-};
-
-const RANK_LABEL = {S:'Solenidade', F:'Festa', M:'Memória', m:'Memória Facultativa'};
-
-function getSaint(date) {
-  const m = String(date.getMonth()+1).padStart(2,'0');
-  const d = String(date.getDate()).padStart(2,'0');
-  return LITURGIA[m+'-'+d] || null;
-}
-
-function buildSaintBanner() {
-  const sel = new Date(selectedDate);
-  const s = getSaint(sel);
-  const area = document.getElementById('saint-banner-area');
-  if (!area) return;
-  if (!s) { area.innerHTML = ''; return; }
-  const c = COR_LITURGICA[s.cor] || COR_LITURGICA.branco;
-  area.innerHTML = `
-    <div style="
-      border-radius:14px; padding:12px 14px; margin-bottom:14px;
-      display:flex; align-items:center; gap:11px;
-      animation: fup .3s ease both; position:relative; overflow:hidden;
-      border:1.5px solid ${c.border}; background:${c.bg};
-    ">
-      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${c.accent};border-radius:14px 0 0 14px"></div>
-      <div style="width:38px;height:38px;border-radius:50%;background:${c.accent};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${s.icon}</div>
-      <div style="flex:1;min-width:0">
-        <div style="font-size:9px;font-weight:700;color:${c.accent};text-transform:uppercase;letter-spacing:1.4px;margin-bottom:3px;display:flex;align-items:center;gap:5px">
-          Liturgia do dia
-          <span style="font-size:8px;padding:1px 6px;border-radius:20px;background:${c.accent};color:#fff;font-weight:700">${c.label}</span>
-          <span style="font-size:8px;padding:1px 6px;border-radius:20px;background:${c.border};color:${c.bg};font-weight:600;opacity:.85">${RANK_LABEL[s.rank]||''}</span>
-        </div>
-        <div style="font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:${c.text};line-height:1.25">${s.nome}</div>
-        <div style="font-size:10px;color:${c.muted};margin-top:2px;line-height:1.4">${s.desc}</div>
-      </div>
-    </div>`;
-}
-
-
-// ── NOVENAS DATA ──────────────────────────────────────────────────────────────
 function txt(arr){ return arr.join('\n'); }
 
 const NOVENAS = [
@@ -1456,1356 +407,608 @@ const NOVENAS = [
   }
 ];
 
-// ── PRAYER TAB LOGIC ───────────────────────────────────────────────────────────
-let currentPrayerTab = 'novenas';
-let currentNovena = null;
-let currentNovenaDay = 0;
+const DIVERSAS = [
+  { id:'sim', icon:'🌍', title:'Oração do Missionário SIM', sub:'Sociedade Irmãos da Misericórdia',
+    body:`Senhor Jesus,
+em Tua presença, meu espírito transborda de uma alegria indescritível e incompreensível. Desejo ardentemente a glorificação e o culto à Tua misericórdia, que ultrapassa toda compreensão humana.
 
-function setPrayerTab(tab) {
-  currentPrayerTab = tab;
-  document.querySelectorAll('.prayer-tab-btn').forEach((b,i) => {
-    b.classList.toggle('active', ['sim','trabalho','exame','completorium','novenas','saomiguel'][i] === tab);
-  });
-  document.querySelectorAll('.prayer-section').forEach(s => s.classList.remove('active'));
-  document.getElementById('ps-' + tab).classList.add('active');
+Imploro, Senhor Jesus, que abençoe a todos aqueles que exaltam a Tua infinita misericórdia. Que mergulhes a mim, aos meus familiares e a todos os missionários da Sociedade Irmãos da Misericórdia em teu imenso amor.
+
+Enviai, generosamente, o Espírito Santo sobre as nossas misérias e completai a Tua obra onde nossas limitações não podem alcançar.
+
+Confiando plenamente em Ti, Senhor Jesus, em tuas mãos entregamos a nossa Comunidade SIM, a Santa Igreja Católica, juntamente com todos os nossos familiares, trabalhos, estudos e todos pelos quais intercedemos.
+
+Concede-nos o Espírito Santo com seus dons e carismas, para que possamos enfrentar com paciência e amor as adversidades da vida, sem jamais desanimar ou desistir de Te louvar e servir.
+
+Assim seja. Amém.` },
+  { id:'obras', icon:'🕊', title:'Oferecimento das Obras do Dia', sub:'Apostolado da Oração',
+    body:`Ó meu Deus, eu Vos ofereço todas as minhas orações, obras e sofrimentos deste dia, em união com o Santíssimo Sacrifício do Altar, para todas as intenções do Vosso Divino Coração: a conversão dos pecadores, a união dos cristãos, e as intenções do Santo Padre.
+
+Que tudo o que eu pensar, disser ou fizer hoje seja para Vossa maior glória e para o bem das almas.
+
+Amém.` },
+  { id:'abandono', icon:'🕯', title:'Oração de Abandono', sub:'São Charles de Foucauld',
+    body:`Meu Pai,
+eu me abandono a Vós,
+fazei de mim o que quiserdes.
+Qualquer que seja o que fizerdes de mim,
+eu Vos agradeço.
+
+Estou pronto para tudo, aceito tudo,
+contanto que a Vossa vontade se faça
+em mim e em todas as Vossas criaturas.
+
+Não desejo nada mais, meu Deus.
+
+Entrego minha alma em Vossas mãos,
+eu a dou a Vós, meu Deus,
+com todo o amor do meu coração,
+porque Vos amo,
+e é para mim uma necessidade de amor
+dar-me a Vós,
+entregar-me em Vossas mãos, sem medida,
+com uma confiança infinita,
+porque Vós sois meu Pai.
+
+Amém.` },
+  { id:'comunhao', icon:'✥', title:'Comunhão Espiritual', sub:'Santo Afonso Maria de Ligório',
+    body:`Meu Jesus, eu creio que estais presente no Santíssimo Sacramento do Altar. Amo-Vos sobre todas as coisas e desejo receber-Vos em minha alma.
+
+Já que agora não posso receber-Vos sacramentalmente, vinde ao menos espiritualmente ao meu coração.
+
+Como já chegastes, abraço-Vos e me uno totalmente a Vós; não permitais que eu me separe de Vós jamais.
+
+Amém.` },
+  { id:'estudos', icon:'📖', title:'Oração para os Estudos', sub:'Santo Tomás de Aquino',
+    body:`Ó Deus, princípio de toda a sabedoria, que iluminais com o Espírito Santo os que buscam a verdade,
+
+concedei-me, por intercessão de São Tomás de Aquino, agudeza para entender, capacidade para reter, método e faculdade para aprender, sutileza para interpretar, graça e abundância para falar.
+
+Dai-me acerto ao começar, direção ao progredir e perfeição ao concluir,
+
+Vós que sois Deus verdadeiro e Senhor nosso.
+
+Amém.` },
+];
+
+const EXAME_SECTIONS = [
+  { id:'deus', title:'Em relação a Deus', subtitle:'Como esteve minha vida de fé hoje?', questions:[
+    'Rezei hoje? Fui fiel à oração da manhã e da noite?',
+    'Tive momentos de oração espontânea, ou só na obrigação?',
+    'Profanei o nome de Deus, de Maria ou dos santos?',
+    'Guardei o domingo como dia do Senhor?',
+    'Confiei em Deus nas dificuldades, ou cedi à ansiedade?' ]},
+  { id:'conjuge', title:'Em relação ao cônjuge', subtitle:'Como fui esposo(a) hoje?', questions:[
+    'Tratei meu cônjuge com paciência, gentileza e respeito?',
+    'Fui generoso(a) no perdão ou guardei mágoa?',
+    'Demonstrei carinho e interesse genuíno pela vida dele(a)?',
+    'Falei mal do meu cônjuge para outros?',
+    'Rezamos juntos hoje?' ]},
+  { id:'familia', title:'Em relação à família', subtitle:'Como fui familiar hoje?', questions:[
+    'Dei atenção de qualidade aos filhos, ou estava distraído?',
+    'Fui justo e coerente na educação?',
+    'Honrei meus pais e parentes com respeito?',
+    'Fui exemplo de virtude cristã hoje?' ]},
+  { id:'trabalho', title:'Em relação ao trabalho', subtitle:'Como fui profissional hoje?', questions:[
+    'Fui honesto e íntegro em tudo o que fiz?',
+    'Trabalhei com diligência ou desperdicei tempo?',
+    'Tratei colegas com justiça e fraternidade?',
+    'Fui invejoso diante do sucesso alheio?' ]},
+  { id:'proximo', title:'Em relação ao próximo', subtitle:'Como amei o próximo hoje?', questions:[
+    'Vi alguém necessitado e passei indiferente?',
+    'Falei mal de alguém ou fofoquei?',
+    'Fui impaciente ou grosseiro com alguém?',
+    'Perdoei quem me ofendeu?' ]},
+  { id:'digital', title:'Em relação ao mundo digital', subtitle:'Como usei as redes hoje?', questions:[
+    'Consumi conteúdo que afastou minha mente de Deus?',
+    'Perdi horas preciosas em redes sociais?',
+    'Compartilhei conteúdo falso ou ofensivo?' ]},
+];
+
+/* ============ ESTADO / PERSISTENCIA ============ */
+const STORE_KEY = 'oel_state_v1';
+const SEED_KEY = 'oel_seeded_v1';
+
+function loadStore() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { checks:{}, customItems:{trabalho:[],oracao:[],estudos:[]}, weekAgenda:{}, calEvents:{} };
+}
+function saveStore() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch(e) {}
 }
 
-function buildNovenaList() {
-  const list = document.getElementById('novena-list');
-  if (!list) return;
-  list.innerHTML = NOVENAS.map(n => `
-    <div class="novena-card" onclick="openNovena('${n.id}')">
-      <div class="novena-card-header" style="--nc:${n.color}">
-        <div class="novena-card-icon">${n.icon}</div>
-        <div class="novena-card-body">
-          <div class="novena-card-title">${n.title}</div>
-          <div class="novena-card-sub">${n.sub}</div>
-        </div>
-        <div class="novena-card-arrow">›</div>
-      </div>
-    </div>`).join('');
+let store = loadStore();
+
+let state = {
+  tab: 'rotina',
+  rotinaCategory: 'trabalho',
+  addingFor: null,
+  draftText: '',
+  selectedDate: dateKey(new Date()),
+  isAddingTimeline: false,
+  draftTime: '',
+  draftLabel: '',
+  oracaoView: 'home',
+  misterioType: null,
+  novenaId: null,
+  novenaDay: 0,
+  diversaId: null,
+  exameOpen: 'deus',
+  ladainhaOpen: false,
+  consagracaoOpen: false,
+  calMonth: new Date().getMonth(),
+  calYear: new Date().getFullYear(),
+  isAddingCalEvent: false,
+  draftCalDate: '',
+  draftCalLabel: '',
+};
+
+function dateKey(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
 
-function openNovena(id) {
-  currentNovena = NOVENAS.find(n => n.id === id);
-  if (!currentNovena) return;
-  currentNovenaDay = 0;
-  document.getElementById('novena-list').style.display = 'none';
-  const reader = document.getElementById('novena-reader');
-  reader.classList.add('open');
-  document.getElementById('nr-title').textContent = currentNovena.title;
-  document.getElementById('nr-sub').textContent = currentNovena.intro;
-  buildNovenaReader();
-}
+/* seed de exemplo apenas na primeira vez */
+(function seed() {
+  if (localStorage.getItem(SEED_KEY)) return;
+  const today = dateKey(new Date());
+  store.weekAgenda[today] = [
+    { time:'07:00', label:'Missa', person:'Ambos' },
+    { time:'08:00', label:'Início do trabalho', person:'Mateus' },
+    { time:'12:30', label:'Almoço em família', person:'Ambos' },
+    { time:'15:00', label:'Hora da Misericórdia', person:'Ambos' },
+    { time:'19:00', label:'Treino', person:'Sofia' },
+    { time:'21:00', label:'Terço em família', person:'Ambos' },
+  ];
+  saveStore();
+  localStorage.setItem(SEED_KEY, '1');
+})();
 
-function closeNovena() {
-  document.getElementById('novena-list').style.display = '';
-  document.getElementById('novena-reader').classList.remove('open');
-}
-
-function buildNovenaReader() {
-  const n = currentNovena;
-  // Day tabs
-  const tabsEl = document.getElementById('nr-day-tabs');
-  tabsEl.innerHTML = n.days.map((d,i) => `
-    <button class="novena-day-btn ${i===currentNovenaDay?'active':''}"
-      onclick="setNovenaDay(${i})">${i+1}</button>`).join('');
-  // Content
-  const day = n.days[currentNovenaDay];
-  document.getElementById('nr-content').innerHTML = `
-    <div class="prayer-text-card">
-      <div class="prayer-text-label" style="color:${n.color}">${n.icon} ${n.title}</div>
-      <div class="prayer-text-title">${day.title}</div>
-      <div class="prayer-text-body">${day.oracao.replace(/\n/g,'<br>')}</div>
-    </div>`;
-}
-
-function setNovenaDay(i) {
-  currentNovenaDay = i;
-  buildNovenaReader();
-  // scroll to top of reader
-  document.getElementById('nr-content').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ── VIEW STATE ─────────────────────────────────────────────────────────────────
-let currentView = 'lista'; // 'lista' or 'timeline'
-
-function setView(v) {
-  currentView = v;
-  document.getElementById('btn-view-lista').classList.toggle('active', v==='lista');
-  document.getElementById('btn-view-timeline').classList.toggle('active', v==='timeline');
-  document.getElementById('period-bar-wrap').style.display = v==='lista' ? '' : 'none';
-  document.getElementById('add-form-wrap').style.display   = v==='lista' ? '' : 'none';
-  document.getElementById('task-area').style.display = v==='lista' ? '' : 'none';
-  document.getElementById('timeline-area').style.display = v==='timeline' ? '' : 'none';
+/* ============ NAV ============ */
+function setTab(tab) {
+  state.tab = tab;
+  state.oracaoView = 'home';
   render();
 }
 
-// ── TIMELINE RENDER ───────────────────────────────────────────────────────────
-function buildTimeline() {
-  const allTasks = getDay(selectedDate);
-  const byPerson = allTasks.filter(t =>
-    selectedPerson === 'todos' ? true :
-    t.person === selectedPerson || t.person === 'ambos'
-  );
-
-  // Sort: tasks with time first by time, then no-time at end
-  const sorted = [...byPerson].sort((a, b) => {
-    if (!a.time && !b.time) return 0;
-    if (!a.time) return 1;
-    if (!b.time) return -1;
-    return a.time.localeCompare(b.time);
-  });
-
-  const area = document.getElementById('timeline-area');
-  area.innerHTML = '';
-
-  const wrap = document.createElement('div');
-  wrap.className = 'timeline-wrap';
-
-  if (!sorted.length) {
-    wrap.innerHTML = '<div class="tl-empty">Nenhuma atividade para este dia 🌿</div>';
-    area.appendChild(wrap);
-    return;
+/* ============ ROTINA: SEMANA / TIMELINE ============ */
+function getWeekDates(baseKey) {
+  const [y,m,d] = baseKey.split('-').map(Number);
+  const base = new Date(y, m-1, d);
+  const sunday = new Date(base);
+  sunday.setDate(base.getDate() - base.getDay());
+  const days = [];
+  for (let i=0;i<7;i++) {
+    const dt = new Date(sunday);
+    dt.setDate(sunday.getDate()+i);
+    days.push(dt);
   }
-
-  const list = document.createElement('div');
-  list.className = 'timeline-list';
-
-  sorted.forEach(t => {
-    const personName = t.person==='ambos'?'Ambos':names[t.person]||t.person;
-    const item = document.createElement('div');
-    item.className = 'tl-item';
-
-    const timeStr = t.time || '···';
-    const [hh, mm] = t.time ? t.time.split(':') : ['', ''];
-    const timeDisplay = t.time ? `${hh}<br>${mm}` : '···';
-
-    item.innerHTML = `
-      <div class="tl-time-col">${timeDisplay}</div>
-      <div class="tl-dot-col">
-        <div class="tl-dot ${t.done?'done-dot':''}" style="background:${CAT_COLORS[t.cat]}" onclick="toggleTask('${t.id}')"></div>
-      </div>
-      <div class="tl-card cat-${t.cat} ${t.done?'tl-done':''}" onclick="toggleTask('${t.id}')">
-        <div class="tl-name ${t.done?'struck':''}">${CAT_ICONS[t.cat]} ${esc(t.name)}</div>
-        <div class="tl-meta">
-          <span class="tl-period-badge">${PER_ICONS[t.period]} ${PER_LABELS[t.period]}</span>
-          <span class="cat-badge ${t.cat}">${CAT_LABELS[t.cat]}</span>
-          <span class="person-dot ${t.person==='ambos'?'ambos':t.person}" title="${personName}">${personName.charAt(0)}</span>
-        </div>
-        <button class="tl-del" onclick="event.stopPropagation();deleteTask('${t.id}')">✕</button>
-      </div>`;
-    list.appendChild(item);
-  });
-
-  wrap.appendChild(list);
-  area.appendChild(wrap);
+  return days;
 }
 
-
-let weekOffset = 0; // 0 = current week, 1 = next, -1 = previous
-
-function getWeekDates(offset) {
-  const dow = today.getDay();
-  const mon = new Date(today);
-  mon.setDate(today.getDate() - ((dow+6)%7) + (offset * 7));
-  return Array.from({length:7},(_,i)=>{ const d=new Date(mon); d.setDate(mon.getDate()+i); return d; });
-}
-
-function changeWeek(dir) {
-  weekOffset += dir;
-  const dates = getWeekDates(weekOffset);
-  selectedDate = dates[0].toDateString(); // select Monday of new week
+function selectDay(key) {
+  state.selectedDate = key;
+  state.isAddingTimeline = false;
   render();
 }
 
-function getWeekLabel() {
-  if (weekOffset === 0) return 'Esta semana';
-  if (weekOffset === 1) return 'Próxima semana';
-  if (weekOffset === -1) return 'Semana passada';
-  if (weekOffset > 0) return `+${weekOffset} semanas`;
-  return `${weekOffset} semanas`;
+function startAddTimeline() {
+  state.isAddingTimeline = true;
+  state.draftTime = '';
+  state.draftLabel = '';
+  render();
 }
 
-function getWeekRange(dates) {
-  const s = dates[0], e = dates[6];
-  const ms = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  return `${s.getDate()} ${ms[s.getMonth()]} – ${e.getDate()} ${ms[e.getMonth()]}`;
+function confirmTimeline() {
+  const label = state.draftLabel.trim();
+  if (!label) { state.isAddingTimeline = false; render(); return; }
+  const time = state.draftTime.trim() || '--:--';
+  const key = state.selectedDate;
+  if (!store.weekAgenda[key]) store.weekAgenda[key] = [];
+  store.weekAgenda[key].push({ time, label, person:'Ambos' });
+  store.weekAgenda[key].sort((a,b)=>a.time.localeCompare(b.time));
+  state.isAddingTimeline = false;
+  saveStore();
+  render();
 }
 
-// ── DAY STRIP ─────────────────────────────────────────────────────────────────
-function buildDayStrip() {
-  const weekDates = getWeekDates(weekOffset);
-  const strip = document.getElementById('day-strip');
-  strip.innerHTML = '';
-
-  // Update week label
-  document.getElementById('week-label').textContent = getWeekLabel();
-  document.getElementById('week-range').textContent = getWeekRange(weekDates);
-
-  weekDates.forEach(d => {
-    const ds = d.toDateString();
-    const dayTasks = tasks[ds]||[];
-    const btn = document.createElement('button');
-    btn.className = 'day-btn'+
-      (ds===today.toDateString()?' is-today':'')+
-      (ds===selectedDate?' is-sel':'');
-
-    // dots by category
-    const cats = [...new Set(dayTasks.map(t=>t.cat))].slice(0,3);
-    const dotsHtml = cats.map(c=>`<div class="ddot" style="background:${CAT_COLORS[c]}"></div>`).join('');
-
-    btn.innerHTML = `
-      <span class="dname">${DAY_NAMES[d.getDay()]}</span>
-      <span class="dnum">${d.getDate()}</span>
-      <div class="ddots">${dotsHtml}</div>`;
-    btn.onclick = ()=>{ selectedDate=ds; render(); };
-    strip.appendChild(btn);
-  });
+function deleteTimelineItem(key, idx) {
+  if (!store.weekAgenda[key]) return;
+  store.weekAgenda[key].splice(idx,1);
+  saveStore();
+  render();
 }
 
-// ── WEEK OVERVIEW ─────────────────────────────────────────────────────────────
-function buildWeekOverview() {
-  const weekDates = getWeekDates(weekOffset);
-  const grid = document.getElementById('wo-grid');
-  const grid2 = document.getElementById('wo-grid');
-  grid2.innerHTML = weekDates.map(d => {
-    const ds = d.toDateString();
-    const list = (tasks[ds]||[]);
-    const total = list.length;
-    const maxH = 28;
-    const barH = total ? Math.max(4, Math.round((total/8)*maxH)) : 3;
-    const done  = list.filter(t=>t.done).length;
-    const doneH = done ? Math.max(2, Math.round((done/Math.max(total,1))*barH)) : 0;
+function onDraftTimeInput(v){ state.draftTime = v; }
+function onDraftLabelInput(v){ state.draftLabel = v; }
+function onTimelineKey(e){ if (e.key==='Enter') confirmTimeline(); }
 
-    return `<div class="wo-day">
-      <span class="wo-dname">${DAY_NAMES[d.getDay()]}</span>
-      <div class="wo-bar-wrap">
-        <div class="wo-bar" style="height:${barH}px;background:var(--border)"></div>
-        <div class="wo-bar" style="height:${doneH}px;background:var(--trabalho)"></div>
-      </div>
+/* ============ ROTINA: CATEGORIA / CHECKLIST ============ */
+function setRotinaCategory(id) {
+  state.rotinaCategory = id;
+  state.addingFor = null;
+  render();
+}
+function toggleCheck(id) {
+  store.checks[id] = !store.checks[id];
+  saveStore();
+  render();
+}
+function startAddItem(cat) {
+  state.addingFor = cat;
+  state.draftText = '';
+  render();
+}
+function onDraftItemInput(v) { state.draftText = v; }
+function onDraftItemKey(e) { if (e.key==='Enter') confirmAddItem(); }
+function confirmAddItem() {
+  const cat = state.addingFor;
+  const text = state.draftText.trim();
+  if (!cat || !text) { state.addingFor = null; render(); return; }
+  if (!store.customItems[cat]) store.customItems[cat] = [];
+  const id = 'custom-' + Date.now() + '-' + Math.floor(Math.random()*1000);
+  store.customItems[cat].push({ id, period:'Geral', text, person:'Ambos' });
+  state.addingFor = null;
+  saveStore();
+  render();
+}
+function deleteCustomItem(cat, id) {
+  store.customItems[cat] = (store.customItems[cat]||[]).filter(it => it.id !== id);
+  delete store.checks[id];
+  saveStore();
+  render();
+}
+
+/* ============ CALENDARIO ============ */
+function calMonthShift(dir) {
+  let m = state.calMonth + dir, y = state.calYear;
+  if (m < 0) { m = 11; y--; }
+  if (m > 11) { m = 0; y++; }
+  state.calMonth = m; state.calYear = y;
+  render();
+}
+function startAddCalEvent() {
+  state.isAddingCalEvent = true;
+  const t = new Date();
+  state.draftCalDate = dateKey(t);
+  state.draftCalLabel = '';
+  render();
+}
+function onCalDateInput(v){ state.draftCalDate = v; }
+function onCalLabelInput(v){ state.draftCalLabel = v; }
+function confirmCalEvent() {
+  const label = state.draftCalLabel.trim();
+  const key = state.draftCalDate;
+  if (!label || !key) { state.isAddingCalEvent = false; render(); return; }
+  if (!store.calEvents[key]) store.calEvents[key] = [];
+  store.calEvents[key].push({ label, person:'Ambos' });
+  state.isAddingCalEvent = false;
+  saveStore();
+  render();
+}
+function deleteCalEvent(key, idx) {
+  store.calEvents[key].splice(idx,1);
+  saveStore();
+  render();
+}
+
+/* ============ ORACAO ============ */
+function goOracao(view, extra) {
+  state.oracaoView = view;
+  if (extra) Object.assign(state, extra);
+  render();
+}
+function backToOracaoHome() { state.oracaoView = 'home'; render(); }
+function toggleExame(id) { state.exameOpen = (state.exameOpen === id ? null : id); render(); }
+function toggleLadainha() { state.ladainhaOpen = !state.ladainhaOpen; render(); }
+function toggleConsagracao() { state.consagracaoOpen = !state.consagracaoOpen; render(); }
+function setNovenaDay(i) { state.novenaDay = i; render(); }
+
+/* ============ RENDER ============ */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function render() {
+  document.getElementById('tab-rotina').classList.toggle('active', state.tab==='rotina');
+  document.getElementById('tab-calendario').classList.toggle('active', state.tab==='calendario');
+  document.getElementById('tab-oracao').classList.toggle('active', state.tab==='oracao');
+  document.getElementById('nav-rotina').classList.toggle('active', state.tab==='rotina');
+  document.getElementById('nav-calendario').classList.toggle('active', state.tab==='calendario');
+  document.getElementById('nav-oracao').classList.toggle('active', state.tab==='oracao');
+
+  if (state.tab === 'rotina') renderRotina();
+  if (state.tab === 'calendario') renderCalendario();
+  if (state.tab === 'oracao') renderOracao();
+}
+
+function renderRotina() {
+  const week = getWeekDates(state.selectedDate);
+  const strip = week.map(d => {
+    const key = dateKey(d);
+    const active = key === state.selectedDate;
+    return `<div class="week-day ${active?'active':''}" onclick="selectDay('${key}')">
+      <div class="wd-label">${WEEKDAY_LABELS[d.getDay()]}</div>
+      <div class="wd-date">${d.getDate()}</div>
     </div>`;
   }).join('');
-}
+  document.getElementById('week-strip').innerHTML = strip;
 
-// ── FILTER STATE ──────────────────────────────────────────────────────────────
-function setPerson(p) {
-  selectedPerson = p;
-  document.querySelectorAll('.person-tab').forEach(el => el.classList.remove('active'));
-  const map = {todos:0, p1:1, p2:2};
-  document.querySelectorAll('.person-tab')[map[p]].classList.add('active');
-  render();
-}
-function setPeriod(p) {
-  selectedPeriod = p;
-  document.querySelectorAll('.period-btn').forEach(el=>el.classList.remove('active'));
-  document.querySelector('.period-btn.'+p).classList.add('active');
-  render();
-}
-
-// ── RENDER ────────────────────────────────────────────────────────────────────
-function render() {
-  buildDayStrip();
-  buildWeekOverview();
-  buildSaintBanner();
-
-  if (currentView === 'timeline') {
-    buildTimeline();
-    return;
-  }
-
-  const allTasks = getDay(selectedDate);
-
-  // Filter by person
-  const byPerson = allTasks.filter(t =>
-    selectedPerson === 'todos' ? true :
-    t.person === selectedPerson || t.person === 'ambos'
-  );
-
-  const periods = selectedPeriod === 'todos'
-    ? ['manha','tarde','noite']
-    : [selectedPeriod];
-
-  const area = document.getElementById('task-area');
-  area.innerHTML = '';
-
-  periods.forEach(period => {
-    const list = byPerson.filter(t=>t.period===period);
-    const sec = document.createElement('div');
-    sec.className = 'period-section';
-
-    const done = list.filter(t=>t.done).length;
-    sec.innerHTML = `
-      <div class="period-header">
-        <span class="period-icon">${PER_ICONS[period]}</span>
-        <span class="period-title" style="color:${PER_COLORS[period]}">${PER_LABELS[period]}</span>
-        <span class="period-count">${done}/${list.length} feito${list.length!==1?'s':''}</span>
-      </div>
-      <div class="tasks" id="tasks-${period}">
-        ${!list.length ? '<p class="empty">Nenhuma atividade aqui 🌿</p>' : ''}
-      </div>`;
-    area.appendChild(sec);
-
-    const tasksEl = document.getElementById('tasks-'+period);
-    list
-      .sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'))
-      .forEach(t => {
-        const personName = t.person==='ambos'?'Ambos':names[t.person]||t.person;
-        const dotClass = t.person==='ambos'?'ambos':t.person;
-        const card = document.createElement('div');
-        card.className = `task-card cat-${t.cat} ${t.done?'done':''}`;
-        card.innerHTML = `
-          <button class="task-check ${t.done?'checked':''} cat-${t.cat}"
-            onclick="toggleTask('${t.id}')">${t.done?'✓':''}</button>
-          <div class="task-body">
-            <div class="task-name ${t.done?'struck':''}">${esc(t.name)}</div>
-            <div class="task-meta">
-              ${t.time?`<span class="task-time">⏰ ${t.time}</span>`:''}
-              <span class="cat-badge ${t.cat}">${CAT_ICONS[t.cat]} ${CAT_LABELS[t.cat]}</span>
-              <span class="person-dot ${dotClass}" title="${personName}">${personName.charAt(0)}</span>
-            </div>
+  const items = store.weekAgenda[state.selectedDate] || [];
+  if (items.length === 0) {
+    document.getElementById('timeline').innerHTML = '';
+    document.getElementById('timeline-empty').innerHTML = '<div class="tl-empty">Nada agendado para este dia ainda.</div>';
+  } else {
+    document.getElementById('timeline-empty').innerHTML = '';
+    document.getElementById('timeline').innerHTML = items.map((ev, idx) => `
+      <div class="tl-row">
+        <div class="tl-time-col"><div class="tl-time">${esc(ev.time)}</div><div class="tl-line"></div></div>
+        <div class="tl-card-wrap">
+          <div class="tl-card">
+            <div class="tl-label">${esc(ev.label)}</div>
+            <div class="tl-person">${esc(ev.person)}</div>
+            <div class="tl-del" onclick="deleteTimelineItem('${state.selectedDate}', ${idx})">✕</div>
           </div>
-          <div class="task-actions">
-            <button class="btn-del" onclick="deleteTask('${t.id}')">✕</button>
-          </div>`;
-        tasksEl.appendChild(card);
-      });
-  });
-}
-
-// ── ADD / DELETE / TOGGLE ─────────────────────────────────────────────────────
-function addTask() {
-  const name = document.getElementById('new-name').value.trim();
-  if (!name) return;
-  const task = {
-    id: Date.now().toString(),
-    name,
-    time:   document.getElementById('new-time').value,
-    cat:    document.getElementById('new-cat').value,
-    period: document.getElementById('new-period').value,
-    person: document.getElementById('new-person').value,
-    done:   false,
-  };
-  getDay(selectedDate).push(task);
-  document.getElementById('new-name').value = '';
-  document.getElementById('new-time').value = '';
-  save(); render();
-}
-
-function toggleTask(id) {
-  const list = getDay(selectedDate);
-  const t = list.find(x=>x.id===id);
-  if (t) t.done = !t.done;
-  save(); render();
-}
-function deleteTask(id) {
-  tasks[selectedDate] = getDay(selectedDate).filter(t=>t.id!==id);
-  save(); render();
-}
-
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ── SEED DATA ─────────────────────────────────────────────────────────────────
-function seedData() {
-  const ds = today.toDateString();
-  if ((tasks[ds]||[]).length) return;
-  tasks[ds] = [
-    {id:'s2',name:`Academia — ${names.p1}`,time:'06:30',cat:'exercicio',period:'manha',person:'p1',done:false},
-    {id:'s3',name:'Reunião de equipe',time:'09:00',cat:'trabalho',period:'manha',person:'p1',done:false},
-    {id:'s5',name:`Curso online — ${names.p2}`,time:'14:00',cat:'estudos',period:'tarde',person:'p2',done:false},
-    {id:'s6',name:'Missa / Culto',time:'19:00',cat:'igreja',period:'noite',person:'ambos',done:false},
-    {id:'s7',name:'📿 Santo Terço',time:'20:30',cat:'igreja',period:'noite',person:'ambos',done:false},
-    {id:'s8',name:'Leitura / descanso',time:'21:00',cat:'estudos',period:'noite',person:'ambos',done:false},
-  ];
-  save();
-}
-
-
-// ── CALENDAR STATE ────────────────────────────────────────────────────────────
-let calEvents = {}; // key: "YYYY-MM-DD" -> [{id, name, time, color, person}]
-let calYear  = today.getFullYear();
-let calMonth = today.getMonth(); // 0-indexed
-let calSelectedDay = null;
-const CAL_COLORS = ['#2e6e3e','#8a4a1a','#3a5a8a','#7a3a6a','#c8832a','#3a5a7a','#8a6a1a'];
-let calSelectedColor = CAL_COLORS[0];
-
-const FULL_MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const FULL_DAYS   = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-
-function calLoad() {
-  try {
-    const s = localStorage.getItem('cal_events_v1');
-    if (s) calEvents = JSON.parse(s);
-  } catch(e) {}
-}
-function calSave() {
-  try { localStorage.setItem('cal_events_v1', JSON.stringify(calEvents)); } catch(e) {}
-  // Firebase sync
-  if (syncEnabled && db) {
-    import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js').then(({ref, set}) => {
-      set(ref(db, 'cal_events_possari'), calEvents);
-    }).catch(()=>{});
+        </div>
+      </div>`).join('');
   }
-}
 
-function calKey(y, m, d) {
-  return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-}
-
-// ── SWITCH TAB ────────────────────────────────────────────────────────────────
-let currentTab = 'rotina';
-function switchTab(tab) {
-  currentTab = tab;
-  const rotinaEls = [
-    document.querySelector('.people-bar'),
-    document.querySelector('.day-strip-wrap'),
-    document.querySelector('.wrap'),
-    document.querySelector('.hero-banner'),
-  ];
-  const calScreen     = document.getElementById('cal-screen');
-  const prayerScreen  = document.getElementById('prayer-screen');
-
-  // hide all
-  rotinaEls.forEach(el => { if(el) el.style.display = 'none'; });
-  calScreen.style.display    = 'none';
-  prayerScreen.style.display = 'none';
-  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
-
-  if (tab === 'rotina') {
-    rotinaEls.forEach(el => { if(el) el.style.display = ''; });
-    document.getElementById('bnav-rotina').classList.add('active');
-  } else if (tab === 'calendario') {
-    calScreen.style.display = 'block';
-    document.getElementById('bnav-calendario').classList.add('active');
-    buildCalColorPicker();
-    buildCalendar();
-    buildUpcoming();
-  } else if (tab === 'oracao') {
-    prayerScreen.style.display = 'block';
-    document.getElementById('bnav-oracao').classList.add('active');
-    buildNovenaList();
+  if (state.isAddingTimeline) {
+    document.getElementById('timeline-form-wrap').innerHTML = `
+      <div class="inline-form">
+        <input class="f-time" placeholder="19:00" value="${esc(state.draftTime)}" oninput="onDraftTimeInput(this.value)" />
+        <input class="f-label" placeholder="Compromisso..." value="${esc(state.draftLabel)}" oninput="onDraftLabelInput(this.value)" onkeydown="onTimelineKey(event)" autofocus />
+        <div class="f-ok" onclick="confirmTimeline()">OK</div>
+      </div>`;
+  } else {
+    document.getElementById('timeline-form-wrap').innerHTML = `
+      <div class="dashed-btn" onclick="startAddTimeline()"><span class="plus">+</span> Adicionar a este dia</div>`;
   }
-}
 
-// ── COLOR PICKER ──────────────────────────────────────────────────────────────
-function buildCalColorPicker() {
-  const wrap = document.getElementById('cal-color-picker');
-  wrap.innerHTML = CAL_COLORS.map(c => `
-    <div class="color-opt ${c===calSelectedColor?'selected':''}"
-      style="background:${c}" onclick="selectCalColor('${c}')"></div>
+  document.getElementById('cat-pills').innerHTML = ROTINA_CATEGORIES.map(c => `
+    <div class="cat-pill ${c.id===state.rotinaCategory?'active':''}" onclick="setRotinaCategory('${c.id}')">${c.label}</div>
   `).join('');
-}
-function selectCalColor(c) {
-  calSelectedColor = c;
-  buildCalColorPicker();
-}
 
-// ── BUILD CALENDAR ────────────────────────────────────────────────────────────
-function buildCalendar() {
-  const title = document.getElementById('cal-month-title');
-  title.textContent = `${FULL_MONTHS[calMonth]} ${calYear}`;
+  const allItems = [...(ROTINA_DATA[state.rotinaCategory]||[]), ...(store.customItems[state.rotinaCategory]||[])];
+  const periodOrder = ['Manhã','Tarde','Noite','Geral'];
+  const grouped = {};
+  allItems.forEach(it => { (grouped[it.period] = grouped[it.period]||[]).push(it); });
+  const total = allItems.length;
+  const done = allItems.filter(it => store.checks[it.id]).length;
+  const pct = total ? Math.round((done/total)*100) : 0;
 
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
+  let html = `
+    <div class="progress-row"><div class="progress-label">${done} de ${total} concluídas</div><div class="progress-pct">${pct}%</div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
 
-  const firstDay = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-  const daysInPrev  = new Date(calYear, calMonth, 0).getDate();
+  periodOrder.filter(p => grouped[p]).forEach(p => {
+    html += `<div class="period-group"><div class="period-title">${p}</div><div class="item-list">`;
+    grouped[p].forEach(it => {
+      const checked = !!store.checks[it.id];
+      const isCustom = it.id.startsWith('custom-');
+      html += `
+        <div class="check-item">
+          <div class="check-box ${checked?'checked':''}" onclick="toggleCheck('${it.id}')">${checked?'<div class="mark">✓</div>':''}</div>
+          <div class="check-text ${checked?'done':''}">${esc(it.text)}</div>
+          <div class="check-person">${esc(it.person)}</div>
+          ${isCustom?`<button class="check-del" onclick="deleteCustomItem('${state.rotinaCategory}','${it.id}')">✕</button>`:''}
+        </div>`;
+    });
+    html += `</div></div>`;
+  });
 
-  // prev month filler
-  for (let i = firstDay - 1; i >= 0; i--) {
-    const cell = makeCalCell(calYear, calMonth-1, daysInPrev-i, true);
-    grid.appendChild(cell);
+  if (state.addingFor === state.rotinaCategory) {
+    html += `
+      <div class="inline-form">
+        <input class="f-label" placeholder="Nova atividade..." value="${esc(state.draftText)}" oninput="onDraftItemInput(this.value)" onkeydown="onDraftItemKey(event)" autofocus />
+        <div class="f-ok" onclick="confirmAddItem()">OK</div>
+      </div>`;
+  } else {
+    html += `<div class="dashed-btn" onclick="startAddItem('${state.rotinaCategory}')"><span class="plus">+</span> Nova atividade</div>`;
   }
-  // current month
-  for (let d = 1; d <= daysInMonth; d++) {
-    grid.appendChild(makeCalCell(calYear, calMonth, d, false));
-  }
-  // next month filler
-  const total = firstDay + daysInMonth;
-  const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
-  for (let d = 1; d <= remaining; d++) {
-    grid.appendChild(makeCalCell(calYear, calMonth+1, d, true));
-  }
+
+  document.getElementById('checklist').innerHTML = html;
 }
 
-function makeCalCell(y, m, d, otherMonth) {
-  // normalize month
-  let ny = y, nm = m;
-  if (nm < 0) { ny--; nm = 11; }
-  if (nm > 11){ ny++; nm = 0; }
-  const key = calKey(ny, nm, d);
-  const evs = calEvents[key] || [];
-  const isToday = (ny===today.getFullYear() && nm===today.getMonth() && d===today.getDate());
-  const isSelected = calSelectedDay === key;
+function renderCalendario() {
+  const y = state.calYear, m = state.calMonth;
+  document.getElementById('cal-month').textContent = MONTH_LABELS[m] + ' ' + y;
 
-  const cell = document.createElement('div');
-  cell.className = 'cal-cell' +
-    (otherMonth ? ' other-month' : '') +
-    (isToday   ? ' is-today'    : '') +
-    (evs.length ? ' has-event'  : '') +
-    (isSelected ? ' is-sel'     : '');
-  if (isSelected) cell.style.background = 'var(--text)';
+  const firstDay = new Date(y, m, 1);
+  const startOffset = firstDay.getDay();
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  const todayKey = dateKey(new Date());
 
-  const dots = evs.slice(0,3).map(e =>
-    `<div class="cal-dot" style="background:${e.color||CAL_COLORS[0]}"></div>`
-  ).join('');
-
-  cell.innerHTML = `
-    <span class="cal-day-num" style="${isSelected?'color:#f5f0eb':''}">${d}</span>
-    <div class="cal-dots">${dots}</div>`;
-
-  cell.onclick = () => {
-    calSelectedDay = key;
-    buildCalendar();
-    showDayEvents(ny, nm, d);
-    // pre-fill date input
-    document.getElementById('cal-ev-date').value = key;
-  };
-  return cell;
-}
-
-function calChangeMonth(dir) {
-  calMonth += dir;
-  if (calMonth < 0)  { calMonth = 11; calYear--; }
-  if (calMonth > 11) { calMonth = 0;  calYear++; }
-  calSelectedDay = null;
-  document.getElementById('cal-day-events-wrap').style.display = 'none';
-  buildCalendar();
-}
-
-// ── DAY EVENTS ────────────────────────────────────────────────────────────────
-function showDayEvents(y, m, d) {
-  const key = calKey(y, m, d);
-  const evs = calEvents[key] || [];
-  const wrap = document.getElementById('cal-day-events-wrap');
-  const title = document.getElementById('cal-day-events-title');
-  const list  = document.getElementById('cal-day-events-list');
-
-  const dateObj = new Date(y, m, d);
-  title.textContent = `${FULL_DAYS[dateObj.getDay()]}, ${d} de ${FULL_MONTHS[m]}`;
-  wrap.style.display = 'block';
-
-  // Show saint of this day
-  const saint = getSaint(dateObj);
-  let saintHtml = '';
-  if (saint) {
-    const c = COR_LITURGICA[saint.cor] || COR_LITURGICA.branco;
-    saintHtml = `<div style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:11px;background:${c.bg};border:1.5px solid ${c.border};margin-bottom:10px">
-      <span style="font-size:16px">${saint.icon}</span>
-      <div>
-        <div style="font-size:8px;font-weight:700;color:${c.accent};text-transform:uppercase;letter-spacing:1.2px">${c.label} · ${RANK_LABEL[saint.rank]||''}</div>
-        <div style="font-family:'Fraunces',serif;font-size:13px;font-weight:700;color:${c.text}">${saint.nome}</div>
-        <div style="font-size:10px;color:${c.muted}">${saint.desc}</div>
-      </div>
+  let cells = '';
+  for (let i=0;i<startOffset;i++) cells += `<div class="cal-day" style="visibility:hidden;"></div>`;
+  for (let d=1; d<=daysInMonth; d++) {
+    const key = dateKey(new Date(y,m,d));
+    const isToday = key === todayKey;
+    const hasEvent = (store.calEvents[key]||[]).length > 0;
+    cells += `<div class="cal-day ${isToday?'today':''}" onclick="jumpToDayInRotina('${key}')">
+      <div>${d}</div>${hasEvent?'<div class="dot"></div>':''}
     </div>`;
   }
+  document.getElementById('cal-grid').innerHTML = cells;
 
-  if (!evs.length) {
-    list.innerHTML = saintHtml + '<div class="no-events" style="margin-top:8px">Nenhum evento neste dia</div>';
-    return;
-  }
-  list.innerHTML = saintHtml;
-  list.innerHTML += evs.map(e => `
-    <div class="cal-event-card" style="border-left-color:${e.color||'var(--trabalho)'}">
-      <div class="cal-event-dot" style="background:${e.color||'var(--trabalho)'}"></div>
-      <div class="cal-event-body">
-        <div class="cal-event-name">${esc(e.name)}</div>
-        <div class="cal-event-date">${e.time ? '⏰ '+e.time+' · ' : ''}${e.person==='ambos'?'👪 Ambos':e.person==='p1'?'🟢 '+names.p1:'🟣 '+names.p2}</div>
-      </div>
-      <button class="cal-event-del" onclick="deleteCalEvent('${key}','${e.id}')">✕</button>
-    </div>`).join('');
-}
-
-// ── UPCOMING ──────────────────────────────────────────────────────────────────
-function buildUpcoming() {
-  const el = document.getElementById('cal-upcoming');
-  const now = new Date(); now.setHours(0,0,0,0);
-
-  // collect all future events
-  const all = [];
-  Object.entries(calEvents).forEach(([key, evs]) => {
-    const [y,m,d] = key.split('-').map(Number);
-    const date = new Date(y, m-1, d);
-    if (date >= now) {
-      evs.forEach(e => all.push({...e, date, key, d, m: m-1, y}));
-    }
+  const upcoming = [];
+  Object.keys(store.calEvents).sort().forEach(key => {
+    if (key < todayKey) return;
+    (store.calEvents[key]||[]).forEach((ev, idx) => upcoming.push({ key, idx, ...ev }));
   });
-  all.sort((a,b) => a.date - b.date);
+  upcoming.sort((a,b)=>a.key.localeCompare(b.key));
 
-  if (!all.length) {
-    el.innerHTML = '<div class="no-events">Nenhum evento futuro ainda 🌿</div>';
-    return;
-  }
-
-  const ms = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  el.innerHTML = all.slice(0,8).map(e => `
-    <div class="upcoming-item">
-      <div class="upcoming-date-box">
-        <div class="upcoming-day">${e.d}</div>
-        <div class="upcoming-month">${ms[e.m]}</div>
-      </div>
-      <div style="flex:1">
-        <div class="upcoming-name">
-          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${e.color||CAL_COLORS[0]};margin-right:5px;vertical-align:middle"></span>
-          ${esc(e.name)}
+  if (upcoming.length === 0) {
+    document.getElementById('upcoming-list').innerHTML = `<div class="tl-empty">Nenhum evento futuro cadastrado.</div>`;
+  } else {
+    document.getElementById('upcoming-list').innerHTML = upcoming.slice(0,8).map(ev => {
+      const [yy,mm,dd] = ev.key.split('-');
+      return `<div class="upcoming-item">
+        <div class="dot"></div>
+        <div style="flex:1;">
+          <div class="u-label">${esc(ev.label)}</div>
+          <div class="u-date">${dd}/${mm} · ${esc(ev.person)}</div>
         </div>
-        <div class="upcoming-dow">${FULL_DAYS[e.date.getDay()]}${e.time?' · ⏰ '+e.time:''} · ${e.person==='ambos'?'Ambos':e.person==='p1'?names.p1:names.p2}</div>
-      </div>
-    </div>`).join('');
-}
-
-// ── ADD / DELETE CAL EVENT ────────────────────────────────────────────────────
-function addCalEvent() {
-  const name = document.getElementById('cal-ev-name').value.trim();
-  const date = document.getElementById('cal-ev-date').value;
-  if (!name || !date) { alert('Preencha o nome e a data!'); return; }
-
-  if (!calEvents[date]) calEvents[date] = [];
-  calEvents[date].push({
-    id: Date.now().toString(),
-    name,
-    time:   document.getElementById('cal-ev-time').value,
-    color:  calSelectedColor,
-    person: document.getElementById('cal-ev-person').value,
-  });
-
-  document.getElementById('cal-ev-name').value = '';
-  document.getElementById('cal-ev-time').value = '';
-
-  // update calYear/calMonth to show the month of added event
-  const [y,m] = date.split('-').map(Number);
-  calYear  = y;
-  calMonth = m - 1;
-
-  calSave();
-  buildCalendar();
-  buildUpcoming();
-
-  const [ey,em,ed] = date.split('-').map(Number);
-  showDayEvents(ey, em-1, ed);
-  calSelectedDay = date;
-}
-
-function deleteCalEvent(key, id) {
-  calEvents[key] = (calEvents[key]||[]).filter(e => e.id !== id);
-  if (!calEvents[key].length) delete calEvents[key];
-  calSave();
-  buildCalendar();
-  buildUpcoming();
-  const [y,m,d] = key.split('-').map(Number);
-  showDayEvents(y, m-1, d);
-}
-
-
-// ── SEED CALENDAR & ROTINA EVENTS ─────────────────────────────────────────────
-function seedLiturgicalEvents() {
-  // Only seed once
-  if (localStorage.getItem('liturgy_seeded_v4')) return;
-
-  const PURPLE  = '#6a2a8a';
-  const GOLD    = '#b8830a';
-  const RED     = '#a93226';
-  const GREEN   = '#1b5e20';
-  const PINK    = '#b8477a';
-  const BIRTH   = '#c8832a';
-  const ANNIV   = '#3a5a8a';
-
-  function addCal(dateStr, name, color, person='ambos') {
-    if (!calEvents[dateStr]) calEvents[dateStr] = [];
-    // avoid duplicates
-    if (calEvents[dateStr].some(e => e.name === name)) return;
-    calEvents[dateStr].push({ id: 'seed_'+dateStr+'_'+Date.now()+'_'+Math.random(), name, color, person, time:'' });
+        <button class="u-del" onclick="deleteCalEvent('${ev.key}', ${ev.idx})">✕</button>
+      </div>`;
+    }).join('');
   }
 
-  function addRotina(dateStr, name) {
-    if (!tasks[dateStr]) tasks[dateStr] = [];
-    if (tasks[dateStr].some(t => t.name === name)) return;
-    tasks[dateStr].push({
-      id: 'seed_r_'+dateStr+'_'+Math.random(),
-      name, time:'20:00', cat:'igreja', period:'noite', person:'ambos', done:false
+  if (state.isAddingCalEvent) {
+    document.getElementById('cal-add-wrap').innerHTML = `
+      <div class="inline-form">
+        <input type="date" class="f-time" style="width:130px;" value="${esc(state.draftCalDate)}" oninput="onCalDateInput(this.value)" />
+        <input class="f-label" placeholder="Nome do evento..." value="${esc(state.draftCalLabel)}" oninput="onCalLabelInput(this.value)" />
+        <div class="f-ok" onclick="confirmCalEvent()">OK</div>
+      </div>`;
+  } else {
+    document.getElementById('cal-add-wrap').innerHTML = `<div class="dashed-btn" onclick="startAddCalEvent()"><span class="plus">+</span> Adicionar evento</div>`;
+  }
+}
+
+function jumpToDayInRotina(key) {
+  state.selectedDate = key;
+  setTab('rotina');
+}
+
+function renderOracao() {
+  const el = document.getElementById('oracao-content');
+  const v = state.oracaoView;
+
+  if (v === 'home') {
+    const cards = [
+      { id:'misterios', glyph:'✥', title:'Terço', subtitle:'Mistérios gozosos, dolorosos, gloriosos e luminosos', view:'misterios' },
+      { id:'misericordia', glyph:'♱', title:'Terço da Divina Misericórdia', subtitle:'Revelado a Santa Faustina', view:'misericordia' },
+      { id:'exame', glyph:'✎', title:'Exame de Consciência', subtitle:'6 pontos para revisar o dia', view:'exame' },
+      { id:'novena', glyph:'✧', title:'Quaresma de São Miguel', subtitle:'15 de agosto a 29 de setembro', view:'novena' },
+      { id:'novenas', glyph:'🕊', title:'Novenas', subtitle:'Espírito Santo, São José, Natal e mais', view:'novenas' },
+      { id:'diversas', glyph:'🕯', title:'Orações Diversas', subtitle:'Missionário SIM, Estudos, Abandono e mais', view:'diversas' },
+    ];
+    el.innerHTML = cards.map(c => `
+      <div class="oracao-card" onclick="goOracao('${c.view}')">
+        <div class="o-glyph">${c.glyph}</div>
+        <div style="flex:1;"><div class="o-title">${c.title}</div><div class="o-subtitle">${c.subtitle}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+    return;
+  }
+
+  let inner = `<div class="back-link" onclick="backToOracaoHome()"><span style="font-size:16px;">‹</span> Voltar</div>`;
+
+  if (v === 'misterios') {
+    inner += `<div class="oracao-h1">Mistérios do Terço</div><div style="margin-top:14px;">`;
+    inner += Object.keys(MISTERIOS).map(key => `
+      <div class="mist-item" onclick="goOracao('misterioDetail', {misterioType:'${key}'})">
+        <div class="m-title">${MISTERIOS[key].title}</div>
+        <div class="m-days">${MISTERIOS[key].days}</div>
+      </div>`).join('');
+    inner += `</div>`;
+  }
+  else if (v === 'misterioDetail') {
+    const mt = MISTERIOS[state.misterioType];
+    inner += `<div class="oracao-h1">${mt.title}</div><div class="oracao-sub">${mt.days}</div>`;
+    inner += mt.list.map((text,i) => `
+      <div class="mist-step"><div class="m-n">${i+1}</div><div class="m-text">${text}</div></div>`).join('');
+  }
+  else if (v === 'misericordia') {
+    inner += `
+      <div class="oracao-h1">Terço da Divina Misericórdia</div>
+      <div class="oracao-sub italic">Revelado a Santa Faustina · usar um terço normal</div>
+      <div class="prayer-block"><div class="p-label">Início</div><div class="p-text">Sinal da Cruz, Pai Nosso, Ave Maria, Credo.</div></div>
+      <div class="prayer-block"><div class="p-label">Nas contas grandes (Pai Nosso)</div><div class="p-text">Eterno Pai, eu Vos ofereço o Corpo e Sangue, Alma e Divindade do vosso muito amado Filho, Nosso Senhor Jesus Cristo, em expiação dos nossos pecados e dos pecados de todo o mundo.</div></div>
+      <div class="prayer-block"><div class="p-label">Nas contas pequenas (Ave Maria)</div><div class="p-text">Pela Sua dolorosa Paixão, tende misericórdia de nós e de todo o mundo.</div></div>
+      <div class="prayer-block"><div class="p-label">Ao final (3 vezes)</div><div class="p-text">Deus Santo, Deus Forte, Deus Imortal, tende piedade de nós e de todo o mundo.</div></div>
+      <div class="prayer-block navy"><div class="p-label">Oração final</div><div class="p-text">Ó Eterno Deus, cuja Misericórdia é infinita e cujo tesouro de compaixão não tem limites, olhai-nos propício e aumentai a vossa misericórdia para connosco, para que nos momentos difíceis não desesperemos, nem desanimemos, mas com grande confiança nos conformemos à vossa santa vontade, que é o Amor e a própria Misericórdia. Amém.</div></div>
+      <div class="prayer-center">✦ Jesus, eu confio em Vós ✦</div>`;
+  }
+  else if (v === 'exame') {
+    inner += `
+      <div class="oracao-h1">Exame de Consciência</div>
+      <div class="oracao-body">Reserve 10 minutos ao fim do dia. Coloque-se na presença de Deus e percorra cada ponto com calma, sem ansiedade, confiando no amor de Deus.</div>`;
+    EXAME_SECTIONS.forEach(sec => {
+      const open = state.exameOpen === sec.id;
+      inner += `
+        <div class="accordion">
+          <div class="accordion-head" onclick="toggleExame('${sec.id}')">
+            <div><div class="a-title">${sec.title}</div><div class="a-subtitle">${sec.subtitle}</div></div>
+            <div class="a-chevron">${open?'−':'+'}</div>
+          </div>
+          ${open?`<div class="accordion-body">${sec.questions.map((q,i)=>`<div class="accordion-q"><div class="q-n">${i+1}</div><div>${q}</div></div>`).join('')}</div>`:''}
+        </div>`;
     });
+    inner += `<div class="prayer-block navy" style="margin-top:16px;"><div class="p-label">Ato de Contrição</div><div class="p-text">Meu Deus, eu me arrependo de coração de todos os meus pecados, porque pecando ofendi a Vós, que sois infinitamente bom, e prometo com o vosso auxílio não vos ofender mais. Tende misericórdia de mim, pecador. Amém.</div></div>`;
+  }
+  else if (v === 'diversas') {
+    inner += `<div class="oracao-h1">Orações Diversas</div><div class="novena-intro">Orações avulsas para diferentes momentos e intenções.</div>`;
+    inner += DIVERSAS.map(p => `
+      <div class="novena-item" onclick="goOracao('diversaDetail', {diversaId:'${p.id}'})">
+        <div class="n-icon">${p.icon}</div>
+        <div style="flex:1;"><div class="n-title">${p.title}</div><div class="n-sub">${p.sub}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+  }
+  else if (v === 'diversaDetail') {
+    const p = DIVERSAS.find(x => x.id === state.diversaId);
+    inner += `
+      <div class="oracao-h1">${p.icon} ${p.title}</div>
+      <div class="oracao-sub italic">${p.sub}</div>
+      <div class="prayer-block" style="margin-top:14px;"><div class="p-text">${esc(p.body).replace(/\n/g,'<br>')}</div></div>`;
+  }
+  else if (v === 'novenas') {
+    inner += `<div class="oracao-h1">Novenas</div><div class="novena-intro">Nove dias de oração preparando-se para uma festa ou intenção especial.</div>`;
+    inner += NOVENAS.map(n => `
+      <div class="novena-item" onclick="goOracao('novenaDetail', {novenaId:'${n.id}', novenaDay:0})">
+        <div class="n-icon">${n.icon}</div>
+        <div style="flex:1;"><div class="n-title">${n.title}</div><div class="n-sub">${n.sub}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+  }
+  else if (v === 'novenaDetail') {
+    const n = NOVENAS.find(x => x.id === state.novenaId);
+    const day = n.days[state.novenaDay];
+    inner += `
+      <div class="oracao-h1">${n.icon} ${n.title}</div>
+      <div class="novena-intro">${n.intro}</div>
+      <div class="novena-day-tabs">
+        ${n.days.map((d,i) => `<div class="novena-day-btn ${i===state.novenaDay?'active':''}" onclick="setNovenaDay(${i})">${i+1}</div>`).join('')}
+      </div>
+      <div class="novena-text-card">
+        <div class="novena-text-title">${day.title}</div>
+        <div class="novena-text-body">${day.oracao.replace(/\n/g,'<br>')}</div>
+      </div>`;
+  }
+  else if (v === 'novena') {
+    inner += `
+      <div class="oracao-h1">Quaresma de São Miguel</div>
+      <div class="oracao-sub italic">15 de agosto a 29 de setembro</div>
+      <div class="oracao-body">Devoção iniciada por São Francisco de Assis, preparando-se para grandes festas com 40 dias de penitência e oração — da Assunção (15/08) aos Santos Arcanjos (29/09).</div>
+      <div class="prayer-block navy"><div class="p-label">Oração inicial · todos os dias</div><div class="p-text">São Miguel Arcanjo, defendei-nos no combate, sede o nosso refúgio contra as maldades e ciladas do demônio. Ordene-lhe Deus, instantemente o pedimos. E vós, príncipe da milícia celeste, precipitai ao inferno Satanás e os outros espíritos malignos que andam pelo mundo para perder as almas. Amém.</div></div>
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleLadainha()">
+          <div class="a-title">Ladainha de São Miguel</div><div class="a-chevron">${state.ladainhaOpen?'−':'+'}</div>
+        </div>
+        ${state.ladainhaOpen?`<div class="accordion-simple-body">Senhor, tende piedade de nós. Jesus Cristo, tende piedade de nós. Santa Maria, Rainha dos Anjos, rogai por nós. São Miguel, rogai por nós; cheio da graça de Deus; perfeito adorador do Verbo Divino; príncipe dos exércitos do Senhor; guardião do Paraíso; luz dos anjos; baluarte dos cristãos; nosso auxílio em todas as adversidades; consolador das almas do Purgatório; nosso advogado, rogai por nós. Oremos: Senhor Jesus, santificai-nos por uma bênção sempre nova e concedei-nos, pela intercessão de São Miguel, a sabedoria que nos ensina a ajuntar riquezas do céu. Amém.</div>`:''}
+      </div>
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleConsagracao()">
+          <div class="a-title">Consagração a São Miguel</div><div class="a-chevron">${state.consagracaoOpen?'−':'+'}</div>
+        </div>
+        ${state.consagracaoOpen?`<div class="accordion-simple-body">Ó Príncipe nobilíssimo dos Anjos, valoroso guerreiro do Altíssimo, a vós hoje me consagro, me dou e ofereço, e ponho-me a mim, à minha família e a tudo o que me pertence debaixo da vossa poderosíssima proteção. Defendei-me dos inimigos da alma, especialmente na hora da morte. São Miguel Arcanjo, defendei-nos no combate para que não pereçamos no supremo juízo. Amém.</div>`:''}
+      </div>`;
   }
 
-  function addNovenaRotina(startStr, label) {
-    const [y,m,d] = startStr.split('-').map(Number);
-    const start = new Date(y, m-1, d);
-    for (let i = 0; i < 9; i++) {
-      const dt = new Date(start); dt.setDate(start.getDate()+i);
-      const key = dt.toDateString();
-      addRotina(key, `🙏 Novena ${label} — Dia ${i+1}`);
-    }
-  }
-
-  // Helper: year list to seed (current + next)
-  const thisYear = new Date().getFullYear();
-  const years = [thisYear, thisYear+1];
-
-  // ── EASTER-DEPENDENT (recalculate per year) ──────────────────────────────
-  function calcEaster(year) {
-    const a=year%19,b=Math.floor(year/100),c=year%100,d=Math.floor(b/4),e=b%4;
-    const f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3);
-    const h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4;
-    const l=(32+2*e+2*i-h-k)%7,m2=Math.floor((a+11*h+22*l)/451);
-    const month=Math.floor((h+l-7*m2+114)/31), day=((h+l-7*m2+114)%31)+1;
-    return new Date(year, month-1, day);
-  }
-
-  years.forEach(y => {
-    const easter  = calcEaster(y);
-    const fmt = d => { const yr=d.getFullYear(),mo=String(d.getMonth()+1).padStart(2,'0'),dy=String(d.getDate()).padStart(2,'0'); return `${yr}-${mo}-${dy}`; };
-    const addDays = (d,n) => { const r=new Date(d); r.setDate(r.getDate()+n); return r; };
-
-    // Quaresma (Quarta-feira de Cinzas)
-    const quaresma = addDays(easter, -46);
-    addCal(fmt(quaresma), '🕯️ Início da Quaresma — Quarta-feira de Cinzas', PURPLE);
-
-    // Festa da Misericórdia (2º Domingo da Páscoa = +7 dias)
-    const misericordia = addDays(easter, 7);
-    addCal(fmt(misericordia), '❤️ Festa da Misericórdia Divina', RED);
-    const novMiseri = addDays(misericordia, -9);
-    addCal(fmt(novMiseri), '🙏 Início da Novena da Misericórdia (9 dias)', RED);
-    addNovenaRotina(fmt(novMiseri), 'da Misericórdia');
-
-    // Pentecostes (+49)
-    const pente = addDays(easter, 49);
-    addCal(fmt(pente), '🔥 Pentecostes — Vinda do Espírito Santo', RED);
-    const novPente = addDays(pente, -9);
-    addCal(fmt(novPente), '🙏 Início da Novena de Pentecostes (9 dias)', RED);
-    addNovenaRotina(fmt(novPente), 'de Pentecostes');
-  });
-
-  // ── DATAS FIXAS ─────────────────────────────────────────────────────────
-  years.forEach(y => {
-    // São José — 19 mar
-    addCal(`${y}-03-19`, '⚒️ Solenidade de São José', GOLD);
-    addCal(`${y}-03-10`, '🙏 Início da Novena de São José (9 dias)', GOLD);
-    addNovenaRotina(`${y}-03-10`, 'de São José');
-
-    // São Josémaria Escrivá — 26 jun
-    addCal(`${y}-06-26`, '✨ São Josémaria Escrivá', GOLD);
-    addCal(`${y}-06-17`, '🙏 Início da Novena de São Josémaria (9 dias)', GOLD);
-    addNovenaRotina(`${y}-06-17`, 'de São Josémaria');
-
-    // Madre Teresa — 05 set
-    addCal(`${y}-09-05`, '🤍 Madre Teresa de Calcutá', GOLD);
-    addCal(`${y}-08-27`, '🙏 Início da Novena de Madre Teresa (9 dias)', GOLD);
-    addNovenaRotina(`${y}-08-27`, 'de Madre Teresa');
-
-    // Santa Teresinha — 01 out
-    addCal(`${y}-10-01`, '🌸 Santa Teresinha do Menino Jesus', GOLD);
-    addCal(`${y}-09-22`, '🙏 Início da Novena de Santa Teresinha (9 dias)', GOLD);
-    addNovenaRotina(`${y}-09-22`, 'de Santa Teresinha');
-
-    // Natal — 25 dez
-    addCal(`${y}-12-25`, '🌟 Natal — Natividade do Senhor', GOLD);
-    addCal(`${y}-12-16`, '🙏 Início da Novena de Natal (9 dias)', GOLD);
-    addNovenaRotina(`${y}-12-16`, 'do Natal');
-
-    // ── ANIVERSÁRIOS ────────────────────────────────────────────────────────
-    addCal(`${y}-03-13`, '🎂 Aniversário da Maria Clara 🎉', BIRTH, 'ambos');
-    addCal(`${y}-10-15`, '🎂 Aniversário do Mateus 🎉', BIRTH, 'ambos');
-    addCal(`${y}-04-22`, '🎂 Aniversário da Andrea 🎉', BIRTH, 'ambos');
-    addCal(`${y}-11-15`, '🎂 Aniversário da Cintia 🎉', BIRTH, 'ambos');
-    addCal(`${y}-12-12`, '🎂 Aniversário do Luis 🎉', BIRTH, 'ambos');
-    addCal(`${y}-04-17`, '🎂 Aniversário da Mônica 🎉', BIRTH, 'ambos');
-    addCal(`${y}-03-28`, '🎂 Aniversário do Miguel 🎉', BIRTH, 'ambos');
-
-    // ── ANIVERSÁRIO DE CASAMENTO ─────────────────────────────────────────────
-    addCal(`${y}-11-30`, '💍 Aniversário de Casamento 💑', ANNIV, 'ambos');
-
-    // ── QUARESMA DE SÃO MIGUEL ──────────────────────────────────────────────
-    addCal(`${y}-08-15`, '⚔️ Início da Quaresma de São Miguel — Assunção de Nossa Senhora', '#3a5a8a');
-    addCal(`${y}-09-29`, '⚔️ Solenidade de São Miguel — Fim da Quaresma', '#3a5a8a');
-  });
-
-  // Adicionar Santo Terço todo dia às 20:30 (para os próximos 60 dias se não existir)
-  const nowDate = new Date(); nowDate.setHours(0,0,0,0);
-  for (let i = 0; i < 60; i++) {
-    const d = new Date(nowDate); d.setDate(nowDate.getDate() + i);
-    const key = d.toDateString();
-    if (!tasks[key]) tasks[key] = [];
-    if (!tasks[key].some(t => t.name === '📿 Santo Terço')) {
-      tasks[key].push({
-        id: 'terco_' + key.replace(/ /g,'_'),
-        name: '📿 Santo Terço', time: '20:30',
-        cat: 'igreja', period: 'noite', person: 'ambos', done: false
-      });
-    }
-  }
-
-  calSave();
-  save();
-  localStorage.setItem('liturgy_seeded_v4', '1');
+  el.innerHTML = inner;
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-load();
-calLoad();
-seedLiturgicalEvents();
-initFirebase();
+render();
 
-// Set today's date as default in calendar event form
-document.getElementById('cal-ev-date').value = today.toISOString().split('T')[0];
-
-if (names.p1 !== 'Pessoa 1') {
-  document.getElementById('name-modal').style.display = 'none';
-  applyNames();
-  // sync names to cal selects
-  document.getElementById('cal-opt-p1').textContent = names.p1;
-  document.getElementById('cal-opt-p2').textContent = names.p2;
-  seedData();
-  render();
-} else {
-  applyNames();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  });
 }
 </script>
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="bnav-btn active" id="bnav-rotina" onclick="switchTab('rotina')">
-    <span class="bnav-icon">📋</span>
-    <span class="bnav-label">Rotina</span>
-  </button>
-  <button class="bnav-btn" id="bnav-calendario" onclick="switchTab('calendario')">
-    <span class="bnav-icon">📅</span>
-    <span class="bnav-label">Calendário</span>
-  </button>
-  <button class="bnav-btn" id="bnav-oracao" onclick="switchTab('oracao')">
-    <span class="bnav-icon">🙏</span>
-    <span class="bnav-label">Oração</span>
-  </button>
-</nav>
-
-<!-- CALENDAR SCREEN -->
-<div id="cal-screen">
-  <div class="cal-wrap">
-
-    <!-- Month nav -->
-    <div class="cal-month-nav">
-      <button class="cal-arrow" onclick="calChangeMonth(-1)">‹</button>
-      <div class="cal-month-title" id="cal-month-title"></div>
-      <button class="cal-arrow" onclick="calChangeMonth(1)">›</button>
-    </div>
-
-    <!-- Day headers -->
-    <div class="cal-grid-head">
-      <span>Dom</span><span>Seg</span><span>Ter</span>
-      <span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
-    </div>
-
-    <!-- Calendar grid -->
-    <div class="cal-grid" id="cal-grid"></div>
-
-    <!-- Upcoming events -->
-    <div class="upcoming-section">
-      <div class="upcoming-title">📌 Próximos eventos</div>
-      <div id="cal-upcoming"></div>
-    </div>
-
-    <!-- Add event form -->
-    <div class="cal-add-form" style="margin-top:20px">
-      <div class="cal-add-title">✨ Novo evento</div>
-      <div class="cal-form-row">
-        <input id="cal-ev-name" type="text" placeholder="Nome do evento..." style="flex:1" onkeydown="if(event.key==='Enter')addCalEvent()"/>
-      </div>
-      <div class="cal-form-row">
-        <input id="cal-ev-date" type="date" style="flex:1"/>
-        <input id="cal-ev-time" type="time" style="width:100px;flex-shrink:0"/>
-      </div>
-      <div class="cal-form-row" style="align-items:center;gap:10px;margin-bottom:10px">
-        <span style="font-size:11px;color:var(--muted);font-weight:600">Cor:</span>
-        <div id="cal-color-picker" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-      </div>
-      <div class="cal-form-row">
-        <select id="cal-ev-person" style="flex:1">
-          <option value="ambos">👪 Ambos</option>
-          <option value="p1" id="cal-opt-p1">Pessoa 1</option>
-          <option value="p2" id="cal-opt-p2">Pessoa 2</option>
-        </select>
-      </div>
-      <button onclick="addCalEvent()" style="
-        width:100%;border:none;border-radius:10px;padding:11px;
-        font-family:'Fraunces',serif;font-size:15px;font-weight:600;
-        cursor:pointer;background:var(--text);color:#fff;margin-top:4px;
-      ">+ Adicionar Evento</button>
-    </div>
-
-    <!-- Events for selected month day -->
-    <div class="cal-events-section" id="cal-day-events-wrap" style="display:none">
-      <div class="cal-events-title" id="cal-day-events-title"></div>
-      <div id="cal-day-events-list"></div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- PRAYER SCREEN -->
-<div id="prayer-screen">
-  <div class="prayer-wrap">
-
-    <!-- Section tabs -->
-    <div class="prayer-tabs">
-      <button class="prayer-tab-btn active" onclick="setPrayerTab('sim')">🌍 Missão SIM</button>
-      <button class="prayer-tab-btn" onclick="setPrayerTab('trabalho')">⚒️ Trabalho</button>
-      <button class="prayer-tab-btn" onclick="setPrayerTab('exame')">🔦 Exame</button>
-      <button class="prayer-tab-btn" onclick="setPrayerTab('completorium')">🌙 Completas</button>
-      <button class="prayer-tab-btn" onclick="setPrayerTab('novenas')">📿 Novenas</button>
-      <button class="prayer-tab-btn" onclick="setPrayerTab('saomiguel')">⚔️ São Miguel</button>
-    </div>
-
-    <!-- NOVENAS -->
-    <div class="prayer-section" id="ps-novenas">
-      <div class="novena-list" id="novena-list"></div>
-      <div class="novena-reader" id="novena-reader">
-        <button class="novena-back" onclick="closeNovena()">← Voltar às novenas</button>
-        <div class="novena-reader-title" id="nr-title"></div>
-        <div class="novena-reader-sub" id="nr-sub"></div>
-        <div class="novena-day-tabs" id="nr-day-tabs"></div>
-        <div id="nr-content"></div>
-      </div>
-    </div>
-
-
-    <!-- COMPLETAS (Completorium) -->
-    <div class="prayer-section" id="ps-completorium">
-      <div class="completorium-card">
-        <div class="completorium-label">Liturgia das Horas · Completas</div>
-        <div class="completorium-title">Completórium</div>
-        <div class="completorium-sub">Oração da Igreja ao fim do dia — Nunc Dimittis</div>
-        <div class="completorium-text">
-<strong style="color:#c8a8e8">V.</strong> Deus, vinde em meu auxílio.
-<div class="completorium-response"><strong>R.</strong> Senhor, dai-vos pressa em socorrer-me.</div>
-
-Glória ao Pai, e ao Filho, e ao Espírito Santo,
-como era no princípio, agora e sempre, pelos séculos dos séculos. Améin.
-
-<strong style="color:#c8a8e8">— HINO —</strong>
-<div class="completorium-verse">Antes que a noite desça,
-a Vós, ó Deus, rogamos
-que a vossa misericórdia
-nos guarde enquanto dormimos.
-
-Que o sonho seja breve
-e longe fique o pecado;
-que ao despertar cantemos
-a Vós, ó Cristo, louvores.
-</div>
-
-<strong style="color:#c8a8e8">— SALMO 90 (91) —</strong>
-<em style="color:#7a6aa8">O auxílio de Deus em todos os perigos</em>
-<div class="completorium-verse">Aquele que habita sob a proteção do Altíssimo
-e descansa à sombra do Todo-poderoso,
-diz ao Senhor: "Sois meu refúgio e minha fortaleza,
-meu Deus, em quem confio!"
-
-Pois Ele vos livrará do laço do caçador,
-da peste destruidora.
-Com suas penas vos cobrirá,
-sob suas asas encontrareis abrigo.
-
-Não temereis os terrores da noite,
-nem a flecha que voa de dia,
-nem a peste que caminha nas trevas,
-nem a epidemia que assola ao meio-dia.
-
-Pois aos seus anjos dará ordens
-para guardar-vos em todos os vossos caminhos.
-Eles vos sustentarão nas suas mãos,
-para que não tropeceis em nenhuma pedra.
-</div>
-
-<strong style="color:#c8a8e8">— LEITURA BREVE — (1 Ts 5, 9-10)</strong>
-<div class="completorium-verse">Deus não nos destinou para a ira,
-mas para alcançar a salvação por nosso Senhor Jesus Cristo,
-que morreu por nós, para que, quer vigiemos, quer durmamos,
-vivamos juntos com Ele.
-</div>
-
-<div class="completorium-response"><strong>R.</strong> Em vossas mãos, Senhor, entrego o meu espírito.</div>
-
-<strong style="color:#c8a8e8">— CÂNTICO DE SIMEÃO — Nunc Dimittis (Lc 2, 29-32)</strong>
-<em style="color:#7a6aa8">Cristo, luz das nações e glória de Israel</em>
-<div class="completorium-verse">Agora, Senhor, podeis deixar vosso servo partir em paz,
-segundo a vossa palavra;
-porque os meus olhos viram a vossa salvação,
-que preparastes diante de todos os povos:
-luz para iluminar as nações
-e glória do vosso povo, Israel.
-</div>
-
-Glória ao Pai, e ao Filho, e ao Espírito Santo,
-como era no princípio, agora e sempre, pelos séculos dos séculos. Améin.
-
-<strong style="color:#c8a8e8">— ORAÇÃO FINAL —</strong>
-<div class="completorium-verse">Visitai, Senhor, esta morada
-e afastai dela todas as ciladas do inimigo.
-Que os vossos anjos santos aqui habitem
-para nos guardar em paz,
-e que a vossa bênção esteja sempre sobre nós.
-Por Cristo, nosso Senhor. Améin.
-</div>
-
-<strong style="color:#c8a8e8">— ANTÍFONA FINAL À NOSSA SENHORA —</strong>
-<div class="completorium-verse">Salve, Rainha, Mãe de misericórdia,
-vida, doçura e esperança nossa, salve!
-A vós bradamos, os degredados filhos de Eva;
-a vós suspiramos, gemendo e chorando
-neste vale de lágrimas.
-Eia, pois, advogada nossa,
-esses vossos olhos misericordiosos a nós volvei;
-e depois deste desterro,
-mostrai-nos Jesus, bendito fruto do vosso ventre.
-Ó clemente, ó piedosa, ó doce Virgem Maria!
-</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ORAÇÃO PARA O TRABALHO -->
-    <div class="prayer-section" id="ps-trabalho">
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚒️ Oração para o Trabalho</div>
-        <div class="prayer-text-title">Antes de Começar o Trabalho</div>
-        <div class="prayer-text-body">Senhor Jesus,
-carpinteiro de Nazaré,
-que passastes a maior parte de vossa vida terrena
-trabalhando com as próprias mãos,
-santificai o meu trabalho de hoje.
-
-Que cada tarefa que eu realize
-seja oferecida a Vós,
-como ato de amor e serviço.
-
-Que eu trabalhe com diligência,
-honestidade e competência,
-não por busca de louvor humano,
-mas para gloria de Deus
-e bem do próximo.
-
-Dai-me a graça de ver em cada colega
-o vosso rosto,
-e de servir a todos
-com espírito de fraternidade.
-
-Se vier o cansaço, a dificuldade
-ou a incompreensão,
-que eu me lembre de Vós,
-que suastes e trabalhastes
-por amor a nós.
-
-Glória ao Pai que criou,
-ao Filho que redimiu,
-ao Espírito Santo que santifica
-todo o trabalho humano.
-
-Améin.
-        </div>
-      </div>
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚒️ Oração para o Trabalho</div>
-        <div class="prayer-text-title">Oferecimento da Manhã — São Josémaria Escrivá</div>
-        <div class="prayer-text-body">Senhor meu e Deus meu,
-ofereço-vos todo este dia:
-minhas orações, trabalhos, alegrias e sofrimentos
-em união com o vosso Filho Jesus Cristo,
-que continua a oferecer-se a Vós
-em todos os altares do mundo,
-em reparação pelos nossos pecados,
-em súplica pelas necessidades de toda a Igreja
-e do mundo inteiro.
-
-Que tudo o que hoje fizer
-seja feito por amor,
-e que nada faça
-que não possa ser visto por Vós.
-
-Améin.
-        </div>
-      </div>
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚒️ Oração para o Trabalho</div>
-        <div class="prayer-text-title">Ao Fim do Trabalho</div>
-        <div class="prayer-text-body">Senhor,
-o dia se encerra.
-Agradeço por tudo o que realizei,
-pelo dom da inteligência e das mãos,
-pelos que trabalharam ao meu lado.
-
-Perdoai as falhas cometidas:
-o momento de preguiça,
-a palavra impaciente,
-o serviço mal feito.
-
-Que o descanso desta noite
-me renove para amanhã,
-e que amanhã eu possa servir-vos
-com mais fidelidade.
-
-São José, padroeiro dos trabalhadores, rogai por nós.
-Améin.
-        </div>
-      </div>
-    </div>
-
-    <!-- EXAME DE CONSCIÊNCIA -->
-    <div class="prayer-section" id="ps-exame">
-      <div class="prayer-text-card" style="margin-bottom:12px">
-        <div class="prayer-text-label">🔦 Como fazer</div>
-        <div class="prayer-text-title">Exame de Consciência</div>
-        <div class="prayer-text-body">Reserve 10 minutos ao fim do dia.
-Coloque-se na presença de Deus.
-Percorra com calma cada ponto abaixo,
-sem ansiedade, com confiança no amor de Deus.
-Ao final, faça um ato de contrição.</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">🙏 Em relação a Deus</div>
-        <div class="exame-intro">Como esteve minha vida de fé hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Rezei hoje? Fui fiel à oração da manhã e da noite? Ou a deixei de lado pela pressa?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Tive momentos de oração espontânea ao longo do dia, ou só na obrigação?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Profanei o nome de Deus, de Maria ou dos santos com palavras descuidadas?</div>
-        <div class="exame-item"><span class="exame-num">4</span>Guardei o domingo como dia do Senhor? Participei da Missa com atenção e devoção?</div>
-        <div class="exame-item"><span class="exame-num">5</span>Confiei em Deus nas dificuldades do dia, ou cedi à ansiedade e ao controle?</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">💑 Em relação ao cônjuge</div>
-        <div class="exame-intro">Como fui esposo(a) hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Tratei meu cônjuge com paciência, gentileza e respeito, mesmo nos momentos difíceis?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Fui generoso(a) no perdão ou guardei mágoa e ressentimento?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Demonstrei carinho, atenção e interesse genuíno pela vida dele(a)?</div>
-        <div class="exame-item"><span class="exame-num">4</span>Falei mal do meu cônjuge para outros ou critiquei-o(a) injustamente?</div>
-        <div class="exame-item"><span class="exame-num">5</span>Rezamos juntos hoje? Cultivei a dimensão espiritual do nosso casamento?</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">👨‍👩‍👧‍👦 Em relação à família</div>
-        <div class="exame-intro">Como fui pai/mãe e familiar hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Dei atenção de qualidade aos filhos, ou estava sempre distraído com o celular ou o trabalho?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Fui justo e coerente na educação, ou cedi por comodidade?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Honrei meus pais, sogros e parentes com respeito e carinho?</div>
-        <div class="exame-item"><span class="exame-num">4</span>Fui exemplo de virtude cristã para os meus filhos hoje?</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">⚒️ Em relação ao trabalho</div>
-        <div class="exame-intro">Como fui profissional e colaborador hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Fui honesto e íntegro em tudo o que fiz? Evitei mentiras, meias-verdades e falsidades?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Trabalhei com diligência ou desperdicei tempo que pertencia ao trabalho?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Tratei colegas, superiores e subordinados com justiça e fraternidade?</div>
-        <div class="exame-item"><span class="exame-num">4</span>Fui invejoso ou mal-humorado diante do sucesso alheio?</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">❤️ Em relação ao próximo</div>
-        <div class="exame-intro">Como amei o próximo hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Vi alguém necessitado e passei indiferente, podendo ajudar?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Falei mal de alguém, fofoquei ou contribuí para prejudicar a reputação de outrem?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Fui impaciente, grosseiro ou agressivo com alguém?</div>
-        <div class="exame-item"><span class="exame-num">4</span>Perdoei quem me ofendeu, ou mantenho rancor no coração?</div>
-      </div>
-
-      <div class="exame-section">
-        <div class="exame-title">📱 Em relação ao mundo digital</div>
-        <div class="exame-intro">Como usei as redes e o celular hoje?</div>
-        <div class="exame-item"><span class="exame-num">1</span>Consumi conteúdo que afastou minha mente de Deus ou feriu minha pureza?</div>
-        <div class="exame-item"><span class="exame-num">2</span>Perdi horas preciosas em redes sociais que poderiam ser usadas para a família ou a oração?</div>
-        <div class="exame-item"><span class="exame-num">3</span>Compartilhei ou curti conteúdo falso, ofensivo ou que não condiz com a fé?</div>
-      </div>
-
-      <div class="prayer-text-card" style="margin-top:16px">
-        <div class="prayer-text-label">💜 Ato de Contrição</div>
-        <div class="prayer-text-body">Meu Deus, eu me arrependo de coração
-de todos os meus pecados,
-porque pecando ofendi a Vós,
-que sois infinitamente bom,
-e prometo com o vosso auxílio
-não vos ofender mais.
-
-Tende misericórdia de mim,
-pecador.
-Améin.</div>
-      </div>
-    </div>
-
-    <!-- SÃO MIGUEL -->
-    <div class="prayer-section" id="ps-saomiguel">
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚔️ Quaresma de São Miguel</div>
-        <div class="prayer-text-title">15 de agosto a 29 de setembro</div>
-        <div class="prayer-text-body">Devoção iniciada por São Francisco de Assis, que tinha o costume de se preparar para as grandes festas litúrgicas com 40 dias de penitência e oração. A Quaresma começa na Assunção de Nossa Senhora (15 de agosto) e termina na festa dos Santos Arcanjos (29 de setembro).
-
-Para se preparar, a tradição pede:
-• Acender uma vela abençoada diante de uma imagem de São Miguel
-• Oferecer uma penitência durante os 40 dias
-• Fazer o Sinal da Cruz
-• Rezar as orações abaixo todos os dias</div>
-      </div>
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚔️ Oração Inicial</div>
-        <div class="prayer-text-title">Rezar todos os dias da Quaresma</div>
-        <div class="prayer-text-body">São Miguel Arcanjo, defendei-nos no combate,
-sede o nosso refúgio contra as maldades
-e ciladas do demônio.
-Ordene-lhe, Deus, instantemente o pedimos.
-
-E vós, príncipe da milícia celeste,
-pela virtude divina,
-precipitai ao inferno Satanás
-e os outros espíritos malignos,
-que andam pelo mundo para perder as almas.
-
-Amém.
-
-Sacratíssimo Coração de Jesus. (3x)</div>
-      </div>
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚔️ Ladainha de São Miguel</div>
-        <div class="prayer-text-title">Ladainha ao Arcanjo São Miguel</div>
-        <div class="prayer-text-body">Senhor, tende piedade de nós.
-Jesus Cristo, tende piedade de nós.
-Senhor, tende piedade de nós.
-Jesus Cristo, ouvi-nos.
-Jesus Cristo, atendei-nos.
-Pai Celeste, que sois Deus, tende piedade de nós.
-Filho Redentor do Mundo, que sois Deus, tende piedade de nós.
-Espírito Santo, que sois Deus, tende piedade de nós.
-Trindade Santa, que sois um único Deus, tende piedade de nós.
-
-Santa Maria, Rainha dos Anjos, rogai por nós.
-São Miguel, rogai por nós.
-São Miguel, cheio da graça de Deus, rogai por nós.
-São Miguel, perfeito adorador do Verbo Divino, rogai por nós.
-São Miguel, coroado de honra e de glória, rogai por nós.
-São Miguel, poderosíssimo príncipe dos exércitos do Senhor, rogai por nós.
-São Miguel, porta-estandarte da Santíssima Trindade, rogai por nós.
-São Miguel, guardião do Paraíso, rogai por nós.
-São Miguel, guia e consolador do povo israelita, rogai por nós.
-São Miguel, esplendor e fortaleza da Igreja militante, rogai por nós.
-São Miguel, honra e alegria da Igreja triunfante, rogai por nós.
-São Miguel, luz dos anjos, rogai por nós.
-São Miguel, baluarte dos cristãos, rogai por nós.
-São Miguel, força daqueles que combatem pelo estandarte da cruz, rogai por nós.
-São Miguel, luz e confiança das almas no último momento da vida, rogai por nós.
-São Miguel, socorro muito certo, rogai por nós.
-São Miguel, nosso auxílio em todas as adversidades, rogai por nós.
-São Miguel, arauto da sentença eterna, rogai por nós.
-São Miguel, consolador das almas que estão no Purgatório, rogai por nós.
-São Miguel, a quem o Senhor incumbiu de receber as almas do Purgatório, rogai por nós.
-São Miguel, nosso príncipe, rogai por nós.
-São Miguel, nosso advogado, rogai por nós.
-
-Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.
-Cordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.
-Cordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós, Senhor.
-
-Rogai por nós, ó glorioso São Miguel,
-príncipe da Igreja de Cristo,
-para que sejamos dignos de Suas promessas.
-
-Oremos:
-Senhor Jesus, santificai-nos por uma bênção sempre nova
-e concedei-nos, pela intercessão de São Miguel,
-essa sabedoria que nos ensina a ajuntar riquezas do céu
-e a trocar os bens do tempo presente pelos da eternidade.
-Vós que viveis e reinais em todos os séculos dos séculos. Amém.</div>
-      </div>
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">⚔️ Consagração a São Miguel</div>
-        <div class="prayer-text-title">Consagração ao Arcanjo São Miguel</div>
-        <div class="prayer-text-body">Ó Príncipe nobilíssimo dos Anjos,
-valoroso guerreiro do Altíssimo,
-zeloso defensor da glória do Senhor,
-terror dos espíritos rebeldes,
-amor e delícia de todos os Anjos justos,
-meu diletíssimo Arcanjo São Miguel,
-
-desejando eu fazer parte do número dos vossos devotos e servos,
-a vós, hoje, me consagro, me dou e ofereço,
-e ponho-me a mim próprio, a minha família
-e tudo o que me pertence
-debaixo da vossa poderosíssima proteção.
-
-É pequena a oferta do meu serviço,
-sendo como sou um miserável pecador,
-mas vós engrandecereis o afeto do meu coração.
-Recordai-vos que, de hoje em diante, estou debaixo do vosso sustento,
-e deveis assistir-me em toda a minha vida
-e obter-me o perdão dos meus muitos e graves pecados,
-a graça de amar a Deus de todo coração,
-ao meu querido Salvador Jesus Cristo
-e a minha Mãe Maria Santíssima.
-
-Obtende-me aqueles auxílios que me são necessários
-para obter a coroa da eterna glória.
-Defendei-me dos inimigos da alma,
-especialmente na hora da morte.
-
-Vinde, ó príncipe gloriosíssimo, assistir-me na última luta,
-e, com a vossa arma poderosa,
-lançai para longe, precipitando nos abismos do inferno
-aquele anjo quebrador de promessas e soberbo
-que um dia prostrastes no combate no Céu.
-
-São Miguel Arcanjo, defendei-nos no combate
-para que não pereçamos no supremo juízo. Amém.</div>
-      </div>
-
-    </div>
-
-        <!-- SIM MISSIONÁRIO -->
-    <div class="prayer-section active" id="ps-sim">
-
-      <div class="prayer-text-card">
-        <div class="prayer-text-label">🌍 Oração do Missionário SIM</div>
-        <div class="prayer-text-title">Sociedade Irmãos da Misericórdia</div>
-        <div class="prayer-text-body">Senhor Jesus,
-em Tua presença, meu espírito transborda de
-uma alegria indescritível e incompreensível.
-Desejo ardentemente a glorificação e o culto à
-Tua misericórdia, que ultrapassa toda
-compreensão humana.
-
-Imploro, Senhor Jesus, que abençoe a todos
-aqueles que exaltam a Tua infinita misericórdia.
-Que mergulhes a mim, aos meus familiares e a
-todos os missionários da Sociedade Irmãos da
-Misericórdia em teu imenso amor.
-
-Enviai, generosamente, o Espírito Santo sobre
-as nossas misérias e completai a Tua obra onde
-nossas limitações não podem alcançar.
-
-Confiando plenamente em Ti, Senhor Jesus, em
-tuas mãos entregamos a nossa Comunidade
-SIM, a Santa Igreja Católica, juntamente com
-todos os nossos familiares, trabalhos, estudos e
-todos pelos quais intercedemos.
-
-Concede-nos o Espírito Santo com seus dons e
-carismas, para que possamos enfrentar com
-paciência e amor as adversidades da vida, sem
-jamais desanimar ou desistir de Te louvar e
-servir.
-
-Assim seja. Amém.</div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
 </body>
 </html>
