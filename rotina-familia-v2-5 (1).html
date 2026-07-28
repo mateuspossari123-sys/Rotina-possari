@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ora et Labora</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#223361">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ora et Labora">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: oklch(0.965 0.006 75); font-family: 'Work Sans', sans-serif; }
+  ::-webkit-scrollbar { display: none; }
+
+  .page {
+    min-height: 100vh; width: 100%; display: flex; justify-content: center;
+    align-items: flex-start; padding: 32px 16px; background: oklch(0.965 0.006 75);
+  }
+  .card {
+    width: 402px; max-width: 100%; min-height: 840px;
+    background: oklch(0.995 0.004 75); border-radius: 28px;
+    box-shadow: 0 24px 60px -20px oklch(0.3 0.02 40 / 0.35);
+    overflow: hidden; display: flex; flex-direction: column; position: relative;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 28px 24px 20px; text-align: center; position: relative;
+    background: oklch(0.26 0.06 255);
+  }
+  .header .glyph { font-family:'Source Serif 4',serif; font-size:15px; letter-spacing:.3em; color:oklch(0.74 0.11 85); margin:0 0 6px; }
+  .header .title { font-family:'Source Serif 4',serif; font-weight:600; font-size:26px; color:oklch(0.82 0.09 85); letter-spacing:.01em; }
+  .header .subtitle { font-family:'Source Serif 4',serif; font-style:italic; font-size:12.5px; color:oklch(0.68 0.07 85); margin-top:5px; letter-spacing:.02em; }
+  .header .rule { width:36px; height:2px; background:oklch(0.74 0.11 85); margin:14px auto 0; border-radius:2px; }
+
+  /* CONTENT */
+  .content { flex:1; overflow-y:auto; padding:4px 20px 108px; }
+  .tab-view { display:none; }
+  .tab-view.active { display:block; }
+
+  .section-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin:16px 0 10px; }
+
+  /* WEEK STRIP */
+  .week-strip { display:flex; gap:6px; margin-bottom:18px; }
+  .week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:9px 0; border-radius:12px; cursor:pointer; border:1px solid oklch(0.91 0.01 60); background:oklch(0.98 0.004 75); }
+  .week-day .wd-label { font-size:10px; font-weight:600; letter-spacing:.04em; color:oklch(0.4 0.02 40); }
+  .week-day .wd-date { font-size:13px; font-weight:600; color:oklch(0.4 0.02 40); }
+  .week-day.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); }
+  .week-day.active .wd-label, .week-day.active .wd-date { color:oklch(0.82 0.09 85); }
+
+  /* TIMELINE */
+  .timeline { display:flex; flex-direction:column; margin-bottom:14px; }
+  .tl-row { display:flex; gap:14px; }
+  .tl-time-col { display:flex; flex-direction:column; align-items:center; width:44px; flex:0 0 auto; }
+  .tl-time { font-size:12px; font-weight:600; color:oklch(0.26 0.06 255); padding-top:8px; }
+  .tl-line { width:1px; flex:1; background:oklch(0.88 0.01 60); margin-top:6px; }
+  .tl-card-wrap { flex:1; padding:8px 14px 20px; margin-top:2px; }
+  .tl-card { padding:11px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:8px; position:relative; }
+  .tl-card .tl-label { font-size:13.5px; color:oklch(0.25 0.02 40); font-weight:500; }
+  .tl-card .tl-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; flex:0 0 auto; }
+  .tl-del { position:absolute; right:6px; top:-8px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); color:oklch(0.6 0.03 40); cursor:pointer; font-size:10px; padding:1px 5px; border-radius:8px; }
+  .tl-empty { font-size:12.5px; color:oklch(0.6 0.03 40); text-align:center; padding:6px 0 14px; }
+
+  .dashed-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1.5px dashed oklch(0.8 0.02 60); border-radius:14px; color:oklch(0.5 0.03 40); font-size:13.5px; font-weight:500; cursor:pointer; margin-bottom:20px; }
+  .dashed-btn .plus { font-size:16px; line-height:1; }
+
+  .inline-form { display:flex; gap:8px; margin-bottom:20px; }
+  .inline-form input { font-family:'Work Sans',sans-serif; font-size:13.5px; outline:none; border-radius:12px; border:1px solid oklch(0.85 0.01 60); padding:11px 14px; }
+  .inline-form .f-time { width:70px; text-align:center; padding:11px 10px; }
+  .inline-form .f-label { flex:1; }
+  .inline-form .f-ok { padding:11px 16px; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); border-radius:12px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; }
+
+  /* CATEGORY PILLS */
+  .cat-pills { display:flex; gap:8px; margin-bottom:16px; }
+  .cat-pill { flex:0 0 auto; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); font-size:13px; font-weight:500; color:oklch(0.5 0.03 40); }
+  .cat-pill.active { background:oklch(0.93 0.015 255); border-color:oklch(0.26 0.06 255); color:oklch(0.26 0.06 255); }
+
+  /* CHECKLIST */
+  .progress-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .progress-label { font-size:12.5px; color:oklch(0.5 0.02 40); font-weight:500; }
+  .progress-pct { font-size:12.5px; color:oklch(0.26 0.06 255); font-weight:600; }
+  .progress-track { width:100%; height:6px; background:oklch(0.92 0.01 60); border-radius:4px; margin-bottom:22px; overflow:hidden; }
+  .progress-fill { height:100%; background:oklch(0.26 0.06 255); border-radius:4px; transition:width .25s; }
+  .period-group { margin-bottom:20px; }
+  .period-title { font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin-bottom:8px; }
+  .item-list { display:flex; flex-direction:column; gap:8px; }
+  .check-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
+  .check-box { width:22px; height:22px; flex:0 0 auto; border-radius:7px; border:1.5px solid oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .check-box.checked { background:oklch(0.26 0.06 255); }
+  .check-box .mark { color:oklch(0.78 0.1 85); font-size:13px; font-weight:700; }
+  .check-text { flex:1; font-size:14px; color:oklch(0.25 0.02 40); }
+  .check-text.done { color:oklch(0.6 0.02 40); text-decoration:line-through; }
+  .check-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; }
+  .check-del { background:none; border:none; color:oklch(0.7 0.02 40); cursor:pointer; font-size:12px; padding:2px 4px; }
+
+  /* CALENDARIO */
+  .cal-header { display:flex; align-items:center; justify-content:space-between; margin:16px 0 16px; }
+  .cal-month { font-size:16px; font-weight:600; font-family:'Source Serif 4',serif; color:oklch(0.22 0.02 40); text-transform:capitalize; }
+  .cal-nav { display:flex; gap:6px; color:oklch(0.5 0.02 40); font-size:15px; }
+  .cal-nav span { cursor:pointer; padding:4px 8px; }
+  .cal-weekdays, .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+  .cal-weekdays { margin-bottom:6px; }
+  .cal-weekdays div { text-align:center; font-size:10.5px; font-weight:600; color:oklch(0.6 0.02 40); padding:4px 0; }
+  .cal-grid { margin-bottom:24px; }
+  .cal-day { aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:10px; font-size:12.5px; cursor:pointer; color:oklch(0.3 0.02 40); font-weight:500; background:transparent; }
+  .cal-day.today { background:oklch(0.26 0.06 255); color:oklch(0.995 0.004 75); font-weight:700; }
+  .cal-day .dot { width:4px; height:4px; border-radius:50%; background:oklch(0.72 0.1 85); margin-top:2px; }
+  .cal-day.today .dot { background:oklch(0.78 0.1 85); }
+  .upcoming-item { display:flex; align-items:center; gap:12px; padding:13px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:10px; position:relative; }
+  .upcoming-item .dot { width:8px; height:8px; border-radius:50%; background:oklch(0.26 0.06 255); flex:0 0 auto; }
+  .upcoming-item .u-label { font-size:13.5px; color:oklch(0.22 0.02 40); font-weight:500; }
+  .upcoming-item .u-date { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .upcoming-item .u-del { position:absolute; right:10px; top:10px; background:none; border:none; color:oklch(0.65 0.02 40); cursor:pointer; font-size:11px; }
+
+  /* ORACAO */
+  .oracao-card { display:flex; align-items:center; gap:14px; padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:16px; cursor:pointer; margin-bottom:10px; }
+  .oracao-card .o-glyph { width:38px; height:38px; border-radius:50%; background:oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; color:oklch(0.78 0.1 85); font-family:'Source Serif 4',serif; font-size:17px; flex:0 0 auto; }
+  .oracao-card .o-title { font-size:14.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .oracao-card .o-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .oracao-card .o-chevron { color:oklch(0.65 0.02 40); font-size:15px; }
+
+  .back-link { display:flex; align-items:center; gap:6px; color:oklch(0.26 0.06 255); font-size:13px; font-weight:600; cursor:pointer; margin:10px 0 16px; }
+  .oracao-h1 { font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:2px; }
+  .oracao-sub { font-size:12.5px; color:oklch(0.55 0.03 40); margin-bottom:16px; }
+  .oracao-sub.italic { font-style:italic; }
+  .oracao-body { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; margin-bottom:16px; }
+
+  .mist-item { padding:15px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .mist-item .m-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .mist-item .m-days { font-size:12px; color:oklch(0.55 0.03 40); margin-top:3px; }
+  .mist-step { display:flex; gap:12px; align-items:center; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; margin-bottom:8px; }
+  .mist-step .m-n { width:24px; height:24px; border-radius:50%; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .mist-step .m-text { font-size:13.5px; color:oklch(0.3 0.02 40); }
+
+  .prayer-block { padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:14px; }
+  .prayer-block.navy { background:oklch(0.26 0.06 255); border:none; }
+  .prayer-block .p-label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.26 0.06 255); margin-bottom:6px; }
+  .prayer-block.navy .p-label { color:oklch(0.74 0.11 85); }
+  .prayer-block .p-text { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; }
+  .prayer-block.navy .p-text { color:oklch(0.86 0.07 85); }
+  .prayer-center { text-align:center; font-size:12.5px; font-style:italic; color:oklch(0.55 0.03 40); padding:6px 0; }
+
+  .accordion { border:1px solid oklch(0.91 0.01 60); border-radius:14px; overflow:hidden; background:oklch(0.98 0.004 75); margin-bottom:8px; }
+  .accordion-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px; cursor:pointer; }
+  .accordion-head .a-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .accordion-head .a-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .accordion-head .a-chevron { color:oklch(0.55 0.02 40); font-size:14px; }
+  .accordion-body { padding:0 16px 16px; display:flex; flex-direction:column; gap:10px; }
+  .accordion-q { display:flex; gap:8px; font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.55; }
+  .accordion-q .q-n { color:oklch(0.26 0.06 255); font-weight:700; flex:0 0 auto; }
+  .accordion-simple-body { padding:0 16px 16px; font-size:13px; color:oklch(0.3 0.02 40); line-height:1.7; }
+
+  .novena-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .novena-item .n-icon { width:36px; height:36px; border-radius:50%; background:oklch(0.93 0.015 255); display:flex; align-items:center; justify-content:center; font-size:16px; flex:0 0 auto; }
+  .novena-item .n-title { font-size:13.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
+  .novena-item .n-sub { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
+  .novena-intro { font-size:12.5px; color:oklch(0.55 0.03 40); line-height:1.6; margin-bottom:16px; }
+  .novena-day-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .novena-day-btn { width:32px; height:32px; border-radius:50%; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); color:oklch(0.4 0.02 40); font-size:12.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Work Sans',sans-serif; }
+  .novena-day-btn.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); color:oklch(0.82 0.09 85); }
+  .novena-text-card { padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
+  .novena-text-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:10px; }
+  .novena-text-body { font-size:13px; color:oklch(0.3 0.02 40); line-height:1.75; white-space:normal; }
+
+  /* BOTTOM NAV */
+  .bottom-nav { position:absolute; bottom:0; left:0; right:0; display:flex; background:oklch(0.995 0.004 75); border-top:1px solid oklch(0.91 0.01 60); padding:10px 12px 16px; }
+  .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; padding:4px 0; color:oklch(0.6 0.02 40); background:none; border:none; font-family:'Work Sans',sans-serif; }
+  .nav-btn.active { color:oklch(0.26 0.06 255); }
+  .nav-btn .n-label { font-size:10.5px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <div class="glyph">✦</div>
+      <div class="title">Ora et Labora</div>
+      <div class="subtitle">Christo nihil praeponere</div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- ROTINA -->
+      <div class="tab-view" id="tab-rotina">
+        <div class="section-label">Agenda da semana</div>
+        <div class="week-strip" id="week-strip"></div>
+        <div class="timeline" id="timeline"></div>
+        <div id="timeline-empty"></div>
+        <div id="timeline-form-wrap"></div>
+
+        <div class="cat-pills" id="cat-pills"></div>
+        <div id="checklist"></div>
+      </div>
+
+      <!-- CALENDARIO -->
+      <div class="tab-view" id="tab-calendario">
+        <div class="cal-header">
+          <div class="cal-month" id="cal-month"></div>
+          <div class="cal-nav">
+            <span onclick="calMonthShift(-1)">‹</span>
+            <span onclick="calMonthShift(1)">›</span>
+          </div>
+        </div>
+        <div class="cal-weekdays">
+          <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="section-label" style="margin-top:0;">Próximos eventos</div>
+        <div id="upcoming-list"></div>
+        <div id="cal-add-wrap"></div>
+      </div>
+
+      <!-- ORACAO -->
+      <div class="tab-view" id="tab-oracao">
+        <div id="oracao-content"></div>
+      </div>
+
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" id="nav-rotina" onclick="setTab('rotina')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="4" height="4" rx="1"></rect><rect x="3" y="15" width="4" height="4" rx="1"></rect><line x1="10" y1="7" x2="21" y2="7"></line><line x1="10" y1="17" x2="21" y2="17"></line></svg>
+        <div class="n-label">Rotina</div>
+      </button>
+      <button class="nav-btn" id="nav-calendario" onclick="setTab('calendario')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <div class="n-label">Calendário</div>
+      </button>
+      <button class="nav-btn" id="nav-oracao" onclick="setTab('oracao')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="6" y1="9" x2="18" y2="9"></line></svg>
+        <div class="n-label">Oração</div>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============ DADOS FIXOS ============ */
+const ROTINA_DATA = {
+  trabalho: [
+    { id: 'trab-1', period: 'Manhã', text: 'Revisar e-mails e agenda', person: 'Mateus' },
+    { id: 'trab-2', period: 'Manhã', text: 'Responder e-mails pendentes', person: 'Mateus' },
+    { id: 'trab-3', period: 'Tarde', text: 'Bloco de trabalho focado', person: 'Ambos' },
+    { id: 'trab-4', period: 'Noite', text: 'Planejar o dia seguinte', person: 'Mateus' },
+  ],
+  oracao: [
+    { id: 'ora-1', period: 'Manhã', text: 'Oferecimento da manhã', person: 'Ambos' },
+    { id: 'ora-2', period: 'Tarde', text: 'Terço', person: 'Ambos' },
+    { id: 'ora-3', period: 'Noite', text: 'Exame de consciência', person: 'Ambos' },
+  ],
+  estudos: [
+    { id: 'est-1', period: 'Manhã', text: 'Leitura de teologia (30min)', person: 'Sofia' },
+    { id: 'est-2', period: 'Tarde', text: 'Curso online', person: 'Sofia' },
+    { id: 'est-3', period: 'Noite', text: 'Revisão do dia de estudos', person: 'Ambos' },
+  ],
+};
+const ROTINA_CATEGORIES = [
+  { id: 'trabalho', label: 'Trabalho' },
+  { id: 'oracao', label: 'Oração' },
+  { id: 'estudos', label: 'Estudos' },
+];
+const WEEKDAY_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const MONTH_LABELS = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+const MISTERIOS = {
+  gozosos:   { title:'Mistérios Gozosos',   days:'Segunda-feira e Sábado',        list:['Anunciação do Anjo a Maria','Visitação de Maria a Isabel','Natividade de Jesus','Apresentação de Jesus no Templo','Encontro do Menino Jesus no Templo'] },
+  luminosos: { title:'Mistérios Luminosos', days:'Quinta-feira',                  list:['Batismo de Jesus no Jordão','Autorrevelação nas bodas de Caná','Anúncio do Reino de Deus','Transfiguração de Jesus','Instituição da Eucaristia'] },
+  dolorosos: { title:'Mistérios Dolorosos', days:'Terça-feira e Sexta-feira',     list:['Agonia de Jesus no Horto','Flagelação de Jesus','Coroação de Espinhos','Jesus carrega a Cruz','Crucificação e Morte de Jesus'] },
+  gloriosos: { title:'Mistérios Gloriosos', days:'Quarta-feira e Domingo',        list:['Ressurreição de Jesus','Ascensão de Jesus ao Céu','Descida do Espírito Santo','Assunção de Maria ao Céu','Coroação de Maria como Rainha'] },
+};
+
+function txt(arr){ return arr.join('\n'); }
+
+const NOVENAS = [
+  {
+    id:'pentecostes', icon:'🔥',
+    title:'Novena ao Espírito Santo',
+    sub:'Composta por Santa Elena Guerra · 9 dias antes de Pentecostes',
+    color:'#a93226',
+    intro:'Esta belíssima novena foi composta por Santa Elena Guerra (1835–1914), fundadora das Oblatas do Espírito Santo. Contempla as ações do Espírito Santo nas almas durante os 9 dias entre a Ascensão e Pentecostes.',
+    days:[
+
+      {title:"Dia 1 — As ações do Espírito Santo nas almas", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: As ações do Espírito Santo em nossas almas —\nEssa belíssima criatura que é a alma humana, criada pela paterna Mão de Deus,\nfoi pelo Eterno Amor enriquecida das mais eleitas virtudes.\nAs ações deste Divino Espírito nas almas são admiráveis.\nInacessível por sua natureza, o Espírito Santo se torna acessível\npor sua infinita bondade para as almas que O desejam.\nEle as enche de Si, e as faz sentir Sua presença com luzes,\ninspirações e confortos de todas as maneiras.\n\nEsta verdade eleva a uma dignidade incompreensível:\n\"Um Deus se ocupa de mim. Um Deus se preocupa em me fazer o bem.\nO desejo pela minha perfeição é a sua predileta ocupação!\nEle trabalha em mim, pensa sempre em mim, não cessa de trabalhar por mim!\"\nE por que tudo isso? Porque me ama e me ama infinitamente!\n\n— Momento de meditação pessoal —\n\nÓ Espírito Santo, Eterno Amor,\nesta pobre alma não encontra palavras para exprimir\na doce maravilha e o reconhecimento que experimenta\npensando em Vós, ó Altíssimo Deus,\nque Vos dignastes ocupar desta mesquinha criatura.\nAgradeço-Vos de coração;\nmas ao mesmo tempo sinto necessidade de pedir-Vos perdão\npor ter correspondido tão mal ao Vosso amoroso operar na minha alma.\n\nAbri, ó Espírito Santo, os olhos da minha mente,\ne fazendo-me melhor conhecer os efeitos do infinito amor que me trazeis,\nmovei o meu coração à verdadeira e constante correspondência. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 2 — O Espírito Santo habita em nós", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Espírito Santo habita em nós —\nÉ esta uma consoladora verdade expressa no Evangelho (Mt 10,20),\ne confirmada pelo Apóstolo Paulo:\n\"Não sabeis que o Espírito Santo habita em vós?\nE não sabeis que o vosso corpo é templo do Espírito Santo?\"\n\nSegundo São Tomás, o Espírito Santo é para nossa alma\no que a alma mesma é para o nosso corpo.\nUma alma privada do Espírito Santo é morta para a graça,\nmorta ao santo amor, e incapaz de conquistar méritos para o Céu.\n\nÓ cristão, o Espírito Santo habita em ti.\nNunca te encontrarás sozinho.\nEstá contigo de dia e de noite, na fadiga e no repouso.\nEstará contigo na oração e na tribulação.\nAh, se soubesses valer da presença de um amigo tão bom e poderoso!\n\n— Momento de meditação pessoal —\n\nÓ Altíssimo Deus, que elegestes a alma cristã para Vosso Tabernáculo,\nnão só lhe conferistes Vossos bens, mas doastes a Vós mesmo.\n\nArrependo-me, ó Sumo Amor, de ter tantas vezes\nVos contristado com minha frieza, esquecimento e ingratidão.\nArrependo-me de ter Vos expulsado do meu coração.\n\nMas sei que uma sincera lágrima de arrependimento\nservirá para chamar-Vos.\nSei que sois mais amoroso que uma doce mãe.\nSois sempre pronto a perdoar.\nPor isso, com confiança, Vos digo:\nVem, ó Espírito Santo;\nVem a esta alma que não quer mais contristar-Vos. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 3 — O Espírito Santo, nosso Consolador", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Espírito Santo, nosso Consolador —\nO Espírito Santo, que é Amor, não deixará sofrer seus amados\nsem derramar sobre eles muitíssimas consolações.\nÉ porque Ele nos consola que a Igreja O chama de \"Consolador Perfeito\",\ne possui para Ele os mais doces nomes:\n\"Pai dos Pobres\", \"Repouso no cansaço\", \"Doce Refrigério\", \"Alívio no Pranto\".\n\nO Espírito Santo sabe misturar sua doçura às nossas amarguras.\nEm cada sofrimento, o Espírito nos dá um raio de Sua luz\nque nos faz entender que por detrás daquele mal existe um bem.\n\nSe vemos almas que no sofrer se mantêm tranquilamente conformadas,\npodemos bendizer que elas estão com o Espírito Santo.\nE se vemos algumas que em meio às tribulações repetem como São Paulo\nque superabundam em alegria,\npodemos dizer que estas são plenas do Espírito Santo.\n\n— Momento de meditação pessoal —\n\nÓ minha alma fraca e mesquinha,\no Espírito Santo até agora não te preencheu de todas as divinas consolações,\nporque foi por ti pouco conhecido, menos honrado,\ne rara e friamente invocado.\n\nPerdoai minha ignorância e a falta de confiança\ncom que Vos tenho tratado até agora.\n\nNeste momento, abro-Vos toda a minha alma, ó Divino Consolador,\ne Vos prometo que em todas as dores desta vida\nrecorrerei prontamente ao Vosso socorro,\ne não procurarei outro consolador senão Vós,\nó Pai dos Pobres, Repouso no cansaço e Alívio no pranto. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 4 — O Espírito Santo é o Doador dos Dons", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Espírito Santo é o Doador dos Dons —\nSendo próprio do amor beneficiar e repartir dons,\nisso acontece principalmente com o Amor por excelência\nque é o Espírito Santo.\n\nSão seus verdadeiros devotos aqueles que dEle recebem:\num filial Temor que os afasta do pecado;\numa fervorosa Piedade que os faz mais queridos a Deus;\numa Ciência que endereça os próprios juízos;\numa sobre-humana Fortaleza onde todo obstáculo seja superado;\no celeste Conselho para distinguir os movimentos da graça;\num sobrenatural Intelecto que é sustento para a fé;\ne uma Sabedoria celeste que os coloca em perfeito acordo com Deus.\n\nPobre é o nosso espírito de dons celestes.\nMas de onde surge a pobreza,\nenquanto estão abertos diante de nós os tesouros do Paráclito?\nO Espírito Santo concede seus melhores dons\nàqueles que os desejam, a quem pede,\na quem fielmente a eles correspondem.\n\n— Momento de meditação pessoal —\n\nConfesso, ó Amante Supremo dos homens,\nconfesso que a deplorável pobreza desta alma é pobreza consciente.\nEu mesmo me sujei, porque não apreciei, não desejei\ne não pedi com fervor os favores celestes\nque Vós tão amorosamente derramais nas vossas criaturas.\n\nMas Vós sois o Amor, o Amor onipotente.\nNão queira castigar este servo infiel,\nmas aceitando meu arrependimento,\nque uno à promessa de corresponder no futuro aos Vossos Dons.\nTornai a enriquecer-me benignamente dos Vossos Dons. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 5 — O Espírito Santo e os Seus frutos", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Espírito Santo e os Seus frutos —\nChamamos Frutos do Espírito Santo aqueles preciosos efeitos\nque Ele produz nas almas mediante a infusão dos Seus Dons.\n\nA nossa natureza, viciada em Adão,\né como uma árvore silvestre que dá frutos amargos e ingratos.\nO Espírito Santo realiza nestas árvores um saudável enxerto\nque as faz transformar a natureza.\n\nNão basta o enxerto para que uma árvore ruim produza bons frutos.\nÉ preciso que o empenhado Agricultor faça a poda.\nÉ aqui que acontece o naufrágio da virtude de tantos cristãos\nque relutam diante do sofrimento.\nGozam de ser enxertados com a graça divina,\nmas não querem depois a poda,\nnão querem despojar-se totalmente de seus afetos terrenos.\n\n— Momento de meditação pessoal —\n\nÓ Divino Espírito,\nse considero que também na minha alma realizas aquele enxerto salutar,\nreflito na minha deplorável instabilidade.\n\nSenhor, eu me acuso diante dos Vossos pés:\na culpa é minha, é toda minha!\nNão quis que pela Vossa Mão benéfica\nfossem tiradas de mim as ervas daninhas das paixões e dos vícios.\n\nMeu Deus! Para o fogo do Inferno não quero ir.\nLança-me mais ainda no Fogo do Vosso Amor,\nque purifica as almas e torna-as fecundas dos santos Frutos. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 6 — O Espírito Santo é nosso Advogado", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Espírito Santo é nosso Advogado —\nAos cristãos não falta este Advogado.\nFoi o Amante Salvador que nos prometeu e nos deu,\ne é o seu mesmo Amor: o Espírito Santo.\n\nEste Amor está especialmente conosco\ne vem em auxílio da nossa fraqueza quando rezamos.\nA nossa miséria é tão grande que não sabemos rezar como convém.\nMas é aqui que nos ajuda o Espírito Santo,\nque dentro de nós ora e suplica com gemidos inenarráveis.\n\nPortanto, Deus mesmo ora em mim!\nO Espírito Santo reza em mim e eleva a minha alma\nàs fontes da Vida Eterna para enriquecê-la de todo bem!\nO que pode ser negado para aquele cuja oração sobe ao céu\nunida aos gemidos inenarráveis do divino Amor?\n\n— Momento de meditação pessoal —\n\nÓ Divino Advogado das almas, que sois todo Amor,\neu exulto e me alegro em saber que sois assim tão bom\ne que Vos dignastes morar dentro de nós,\norar em nós e enviar ao Coração do Pai Celeste\naqueles preciosos e inefáveis gemidos\nque O movem a nos conceder toda graça.\n\nComo me arrependo, ó Espírito Santo,\npor ter Vos conhecido tão pouco!\n\nA partir de agora, peço-Vos perdão, ó Espírito Santo,\ne prometo não Vos esquecer mais\ne proclamar para os outros as verdades católicas,\nque são luz para a mente e alegria para o coração. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 7 — O Espírito Santo é o Santificador das almas", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: O Divino Paráclito — Santificador das almas —\nO Espírito Santo é o Santificador das almas,\no qual com força e suavidade conduz as almas ao santo viver.\n\nÉ Ele que ilumina o pecador no seu estado de perigo,\nacorda-o do sono da morte,\ninspira-o no desejo de voltar para Deus.\nÉ Ele quem o faz olhar a doçura da virtude,\na felicidade da paz e as consolações do divino amor.\n\nO Divino Espírito cumpre em nós aquela promessa da Escritura:\n\"Vos darei um coração novo e um espírito novo.\nVos tirarei da vossa sepultura,\nvos darei o Meu Espírito e vivereis.\nEu disse, eu farei.\" (Ez 37)\n\n— Momento de meditação pessoal —\n\nÓ meu Deus, considerando todas as obras do Vosso Amor,\nme dou conta que sempre são mais admiráveis\ndo que todos os prodígios.\n\nO homem pecou, perdeu o Espírito Santo,\ne se fez escravo de Lúcifer.\nMas Vossa mão veio sobre o homem caído e o levantou.\n\nE saber que esta maravilha de amor realizastes por nós e em nós,\ntambém por mim e em mim.\nComo farei para amar-Vos e não pensar senão em Vós,\nó Espírito Santo de Amor!\n\nPerdoai a mim e a todos os cristãos pela ingratidão\nde Vos termos esquecido. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 8 — Nossos deveres para com o Espírito Santo", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: Nossos deveres para com o Espírito Santo —\nO Espírito Santo, como Deus, possui todo o direito de adoração,\nsubmissão e amor, assim como devemos render ao Pai e ao Filho.\n\nComo o Espírito Santo é Amor, e o Amor deve ser amado,\nentre todos esses deveres o que deve reinar é a primazia do Amor.\n\nMas como cumpriremos nossos deveres para com o Espírito Santo\nse rara e friamente nos recordamos dEle?\nO esquecimento é adoração? O esquecimento é gratidão? É amor?\nNão: é ingratidão, desamor e desprezo.\n\nPara nós que conscientemente vivemos no sobrenatural,\nexistiria maior vergonha que viver toda a jornada\ncomo se o Espírito Santo não existisse,\ncomo se Ele não habitasse pessoalmente dentro de nós?\n\n— Momento de meditação pessoal —\n\nÓ Divino Espírito Santo,\ncomo eu me enganava pensando que fosse somente com pecados\nque Te contristaria!\nAgora sei que Te contristei mais ainda quando Te esqueci.\n\nDevemos gemer sobre a nossa ingratidão e pedir perdão.\nE ao Te pedirmos perdão, ó Espírito Santo,\nacrescentamos a promessa de honrar-Vos no futuro\ncom atos de especial adoração e de verdadeiro reconhecimento.\nSois autor e doador da graça, Santificador e Doce Hóspede da alma.\nPor tudo isto, com total devoção,\ndevemos voltar para Vós todos os nossos pensamentos. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."},
+      {title:"Dia 9 — Os benefícios do Espírito Santo", oracao:"Vinde Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do Vosso amor.\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nOremos: Deus que instruístes os corações dos Vossos fiéis\ncom a luz do Espírito Santo, fazei que apreciemos retamente\ntodas as coisas segundo o mesmo Espírito\ne gozemos sempre de Suas consolações,\npor Cristo, Senhor Nosso. Amém!\n\n— Oração antes da meditação —\nÓ Divino Espírito, que pela Igreja sois chamado Criador,\nnão somente porque és em relação a nós criaturas,\nmas também porque movendo nas nossas almas santos pensamentos\ne afetos, criais em nós aquela santidade que é obra Vossa!\nVenha sobre nós a Vossa benéfica virtude,\ne enquanto Vos honrarmos com este devoto exercício,\ndigne-se a visitar com a Tua Divina Luz a nossa mente\ne com Tua Suprema Graça o nosso coração,\npara que as nossas orações subam agradáveis a Vós,\ne do Céu desça sobre nós a abundância\nde Vossas divinas misericórdias. Amém!\n\n— Meditação: Os benefícios do Espírito Santo —\nOs benefícios revelam o Benfeitor,\ne quanto mais excelentes e múltiplos são os benefícios,\ntanto mais indicam ser excelente e amoroso o Benfeitor.\n\nA Igreja, com os nomes que Lhe concede, nos mostra suas graças:\n\"Luz dos Corações\" — a graça das explicações Divinas.\n\"Fogo\" — o Divino Amor que chega ao nosso coração.\n\"Doce Hóspede da alma\" — sua presença em nós.\n\"Pai dos Pobres, Dispensador de Dons, Fonte Viva,\nConsolador Perfeito\" — múltiplos benefícios incessantes.\n\nComo o fogo converte em fogo aquilo que nele é imerso,\nassim o Divino Fogo do Espírito Santo,\nse não pode fazer-nos divinos por natureza,\ntorna-nos divinos pela graça.\n\n— Momento de meditação pessoal —\n\nÓ Divino Espírito, entre todos os Vossos dons,\nexiste um infinitamente mais precioso que os outros:\no Dom que não tem nome particular,\nporque sois Vós mesmo que verdadeiramente Vos doais às almas justas.\n\nO que farão as nossas almas no fim desta Novena?\nPediremos o Dom do Altíssimo Deus: Vós mesmo!\nE para obtê-Lo, deixaremos lugar no nosso coração,\ntirando todo afeto que não Vos agrada.\n\nVem! Vem! Vem!\nVisitai as mentes dos Vossos servos\ne enchei os corações de abundantes graças.\nVem! E com as Vossas chamas, erradicai de nós o velho Adão.\nEstendei todos os Vossos benefícios a todos os crentes,\ne assim obteremos mais rapidamente\na renovação da face da Terra. Amém.\n\n— Oração Final —\nÓ prometido e suspirado Consolador, Espírito Santo,\nprocedente do Pai e do Filho, que escutando a unânime oração\ndos discípulos do Salvador, fraternalmente reunidos no Cenáculo,\ndescestes para consolar e santificar a Igreja nascente;\nsede propício às nossas súplicas,\nreacendei o Vosso Divino Fogo nos corações dos homens.\nFazei resplandecer a Vossa luz até os confins da Terra;\nchamai novamente ao seio da Mãe Igreja Romana\ntodas as Igrejas separadas.\n\nÓ Espírito Santo, que sois o Amor,\npiedade de tanta mediocridade e de tantas almas que se perdem!\nFazei com que rapidamente aconteça aquilo que Davi profetizava:\n\"Mandai o Teu Espírito\".\nFazei-nos novas criaturas, e assim renovareis a face da Terra.\n\nUnidos em oração, com plena confiança repitamos:\nEnviai o Vosso Espírito e tudo será criado,\ne renovareis a face da Terra!\n\nRezar: Pai Nosso, Ave-Maria, Glória ao Pai.\n\nQue o Senhor nos abençoe, nos livre de todo o mal\ne nos conduza à vida eterna! Amém."}
+
+    ]
+  },
+  {
+    id:'misericordia', icon:'❤️',
+    title:'Novena da Divina Misericórdia',
+    sub:'Revelada a Santa Faustina · Sexta-feira Santa até a Festa da Misericórdia',
+    color:'#a93226',
+    intro:'Jesus disse a Santa Faustina: "Durante esta novena concederei às almas toda a espécie de graças. Em cada dia conduzirás ao Meu Coração um grupo diferente de almas, e as mergulharás no oceano da Minha Misericórdia." (Diário, nn. 1210-1228)',
+    days:[
+
+      {title:"Dia 1 — Toda a humanidade", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-me toda a humanidade, mas especialmente todos os pecadores,\ne mergulha-os no oceano da Minha Misericórdia.\"\n\nMisericordiosíssimo Jesus, de Quem é próprio ter compaixão de nós e perdoar,\nnão olheis os nossos pecados;\natendei antes à confiança que temos na vossa infinita bondade.\nAcolhei-nos na morada do vosso compassivo Coração\ne nunca nos deixeis afastar dEle.\nNós Vo-lo pedimos pelo amor que Vos une ao Pai e ao Espírito Santo.\n\nEterno Pai, atendei com olhar de misericórdia\na humanidade contida no tão compassivo Coração de Jesus,\nmas especialmente os pobres pecadores.\nPela Sua dolorosa Paixão, mostrai-nos a vossa Misericórdia,\npara que glorifiquemos a onipotência da Vossa Misericórdia\npor toda a eternidade. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 2 — Sacerdotes e religiosos", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas dos sacerdotes e religiosos\ne mergulha-as na minha insondável Misericórdia.\"\n\nMisericordiosíssimo Jesus, de Quem procede todo o bem,\naumentai nos sacerdotes e religiosos a graça,\npara que possam praticar dignas obras de misericórdia,\na fim de que todos aqueles que com eles se cruzam\nglorifiquem o Pai da Misericórdia que está nos Céus.\n\nEterno Pai, atendei com olhar de Misericórdia\nà porção eleita da vossa vinha: as almas dos sacerdotes e religiosos.\nConcedei-lhes a força da vossa bênção,\npara que possam guiar os fiéis que lhes estão confiados\npelos caminhos da salvação\ne juntamente com eles cantar a glória\nda vossa insondável Misericórdia por toda a eternidade. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 3 — Almas piedosas e fiéis", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me todas as almas piedosas e fiéis\ne mergulha-as no oceano da minha Misericórdia.\"\n\nMisericordiosíssimo Jesus,\nque dos tesouros da vossa misericórdia\nderramais abundantes bênçãos sobre todos,\nacolhei-nos na morada do vosso tão compassivo Coração\ne não nos deixeis afastar dEle.\n\nEterno Pai, olhai com Misericórdia\npara as almas piedosas e fiéis, herança do vosso Filho.\nPela Sua dolorosa Paixão,\nconcedei-lhes a vossa bênção e rodeai-as da vossa incessante proteção,\npara que não percam o tesouro inestimável da fé.\nAssim, com a multidão dos Anjos e dos Santos,\nglorifiquem a vossa infinita Misericórdia pelos séculos dos séculos. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 4 — Os pagãos e os que não conhecem Jesus", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me os pagãos e todos os que ainda não Me conhecem.\nMergulha-os no mar da minha Misericórdia.\"\n\nMisericordiosíssimo Jesus, sois a Luz do mundo inteiro,\nrecebei na morada do vosso compassivo Coração\nas almas dos pagãos que ainda Vos não conhecem.\nQue os raios da vossa graça iluminem os seus olhos,\npara que também eles glorifiquem as maravilhas da vossa Misericórdia.\n\nEterno Pai, olhai com Misericórdia\npara as almas dos pagãos e daqueles que ainda Vos não conhecem.\nAtraí estas almas, que não conhecem ainda\na grande felicidade que é amar-Vos, à luz do Evangelho.\nFazei que também elas glorifiquem\na liberalidade da vossa Misericórdia por toda a eternidade. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 5 — Os cristãos separados da Igreja", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas dos cristãos separados da unidade da Igreja\ne mergulha-as no oceano da Minha Misericórdia.\"\n\nMisericordiosíssimo Jesus, sois a própria bondade\ne não recusais a luz àqueles que a imploram.\nRecebei na morada do vosso tão compassivo Coração\nas almas dos nossos irmãos separados,\ne atraí-as pela vossa luz à unidade da Igreja.\n\nEterno Pai, atendei com olhar de Misericórdia\nàs almas dos nossos irmãos separados.\nPelo amor do vosso Filho e pela amarga Paixão que suportou também eles,\nnão tenhais em conta os seus erros;\nJesus já lhes abriu o Seu compassivo Coração.\nFazei que elas glorifiquem a vossa Misericórdia\npor toda a eternidade. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 6 — Almas mansos e humildes", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas dos mansos e dos humildes,\nassim como as almas dos pequeninos.\"\n\nMisericordiosíssimo Jesus,\nque dissestes: \"Aprendei de Mim que sou manso e humilde de coração\",\nrecebei na morada do vosso tão compassivo Coração\nas almas dos mansos e humildes assim como as almas dos pequeninos.\nEstas almas põem em êxtase o Céu\ne são o especial encanto do Pai celestial.\nDiante do Trono de Deus, são como um ramalhete\ncujo perfume deleita o próprio Deus.\n\nEterno Pai, atendei com olhar de Misericórdia\nàs almas dos mansos e humildes e dos pequeninos.\nSuplico-Vos, pelo amor e predileção que tendes para com estas almas,\nque abençoeis o mundo inteiro,\npara que todas as almas, em uníssono,\ncantem louvores à vossa Misericórdia por toda a eternidade. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 7 — Almas que veneram a Misericórdia", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas que especialmente\nvenerem e louvam a Minha Misericórdia.\"\n\nMisericordiosíssimo Jesus, que sois o próprio Amor,\naceitai na morada do vosso tão compassivo Coração\naquelas almas que, com especial devoção,\nveneram e louvam a grandeza da vossa Misericórdia.\nEstas almas tornadas poderosas pela força do próprio Deus,\navançam por entre tribulações e adversidades,\nconfiando na vossa Misericórdia.\n\nEterno Pai, sede compassivo para com as almas\nque glorificam e honram o vosso maior atributo,\nisto é, a vossa insondável Misericórdia.\nQue se cumpra nelas a promessa de Jesus:\n\"As almas que veneram a Minha insondável Misericórdia,\nEu mesmo as defenderei durante a vida\ne, especialmente, na hora da morte.\" Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 8 — Almas do purgatório", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas que se encontram no Purgatório\ne mergulha-as no abismo da Minha Misericórdia.\"\n\nMisericordiosíssimo Jesus,\nque dissestes Vós próprio que queríeis misericórdia,\neis que levo à morada do vosso tão compassivo Coração\nas almas do Purgatório.\nEstas almas que Vos são tão queridas\ndevem no entanto reparar a vossa Justiça.\nQue as torrentes do Sangue e da Água que brotaram do vosso Coração\nextingam as chamas do fogo do Purgatório,\npara que também ali seja glorificado\no poder da vossa Misericórdia.\n\nEterno Pai, atendei com olhar de Misericórdia\nàs almas que sofrem no Purgatório.\nPela dolorosa Paixão de Jesus, vosso Filho,\ne por toda a amargura que atingiu a Sua Alma Santíssima,\nmostrai a vossa Misericórdia às almas\nque se encontram sob o olhar da vossa Justiça.\nOlhai para elas através das Chagas de Jesus,\nporque acreditamos que a vossa Bondade e Piedade são sem limites. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"},
+      {title:"Dia 9 — Almas tíbias", oracao:"Palavras de Jesus a Santa Faustina:\n\"Hoje traz-Me as almas tíbias\ne mergulha-as no abismo da Minha Misericórdia.\"\n\nÓ compassivo Jesus, que sois a própria Compaixão,\ntrago à morada do vosso tão compassivo Coração as almas tíbias.\nQue nesse fogo do vosso puro Amor\nse aqueçam estas almas gélidas, semelhantes a cadáveres,\nque Vos causam tanta repugnância.\nÓ Jesus, muito compassivo,\nusai da omnipotência da vossa Misericórdia\ne atraí-as ao fogo ardente do vosso amor,\ne revigorai-as com um amor santo, pois Vós tudo podeis.\n\nEterno Pai, olhai com Misericórdia para as almas tíbias,\nconfiadas no Coração tão compassivo de Jesus.\nÓ Pai de Misericórdia,\nsuplico-Vos pela amargura da Paixão do vosso Filho\ne pela Sua Agonia de três horas na Cruz,\npermiti que também elas glorifiquem\no abismo da vossa Misericórdia. Amém.\n\n— Rezar o Terço da Divina Misericórdia —"}
+
+    ]
+  },
+  {
+    id:'teresinha', icon:'🌸',
+    title:'Novena de Santa Terezinha',
+    sub:'Virgem e Doutora da Igreja · 9 dias antes de 1º de outubro',
+    color:'#b8477a',
+    intro:'Em cada dia desta novena rezamos 24 Glórias — um por cada ano que Santa Terezinha viveu na terra — e apresentamos nossas intenções à intercessão da pequena flor do Carmelo, que prometeu passar o Céu fazendo o bem na terra.',
+    days:[
+
+      {title:"Dia 1 — Doutora e amante da Igreja", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 2 — Padroeira das missões", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 3 — Uma vida de sacrifícios pelas almas", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 4 — Viveu em uma família santa", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 5 — Padroeira dos jovens", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 6 — Curada pelo sorriso de Maria", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 7 — Apaixonada por Jesus", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 8 — Próxima dos prisioneiros", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."},
+      {title:"Dia 9 — Solidária aos incrédulos", oracao:"Santíssima Trindade: Pai, Filho e Espírito Santo:\neu vos agradeço por todas as graças com que enriquecestes\na vida de vossa serva, Santa Terezinha do Menino Jesus\ne da Sagrada Face, nestes 24 anos que passou na terra.\n\nE pelos méritos de tão querida santinha,\nconcedei-me a graça que ardentemente vos peço…\n(faça aqui o pedido)\nse for conforme a Vossa Santíssima Vontade\ne para a salvação de minha alma.\n\nAjudai minha fé e minha esperança, Santa Terezinha,\ncumprindo mais uma vez vossa promessa de que\nficareis no Céu a fazer o bem na terra,\npermitindo que eu ganhe uma rosa em sinal\nde que alcançarei a graça pedida.\n\nEm seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:\n\"Glória ao Pai, ao Filho e ao Espírito Santo,\ncomo era no princípio, agora e sempre. Amém.\"\nSanta Terezinha do Menino Jesus e da Sagrada Face, rogai por mim.\n\nPara finalizar: 1 Ave-Maria e 1 Pai-Nosso."}
+
+    ]
+  },
+  {
+    id:'saojose', icon:'⚒️', title:'Novena de São José',
+    sub:'Esposo de Maria · 9 dias antes de 19 de março', color:'#b8830a',
+    intro:'A Igreja sempre venerou São José e nos recomenda a sua intercessão. Esta novena contempla os grandes privilégios e virtudes do glorioso Patriarca, esposo de Maria e pai nutrício de Jesus.',
+    days:[
+      {title:"Dia 1 — Santificado no ventre de sua mãe", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nDou graças à Santíssima Trindade, Santíssimo São José,\npelos muitos privilégios, méritos e virtudes com que vos enriqueceu\ne, principalmente, pelo grande mérito de ter sido santificado\nno ventre de vossa mãe e confirmado em graça.\n\nPor esse privilégio e pela grande alegria que Ele vos causou,\nsuplico-vos, ó meu querido pai, que me alcanceis de Deus\num grande ódio ao pecado, grande amor às virtudes\ne à minha salvação eterna. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 2 — Esposo escolhido de Maria", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nQue felicidade a vossa, meu glorioso protetor,\nserdes escolhido milagrosamente para esposo da Imaculada Maria!\n\nUno meus louvores aos que, nesse dia, vos dariam os anjos do céu.\nDe todo o meu coração, vos felicito\npor vos ter sido dada de presente a Rainha dos Anjos.\n\nPor esse favor e felicidade tão grandes,\npeço-vos, poderosíssimo José,\na amizade e a graça de Deus,\na proteção e o amparo constantes de Maria Santíssima. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 3 — Depositário do mistério da Encarnação", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nQue pena tão amarga devíeis ter sentido em vosso coração, José gloriosíssimo,\nquando, em vossa humildade, julgastes dever separar-vos de vossa esposa Maria!\n\nSão José, aceitai sinceras felicitações pela parte ativa\nque Deus vos concedeu no mistério da Encarnação,\ne pela sujeição de Jesus e de Sua Santíssima Mãe às vossas ordens.\n\nPor essa grande alegria e pelos méritos da tristeza que a precedeu,\nsuplico-vos que me alcanceis de Deus o conhecimento de Jesus Cristo\ne a graça de conservar uma fé tão viva em todos os seus mistérios. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 4 — Pai nutrício de Jesus em Belém", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nEsposo castíssimo da Mãe do Unigênito Filho de Deus,\nuno-me a vós na tristeza que experimentastes em Belém,\nquando vistes vossa venerada esposa Maria e o Salvador do mundo\ndesconhecidos e repelidos de todas as casas e pousadas.\n\nPermiti-me, gloriosíssimo e poderosíssimo santo,\nchegar aonde vós estais, perto de Jesus,\ncontemplar Sua santidade divina e esplendor.\n\nPedi a Jesus as graças que desejo conseguir nesta novena,\nse forem para maior glória de Deus e salvação de minha alma. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 5 — Que impôs o nome de Jesus", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nQue grande dor sofrestes, nosso querido São José,\nquando vistes derramar-se o preciosíssimo Sangue de Cristo na circuncisão!\n\nSão José, dai-me a conhecer o preço do Sangue de Jesus\npara que nunca deixe perder a menor gota.\n\nVossas mãos sagradas amparam Jesus, o Salvador do mundo!\nSão José, que alegria a vossa, quando destes ao Salvador\no nome de Jesus — a chave que nos abre a porta do céu!\n\nPelo nome adorável, Jesus,\npeço-vos as graças que desejo alcançar nesta novena,\nse forem para maior glória de Deus e para o bem de minha alma. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 6 — Consolador de Maria na Apresentação", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nÓ meu boníssimo São José, protetor e amparo dos desvalidos,\nconfraternizo-me convosco, pacienciosíssimo José,\npela ferida que em vosso coração fizeram as palavras do Santo Simeão,\ncom que anunciara a Maria que uma espada de dor haveria de\natravessar Seu delicado e amorosíssimo coração.\n\nEu, sim, posso e devo, com minha vida e bons costumes,\nconsolar a Maria, evitando e reparando os meus pecados.\n\nAjudai, José poderosíssimo, minha pobreza espiritual,\nalcançando-me de Nosso Senhor a graça de nunca ser,\npor minha culpa, causa das penas de Jesus e das dores de Maria. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 7 — Guardião da Sagrada Família no Egito", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nSão José, permiti que, em espírito,\neu vos acompanhe na viagem ao Egito\npara admirar vossos sacrifícios e imitar vossas virtudes.\n\nPeço-vos humildemente que tireis de mim\na sede dos prazeres mundanos\ne dai-me a fome e a sede de todas as virtudes,\nprincipalmente a humildade, a paciência e a mortificação.\n\nAssim como vos alegrastes com a queda dos ídolos do Egito,\nalegra-se meu coração com a queda\ndos ídolos das afeições desregradas e das paixões desordenadas. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 8 — Pai obediente no retorno de Nazaré", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nConfraternizo-me convosco, terníssimo José,\npor causa das privações a que vistes sujeita vossa amada família\nna terra de peregrinação.\n\nPela alegria imensa que inundou vosso coração\nquando Jesus, pela primeira vez, vos deu o doce nome de pai,\nsuplico-vos que me ensineis a obedecer aos meus superiores\ne a sofrer, com paciência e resignação,\nas provas que a Divina Providência se dignar enviar-me. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."},
+      {title:"Dia 9 — Que achou Jesus no Templo", oracao:"Oração preparatória (rezar todos os dias):\n\nDeus e Senhor meu, Uno e Trino, Pai, Filho e Espírito Santo,\ncreio que estou em Vossa soberana presença agora,\nquando pretendo consagrar a São José esta novena.\n\nAdoro-Vos com todo o meu coração,\nporque sois infinitamente bom e digno de ser amado sobre todas as coisas.\nArrependo-me dos muitos pecados que fiz contra Vossa Divina Majestade.\n\nQuero, nesta novena, aprender as virtudes que, com tanta perfeição,\npraticou o glorioso Patriarca São José e alcançar,\npor sua intercessão, as graças de que tanto preciso.\n\nVenho, portanto, com toda a confiança, implorar a divina clemência,\nnão fiado em minha fraqueza, mas no poder e valimento de São José. Amém.\n\nÓ José, chamado por Jesus com o nome de pai,\nque dor e tormento indizível seria para vosso coração\nter perdido Jesus, com o qual estavam todas as afeições de vossa vida!\n\nVós perdestes a Jesus, sem culpa vossa,\nmas eu perdi-O muitas vezes por culpa própria.\n\nFazei-me conhecer a Jesus e procurá-Lo com perseverança.\nConsiga-me a graça de que, de hoje em diante,\nnunca mais eu O perca pelo pecado.\n\nIntercedei para que eu esteja sempre em união com Jesus e Sua santa Igreja.\nConsegui que Jesus esteja sempre em meu coração,\ne que no futuro eu possa gozar de Sua visão e amizade no céu para sempre. Amém.\n\nOração final (rezar todos os dias):\n\nLembrai-vos, ó puríssimo Esposo da Virgem Maria,\nó meu doce Protetor São José,\nque jamais se ouviu dizer que alguém tivesse invocado vossa proteção,\nimplorando vosso socorro e não fosse por vós consolado.\n\nCom grande confiança, venho a vossa presença recomendar-me fervorosamente a vós.\nNão desprezeis as minhas súplicas, ó pai adotivo do Redentor,\nmas dignai-vos acolhê-la piedosamente. Assim seja.\n\nV. Rogai por nós, José santíssimo.\nR. Para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Jesus, que por uma inefável providência,\ndignastes-Vos escolher o bem-aventurado esposo de Vossa Mãe Santíssima;\nconcedei-nos que aquele mesmo que veneramos como protetor,\nmereçamos tê-lo no céu por nosso intercessor.\nVós que viveis e reinais por todos os séculos dos séculos. Amém.\n\nRezar 7 Pais-Nossos, 7 Ave-Marias e 7 Glórias ao Pai\nem honra das alegrias e dores do glorioso patriarca."}
+    ]
+  },
+  {
+    id:'josemaria', icon:'✨', title:'Novena do Trabalho — São Josemaria Escriva',
+    sub:'Fundador do Opus Dei · 9 dias antes de 26 de junho', color:'#b8830a',
+    intro:'Esta novena, composta com palavras do próprio São Josemaria Escriva, convida a santificar o trabalho profissional, oferecendo cada dia a Deus como caminho de salvacao e apostolado.',
+    days:[
+      {title:"Dia 1 — Trabalho, caminho e santidade", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nViemos chamar de novo a atencao para o exemplo de Jesus,\nque, durante trinta anos, permaneceu em Nazare trabalhando.\nNas maos de Jesus, o trabalho profissional\nconverte-se em tarefa divina, em trabalho redentor,\nem caminho de salvacao.\n\nAi onde estao os nossos irmaos, os homens,\nai onde estao as nossas aspiracoes, o nosso trabalho,\naos nossos amores, ai esta o lugar do nosso encontro cotidiano com Cristo.\nDeus nos espera a cada dia no trabalho.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a olhar para minha tarefa profissional\ncomo um caminho de santificacao e de servico aos outros,\nonde o meu Pai Deus me espera a toda a hora\ne me pede que imite Jesus quando trabalhava\ncomo carpinteiro em Nazare.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 2 — Trabalhar por amor a Deus", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nA dignidade do trabalho se baseia no Amor.\nO grande privilegio do homem e poder amar,\ntranscendendo assim o efemero e transitorio.\n\nFazei tudo por amor. Assim nao ha coisas pequenas: tudo e grande.\nA perseveranca nas pequenas coisas por amor e heroismo.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a compreender\nque o que da valor a qualquer trabalho honesto\ne o amor com que o fazemos:\nem primeiro lugar, amor a Deus, a quem oferecemos o trabalho;\ne amor ao proximo, a quem queremos servir e ser uteis.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 3 — Ordem e constancia no trabalho", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nComo e breve a duracao da nossa passagem pela Terra!\nNao e justo que malbaratemos o tempo.\nNao podemos desperdicar esta etapa do mundo\nque Deus confia a cada um de nos.\n\nQuando tiveres ordem, multiplicar-se-a o teu tempo\ne, portanto, poderas dar mais gloria a Deus,\ntrabalhando mais a seu servico.\n\n\u2014 Intencao \u2014\n\nPara que me esmere em aprimorar a virtude da ordem,\nde modo que consiga fazer tudo com pontualidade,\nintensidade e constancia, sem confusoes nem atrasos,\ndedicando de modo equilibrado os horarios convenientes a cada dever:\nvida espiritual, familia, profissao e relacoes sociais.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 4 — Trabalho bem acabado", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nNao podemos oferecer ao Senhor uma coisa que,\ndentro das pobres limitacoes humanas, nao seja perfeita,\nsem mancha, realizada com atencao ate nos minimos detalhes.\nDeus nao aceita trabalhos malfeitos.\n\nO trabalho de cada qual ha de ser uma oferenda digna\naos olhos do Criador: uma tarefa acabada, impecavel.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a colocar todo o empenho\nem realizar o meu trabalho com categoria,\ncom a maior perfeicao possivel,\nconvicto de que um trabalho mal feito nao pode ser santificado\npor lhe faltar amor, condicao imprescindivel\npara que qualquer atividade humana seja agradavel a Deus.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 5 — Todos os trabalhos honestos sao dignos", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nE hora de que todos nos, cristaos, anunciemos bem alto\nque o trabalho e um dom de Deus.\nO trabalho, todo trabalho,\ne testemunho da dignidade do homem.\n\nDiante de Deus, nenhuma ocupacao e em si grande ou pequena.\nTudo adquire o valor do Amor com que se realiza.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a nao desprezar nenhum trabalho honesto,\nmas realiza-lo com toda a responsabilidade,\nfazendo com que tenha a categoria\ndo trabalho que Jesus realizou na oficina de Nazare.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 6 — Trabalhar na companhia de Deus", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nDeves manter ao longo do dia uma constante conversa com o Senhor,\nque se alimente tambem das proprias incidencias da tua tarefa profissional.\n\nColoca na tua mesa de trabalho uma imagem de Nossa Senhora,\ne dirige-lhe o olhar ao comecares a tua tarefa,\nenquanto a realizas e ao termina-la.\nEla te alcancara a forca necessaria\npara fazeres da tua ocupacao um dialogo amoroso com Deus.\n\n\u2014 Intencao \u2014\n\nPara que Deus me faca compreender que Ele esta sempre ao meu lado\nenquanto estou trabalhando,\ne que eu me esforce em ter a presenca de Deus durante o trabalho,\nservindo-me discretamente de um pequeno crucifixo\nou de uma imagem de Nossa Senhora.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 7 — Amadurecer nas virtudes pelo trabalho", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nE toda uma trama de virtudes que se poe em jogo\nquando exercemos o nosso oficio com o proposito de sanifica-lo:\na fortaleza, para perseverarmos no trabalho;\na temperanca, para superarmos o comodismo e o egoismo;\na justica, para cumprirmos os nossos deveres;\na prudencia, para sabermos o que convem fazer.\nE tudo por Amor.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a desenvolver por meio do trabalho\nas virtudes cristas e a amadurecer espiritualmente.\nQue eu procure ser paciente e compreensivo,\nsimples e humilde, fugindo da vaidade e do exibicionismo;\nque eu faca tudo com pureza de coracao.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 8 — Trabalhar e servir os outros", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nAtraves dos vossos afazeres profissionais, realizados com responsabilidade,\nalem de vos sustentardes economicamente,\nprestais um servico diretissimo ao desenvolvimento da sociedade.\n\nQuando tiveres terminado o teu trabalho,\nfaz o do teu irmao, ajudando-o, por Cristo,\ncom tal delicadeza e naturalidade que nem mesmo o favorecido\nrepare que estas fazendo mais do que deves.\n\n\u2014 Intencao \u2014\n\nPara que Deus infunda na minha alma o desejo\nde fazer do meu trabalho nao uma atividade egoista,\nmas um servico aberto ao bem e a utilidade de muitos,\ncom a certeza de que esse ideal de servico aos outros\ndara um novo sentido, mais elevado e alegre, a minha vida.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."},
+      {title:"Dia 9 — Fazer apostolado com o trabalho", oracao:"\u2014 Reflexao de Sao Josemaria Escriva \u2014\n\nO trabalho profissional e tambem apostolado,\nocasiao de entrega aos outros homens;\no momento de lhes revelar Cristo e leva-los a Deus Pai.\n\nFaze a tua vida normal; trabalha onde estas,\nprocurando cumprir os deveres do teu estado.\nSe leal, compreensivo com os outros e exigente contigo mesmo.\nSe mortificado e alegre. Esse sera o teu apostolado.\n\n\u2014 Intencao \u2014\n\nPara que Deus me ajude a ver, no meu ambiente de trabalho,\num campo aberto para a missao apostolica\nque Deus confia a todos os batizados,\naproveitando as oportunidades para ajudar colegas e amigos\na descobrirem as maravilhas da fe crista.\n\n\u2014 Oracao a Sao Josemaria \u2014\n\nO Deus, que por mediacao da Santissima Virgem Maria\nconcedestes inumeras gracas a Sao Josemaria, sacerdote,\nescolhendo-o como instrumento fidelissimo para fundar o Opus Dei,\ncaminho de santificacao no trabalho profissional\ne no cumprimento dos deveres cotidianos do cristao,\nfazei com que eu saiba tambem converter todos os momentos,\namar e servir com alegria e simplicidade a Igreja,\no Romano Pontifice e as almas,\niluminando os caminhos da Terra\ncom o resplendor da fe e do amor.\nConcedei-me por intercessao de Sao Josemaria\no favor que vos peco.\nAssim seja.\n\nPai Nosso, Ave-Maria, Gloria."}
+    ]
+  },
+  {   id:'madreteresa', icon:'🤍', title:'Novena de Madre Teresa de Calcutá',
+    sub:'Apóstola dos pobres · 9 dias antes de 5 de setembro', color:'#b8830a',
+    intro:'Esta novena segue o método ensinado pela própria Madre Teresa: rezar a Memorare — a antiga oração à Virgem Maria — nove vezes seguidas, e uma décima vez como ação de graças. Simples, poderosa, confiante.',
+    days:[
+      {title:"Dia 1 — Pelas famílias", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelas famílias do mundo inteiro,\nespecialmente pelas que sofrem separação, pobreza e abandono.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 2 — Pelos pobres e abandonados", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelos mais pobres entre os pobres,\npelos abandonados, pelos esquecidos pela sociedade.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 3 — Pelos doentes e moribundos", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelos doentes que sofrem,\npelos que se encontram próximos da morte\ne precisam de misericórdia e paz.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 4 — Pelos missionários", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelos missionários em todo o mundo,\npelos que arriscam a vida para levar o Evangelho.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 5 — Pelas crianças", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelas crianças abandonadas,\npelos que não têm quem as ame e cuide.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 6 — Pela paz no mundo", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pela paz entre os povos e as nações,\npelo fim de toda guerra e violência.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 7 — Pelos pecadores", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pelos pecadores afastados de Deus,\npara que encontrem misericórdia e voltem ao Pai.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 8 — Pela nossa família", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: pela nossa própria família,\npelas pessoas mais queridas e pelas nossas intenções particulares.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."},
+      {title:"Dia 9 — Ação de graças", oracao:"Como rezar esta novena:\n1. Faça o sinal da cruz.\n2. Reze a oração abaixo nove vezes.\n3. Reze-a uma décima vez como ação de graças.\n4. Faça o sinal da cruz para encerrar.\n\nIntenção de hoje: agradecer a Deus por tudo o que recebemos,\ne pedir a Madre Teresa que interceda pelas nossas necessidades.\n\nLembrai-vos, ó piíssima Virgem Maria,\nque nunca se ouviu dizer que algum daqueles que recorrem à vossa proteção,\nimploram a vossa assistência e reclamam o vosso socorro,\nfosse por vós desamparado.\n\nAnimado, pois, com igual confiança,\na vós, Virgem entre todas singular, como a Mãe recorro,\nde vós me valho, e, gemendo sob o peso dos meus pecados,\nme prostro a vossos pés.\n\nNão desprezeis as minhas súplicas, ó Mãe do Verbo encarnado,\nmas dignai-vos de as ouvir propícia\ne de me alcançar o que vos rogo. Amém."}
+    ]
+  },
+  {
+    id:'natal', icon:'🌟', title:'Novena de Natal',
+    sub:'Natividade do Senhor · 16 a 24 de dezembro', color:'#b8830a',
+    intro:'Esta novena prepara o coracao para o Natal com meditacoes de Sao Leao Magno (461), um dos maiores papas da historia, cujos sermons sobre a Encarnacao sao joias da tradicao da Igreja.',
+    days:[
+      {title:"Dia 1 — Raiou o dia de uma redemcao nova", oracao:"\u2014 Antifona \u2014\n\nTocai a trombeta em Siao,\nque o dia do Senhor se aproxima!\nEis que Ele vem salvar-nos.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nCarissimos, deixemo-nos transportar de alegria\ne demos livre curso ao jubilo espiritual,\npois raiou para nos o dia de uma redemcao nova,\ndia longamente preparado, dia de felicidade eterna.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 2 — Permanecei firmes na fe", oracao:"\u2014 Antifona \u2014\n\nTodo monte e colina serao arrasados;\nVem, Senhor, e nao tardes!\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nCarissimos, animados da confianca que nasce de tao grande esperanca,\npermanecei firmes na fe sobre a qual fostes estabelecidos,\npara que o Tentador, de cujo dominio Cristo vos subtraiu,\nnao vos seduza novamente com algumas de suas ciladas.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 3 — Unidos a Cristo nascido em nossa carne", oracao:"\u2014 Antifona \u2014\n\nTende o espirito alerta;\no Senhor nosso Deus se aproxima.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nHonrai com uma obediencia santa e sincera\no misterio sagrado e divino da restauracao do genero humano.\nUni-vos a Cristo, nascido em nossa carne,\na fim de merecerdes ver reinando em Sua majestade\nesse mesmo Deus de gloria.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 4 — O Filho de Deus escolheu um dia para nascer", oracao:"\u2014 Antifona \u2014\n\nSabei que o reino de Deus esta proximo:\nsim, ele nao tarda.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nO Filho de Deus escolheu para Si um dia,\na fim de em prol da salvacao do mundo\nnele nascer da Bem-aventurada Virgem Maria,\nconservando intacto o pudor de Sua mae.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 5 — Verdadeiro homem e verdadeiro Deus", oracao:"\u2014 Antifona \u2014\n\nNao temais: dentro de quatro dias\nvira o Senhor.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nO admiravel parto da sagrada Virgem trouxe a luz uma Pessoa\nque, em Sua unicidade, era verdadeiramente humana e verdadeiramente divina.\nUm unico e mesmo Filho podera dizer-se,\nenquanto verdadeiro homem, menor que o Pai,\ne enquanto verdadeiro Deus, igual ao Pai.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 6 — Aquele a quem nao podiamos subir desceu ate nos", oracao:"\u2014 Antifona \u2014\n\nEis chegada a plenitude dos tempos:\nDeus envia o Seu Filho a Terra.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nPara sermos novamente chamados dos grilhoes originais\na eterna bem-aventuranca,\nAquele mesmo a quem nao podiamos subir desceu ate nos.\nEra necessario que uma natureza corrompida desde os primoridos\nrenascesse em novo inicio.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 7 — Somos membros de Cristo", oracao:"\u2014 Antifona \u2014\n\nEis que se cumpriram todas as coisas\nque o anjo anunciou a Virgem Maria.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nComo o Senhor se tornou carne nossa nascendo,\ntambem nos nos tornamos Seu Corpo renascendo.\nSomos membros de Cristo e templos do Espirito Santo,\ne e por isso que o Apostolo diz:\nGlorificai e trazei a Deus no vosso corpo.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 8 — Cristo veio curar toda enfermidade", oracao:"\u2014 Antifona \u2014\n\nHoje sabereis que o Senhor vira,\ne amanha vereis a Sua gloria.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nO Senhor Jesus Cristo veio para eliminar nossa corrupcao,\nnao para ser sua vitima;\npara trazer remedio aos nossos vicios, nao para ser sua presa.\nComo Ele trazia para nossos corpos humanos\na graca nova de uma pureza sem mancha,\nfoi necessario que Ele nascesse segundo um modo novo.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."},
+      {title:"Dia 9 — Hoje nasceu o nosso Salvador", oracao:"\u2014 Antifona \u2014\n\nO Anjo disse aos pastores:\nEu vos anuncio uma grande alegria.\nNasceu para vos o Salvador do mundo.\n\n\u2014 Oracao inicial \u2014\n\nSenhor, mostra o Teu poder e vem,\na fim de que sejamos protegidos\ncontra os perigos a que nossos pecados nos expoem.\nTu que, sendo Deus, vives e reinas com o Pai,\nna unidade do Espirito Santo,\npelos seculos dos seculos. Amen.\n\n3 Ave-Marias; 1 Pai-Nosso; 1 Gloria.\n\n\u2014 Meditacao de Sao Leao Magno \u2014\n\nHoje, amados filhos, nasceu o nosso Salvador. Alegremo-nos.\nNao pode haver tristeza no dia em que nasce a vida;\numa vida que, dissipando o temor da morte,\nenche-nos de alegria com a promessa da eternidade.\nNinguem esta excluido da participacao nesta felicidade.\nExulte o justo, porque se aproxima da vitoria;\nrejubile o pecador, porque lhe e oferecido o perdao;\nreanime-se o pagao, porque e chamado a vida.\n\n\u2014 Oracao final \u2014\n\nO Menino Jesus, a Vos recorro e Vos suplico,\npela intercessao de Vossa Mae Santissima:\nassisti-me nesta necessidade,\nporque creio firmemente que a Vossa divindade pode me socorrer!\nEspero com toda a confianca obter a Vossa santa graca.\nAmo-vos de todo o meu coracao\ne com todas as forcas de minha alma.\nProponho-me nao mais Vos ofender\ne a Vos me ofeco, dispondo-me a sofrer\nantes de fazer-vos sofrer.\nQuero de agora em diante Vos servir com toda a fidelidade,\ne, pelo Vosso Amor, o Menino Deus,\namarei o meu proximo como a mim mesmo.\nConcedei-me, principalmente, a graca de Vos possuir eternamente\nna companhia de Maria Santissima e de Sao Jose,\npara Vos adorar com todos os anjos na Corte Celestial. Amen."}
+    ]
+  }
+];
+
+const DIVERSAS = [
+  { id:'sim', icon:'🌍', title:'Oração do Missionário SIM', sub:'Sociedade Irmãos da Misericórdia',
+    body:`Senhor Jesus,
+em Tua presença, meu espírito transborda de uma alegria indescritível e incompreensível. Desejo ardentemente a glorificação e o culto à Tua misericórdia, que ultrapassa toda compreensão humana.
+
+Imploro, Senhor Jesus, que abençoe a todos aqueles que exaltam a Tua infinita misericórdia. Que mergulhes a mim, aos meus familiares e a todos os missionários da Sociedade Irmãos da Misericórdia em teu imenso amor.
+
+Enviai, generosamente, o Espírito Santo sobre as nossas misérias e completai a Tua obra onde nossas limitações não podem alcançar.
+
+Confiando plenamente em Ti, Senhor Jesus, em tuas mãos entregamos a nossa Comunidade SIM, a Santa Igreja Católica, juntamente com todos os nossos familiares, trabalhos, estudos e todos pelos quais intercedemos.
+
+Concede-nos o Espírito Santo com seus dons e carismas, para que possamos enfrentar com paciência e amor as adversidades da vida, sem jamais desanimar ou desistir de Te louvar e servir.
+
+Assim seja. Amém.` },
+  { id:'obras', icon:'🕊', title:'Oferecimento das Obras do Dia', sub:'Apostolado da Oração',
+    body:`Ó meu Deus, eu Vos ofereço todas as minhas orações, obras e sofrimentos deste dia, em união com o Santíssimo Sacrifício do Altar, para todas as intenções do Vosso Divino Coração: a conversão dos pecadores, a união dos cristãos, e as intenções do Santo Padre.
+
+Que tudo o que eu pensar, disser ou fizer hoje seja para Vossa maior glória e para o bem das almas.
+
+Amém.` },
+  { id:'abandono', icon:'🕯', title:'Oração de Abandono', sub:'São Charles de Foucauld',
+    body:`Meu Pai,
+eu me abandono a Vós,
+fazei de mim o que quiserdes.
+Qualquer que seja o que fizerdes de mim,
+eu Vos agradeço.
+
+Estou pronto para tudo, aceito tudo,
+contanto que a Vossa vontade se faça
+em mim e em todas as Vossas criaturas.
+
+Não desejo nada mais, meu Deus.
+
+Entrego minha alma em Vossas mãos,
+eu a dou a Vós, meu Deus,
+com todo o amor do meu coração,
+porque Vos amo,
+e é para mim uma necessidade de amor
+dar-me a Vós,
+entregar-me em Vossas mãos, sem medida,
+com uma confiança infinita,
+porque Vós sois meu Pai.
+
+Amém.` },
+  { id:'comunhao', icon:'✥', title:'Comunhão Espiritual', sub:'Santo Afonso Maria de Ligório',
+    body:`Meu Jesus, eu creio que estais presente no Santíssimo Sacramento do Altar. Amo-Vos sobre todas as coisas e desejo receber-Vos em minha alma.
+
+Já que agora não posso receber-Vos sacramentalmente, vinde ao menos espiritualmente ao meu coração.
+
+Como já chegastes, abraço-Vos e me uno totalmente a Vós; não permitais que eu me separe de Vós jamais.
+
+Amém.` },
+  { id:'estudos', icon:'📖', title:'Oração para os Estudos', sub:'Santo Tomás de Aquino',
+    body:`Ó Deus, princípio de toda a sabedoria, que iluminais com o Espírito Santo os que buscam a verdade,
+
+concedei-me, por intercessão de São Tomás de Aquino, agudeza para entender, capacidade para reter, método e faculdade para aprender, sutileza para interpretar, graça e abundância para falar.
+
+Dai-me acerto ao começar, direção ao progredir e perfeição ao concluir,
+
+Vós que sois Deus verdadeiro e Senhor nosso.
+
+Amém.` },
+];
+
+const EXAME_SECTIONS = [
+  { id:'deus', title:'Em relação a Deus', subtitle:'Como esteve minha vida de fé hoje?', questions:[
+    'Rezei hoje? Fui fiel à oração da manhã e da noite?',
+    'Tive momentos de oração espontânea, ou só na obrigação?',
+    'Profanei o nome de Deus, de Maria ou dos santos?',
+    'Guardei o domingo como dia do Senhor?',
+    'Confiei em Deus nas dificuldades, ou cedi à ansiedade?' ]},
+  { id:'conjuge', title:'Em relação ao cônjuge', subtitle:'Como fui esposo(a) hoje?', questions:[
+    'Tratei meu cônjuge com paciência, gentileza e respeito?',
+    'Fui generoso(a) no perdão ou guardei mágoa?',
+    'Demonstrei carinho e interesse genuíno pela vida dele(a)?',
+    'Falei mal do meu cônjuge para outros?',
+    'Rezamos juntos hoje?' ]},
+  { id:'familia', title:'Em relação à família', subtitle:'Como fui familiar hoje?', questions:[
+    'Dei atenção de qualidade aos filhos, ou estava distraído?',
+    'Fui justo e coerente na educação?',
+    'Honrei meus pais e parentes com respeito?',
+    'Fui exemplo de virtude cristã hoje?' ]},
+  { id:'trabalho', title:'Em relação ao trabalho', subtitle:'Como fui profissional hoje?', questions:[
+    'Fui honesto e íntegro em tudo o que fiz?',
+    'Trabalhei com diligência ou desperdicei tempo?',
+    'Tratei colegas com justiça e fraternidade?',
+    'Fui invejoso diante do sucesso alheio?' ]},
+  { id:'proximo', title:'Em relação ao próximo', subtitle:'Como amei o próximo hoje?', questions:[
+    'Vi alguém necessitado e passei indiferente?',
+    'Falei mal de alguém ou fofoquei?',
+    'Fui impaciente ou grosseiro com alguém?',
+    'Perdoei quem me ofendeu?' ]},
+  { id:'digital', title:'Em relação ao mundo digital', subtitle:'Como usei as redes hoje?', questions:[
+    'Consumi conteúdo que afastou minha mente de Deus?',
+    'Perdi horas preciosas em redes sociais?',
+    'Compartilhei conteúdo falso ou ofensivo?' ]},
+];
+
+/* ============ ESTADO / PERSISTENCIA ============ */
+const STORE_KEY = 'oel_state_v1';
+const SEED_KEY = 'oel_seeded_v1';
+
+function loadStore() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { checks:{}, customItems:{trabalho:[],oracao:[],estudos:[]}, weekAgenda:{}, calEvents:{} };
+}
+function saveStore() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch(e) {}
+}
+
+let store = loadStore();
+
+let state = {
+  tab: 'rotina',
+  rotinaCategory: 'trabalho',
+  addingFor: null,
+  draftText: '',
+  selectedDate: dateKey(new Date()),
+  isAddingTimeline: false,
+  draftTime: '',
+  draftLabel: '',
+  oracaoView: 'home',
+  misterioType: null,
+  novenaId: null,
+  novenaDay: 0,
+  diversaId: null,
+  exameOpen: 'deus',
+  ladainhaOpen: false,
+  consagracaoOpen: false,
+  calMonth: new Date().getMonth(),
+  calYear: new Date().getFullYear(),
+  isAddingCalEvent: false,
+  draftCalDate: '',
+  draftCalLabel: '',
+};
+
+function dateKey(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+/* seed de exemplo apenas na primeira vez */
+(function seed() {
+  if (localStorage.getItem(SEED_KEY)) return;
+  const today = dateKey(new Date());
+  store.weekAgenda[today] = [
+    { time:'07:00', label:'Missa', person:'Ambos' },
+    { time:'08:00', label:'Início do trabalho', person:'Mateus' },
+    { time:'12:30', label:'Almoço em família', person:'Ambos' },
+    { time:'15:00', label:'Hora da Misericórdia', person:'Ambos' },
+    { time:'19:00', label:'Treino', person:'Sofia' },
+    { time:'21:00', label:'Terço em família', person:'Ambos' },
+  ];
+  saveStore();
+  localStorage.setItem(SEED_KEY, '1');
+})();
+
+/* ============ NAV ============ */
+function setTab(tab) {
+  state.tab = tab;
+  state.oracaoView = 'home';
+  render();
+}
+
+/* ============ ROTINA: SEMANA / TIMELINE ============ */
+function getWeekDates(baseKey) {
+  const [y,m,d] = baseKey.split('-').map(Number);
+  const base = new Date(y, m-1, d);
+  const sunday = new Date(base);
+  sunday.setDate(base.getDate() - base.getDay());
+  const days = [];
+  for (let i=0;i<7;i++) {
+    const dt = new Date(sunday);
+    dt.setDate(sunday.getDate()+i);
+    days.push(dt);
+  }
+  return days;
+}
+
+function selectDay(key) {
+  state.selectedDate = key;
+  state.isAddingTimeline = false;
+  render();
+}
+
+function startAddTimeline() {
+  state.isAddingTimeline = true;
+  state.draftTime = '';
+  state.draftLabel = '';
+  render();
+}
+
+function confirmTimeline() {
+  const label = state.draftLabel.trim();
+  if (!label) { state.isAddingTimeline = false; render(); return; }
+  const time = state.draftTime.trim() || '--:--';
+  const key = state.selectedDate;
+  if (!store.weekAgenda[key]) store.weekAgenda[key] = [];
+  store.weekAgenda[key].push({ time, label, person:'Ambos' });
+  store.weekAgenda[key].sort((a,b)=>a.time.localeCompare(b.time));
+  state.isAddingTimeline = false;
+  saveStore();
+  render();
+}
+
+function deleteTimelineItem(key, idx) {
+  if (!store.weekAgenda[key]) return;
+  store.weekAgenda[key].splice(idx,1);
+  saveStore();
+  render();
+}
+
+function onDraftTimeInput(v){ state.draftTime = v; }
+function onDraftLabelInput(v){ state.draftLabel = v; }
+function onTimelineKey(e){ if (e.key==='Enter') confirmTimeline(); }
+
+/* ============ ROTINA: CATEGORIA / CHECKLIST ============ */
+function setRotinaCategory(id) {
+  state.rotinaCategory = id;
+  state.addingFor = null;
+  render();
+}
+function toggleCheck(id) {
+  store.checks[id] = !store.checks[id];
+  saveStore();
+  render();
+}
+function startAddItem(cat) {
+  state.addingFor = cat;
+  state.draftText = '';
+  render();
+}
+function onDraftItemInput(v) { state.draftText = v; }
+function onDraftItemKey(e) { if (e.key==='Enter') confirmAddItem(); }
+function confirmAddItem() {
+  const cat = state.addingFor;
+  const text = state.draftText.trim();
+  if (!cat || !text) { state.addingFor = null; render(); return; }
+  if (!store.customItems[cat]) store.customItems[cat] = [];
+  const id = 'custom-' + Date.now() + '-' + Math.floor(Math.random()*1000);
+  store.customItems[cat].push({ id, period:'Geral', text, person:'Ambos' });
+  state.addingFor = null;
+  saveStore();
+  render();
+}
+function deleteCustomItem(cat, id) {
+  store.customItems[cat] = (store.customItems[cat]||[]).filter(it => it.id !== id);
+  delete store.checks[id];
+  saveStore();
+  render();
+}
+
+/* ============ CALENDARIO ============ */
+function calMonthShift(dir) {
+  let m = state.calMonth + dir, y = state.calYear;
+  if (m < 0) { m = 11; y--; }
+  if (m > 11) { m = 0; y++; }
+  state.calMonth = m; state.calYear = y;
+  render();
+}
+function startAddCalEvent() {
+  state.isAddingCalEvent = true;
+  const t = new Date();
+  state.draftCalDate = dateKey(t);
+  state.draftCalLabel = '';
+  render();
+}
+function onCalDateInput(v){ state.draftCalDate = v; }
+function onCalLabelInput(v){ state.draftCalLabel = v; }
+function confirmCalEvent() {
+  const label = state.draftCalLabel.trim();
+  const key = state.draftCalDate;
+  if (!label || !key) { state.isAddingCalEvent = false; render(); return; }
+  if (!store.calEvents[key]) store.calEvents[key] = [];
+  store.calEvents[key].push({ label, person:'Ambos' });
+  state.isAddingCalEvent = false;
+  saveStore();
+  render();
+}
+function deleteCalEvent(key, idx) {
+  store.calEvents[key].splice(idx,1);
+  saveStore();
+  render();
+}
+
+/* ============ ORACAO ============ */
+function goOracao(view, extra) {
+  state.oracaoView = view;
+  if (extra) Object.assign(state, extra);
+  render();
+}
+function backToOracaoHome() { state.oracaoView = 'home'; render(); }
+function toggleExame(id) { state.exameOpen = (state.exameOpen === id ? null : id); render(); }
+function toggleLadainha() { state.ladainhaOpen = !state.ladainhaOpen; render(); }
+function toggleConsagracao() { state.consagracaoOpen = !state.consagracaoOpen; render(); }
+function setNovenaDay(i) { state.novenaDay = i; render(); }
+
+/* ============ RENDER ============ */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function render() {
+  document.getElementById('tab-rotina').classList.toggle('active', state.tab==='rotina');
+  document.getElementById('tab-calendario').classList.toggle('active', state.tab==='calendario');
+  document.getElementById('tab-oracao').classList.toggle('active', state.tab==='oracao');
+  document.getElementById('nav-rotina').classList.toggle('active', state.tab==='rotina');
+  document.getElementById('nav-calendario').classList.toggle('active', state.tab==='calendario');
+  document.getElementById('nav-oracao').classList.toggle('active', state.tab==='oracao');
+
+  if (state.tab === 'rotina') renderRotina();
+  if (state.tab === 'calendario') renderCalendario();
+  if (state.tab === 'oracao') renderOracao();
+}
+
+function renderRotina() {
+  const week = getWeekDates(state.selectedDate);
+  const strip = week.map(d => {
+    const key = dateKey(d);
+    const active = key === state.selectedDate;
+    return `<div class="week-day ${active?'active':''}" onclick="selectDay('${key}')">
+      <div class="wd-label">${WEEKDAY_LABELS[d.getDay()]}</div>
+      <div class="wd-date">${d.getDate()}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('week-strip').innerHTML = strip;
+
+  const items = store.weekAgenda[state.selectedDate] || [];
+  if (items.length === 0) {
+    document.getElementById('timeline').innerHTML = '';
+    document.getElementById('timeline-empty').innerHTML = '<div class="tl-empty">Nada agendado para este dia ainda.</div>';
+  } else {
+    document.getElementById('timeline-empty').innerHTML = '';
+    document.getElementById('timeline').innerHTML = items.map((ev, idx) => `
+      <div class="tl-row">
+        <div class="tl-time-col"><div class="tl-time">${esc(ev.time)}</div><div class="tl-line"></div></div>
+        <div class="tl-card-wrap">
+          <div class="tl-card">
+            <div class="tl-label">${esc(ev.label)}</div>
+            <div class="tl-person">${esc(ev.person)}</div>
+            <div class="tl-del" onclick="deleteTimelineItem('${state.selectedDate}', ${idx})">✕</div>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  if (state.isAddingTimeline) {
+    document.getElementById('timeline-form-wrap').innerHTML = `
+      <div class="inline-form">
+        <input class="f-time" placeholder="19:00" value="${esc(state.draftTime)}" oninput="onDraftTimeInput(this.value)" />
+        <input class="f-label" placeholder="Compromisso..." value="${esc(state.draftLabel)}" oninput="onDraftLabelInput(this.value)" onkeydown="onTimelineKey(event)" autofocus />
+        <div class="f-ok" onclick="confirmTimeline()">OK</div>
+      </div>`;
+  } else {
+    document.getElementById('timeline-form-wrap').innerHTML = `
+      <div class="dashed-btn" onclick="startAddTimeline()"><span class="plus">+</span> Adicionar a este dia</div>`;
+  }
+
+  document.getElementById('cat-pills').innerHTML = ROTINA_CATEGORIES.map(c => `
+    <div class="cat-pill ${c.id===state.rotinaCategory?'active':''}" onclick="setRotinaCategory('${c.id}')">${c.label}</div>
+  `).join('');
+
+  const allItems = [...(ROTINA_DATA[state.rotinaCategory]||[]), ...(store.customItems[state.rotinaCategory]||[])];
+  const periodOrder = ['Manhã','Tarde','Noite','Geral'];
+  const grouped = {};
+  allItems.forEach(it => { (grouped[it.period] = grouped[it.period]||[]).push(it); });
+  const total = allItems.length;
+  const done = allItems.filter(it => store.checks[it.id]).length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+
+  let html = `
+    <div class="progress-row"><div class="progress-label">${done} de ${total} concluídas</div><div class="progress-pct">${pct}%</div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+
+  periodOrder.filter(p => grouped[p]).forEach(p => {
+    html += `<div class="period-group"><div class="period-title">${p}</div><div class="item-list">`;
+    grouped[p].forEach(it => {
+      const checked = !!store.checks[it.id];
+      const isCustom = it.id.startsWith('custom-');
+      html += `
+        <div class="check-item">
+          <div class="check-box ${checked?'checked':''}" onclick="toggleCheck('${it.id}')">${checked?'<div class="mark">✓</div>':''}</div>
+          <div class="check-text ${checked?'done':''}">${esc(it.text)}</div>
+          <div class="check-person">${esc(it.person)}</div>
+          ${isCustom?`<button class="check-del" onclick="deleteCustomItem('${state.rotinaCategory}','${it.id}')">✕</button>`:''}
+        </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  if (state.addingFor === state.rotinaCategory) {
+    html += `
+      <div class="inline-form">
+        <input class="f-label" placeholder="Nova atividade..." value="${esc(state.draftText)}" oninput="onDraftItemInput(this.value)" onkeydown="onDraftItemKey(event)" autofocus />
+        <div class="f-ok" onclick="confirmAddItem()">OK</div>
+      </div>`;
+  } else {
+    html += `<div class="dashed-btn" onclick="startAddItem('${state.rotinaCategory}')"><span class="plus">+</span> Nova atividade</div>`;
+  }
+
+  document.getElementById('checklist').innerHTML = html;
+}
+
+function renderCalendario() {
+  const y = state.calYear, m = state.calMonth;
+  document.getElementById('cal-month').textContent = MONTH_LABELS[m] + ' ' + y;
+
+  const firstDay = new Date(y, m, 1);
+  const startOffset = firstDay.getDay();
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  const todayKey = dateKey(new Date());
+
+  let cells = '';
+  for (let i=0;i<startOffset;i++) cells += `<div class="cal-day" style="visibility:hidden;"></div>`;
+  for (let d=1; d<=daysInMonth; d++) {
+    const key = dateKey(new Date(y,m,d));
+    const isToday = key === todayKey;
+    const hasEvent = (store.calEvents[key]||[]).length > 0;
+    cells += `<div class="cal-day ${isToday?'today':''}" onclick="jumpToDayInRotina('${key}')">
+      <div>${d}</div>${hasEvent?'<div class="dot"></div>':''}
+    </div>`;
+  }
+  document.getElementById('cal-grid').innerHTML = cells;
+
+  const upcoming = [];
+  Object.keys(store.calEvents).sort().forEach(key => {
+    if (key < todayKey) return;
+    (store.calEvents[key]||[]).forEach((ev, idx) => upcoming.push({ key, idx, ...ev }));
+  });
+  upcoming.sort((a,b)=>a.key.localeCompare(b.key));
+
+  if (upcoming.length === 0) {
+    document.getElementById('upcoming-list').innerHTML = `<div class="tl-empty">Nenhum evento futuro cadastrado.</div>`;
+  } else {
+    document.getElementById('upcoming-list').innerHTML = upcoming.slice(0,8).map(ev => {
+      const [yy,mm,dd] = ev.key.split('-');
+      return `<div class="upcoming-item">
+        <div class="dot"></div>
+        <div style="flex:1;">
+          <div class="u-label">${esc(ev.label)}</div>
+          <div class="u-date">${dd}/${mm} · ${esc(ev.person)}</div>
+        </div>
+        <button class="u-del" onclick="deleteCalEvent('${ev.key}', ${ev.idx})">✕</button>
+      </div>`;
+    }).join('');
+  }
+
+  if (state.isAddingCalEvent) {
+    document.getElementById('cal-add-wrap').innerHTML = `
+      <div class="inline-form">
+        <input type="date" class="f-time" style="width:130px;" value="${esc(state.draftCalDate)}" oninput="onCalDateInput(this.value)" />
+        <input class="f-label" placeholder="Nome do evento..." value="${esc(state.draftCalLabel)}" oninput="onCalLabelInput(this.value)" />
+        <div class="f-ok" onclick="confirmCalEvent()">OK</div>
+      </div>`;
+  } else {
+    document.getElementById('cal-add-wrap').innerHTML = `<div class="dashed-btn" onclick="startAddCalEvent()"><span class="plus">+</span> Adicionar evento</div>`;
+  }
+}
+
+function jumpToDayInRotina(key) {
+  state.selectedDate = key;
+  setTab('rotina');
+}
+
+function renderOracao() {
+  const el = document.getElementById('oracao-content');
+  const v = state.oracaoView;
+
+  if (v === 'home') {
+    const cards = [
+      { id:'misterios', glyph:'✥', title:'Terço', subtitle:'Mistérios gozosos, dolorosos, gloriosos e luminosos', view:'misterios' },
+      { id:'misericordia', glyph:'♱', title:'Terço da Divina Misericórdia', subtitle:'Revelado a Santa Faustina', view:'misericordia' },
+      { id:'exame', glyph:'✎', title:'Exame de Consciência', subtitle:'6 pontos para revisar o dia', view:'exame' },
+      { id:'novena', glyph:'✧', title:'Quaresma de São Miguel', subtitle:'15 de agosto a 29 de setembro', view:'novena' },
+      { id:'novenas', glyph:'🕊', title:'Novenas', subtitle:'Espírito Santo, São José, Natal e mais', view:'novenas' },
+      { id:'diversas', glyph:'🕯', title:'Orações Diversas', subtitle:'Missionário SIM, Estudos, Abandono e mais', view:'diversas' },
+    ];
+    el.innerHTML = cards.map(c => `
+      <div class="oracao-card" onclick="goOracao('${c.view}')">
+        <div class="o-glyph">${c.glyph}</div>
+        <div style="flex:1;"><div class="o-title">${c.title}</div><div class="o-subtitle">${c.subtitle}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+    return;
+  }
+
+  let inner = `<div class="back-link" onclick="backToOracaoHome()"><span style="font-size:16px;">‹</span> Voltar</div>`;
+
+  if (v === 'misterios') {
+    inner += `<div class="oracao-h1">Mistérios do Terço</div><div style="margin-top:14px;">`;
+    inner += Object.keys(MISTERIOS).map(key => `
+      <div class="mist-item" onclick="goOracao('misterioDetail', {misterioType:'${key}'})">
+        <div class="m-title">${MISTERIOS[key].title}</div>
+        <div class="m-days">${MISTERIOS[key].days}</div>
+      </div>`).join('');
+    inner += `</div>`;
+  }
+  else if (v === 'misterioDetail') {
+    const mt = MISTERIOS[state.misterioType];
+    inner += `<div class="oracao-h1">${mt.title}</div><div class="oracao-sub">${mt.days}</div>`;
+    inner += mt.list.map((text,i) => `
+      <div class="mist-step"><div class="m-n">${i+1}</div><div class="m-text">${text}</div></div>`).join('');
+  }
+  else if (v === 'misericordia') {
+    inner += `
+      <div class="oracao-h1">Terço da Divina Misericórdia</div>
+      <div class="oracao-sub italic">Revelado a Santa Faustina · usar um terço normal</div>
+      <div class="prayer-block"><div class="p-label">Início</div><div class="p-text">Sinal da Cruz, Pai Nosso, Ave Maria, Credo.</div></div>
+      <div class="prayer-block"><div class="p-label">Nas contas grandes (Pai Nosso)</div><div class="p-text">Eterno Pai, eu Vos ofereço o Corpo e Sangue, Alma e Divindade do vosso muito amado Filho, Nosso Senhor Jesus Cristo, em expiação dos nossos pecados e dos pecados de todo o mundo.</div></div>
+      <div class="prayer-block"><div class="p-label">Nas contas pequenas (Ave Maria)</div><div class="p-text">Pela Sua dolorosa Paixão, tende misericórdia de nós e de todo o mundo.</div></div>
+      <div class="prayer-block"><div class="p-label">Ao final (3 vezes)</div><div class="p-text">Deus Santo, Deus Forte, Deus Imortal, tende piedade de nós e de todo o mundo.</div></div>
+      <div class="prayer-block navy"><div class="p-label">Oração final</div><div class="p-text">Ó Eterno Deus, cuja Misericórdia é infinita e cujo tesouro de compaixão não tem limites, olhai-nos propício e aumentai a vossa misericórdia para connosco, para que nos momentos difíceis não desesperemos, nem desanimemos, mas com grande confiança nos conformemos à vossa santa vontade, que é o Amor e a própria Misericórdia. Amém.</div></div>
+      <div class="prayer-center">✦ Jesus, eu confio em Vós ✦</div>`;
+  }
+  else if (v === 'exame') {
+    inner += `
+      <div class="oracao-h1">Exame de Consciência</div>
+      <div class="oracao-body">Reserve 10 minutos ao fim do dia. Coloque-se na presença de Deus e percorra cada ponto com calma, sem ansiedade, confiando no amor de Deus.</div>`;
+    EXAME_SECTIONS.forEach(sec => {
+      const open = state.exameOpen === sec.id;
+      inner += `
+        <div class="accordion">
+          <div class="accordion-head" onclick="toggleExame('${sec.id}')">
+            <div><div class="a-title">${sec.title}</div><div class="a-subtitle">${sec.subtitle}</div></div>
+            <div class="a-chevron">${open?'−':'+'}</div>
+          </div>
+          ${open?`<div class="accordion-body">${sec.questions.map((q,i)=>`<div class="accordion-q"><div class="q-n">${i+1}</div><div>${q}</div></div>`).join('')}</div>`:''}
+        </div>`;
+    });
+    inner += `<div class="prayer-block navy" style="margin-top:16px;"><div class="p-label">Ato de Contrição</div><div class="p-text">Meu Deus, eu me arrependo de coração de todos os meus pecados, porque pecando ofendi a Vós, que sois infinitamente bom, e prometo com o vosso auxílio não vos ofender mais. Tende misericórdia de mim, pecador. Amém.</div></div>`;
+  }
+  else if (v === 'diversas') {
+    inner += `<div class="oracao-h1">Orações Diversas</div><div class="novena-intro">Orações avulsas para diferentes momentos e intenções.</div>`;
+    inner += DIVERSAS.map(p => `
+      <div class="novena-item" onclick="goOracao('diversaDetail', {diversaId:'${p.id}'})">
+        <div class="n-icon">${p.icon}</div>
+        <div style="flex:1;"><div class="n-title">${p.title}</div><div class="n-sub">${p.sub}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+  }
+  else if (v === 'diversaDetail') {
+    const p = DIVERSAS.find(x => x.id === state.diversaId);
+    inner += `
+      <div class="oracao-h1">${p.icon} ${p.title}</div>
+      <div class="oracao-sub italic">${p.sub}</div>
+      <div class="prayer-block" style="margin-top:14px;"><div class="p-text">${esc(p.body).replace(/\n/g,'<br>')}</div></div>`;
+  }
+  else if (v === 'novenas') {
+    inner += `<div class="oracao-h1">Novenas</div><div class="novena-intro">Nove dias de oração preparando-se para uma festa ou intenção especial.</div>`;
+    inner += NOVENAS.map(n => `
+      <div class="novena-item" onclick="goOracao('novenaDetail', {novenaId:'${n.id}', novenaDay:0})">
+        <div class="n-icon">${n.icon}</div>
+        <div style="flex:1;"><div class="n-title">${n.title}</div><div class="n-sub">${n.sub}</div></div>
+        <div class="o-chevron">›</div>
+      </div>`).join('');
+  }
+  else if (v === 'novenaDetail') {
+    const n = NOVENAS.find(x => x.id === state.novenaId);
+    const day = n.days[state.novenaDay];
+    inner += `
+      <div class="oracao-h1">${n.icon} ${n.title}</div>
+      <div class="novena-intro">${n.intro}</div>
+      <div class="novena-day-tabs">
+        ${n.days.map((d,i) => `<div class="novena-day-btn ${i===state.novenaDay?'active':''}" onclick="setNovenaDay(${i})">${i+1}</div>`).join('')}
+      </div>
+      <div class="novena-text-card">
+        <div class="novena-text-title">${day.title}</div>
+        <div class="novena-text-body">${day.oracao.replace(/\n/g,'<br>')}</div>
+      </div>`;
+  }
+  else if (v === 'novena') {
+    inner += `
+      <div class="oracao-h1">Quaresma de São Miguel</div>
+      <div class="oracao-sub italic">15 de agosto a 29 de setembro</div>
+      <div class="oracao-body">Devoção iniciada por São Francisco de Assis, preparando-se para grandes festas com 40 dias de penitência e oração — da Assunção (15/08) aos Santos Arcanjos (29/09).</div>
+      <div class="prayer-block navy"><div class="p-label">Oração inicial · todos os dias</div><div class="p-text">São Miguel Arcanjo, defendei-nos no combate, sede o nosso refúgio contra as maldades e ciladas do demônio. Ordene-lhe Deus, instantemente o pedimos. E vós, príncipe da milícia celeste, precipitai ao inferno Satanás e os outros espíritos malignos que andam pelo mundo para perder as almas. Amém.</div></div>
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleLadainha()">
+          <div class="a-title">Ladainha de São Miguel</div><div class="a-chevron">${state.ladainhaOpen?'−':'+'}</div>
+        </div>
+        ${state.ladainhaOpen?`<div class="accordion-simple-body">Senhor, tende piedade de nós. Jesus Cristo, tende piedade de nós. Santa Maria, Rainha dos Anjos, rogai por nós. São Miguel, rogai por nós; cheio da graça de Deus; perfeito adorador do Verbo Divino; príncipe dos exércitos do Senhor; guardião do Paraíso; luz dos anjos; baluarte dos cristãos; nosso auxílio em todas as adversidades; consolador das almas do Purgatório; nosso advogado, rogai por nós. Oremos: Senhor Jesus, santificai-nos por uma bênção sempre nova e concedei-nos, pela intercessão de São Miguel, a sabedoria que nos ensina a ajuntar riquezas do céu. Amém.</div>`:''}
+      </div>
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleConsagracao()">
+          <div class="a-title">Consagração a São Miguel</div><div class="a-chevron">${state.consagracaoOpen?'−':'+'}</div>
+        </div>
+        ${state.consagracaoOpen?`<div class="accordion-simple-body">Ó Príncipe nobilíssimo dos Anjos, valoroso guerreiro do Altíssimo, a vós hoje me consagro, me dou e ofereço, e ponho-me a mim, à minha família e a tudo o que me pertence debaixo da vossa poderosíssima proteção. Defendei-me dos inimigos da alma, especialmente na hora da morte. São Miguel Arcanjo, defendei-nos no combate para que não pereçamos no supremo juízo. Amém.</div>`:''}
+      </div>`;
+  }
+
+  el.innerHTML = inner;
+}
+
+render();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
