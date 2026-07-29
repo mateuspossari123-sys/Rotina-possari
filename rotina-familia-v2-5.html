@@ -117,6 +117,11 @@
   .section-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-4); margin:16px 0 10px; }
 
   /* WEEK STRIP */
+  .week-nav-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .week-range { font-size:12px; font-weight:600; color:var(--text-3); text-transform:capitalize; }
+  .week-nav-btns { display:flex; gap:4px; color:var(--text-4); font-size:15px; }
+  .week-nav-btns span { cursor:pointer; padding:2px 8px; }
+  .week-strip-wrap { touch-action: pan-y; }
   .week-strip { display:flex; gap:6px; margin-bottom:18px; }
   .week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:9px 0; border-radius:12px; cursor:pointer; border:1px solid var(--border); background:var(--bg-surface); }
   .week-day .wd-label { font-size:10px; font-weight:600; letter-spacing:.04em; color:var(--text-3); }
@@ -262,7 +267,16 @@
       <div class="tab-view" id="tab-rotina">
         <div id="santo-do-dia"></div>
         <div class="section-label">Agenda da semana</div>
-        <div class="week-strip" id="week-strip"></div>
+        <div class="week-nav-row">
+          <div class="week-range" id="week-range"></div>
+          <div class="week-nav-btns">
+            <span onclick="shiftWeek(-1)">‹</span>
+            <span onclick="shiftWeek(1)">›</span>
+          </div>
+        </div>
+        <div class="week-strip-wrap" id="week-strip-wrap">
+          <div class="week-strip" id="week-strip"></div>
+        </div>
         <div class="timeline" id="timeline"></div>
         <div id="timeline-empty"></div>
         <div id="timeline-form-wrap"></div>
@@ -576,13 +590,23 @@ function loadStore() {
     const raw = localStorage.getItem(STORE_KEY);
     if (raw) return JSON.parse(raw);
   } catch(e) {}
-  return { checks:{}, customItems:{trabalho:[],oracao:[],estudos:[]}, weekAgenda:{}, calEvents:{} };
+  return { checks:{}, customItems:{}, weekAgenda:{}, calEvents:{} };
 }
 function saveStore() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch(e) {}
 }
 
 let store = loadStore();
+
+/* limpeza do formato antigo (itens não vinculados a um dia) */
+(function migrate() {
+  if (!store.customItems) { store.customItems = {}; return; }
+  let changed = false;
+  Object.keys(store.customItems).forEach(k => {
+    if (!k.includes('|')) { delete store.customItems[k]; changed = true; }
+  });
+  if (changed) saveStore();
+})();
 
 let state = {
   tab: 'rotina',
@@ -660,6 +684,28 @@ function selectDay(key) {
   render();
 }
 
+function shiftWeek(dir) {
+  const [y,m,d] = state.selectedDate.split('-').map(Number);
+  const dt = new Date(y, m-1, d);
+  dt.setDate(dt.getDate() + dir*7);
+  state.selectedDate = dateKey(dt);
+  state.isAddingTimeline = false;
+  render();
+}
+
+let weekTouchStartX = null;
+function initWeekSwipe() {
+  const wrap = document.getElementById('week-strip-wrap');
+  if (!wrap) return;
+  wrap.addEventListener('touchstart', e => { weekTouchStartX = e.touches[0].clientX; }, {passive:true});
+  wrap.addEventListener('touchend', e => {
+    if (weekTouchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - weekTouchStartX;
+    if (Math.abs(dx) > 40) shiftWeek(dx < 0 ? 1 : -1);
+    weekTouchStartX = null;
+  }, {passive:true});
+}
+
 function startAddTimeline() {
   state.isAddingTimeline = true;
   state.draftTime = '';
@@ -697,8 +743,12 @@ function setRotinaCategory(id) {
   state.addingFor = null;
   render();
 }
+/* a marcação é diária: cada dia guarda seu próprio progresso */
+function checkKey(id) { return state.selectedDate + '|' + id; }
+
 function toggleCheck(id) {
-  store.checks[id] = !store.checks[id];
+  const k = checkKey(id);
+  store.checks[k] = !store.checks[k];
   saveStore();
   render();
 }
@@ -709,20 +759,26 @@ function startAddItem(cat) {
 }
 function onDraftItemInput(v) { state.draftText = v; }
 function onDraftItemKey(e) { if (e.key==='Enter') confirmAddItem(); }
+/* itens adicionados valem só para o dia em que foram criados */
+function itemsKey(cat) { return state.selectedDate + '|' + cat; }
+function getCustomItems(cat) { return store.customItems[itemsKey(cat)] || []; }
+
 function confirmAddItem() {
   const cat = state.addingFor;
   const text = state.draftText.trim();
   if (!cat || !text) { state.addingFor = null; render(); return; }
-  if (!store.customItems[cat]) store.customItems[cat] = [];
+  const k = itemsKey(cat);
+  if (!store.customItems[k]) store.customItems[k] = [];
   const id = 'custom-' + Date.now() + '-' + Math.floor(Math.random()*1000);
-  store.customItems[cat].push({ id, period:'Geral', text, person:'Ambos' });
+  store.customItems[k].push({ id, period:'Geral', text });
   state.addingFor = null;
   saveStore();
   render();
 }
 function deleteCustomItem(cat, id) {
-  store.customItems[cat] = (store.customItems[cat]||[]).filter(it => it.id !== id);
-  delete store.checks[id];
+  const k = itemsKey(cat);
+  store.customItems[k] = (store.customItems[k]||[]).filter(it => it.id !== id);
+  Object.keys(store.checks).forEach(ck => { if (ck.endsWith('|' + id)) delete store.checks[ck]; });
   saveStore();
   render();
 }
@@ -838,14 +894,15 @@ const SANTOS_DO_DIA = {
 function renderSanto() {
   const el = document.getElementById('santo-do-dia');
   if (!el) return;
-  const now = new Date();
-  const key = String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  const [yy, mm, dd] = state.selectedDate.split('-');
+  const key = mm + '-' + dd;
   const nome = SANTOS_DO_DIA[key];
+  const isToday = state.selectedDate === dateKey(new Date());
   el.innerHTML = `
     <div class="santo-card">
       <div class="s-glyph">✦</div>
       <div class="s-text">
-        <div class="s-label">Santo do dia</div>
+        <div class="s-label">${isToday ? 'Santo do dia' : 'Santo de ' + dd + '/' + mm}</div>
         <div class="s-name">${nome ? esc(nome) : 'Comunhão dos Santos'}</div>
       </div>
     </div>`;
@@ -867,6 +924,11 @@ function render() {
 function renderRotina() {
   renderSanto();
   const week = getWeekDates(state.selectedDate);
+  const first = week[0], last = week[6];
+  const rangeLabel = (first.getMonth() === last.getMonth())
+    ? `${first.getDate()} a ${last.getDate()} de ${MONTH_LABELS[last.getMonth()]}`
+    : `${first.getDate()} de ${MONTH_LABELS[first.getMonth()]} a ${last.getDate()} de ${MONTH_LABELS[last.getMonth()]}`;
+  document.getElementById('week-range').innerHTML = rangeLabel;
   const strip = week.map(d => {
     const key = dateKey(d);
     const active = key === state.selectedDate;
@@ -911,22 +973,26 @@ function renderRotina() {
     <div class="cat-pill ${c.id===state.rotinaCategory?'active':''}" onclick="setRotinaCategory('${c.id}')">${c.label}</div>
   `).join('');
 
-  const allItems = [...(ROTINA_DATA[state.rotinaCategory]||[]), ...(store.customItems[state.rotinaCategory]||[])];
+  const allItems = [...(ROTINA_DATA[state.rotinaCategory]||[]), ...getCustomItems(state.rotinaCategory)];
   const periodOrder = ['Manhã','Tarde','Noite','Geral'];
   const grouped = {};
   allItems.forEach(it => { (grouped[it.period] = grouped[it.period]||[]).push(it); });
   const total = allItems.length;
-  const done = allItems.filter(it => store.checks[it.id]).length;
+  const done = allItems.filter(it => store.checks[checkKey(it.id)]).length;
   const pct = total ? Math.round((done/total)*100) : 0;
 
+  const isTodaySel = state.selectedDate === dateKey(new Date());
+  const [, selMM, selDD] = state.selectedDate.split('-');
+  const dayLabel = isTodaySel ? 'hoje' : selDD + '/' + selMM;
+
   let html = `
-    <div class="progress-row"><div class="progress-label">${done} de ${total} concluídas</div><div class="progress-pct">${pct}%</div></div>
+    <div class="progress-row"><div class="progress-label">${done} de ${total} concluídas · ${dayLabel}</div><div class="progress-pct">${pct}%</div></div>
     <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
 
   periodOrder.filter(p => grouped[p]).forEach(p => {
     html += `<div class="period-group"><div class="period-title">${p}</div><div class="item-list">`;
     grouped[p].forEach(it => {
-      const checked = !!store.checks[it.id];
+      const checked = !!store.checks[checkKey(it.id)];
       const isCustom = it.id.startsWith('custom-');
       html += `
         <div class="check-item">
@@ -1142,6 +1208,7 @@ function renderOracao() {
 }
 
 render();
+initWeekSwipe();
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
