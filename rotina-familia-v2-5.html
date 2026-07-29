@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Ora et Labora</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#223361">
@@ -14,164 +14,232 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg-page: oklch(0.965 0.006 75);
+    --bg-card: oklch(0.995 0.004 75);
+    --bg-surface: oklch(0.98 0.004 75);
+    --border: oklch(0.91 0.01 60);
+    --track-bg: oklch(0.92 0.01 60);
+    --border-faint: oklch(0.88 0.01 60);
+    --border-input: oklch(0.85 0.01 60);
+    --border-dashed: oklch(0.8 0.02 60);
+    --pill-bg: oklch(0.94 0.015 60);
+    --pill-active-bg: oklch(0.93 0.015 255);
+    --navy: oklch(0.26 0.06 255);
+    --gold-light: oklch(0.78 0.1 85);
+    --gold: oklch(0.82 0.09 85);
+    --gold-accent: oklch(0.74 0.11 85);
+    --gold-dot: oklch(0.72 0.1 85);
+    --gold-soft: oklch(0.86 0.07 85);
+    --gold-muted: oklch(0.68 0.07 85);
+    --text-1: oklch(0.22 0.02 40);
+    --text-2: oklch(0.3 0.02 40);
+    --text-3: oklch(0.5 0.02 40);
+    --text-4: oklch(0.6 0.02 40);
+    --shadow-color: oklch(0.3 0.02 40 / 0.35);
+  }
+  body.dark {
+    --bg-page: oklch(0.14 0.012 260);
+    --bg-card: oklch(0.185 0.014 260);
+    --bg-surface: oklch(0.22 0.015 260);
+    --border: oklch(0.32 0.02 260);
+    --track-bg: oklch(0.3 0.02 260);
+    --border-faint: oklch(0.3 0.02 260);
+    --border-input: oklch(0.36 0.02 260);
+    --border-dashed: oklch(0.4 0.02 260);
+    --pill-bg: oklch(0.27 0.025 260);
+    --pill-active-bg: oklch(0.26 0.045 255);
+    --text-1: oklch(0.94 0.01 90);
+    --text-2: oklch(0.86 0.01 90);
+    --text-3: oklch(0.72 0.015 90);
+    --text-4: oklch(0.6 0.015 90);
+    --shadow-color: oklch(0 0 0 / 0.5);
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: oklch(0.965 0.006 75); font-family: 'Work Sans', sans-serif; }
+  body { margin: 0; background: var(--bg-page); font-family: 'Work Sans', sans-serif; transition: background .2s; }
   ::-webkit-scrollbar { display: none; }
 
   .page {
     min-height: 100vh; width: 100%; display: flex; justify-content: center;
-    align-items: flex-start; padding: 32px 16px; background: oklch(0.965 0.006 75);
+    align-items: flex-start; padding: 32px 16px; background: var(--bg-page);
   }
   .card {
     width: 402px; max-width: 100%; min-height: 840px;
-    background: oklch(0.995 0.004 75); border-radius: 28px;
-    box-shadow: 0 24px 60px -20px oklch(0.3 0.02 40 / 0.35);
+    background: var(--bg-card); border-radius: 28px;
+    box-shadow: 0 24px 60px -20px var(--shadow-color);
     overflow: hidden; display: flex; flex-direction: column; position: relative;
+    transition: background .2s;
   }
+
+  /* Quando instalado como app (PWA em modo standalone), ocupar a tela inteira sem borda */
+  @media all and (display-mode: standalone) {
+    .page { padding: 0; align-items: stretch; }
+    .card {
+      width: 100%; min-height: 100vh; border-radius: 0; box-shadow: none;
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* BOTAO MODO ESCURO */
+  .dark-toggle {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+    border-radius: 50%; border: 1px solid oklch(0.6 0.03 85 / 0.4); background: oklch(1 0 0 / 0.08);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5;
+  }
+  .dark-toggle svg { width: 15px; height: 15px; stroke: var(--gold-muted); }
+
+  /* SANTO DO DIA */
+  .santo-card {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .santo-card .s-glyph { font-size: 15px; flex: 0 0 auto; color: var(--navy); }
+  .santo-card .s-text { flex: 1; min-width: 0; }
+  .santo-card .s-label { font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-4); }
+  .santo-card .s-name { font-size: 12.5px; font-weight: 600; color: var(--text-1); font-family: 'Source Serif 4', serif; }
 
   /* HEADER */
   .header {
     padding: 28px 24px 20px; text-align: center; position: relative;
-    background: oklch(0.26 0.06 255);
+    background: var(--navy);
   }
-  .header .glyph { font-family:'Source Serif 4',serif; font-size:15px; letter-spacing:.3em; color:oklch(0.74 0.11 85); margin:0 0 6px; }
-  .header .title { font-family:'Source Serif 4',serif; font-weight:600; font-size:26px; color:oklch(0.82 0.09 85); letter-spacing:.01em; }
-  .header .subtitle { font-family:'Source Serif 4',serif; font-style:italic; font-size:12.5px; color:oklch(0.68 0.07 85); margin-top:5px; letter-spacing:.02em; }
-  .header .rule { width:36px; height:2px; background:oklch(0.74 0.11 85); margin:14px auto 0; border-radius:2px; }
+  .header .glyph { font-family:'Source Serif 4',serif; font-size:15px; letter-spacing:.3em; color:var(--gold-accent); margin:0 0 6px; }
+  .header .title { font-family:'Source Serif 4',serif; font-weight:600; font-size:26px; color:var(--gold); letter-spacing:.01em; }
+  .header .subtitle { font-family:'Source Serif 4',serif; font-style:italic; font-size:12.5px; color:var(--gold-muted); margin-top:5px; letter-spacing:.02em; }
+  .header .rule { width:36px; height:2px; background:var(--gold-accent); margin:14px auto 0; border-radius:2px; }
 
   /* CONTENT */
   .content { flex:1; overflow-y:auto; padding:4px 20px 108px; }
   .tab-view { display:none; }
   .tab-view.active { display:block; }
 
-  .section-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin:16px 0 10px; }
+  .section-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-4); margin:16px 0 10px; }
 
   /* WEEK STRIP */
   .week-strip { display:flex; gap:6px; margin-bottom:18px; }
-  .week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:9px 0; border-radius:12px; cursor:pointer; border:1px solid oklch(0.91 0.01 60); background:oklch(0.98 0.004 75); }
-  .week-day .wd-label { font-size:10px; font-weight:600; letter-spacing:.04em; color:oklch(0.4 0.02 40); }
-  .week-day .wd-date { font-size:13px; font-weight:600; color:oklch(0.4 0.02 40); }
-  .week-day.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); }
-  .week-day.active .wd-label, .week-day.active .wd-date { color:oklch(0.82 0.09 85); }
+  .week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:9px 0; border-radius:12px; cursor:pointer; border:1px solid var(--border); background:var(--bg-surface); }
+  .week-day .wd-label { font-size:10px; font-weight:600; letter-spacing:.04em; color:var(--text-3); }
+  .week-day .wd-date { font-size:13px; font-weight:600; color:var(--text-3); }
+  .week-day.active { background:var(--navy); border-color:var(--navy); }
+  .week-day.active .wd-label, .week-day.active .wd-date { color:var(--gold); }
 
   /* TIMELINE */
   .timeline { display:flex; flex-direction:column; margin-bottom:14px; }
   .tl-row { display:flex; gap:14px; }
   .tl-time-col { display:flex; flex-direction:column; align-items:center; width:44px; flex:0 0 auto; }
-  .tl-time { font-size:12px; font-weight:600; color:oklch(0.26 0.06 255); padding-top:8px; }
-  .tl-line { width:1px; flex:1; background:oklch(0.88 0.01 60); margin-top:6px; }
+  .tl-time { font-size:12px; font-weight:600; color:var(--navy); padding-top:8px; }
+  .tl-line { width:1px; flex:1; background:var(--border-faint); margin-top:6px; }
   .tl-card-wrap { flex:1; padding:8px 14px 20px; margin-top:2px; }
-  .tl-card { padding:11px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:8px; position:relative; }
-  .tl-card .tl-label { font-size:13.5px; color:oklch(0.25 0.02 40); font-weight:500; }
-  .tl-card .tl-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; flex:0 0 auto; }
-  .tl-del { position:absolute; right:6px; top:-8px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); color:oklch(0.6 0.03 40); cursor:pointer; font-size:10px; padding:1px 5px; border-radius:8px; }
-  .tl-empty { font-size:12.5px; color:oklch(0.6 0.03 40); text-align:center; padding:6px 0 14px; }
+  .tl-card { padding:11px 14px; background:var(--bg-surface); border:1px solid var(--border); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:8px; position:relative; }
+  .tl-card .tl-label { font-size:13.5px; color:var(--text-1); font-weight:500; }
+  .tl-del { position:absolute; right:6px; top:-8px; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-4); cursor:pointer; font-size:10px; padding:1px 5px; border-radius:8px; }
+  .tl-empty { font-size:12.5px; color:var(--text-4); text-align:center; padding:6px 0 14px; }
 
-  .dashed-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1.5px dashed oklch(0.8 0.02 60); border-radius:14px; color:oklch(0.5 0.03 40); font-size:13.5px; font-weight:500; cursor:pointer; margin-bottom:20px; }
+  .dashed-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1.5px dashed var(--border-dashed); border-radius:14px; color:var(--text-3); font-size:13.5px; font-weight:500; cursor:pointer; margin-bottom:20px; }
   .dashed-btn .plus { font-size:16px; line-height:1; }
 
   .inline-form { display:flex; gap:8px; margin-bottom:20px; }
-  .inline-form input { font-family:'Work Sans',sans-serif; font-size:13.5px; outline:none; border-radius:12px; border:1px solid oklch(0.85 0.01 60); padding:11px 14px; }
-  .inline-form .f-time { width:70px; text-align:center; padding:11px 10px; }
+  .inline-form input { font-family:'Work Sans',sans-serif; font-size:13.5px; outline:none; border-radius:12px; border:1px solid var(--border-input); padding:11px 14px; background:var(--bg-card); color:var(--text-1); }
+  .inline-form .f-time { width:98px; text-align:center; padding:11px 8px; }
   .inline-form .f-label { flex:1; }
-  .inline-form .f-ok { padding:11px 16px; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); border-radius:12px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; }
+  .inline-form .f-ok { padding:11px 16px; background:var(--navy); color:var(--gold-light); border-radius:12px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; }
 
   /* CATEGORY PILLS */
   .cat-pills { display:flex; gap:8px; margin-bottom:16px; }
-  .cat-pill { flex:0 0 auto; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); font-size:13px; font-weight:500; color:oklch(0.5 0.03 40); }
-  .cat-pill.active { background:oklch(0.93 0.015 255); border-color:oklch(0.26 0.06 255); color:oklch(0.26 0.06 255); }
+  .cat-pill { flex:0 0 auto; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap; border:1px solid var(--border); background:var(--bg-surface); font-size:13px; font-weight:500; color:var(--text-3); }
+  .cat-pill.active { background:var(--pill-active-bg); border-color:var(--navy); color:var(--navy); }
 
   /* CHECKLIST */
   .progress-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
-  .progress-label { font-size:12.5px; color:oklch(0.5 0.02 40); font-weight:500; }
-  .progress-pct { font-size:12.5px; color:oklch(0.26 0.06 255); font-weight:600; }
-  .progress-track { width:100%; height:6px; background:oklch(0.92 0.01 60); border-radius:4px; margin-bottom:22px; overflow:hidden; }
-  .progress-fill { height:100%; background:oklch(0.26 0.06 255); border-radius:4px; transition:width .25s; }
+  .progress-label { font-size:12.5px; color:var(--text-3); font-weight:500; }
+  .progress-pct { font-size:12.5px; color:var(--navy); font-weight:600; }
+  .progress-track { width:100%; height:6px; background:var(--track-bg); border-radius:4px; margin-bottom:22px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--navy); border-radius:4px; transition:width .25s; }
   .period-group { margin-bottom:20px; }
-  .period-title { font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:oklch(0.6 0.03 40); margin-bottom:8px; }
+  .period-title { font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-4); margin-bottom:8px; }
   .item-list { display:flex; flex-direction:column; gap:8px; }
-  .check-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
-  .check-box { width:22px; height:22px; flex:0 0 auto; border-radius:7px; border:1.5px solid oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; cursor:pointer; }
-  .check-box.checked { background:oklch(0.26 0.06 255); }
-  .check-box .mark { color:oklch(0.78 0.1 85); font-size:13px; font-weight:700; }
-  .check-text { flex:1; font-size:14px; color:oklch(0.25 0.02 40); }
-  .check-text.done { color:oklch(0.6 0.02 40); text-decoration:line-through; }
-  .check-person { font-size:10.5px; font-weight:600; color:oklch(0.55 0.03 40); background:oklch(0.94 0.015 60); padding:3px 8px; border-radius:8px; }
-  .check-del { background:none; border:none; color:oklch(0.7 0.02 40); cursor:pointer; font-size:12px; padding:2px 4px; }
+  .check-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; }
+  .check-box { width:22px; height:22px; flex:0 0 auto; border-radius:7px; border:1.5px solid var(--navy); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .check-box.checked { background:var(--navy); }
+  .check-box .mark { color:var(--gold-light); font-size:13px; font-weight:700; }
+  .check-text { flex:1; font-size:14px; color:var(--text-1); }
+  .check-text.done { color:var(--text-4); text-decoration:line-through; }
+  .check-del { background:none; border:none; color:var(--text-4); cursor:pointer; font-size:12px; padding:2px 4px; }
 
   /* CALENDARIO */
   .cal-header { display:flex; align-items:center; justify-content:space-between; margin:16px 0 16px; }
-  .cal-month { font-size:16px; font-weight:600; font-family:'Source Serif 4',serif; color:oklch(0.22 0.02 40); text-transform:capitalize; }
-  .cal-nav { display:flex; gap:6px; color:oklch(0.5 0.02 40); font-size:15px; }
+  .cal-month { font-size:16px; font-weight:600; font-family:'Source Serif 4',serif; color:var(--text-1); text-transform:capitalize; }
+  .cal-nav { display:flex; gap:6px; color:var(--text-3); font-size:15px; }
   .cal-nav span { cursor:pointer; padding:4px 8px; }
   .cal-weekdays, .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
   .cal-weekdays { margin-bottom:6px; }
-  .cal-weekdays div { text-align:center; font-size:10.5px; font-weight:600; color:oklch(0.6 0.02 40); padding:4px 0; }
+  .cal-weekdays div { text-align:center; font-size:10.5px; font-weight:600; color:var(--text-4); padding:4px 0; }
   .cal-grid { margin-bottom:24px; }
-  .cal-day { aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:10px; font-size:12.5px; cursor:pointer; color:oklch(0.3 0.02 40); font-weight:500; background:transparent; }
-  .cal-day.today { background:oklch(0.26 0.06 255); color:oklch(0.995 0.004 75); font-weight:700; }
-  .cal-day .dot { width:4px; height:4px; border-radius:50%; background:oklch(0.72 0.1 85); margin-top:2px; }
-  .cal-day.today .dot { background:oklch(0.78 0.1 85); }
-  .upcoming-item { display:flex; align-items:center; gap:12px; padding:13px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:10px; position:relative; }
-  .upcoming-item .dot { width:8px; height:8px; border-radius:50%; background:oklch(0.26 0.06 255); flex:0 0 auto; }
-  .upcoming-item .u-label { font-size:13.5px; color:oklch(0.22 0.02 40); font-weight:500; }
-  .upcoming-item .u-date { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
-  .upcoming-item .u-del { position:absolute; right:10px; top:10px; background:none; border:none; color:oklch(0.65 0.02 40); cursor:pointer; font-size:11px; }
+  .cal-day { aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:10px; font-size:12.5px; cursor:pointer; color:var(--text-2); font-weight:500; background:transparent; }
+  .cal-day.today { background:var(--navy); color:var(--bg-card); font-weight:700; }
+  .cal-day .dot { width:4px; height:4px; border-radius:50%; background:var(--gold-dot); margin-top:2px; }
+  .cal-day.today .dot { background:var(--gold-light); }
+  .upcoming-item { display:flex; align-items:center; gap:12px; padding:13px 14px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; margin-bottom:10px; position:relative; }
+  .upcoming-item .dot { width:8px; height:8px; border-radius:50%; background:var(--navy); flex:0 0 auto; }
+  .upcoming-item .u-label { font-size:13.5px; color:var(--text-1); font-weight:500; }
+  .upcoming-item .u-date { font-size:11.5px; color:var(--text-4); margin-top:2px; }
+  .upcoming-item .u-del { position:absolute; right:10px; top:10px; background:none; border:none; color:var(--text-4); cursor:pointer; font-size:11px; }
 
   /* ORACAO */
-  .oracao-card { display:flex; align-items:center; gap:14px; padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:16px; cursor:pointer; margin-bottom:10px; }
-  .oracao-card .o-glyph { width:38px; height:38px; border-radius:50%; background:oklch(0.26 0.06 255); display:flex; align-items:center; justify-content:center; color:oklch(0.78 0.1 85); font-family:'Source Serif 4',serif; font-size:17px; flex:0 0 auto; }
-  .oracao-card .o-title { font-size:14.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
-  .oracao-card .o-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
-  .oracao-card .o-chevron { color:oklch(0.65 0.02 40); font-size:15px; }
+  .oracao-card { display:flex; align-items:center; gap:14px; padding:16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:16px; cursor:pointer; margin-bottom:10px; }
+  .oracao-card .o-glyph { width:38px; height:38px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center; color:var(--gold-light); font-family:'Source Serif 4',serif; font-size:17px; flex:0 0 auto; }
+  .oracao-card .o-title { font-size:14.5px; font-weight:600; color:var(--text-1); font-family:'Source Serif 4',serif; }
+  .oracao-card .o-subtitle { font-size:12px; color:var(--text-4); margin-top:2px; }
+  .oracao-card .o-chevron { color:var(--text-4); font-size:15px; }
 
-  .back-link { display:flex; align-items:center; gap:6px; color:oklch(0.26 0.06 255); font-size:13px; font-weight:600; cursor:pointer; margin:10px 0 16px; }
-  .oracao-h1 { font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:2px; }
-  .oracao-sub { font-size:12.5px; color:oklch(0.55 0.03 40); margin-bottom:16px; }
+  .back-link { display:flex; align-items:center; gap:6px; color:var(--navy); font-size:13px; font-weight:600; cursor:pointer; margin:10px 0 16px; }
+  .oracao-h1 { font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; color:var(--text-1); margin-bottom:2px; }
+  .oracao-sub { font-size:12.5px; color:var(--text-4); margin-bottom:16px; }
   .oracao-sub.italic { font-style:italic; }
-  .oracao-body { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; margin-bottom:16px; }
+  .oracao-body { font-size:13.5px; color:var(--text-2); line-height:1.6; margin-bottom:16px; }
 
-  .mist-item { padding:15px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
-  .mist-item .m-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
-  .mist-item .m-days { font-size:12px; color:oklch(0.55 0.03 40); margin-top:3px; }
-  .mist-step { display:flex; gap:12px; align-items:center; padding:12px 14px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:12px; margin-bottom:8px; }
-  .mist-step .m-n { width:24px; height:24px; border-radius:50%; background:oklch(0.26 0.06 255); color:oklch(0.78 0.1 85); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
-  .mist-step .m-text { font-size:13.5px; color:oklch(0.3 0.02 40); }
+  .mist-item { padding:15px 16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .mist-item .m-title { font-size:14px; font-weight:600; color:var(--text-1); font-family:'Source Serif 4',serif; }
+  .mist-item .m-days { font-size:12px; color:var(--text-4); margin-top:3px; }
+  .mist-step { display:flex; gap:12px; align-items:center; padding:12px 14px; background:var(--bg-surface); border:1px solid var(--border); border-radius:12px; margin-bottom:8px; }
+  .mist-step .m-n { width:24px; height:24px; border-radius:50%; background:var(--navy); color:var(--gold-light); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .mist-step .m-text { font-size:13.5px; color:var(--text-2); }
 
-  .prayer-block { padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; margin-bottom:14px; }
-  .prayer-block.navy { background:oklch(0.26 0.06 255); border:none; }
-  .prayer-block .p-label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:oklch(0.26 0.06 255); margin-bottom:6px; }
-  .prayer-block.navy .p-label { color:oklch(0.74 0.11 85); }
-  .prayer-block .p-text { font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.6; }
-  .prayer-block.navy .p-text { color:oklch(0.86 0.07 85); }
-  .prayer-center { text-align:center; font-size:12.5px; font-style:italic; color:oklch(0.55 0.03 40); padding:6px 0; }
+  .prayer-block { padding:14px 16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; margin-bottom:14px; }
+  .prayer-block.navy { background:var(--navy); border:none; }
+  .prayer-block .p-label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); margin-bottom:6px; }
+  .prayer-block.navy .p-label { color:var(--gold-accent); }
+  .prayer-block .p-text { font-size:13.5px; color:var(--text-2); line-height:1.6; }
+  .prayer-block.navy .p-text { color:var(--gold-soft); }
+  .prayer-center { text-align:center; font-size:12.5px; font-style:italic; color:var(--text-4); padding:6px 0; }
 
-  .accordion { border:1px solid oklch(0.91 0.01 60); border-radius:14px; overflow:hidden; background:oklch(0.98 0.004 75); margin-bottom:8px; }
+  .accordion { border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--bg-surface); margin-bottom:8px; }
   .accordion-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px; cursor:pointer; }
-  .accordion-head .a-title { font-size:14px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
-  .accordion-head .a-subtitle { font-size:12px; color:oklch(0.55 0.03 40); margin-top:2px; }
-  .accordion-head .a-chevron { color:oklch(0.55 0.02 40); font-size:14px; }
+  .accordion-head .a-title { font-size:14px; font-weight:600; color:var(--text-1); font-family:'Source Serif 4',serif; }
+  .accordion-head .a-subtitle { font-size:12px; color:var(--text-4); margin-top:2px; }
+  .accordion-head .a-chevron { color:var(--text-4); font-size:14px; }
   .accordion-body { padding:0 16px 16px; display:flex; flex-direction:column; gap:10px; }
-  .accordion-q { display:flex; gap:8px; font-size:13.5px; color:oklch(0.3 0.02 40); line-height:1.55; }
-  .accordion-q .q-n { color:oklch(0.26 0.06 255); font-weight:700; flex:0 0 auto; }
-  .accordion-simple-body { padding:0 16px 16px; font-size:13px; color:oklch(0.3 0.02 40); line-height:1.7; }
+  .accordion-q { display:flex; gap:8px; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .accordion-q .q-n { color:var(--navy); font-weight:700; flex:0 0 auto; }
+  .accordion-simple-body { padding:0 16px 16px; font-size:13px; color:var(--text-2); line-height:1.7; }
 
-  .novena-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; cursor:pointer; margin-bottom:10px; }
-  .novena-item .n-icon { width:36px; height:36px; border-radius:50%; background:oklch(0.93 0.015 255); display:flex; align-items:center; justify-content:center; font-size:16px; flex:0 0 auto; }
-  .novena-item .n-title { font-size:13.5px; font-weight:600; color:oklch(0.22 0.02 40); font-family:'Source Serif 4',serif; }
-  .novena-item .n-sub { font-size:11.5px; color:oklch(0.55 0.03 40); margin-top:2px; }
-  .novena-intro { font-size:12.5px; color:oklch(0.55 0.03 40); line-height:1.6; margin-bottom:16px; }
+  .novena-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; cursor:pointer; margin-bottom:10px; }
+  .novena-item .n-icon { width:36px; height:36px; border-radius:50%; background:var(--pill-active-bg); display:flex; align-items:center; justify-content:center; font-size:16px; flex:0 0 auto; }
+  .novena-item .n-title { font-size:13.5px; font-weight:600; color:var(--text-1); font-family:'Source Serif 4',serif; }
+  .novena-item .n-sub { font-size:11.5px; color:var(--text-4); margin-top:2px; }
+  .novena-intro { font-size:12.5px; color:var(--text-4); line-height:1.6; margin-bottom:16px; }
   .novena-day-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
-  .novena-day-btn { width:32px; height:32px; border-radius:50%; border:1px solid oklch(0.9 0.01 60); background:oklch(0.98 0.004 75); color:oklch(0.4 0.02 40); font-size:12.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Work Sans',sans-serif; }
-  .novena-day-btn.active { background:oklch(0.26 0.06 255); border-color:oklch(0.26 0.06 255); color:oklch(0.82 0.09 85); }
-  .novena-text-card { padding:16px; background:oklch(0.98 0.004 75); border:1px solid oklch(0.91 0.01 60); border-radius:14px; }
-  .novena-text-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:oklch(0.22 0.02 40); margin-bottom:10px; }
-  .novena-text-body { font-size:13px; color:oklch(0.3 0.02 40); line-height:1.75; white-space:normal; }
+  .novena-day-btn { width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:var(--bg-surface); color:var(--text-3); font-size:12.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Work Sans',sans-serif; }
+  .novena-day-btn.active { background:var(--navy); border-color:var(--navy); color:var(--gold); }
+  .novena-text-card { padding:16px; background:var(--bg-surface); border:1px solid var(--border); border-radius:14px; }
+  .novena-text-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:var(--text-1); margin-bottom:10px; }
+  .novena-text-body { font-size:13px; color:var(--text-2); line-height:1.75; white-space:normal; }
 
   /* BOTTOM NAV */
-  .bottom-nav { position:absolute; bottom:0; left:0; right:0; display:flex; background:oklch(0.995 0.004 75); border-top:1px solid oklch(0.91 0.01 60); padding:10px 12px 16px; }
-  .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; padding:4px 0; color:oklch(0.6 0.02 40); background:none; border:none; font-family:'Work Sans',sans-serif; }
-  .nav-btn.active { color:oklch(0.26 0.06 255); }
+  .bottom-nav { position:absolute; bottom:0; left:0; right:0; display:flex; background:var(--bg-card); border-top:1px solid var(--border); padding:10px 12px 16px; }
+  .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; padding:4px 0; color:var(--text-4); background:none; border:none; font-family:'Work Sans',sans-serif; }
+  .nav-btn.active { color:var(--navy); }
   .nav-btn .n-label { font-size:10.5px; font-weight:600; }
 </style>
 </head>
@@ -181,6 +249,7 @@
   <div class="card">
 
     <div class="header">
+      <div class="dark-toggle" id="dark-toggle" onclick="toggleDark()"></div>
       <div class="glyph">✦</div>
       <div class="title">Ora et Labora</div>
       <div class="subtitle">Christo nihil praeponere</div>
@@ -191,6 +260,7 @@
 
       <!-- ROTINA -->
       <div class="tab-view" id="tab-rotina">
+        <div id="santo-do-dia"></div>
         <div class="section-label">Agenda da semana</div>
         <div class="week-strip" id="week-strip"></div>
         <div class="timeline" id="timeline"></div>
@@ -247,27 +317,19 @@
 <script>
 /* ============ DADOS FIXOS ============ */
 const ROTINA_DATA = {
-  trabalho: [
-    { id: 'trab-1', period: 'Manhã', text: 'Revisar e-mails e agenda', person: 'Mateus' },
-    { id: 'trab-2', period: 'Manhã', text: 'Responder e-mails pendentes', person: 'Mateus' },
-    { id: 'trab-3', period: 'Tarde', text: 'Bloco de trabalho focado', person: 'Ambos' },
-    { id: 'trab-4', period: 'Noite', text: 'Planejar o dia seguinte', person: 'Mateus' },
-  ],
+  trabalho: [],
   oracao: [
-    { id: 'ora-1', period: 'Manhã', text: 'Oferecimento da manhã', person: 'Ambos' },
-    { id: 'ora-2', period: 'Tarde', text: 'Terço', person: 'Ambos' },
-    { id: 'ora-3', period: 'Noite', text: 'Exame de consciência', person: 'Ambos' },
+    { id: 'ora-1', period: 'Manhã', text: 'Oração pessoal', person: 'Ambos' },
+    { id: 'ora-2', period: 'Manhã', text: 'Oração Missionário SIM', person: 'Ambos' },
+    { id: 'ora-3', period: 'Noite', text: 'Terço', person: 'Ambos' },
+    { id: 'ora-4', period: 'Noite', text: 'Lição Santificai-vos', person: 'Ambos' },
   ],
-  estudos: [
-    { id: 'est-1', period: 'Manhã', text: 'Leitura de teologia (30min)', person: 'Sofia' },
-    { id: 'est-2', period: 'Tarde', text: 'Curso online', person: 'Sofia' },
-    { id: 'est-3', period: 'Noite', text: 'Revisão do dia de estudos', person: 'Ambos' },
-  ],
+  estudos: [],
 };
 const ROTINA_CATEGORIES = [
   { id: 'trabalho', label: 'Trabalho' },
   { id: 'oracao', label: 'Oração' },
-  { id: 'estudos', label: 'Estudos' },
+  { id: 'estudos', label: 'Diversos' },
 ];
 const WEEKDAY_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 const MONTH_LABELS = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
@@ -550,21 +612,25 @@ function dateKey(d) {
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
 
-/* seed de exemplo apenas na primeira vez */
-(function seed() {
-  if (localStorage.getItem(SEED_KEY)) return;
-  const today = dateKey(new Date());
-  store.weekAgenda[today] = [
-    { time:'07:00', label:'Missa', person:'Ambos' },
-    { time:'08:00', label:'Início do trabalho', person:'Mateus' },
-    { time:'12:30', label:'Almoço em família', person:'Ambos' },
-    { time:'15:00', label:'Hora da Misericórdia', person:'Ambos' },
-    { time:'19:00', label:'Treino', person:'Sofia' },
-    { time:'21:00', label:'Terço em família', person:'Ambos' },
-  ];
-  saveStore();
-  localStorage.setItem(SEED_KEY, '1');
-})();
+/* nenhum compromisso pré-pronto: a agenda começa vazia e é preenchida pelo usuário */
+
+/* ============ MODO ESCURO ============ */
+const DARK_KEY = 'oel_dark_v1';
+function applyDark(on) {
+  document.body.classList.toggle('dark', on);
+  const el = document.getElementById('dark-toggle');
+  if (el) {
+    el.innerHTML = on
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.5A9 9 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5z"></path></svg>';
+  }
+}
+function toggleDark() {
+  const on = !document.body.classList.contains('dark');
+  try { localStorage.setItem(DARK_KEY, on ? '1' : '0'); } catch(e) {}
+  applyDark(on);
+}
+applyDark(localStorage.getItem(DARK_KEY) === '1');
 
 /* ============ NAV ============ */
 function setTab(tab) {
@@ -711,6 +777,80 @@ function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+const SANTOS_DO_DIA = {
+  '01-01':'Santa Maria, Mãe de Deus','01-02':'São Basílio Magno e São Gregório Nazianzeno','01-04':'Santa Isabel Ana Seton',
+  '01-06':'Epifania do Senhor','01-13':'Santo Hilário de Poitiers','01-17':'Santo Antão, Abade','01-20':'São Sebastião',
+  '01-21':'Santa Inês','01-24':'São Francisco de Sales','01-25':'Conversão de São Paulo','01-26':'Santos Timóteo e Tito',
+  '01-28':'São Tomás de Aquino','01-31':'São João Bosco',
+  '02-02':'Apresentação do Senhor','02-03':'São Brás','02-05':'Santa Águeda','02-06':'São Paulo Miki e Companheiros',
+  '02-08':'Santa Josefina Bakhita','02-10':'Santa Escolástica','02-11':'Nossa Senhora de Lourdes','02-14':'São Cirilo e São Metódio',
+  '02-22':'Cátedra de São Pedro','02-23':'São Policarpo',
+  '03-07':'Santas Perpétua e Felicidade','03-08':'São João de Deus','03-09':'Santa Francisca Romana','03-17':'São Patrício',
+  '03-19':'São José, Esposo de Maria','03-23':'São Turíbio de Mogrovejo','03-25':'Anunciação do Senhor',
+  '04-02':'São Francisco de Paula','04-04':'Santo Isidoro de Sevilha','04-05':'São Vicente Ferrer','04-21':'Santo Anselmo',
+  '04-23':'São Jorge','04-24':'São Fidélis de Sigmaringen','04-25':'São Marcos Evangelista',
+  '04-28':'São Luís Maria Grignion de Montfort','04-29':'Santa Catarina de Sena','04-30':'São Pio V',
+  '05-01':'São José Operário','05-02':'Santo Atanásio','05-03':'Santos Filipe e Tiago','05-12':'São Pancrácio',
+  '05-13':'Nossa Senhora de Fátima','05-14':'São Matias Apóstolo','05-15':'Santo Isidro Lavrador','05-18':'São João I',
+  '05-20':'São Bernardino de Sena','05-25':'São Beda, o Venerável','05-26':'São Filipe Néri',
+  '05-27':'Santo Agostinho de Cantuária','05-30':'Santa Joana d\'Arc','05-31':'Visitação de Nossa Senhora',
+  '06-01':'São Justino','06-03':'São Carlos Lwanga e Companheiros','06-05':'São Bonifácio','06-06':'São Norberto',
+  '06-09':'Santo Efrém','06-11':'São Barnabé Apóstolo','06-13':'Santo Antônio de Pádua','06-19':'São Romualdo',
+  '06-21':'São Luís Gonzaga','06-22':'São Tomás Moro e São João Fisher','06-24':'Natividade de São João Batista',
+  '06-27':'São Cirilo de Alexandria','06-28':'Santo Ireneu','06-29':'São Pedro e São Paulo Apóstolos',
+  '07-03':'São Tomé Apóstolo','07-04':'Santa Isabel de Portugal','07-05':'Santo Antônio Zaccaria',
+  '07-06':'Santa Maria Goretti','07-11':'São Bento, Abade','07-14':'São Camilo de Lellis','07-15':'São Boaventura',
+  '07-16':'Nossa Senhora do Monte Carmelo','07-20':'São Jerônimo Emiliano','07-21':'Santa Brígida da Suécia',
+  '07-22':'Santa Maria Madalena','07-25':'São Tiago Apóstolo','07-26':'Santos Joaquim e Ana',
+  '07-29':'Santa Marta, São Lázaro e Santa Maria','07-30':'São Pedro Crisólogo','07-31':'Santo Inácio de Loyola',
+  '08-01':'Santo Afonso Maria de Ligório','08-04':'São João Maria Vianney',
+  '08-05':'Dedicação da Basílica de Santa Maria Maior','08-06':'Transfiguração do Senhor','08-08':'São Domingos',
+  '08-09':'Santa Teresa Benedita da Cruz','08-10':'São Lourenço','08-11':'Santa Clara de Assis',
+  '08-12':'Santa Joana Francisca de Chantal','08-14':'São Maximiliano Kolbe','08-15':'Assunção de Nossa Senhora',
+  '08-16':'Santo Estêvão da Hungria','08-20':'São Bernardo de Claraval','08-21':'São Pio X','08-22':'Nossa Senhora Rainha',
+  '08-23':'Santa Rosa de Lima','08-24':'São Bartolomeu Apóstolo','08-25':'São Luís e São José de Calasanz',
+  '08-27':'Santa Mônica','08-28':'Santo Agostinho','08-29':'Martírio de São João Batista',
+  '09-03':'São Gregório Magno','09-08':'Natividade de Nossa Senhora','09-09':'São Pedro Claver',
+  '09-12':'Santíssimo Nome de Maria','09-13':'São João Crisóstomo','09-14':'Exaltação da Santa Cruz',
+  '09-15':'Nossa Senhora das Dores','09-16':'São Cornélio e São Cipriano','09-17':'São Roberto Belarmino',
+  '09-20':'Santo André Kim e Companheiros','09-21':'São Mateus Apóstolo e Evangelista',
+  '09-23':'São Pio de Pietrelcina (Padre Pio)','09-27':'São Vicente de Paulo',
+  '09-29':'São Miguel, São Gabriel e São Rafael Arcanjos','09-30':'São Jerônimo',
+  '10-01':'Santa Teresinha do Menino Jesus','10-02':'Santos Anjos da Guarda','10-04':'São Francisco de Assis',
+  '10-06':'São Bruno','10-07':'Nossa Senhora do Rosário','10-09':'São João Leonardi','10-11':'São João XXIII',
+  '10-14':'São Calisto I','10-15':'Santa Teresa d\'Ávila','10-16':'Santa Margarida Maria Alacoque',
+  '10-17':'Santo Inácio de Antioquia','10-18':'São Lucas Evangelista','10-19':'São João de Brébeuf e Companheiros',
+  '10-22':'São João Paulo II','10-23':'São João de Capistrano','10-24':'Santo Antônio Maria Claret',
+  '10-28':'São Simão e São Judas Tadeu Apóstolos',
+  '11-01':'Solenidade de Todos os Santos','11-02':'Comemoração de Todos os Fiéis Defuntos',
+  '11-03':'São Martinho de Porres','11-04':'São Carlos Borromeu','11-09':'Dedicação da Basílica de Latrão',
+  '11-10':'São Leão Magno','11-11':'São Martinho de Tours','11-12':'São Josafá',
+  '11-13':'Santa Francisca Xavier Cabrini','11-15':'Santo Alberto Magno','11-16':'Santa Margarida da Escócia',
+  '11-17':'Santa Isabel da Hungria','11-18':'Dedicação das Basílicas de São Pedro e São Paulo',
+  '11-21':'Apresentação de Nossa Senhora','11-22':'Santa Cecília','11-23':'São Clemente I',
+  '11-24':'São André Dung-Lac e Companheiros','11-25':'Santa Catarina de Alexandria','11-30':'Santo André Apóstolo',
+  '12-03':'São Francisco Xavier','12-04':'São João Damasceno','12-06':'São Nicolau','12-07':'Santo Ambrósio',
+  '12-08':'Imaculada Conceição de Nossa Senhora','12-09':'São Juan Diego','12-11':'São Dâmaso I',
+  '12-12':'Nossa Senhora de Guadalupe','12-13':'Santa Luzia','12-14':'São João da Cruz','12-21':'São Pedro Canísio',
+  '12-25':'Natividade do Senhor','12-26':'Santo Estêvão, Protomártir','12-27':'São João Evangelista',
+  '12-28':'Santos Inocentes Mártires','12-29':'São Tomás Becket','12-31':'São Silvestre I',
+};
+function renderSanto() {
+  const el = document.getElementById('santo-do-dia');
+  if (!el) return;
+  const now = new Date();
+  const key = String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  const nome = SANTOS_DO_DIA[key];
+  el.innerHTML = `
+    <div class="santo-card">
+      <div class="s-glyph">✦</div>
+      <div class="s-text">
+        <div class="s-label">Santo do dia</div>
+        <div class="s-name">${nome ? esc(nome) : 'Comunhão dos Santos'}</div>
+      </div>
+    </div>`;
+}
+
 function render() {
   document.getElementById('tab-rotina').classList.toggle('active', state.tab==='rotina');
   document.getElementById('tab-calendario').classList.toggle('active', state.tab==='calendario');
@@ -725,6 +865,7 @@ function render() {
 }
 
 function renderRotina() {
+  renderSanto();
   const week = getWeekDates(state.selectedDate);
   const strip = week.map(d => {
     const key = dateKey(d);
@@ -748,7 +889,6 @@ function renderRotina() {
         <div class="tl-card-wrap">
           <div class="tl-card">
             <div class="tl-label">${esc(ev.label)}</div>
-            <div class="tl-person">${esc(ev.person)}</div>
             <div class="tl-del" onclick="deleteTimelineItem('${state.selectedDate}', ${idx})">✕</div>
           </div>
         </div>
@@ -758,7 +898,7 @@ function renderRotina() {
   if (state.isAddingTimeline) {
     document.getElementById('timeline-form-wrap').innerHTML = `
       <div class="inline-form">
-        <input class="f-time" placeholder="19:00" value="${esc(state.draftTime)}" oninput="onDraftTimeInput(this.value)" />
+        <input class="f-time" type="time" value="${esc(state.draftTime)}" oninput="onDraftTimeInput(this.value)" />
         <input class="f-label" placeholder="Compromisso..." value="${esc(state.draftLabel)}" oninput="onDraftLabelInput(this.value)" onkeydown="onTimelineKey(event)" autofocus />
         <div class="f-ok" onclick="confirmTimeline()">OK</div>
       </div>`;
@@ -792,7 +932,6 @@ function renderRotina() {
         <div class="check-item">
           <div class="check-box ${checked?'checked':''}" onclick="toggleCheck('${it.id}')">${checked?'<div class="mark">✓</div>':''}</div>
           <div class="check-text ${checked?'done':''}">${esc(it.text)}</div>
-          <div class="check-person">${esc(it.person)}</div>
           ${isCustom?`<button class="check-del" onclick="deleteCustomItem('${state.rotinaCategory}','${it.id}')">✕</button>`:''}
         </div>`;
     });
@@ -849,7 +988,7 @@ function renderCalendario() {
         <div class="dot"></div>
         <div style="flex:1;">
           <div class="u-label">${esc(ev.label)}</div>
-          <div class="u-date">${dd}/${mm} · ${esc(ev.person)}</div>
+          <div class="u-date">${dd}/${mm}</div>
         </div>
         <button class="u-del" onclick="deleteCalEvent('${ev.key}', ${ev.idx})">✕</button>
       </div>`;
