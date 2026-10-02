@@ -208,6 +208,37 @@
   .member .s { font-size: 12.5px; color: var(--text-3); margin-top: 2px; }
   .m-tasks .task:last-child { border-bottom: none; }
   .task .tx { cursor: pointer; }
+  .area { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 8px; cursor: pointer; }
+  .area-h { display: flex; justify-content: space-between; align-items: baseline; }
+  .area-h b { font-size: 15px; }
+  .area-h span { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .falta-list { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text-3); line-height: 1.6; }
+  .falta-list li::marker { content: '○  '; color: var(--danger); }
+  .area-ok { font-size: 12.5px; color: var(--ok); margin-top: 8px; font-weight: 600; }
+  .falta { color: var(--danger); font-style: italic; font-weight: 500; }
+  .f-tema { font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent); font-size: 15px; margin-bottom: 4px; }
+  .field-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; gap: 10px; cursor: pointer; }
+  .fc-label { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); font-weight: 600; }
+  .fc-val { font-size: 15px; font-weight: 600; margin-top: 2px; overflow-wrap: anywhere; }
+  .fc-val.small { font-size: 13px; font-weight: 400; white-space: pre-wrap; color: var(--text-2); }
+  .fc-val.tema { font-family: 'Playfair Display', serif; font-style: italic; font-size: 19px; color: var(--accent); }
+  .fc-edit { font-size: 12px; color: var(--primary); font-weight: 600; flex: 0 0 auto; }
+  .post-line { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .post-line:last-child { border-bottom: none; }
+  .pl-date { flex: 0 0 42px; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; color: var(--primary); text-align: center; line-height: 1.2; }
+  .pl-body { flex: 1; min-width: 0; font-size: 13.5px; }
+  .pl-body b { display: block; font-weight: 600; overflow-wrap: anywhere; }
+  .pl-body small { color: var(--text-3); font-size: 11.5px; }
+  .btn.wide { width: 100%; margin-top: 4px; }
+  .timeline { border-left: 2px solid var(--gold-2); margin-left: 26px; padding-left: 0; }
+  .tl-item { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 8px -27px; cursor: pointer; }
+  .tl-hora { flex: 0 0 auto; background: var(--navy); color: var(--gold-1); font-size: 11.5px; font-weight: 700; padding: 4px 7px; border-radius: 8px; }
+  body.dark .tl-hora { background: var(--gold-1); color: var(--navy); }
+  .tl-body { flex: 1; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 8px 10px; font-size: 13.5px; }
+  .tl-body b { display: block; }
+  .tl-body small { color: var(--text-3); font-size: 12px; }
+  label.chk { display: flex; gap: 8px; align-items: center; margin-top: 14px; font-size: 13.5px; }
+  label.chk input { width: 18px; height: 18px; accent-color: var(--blue); }
   .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
   .sw { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
   .sw.on { border-color: var(--bg-card); box-shadow: 0 0 0 2px var(--gold-2); }
@@ -445,7 +476,10 @@ document.getElementById('fab').onclick = () => {
     const e = evById(openEvId);
     if (evTab === 'equipe') openMemberForm(openEvId);
     else if (evTab === 'tarefas') openTaskForm(openEvId);
-    else openPostForm({ eventoId: openEvId, data: e.data > today() ? addDays(e.data, -7) : today() });
+    else if (evTab === 'estrutura' || evTab === 'org') {
+      const btn = [...document.querySelectorAll('.section-title .link-btn')].pop();
+      if (btn) btn.click();
+    } else openPostForm({ eventoId: openEvId, data: e.data > today() ? addDays(e.data, -7) : today() });
   } else if (tab === 'eventos') openEventForm();
   else if (tab === 'calendario') openPostForm({ data: calSel });
   else openPostForm();
@@ -454,6 +488,7 @@ document.getElementById('fab').onclick = () => {
 function render() {
   const titles = { inicio: 'Início', calendario: 'Calendário', posts: 'Posts', eventos: 'Eventos' };
   const v = document.getElementById('view');
+  ACTS = {};
   if (tab === 'eventos' && openEvId && !evById(openEvId)) openEvId = null;
   document.getElementById('hdrTitle').textContent = tab === 'eventos' && openEvId ? 'Pasta do evento' : titles[tab];
   v.innerHTML = tab === 'eventos' && openEvId ? viewPasta()
@@ -472,6 +507,7 @@ function bindItems(root) {
       if (t) { t.feito = cb.checked; save(); render(); }
     };
   });
+  root.querySelectorAll('[data-act]').forEach(el => el.onclick = ev => { ev.stopPropagation(); ACTS[el.dataset.act] && ACTS[el.dataset.act](); });
   root.querySelectorAll('[data-tkedit]').forEach(el => el.onclick = ev => { ev.stopPropagation(); openTaskForm(el.dataset.tkevid, el.dataset.tkedit); });
 }
 
@@ -674,98 +710,261 @@ function viewEventos() {
   return h;
 }
 
+// ---------- Áreas da pasta: Marketing, Organização geral, Estrutura ----------
+const COBERTURA_PADRAO = ['Fotos', 'Vídeos', 'Stories ao vivo', 'Depoimentos'];
+const ESTRUTURA_PADRAO = ['Painel de LED e iluminação', 'Som', 'Limpeza e lanchonete', 'Cozinha', 'Montagem (arrumar antes do evento)'];
+const STATUS_FRENTE = ['Pendente', 'Em andamento', 'Pronto'];
+const ST_FRENTE_CLS = { Pendente: 'st-Ideia', 'Em andamento': 'st-Produção', Pronto: 'st-Publicado' };
+
+function ensureAreas(e) {
+  e.tarefas ||= [];
+  e.equipe ||= [];
+  e.marketing ||= { responsavel: '', coberturaNotas: '', cobertura: COBERTURA_PADRAO.map(texto => ({ id: uid(), texto, responsavel: '', feito: false })) };
+  e.org ||= { responsavel: '', tema: '', pregadores: [], cronograma: [], musica: { nome: '', responsavel: '', contato: '', confirmado: false, notas: '' } };
+  e.estrutura ||= ESTRUTURA_PADRAO.map(nome => ({ id: uid(), nome, responsavel: '', contato: '', horario: '', status: 'Pendente', notas: '' }));
+}
+
+// Ações dos elementos renderizados: data-act="aN" -> função
+let ACTS = {}, actSeq = 0;
+const act = fn => { const k = 'a' + (++actSeq); ACTS[k] = fn; return `data-act="${k}"`; };
+
+function waLink(contato) {
+  const tel = (contato || '').replace(/\D/g, '');
+  if (tel.length < 10) return '';
+  return `<a class="wa" href="https://wa.me/${tel.length <= 11 ? '55' + tel : tel}" target="_blank" rel="noopener" onclick="event.stopPropagation()">WhatsApp</a>`;
+}
+const pessoa = n => n ? `👤 ${esc(n)}` : '<i class="falta">definir responsável</i>';
+
+// Formulário genérico em folha inferior
+function openForm({ title, fields, vals = {}, onSave, onDelete, people = [] }) {
+  const ctl = f => {
+    const v = vals[f.k] ?? '';
+    const ph = f.ph ? `placeholder="${esc(f.ph)}"` : '';
+    if (f.type === 'textarea') return `<textarea class="in" id="ff_${f.k}" ${ph}>${esc(v)}</textarea>`;
+    if (f.type === 'select') return `<select class="in" id="ff_${f.k}">${opts(f.options, v || f.options[0])}</select>`;
+    if (f.type === 'check') return `<label class="chk"><input type="checkbox" id="ff_${f.k}" ${v ? 'checked' : ''}> ${esc(f.label)}</label>`;
+    const type = f.type === 'person' ? 'text' : (f.type || 'text');
+    return `<input class="in" id="ff_${f.k}" type="${type}" ${f.type === 'person' ? 'list="ffPeople"' : ''} ${ph} value="${esc(v)}">`;
+  };
+  openSheet(`<h2>${esc(title)} <button class="close-x">✕</button></h2>
+    ${fields.map(f => f.type === 'check' ? ctl(f) : `<label class="f">${esc(f.label)}${f.req ? ' *' : ''}</label>${ctl(f)}`).join('')}
+    <datalist id="ffPeople">${people.map(n => `<option value="${esc(n)}">`).join('')}</datalist>
+    <div class="btns">${onDelete ? '<button class="btn danger" id="ffDel">Excluir</button>' : ''}<button class="btn primary" id="ffSave">Salvar</button></div>`);
+  document.getElementById('ffSave').onclick = () => {
+    const out = {};
+    for (const f of fields) {
+      const el = document.getElementById('ff_' + f.k);
+      out[f.k] = f.type === 'check' ? el.checked : el.value.trim();
+      if (f.req && !out[f.k]) { toast(`Preencha: ${f.label}`); return; }
+    }
+    onSave(out); save(); closeSheet(); render(); toast('Salvo');
+  };
+  if (onDelete) document.getElementById('ffDel').onclick = () => {
+    if (!confirm('Excluir este item?')) return;
+    onDelete(); save(); closeSheet(); render();
+  };
+}
+
+// O que falta em cada área (facilitador)
+function areaCheck(e) {
+  const posts = store.posts.filter(p => p.eventoId === e.id);
+  const m = e.marketing, o = e.org;
+  return {
+    marketing: [
+      ['Responsável do marketing', !!m.responsavel],
+      ['Postagens planejadas', posts.length > 0],
+      ['Todas as postagens agendadas', posts.length > 0 && posts.every(p => p.status === 'Agendado' || p.status === 'Publicado')],
+      ['Cobertura do dia com responsáveis', m.cobertura.length > 0 && m.cobertura.every(c => c.responsavel)],
+    ],
+    org: [
+      ['Responsável geral', !!o.responsavel],
+      ['Tema definido', !!o.tema],
+      ['Pregadores definidos', o.pregadores.length > 0],
+      ['Pregadores confirmados', o.pregadores.length > 0 && o.pregadores.every(p => p.confirmado)],
+      ['Ministério de música definido', !!(o.musica.nome || o.musica.responsavel)],
+      ['Ministério de música confirmado', !!o.musica.confirmado],
+      ['Cronograma montado', o.cronograma.length > 0],
+    ],
+    estrutura: e.estrutura.map(f => [f.nome + (f.responsavel ? '' : ' (sem responsável)'), f.status === 'Pronto']),
+  };
+}
+
 function viewPasta() {
   const e = evById(openEvId);
-  e.tarefas = e.tarefas || [];
-  e.equipe = e.equipe || [];
+  const before = JSON.stringify([e.marketing, e.org, e.estrutura]);
+  ensureAreas(e);
+  if (JSON.stringify([e.marketing, e.org, e.estrutura]) !== before) save();
   const pr = evProgress(e);
   const t = today();
   const posts = store.posts.filter(p => p.eventoId === e.id).sort(byDate);
-  const semResp = e.tarefas.filter(x => !x.feito && !x.responsavel).length;
+  const people = [...new Set([...e.equipe.map(x => x.nome), ...store.eventos.flatMap(x => (x.equipe || []).map(y => y.nome))])];
+  const chk = areaCheck(e);
+  const okCount = a => a.filter(x => x[1]).length;
+  const totalOk = Object.values(chk).reduce((s, a) => s + okCount(a), 0);
+  const totalAll = Object.values(chk).reduce((s, a) => s + a.length, 0);
+  const pct = totalAll ? Math.round(totalOk / totalAll * 100) : 0;
+  const go = sub => act(() => { evTab = sub; render(); window.scrollTo(0, 0); });
+  const edit = (title, fields, obj, after) => act(() => openForm({ title, fields, vals: obj, people, onSave: v => { Object.assign(obj, v); after && after(); } }));
 
-  setTimeout(() => {
-    const $ = id => document.getElementById(id);
-    $('fBack').onclick = () => { openEvId = null; render(); };
-    $('fEdit').onclick = () => openEventForm(e);
-    document.querySelectorAll('[data-sub]').forEach(el => { if (!el.dataset.ev) el.onclick = () => { evTab = el.dataset.sub; render(); }; });
-    document.querySelectorAll('[data-mem]').forEach(el => el.onclick = () => openMemberForm(e.id, el.dataset.mem));
-    $('fGen') && ($('fGen').onclick = () => { const n = gerarPosts(e.id); save(); render(); toast(n ? `${n} posts de divulgação criados` : 'Os posts do modelo já existem'); });
-    $('fAddMem') && ($('fAddMem').onclick = () => openMemberForm(e.id));
-    $('fAddTask') && ($('fAddTask').onclick = () => openTaskForm(e.id));
-  });
-
-  const subs = [['geral', 'Visão geral'], ['equipe', `Equipe (${e.equipe.length})`], ['tarefas', `Tarefas ${pr.done}/${pr.total}`], ['posts', `Posts (${posts.length})`]];
-  let h = `<button class="back-btn" id="fBack">‹ Todas as pastas</button>
+  const subs = [['geral', 'Visão geral'], ['marketing', 'Marketing'], ['org', 'Organização'], ['estrutura', 'Estrutura'],
+    ['tarefas', `Tarefas ${pr.done}/${pr.total}`], ['equipe', `Equipe (${e.equipe.length})`]];
+  let h = `<button class="back-btn" ${act(() => { openEvId = null; render(); })}>‹ Todas as pastas</button>
   <div class="f-hero" style="--c:${evColor(e)}">
     <div class="f-hero-top"><div>
       <div class="f-date">${fmtLong(e.data)}${e.hora ? ' · ' + esc(e.hora) : ''} · ${relLabel(e.data)}</div>
       <div class="f-title">${esc(e.nome)}</div>
+      ${e.org.tema ? `<div class="f-tema">“${esc(e.org.tema)}”</div>` : ''}
       ${e.local ? `<div class="f-date">📍 ${esc(e.local)}</div>` : ''}
-    </div><button class="btn small" id="fEdit">✏️ Editar</button></div>
-    <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">${pr.pct}% organizado</span></div>
-    <div class="progress"><i style="width:${pr.pct}%"></i></div>
+    </div><button class="btn small" ${act(() => openEventForm(e))}>✏️ Editar</button></div>
+    <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">${pct}% organizado</span></div>
+    <div class="progress"><i style="width:${pct}%"></i></div>
   </div>
-  <div class="chips subtabs">${subs.map(([k, l]) => `<button class="chip ${k === evTab ? 'on' : ''}" data-sub="${k}">${l}</button>`).join('')}</div>`;
+  <div class="chips subtabs">${subs.map(([k, l]) => `<button class="chip ${k === evTab ? 'on' : ''}" ${go(k)}>${l}</button>`).join('')}</div>`;
 
+  // ----- Visão geral -----
   if (evTab === 'geral') {
+    const area = (k, icon, nome, lista) => {
+      const ok = okCount(lista), falta = lista.filter(x => !x[1]);
+      return `<div class="area" ${go(k)}>
+        <div class="area-h"><b>${icon} ${nome}</b><span>${ok}/${lista.length}</span></div>
+        <div class="progress"><i style="width:${lista.length ? ok / lista.length * 100 : 0}%"></i></div>
+        ${falta.length ? `<ul class="falta-list">${falta.map(x => `<li>${esc(x[0])}</li>`).join('')}</ul>` : '<div class="area-ok">✅ Tudo certo nesta área</div>'}
+      </div>`;
+    };
+    h += `<div class="section-title">O que falta organizar</div>
+      ${area('marketing', '📣', 'Marketing', chk.marketing)}
+      ${area('org', '⛪', 'Organização geral', chk.org)}
+      ${area('estrutura', '🏗️', 'Estrutura do evento', chk.estrutura)}`;
     const proxT = e.tarefas.filter(x => !x.feito).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9')).slice(0, 4);
-    h += `<div class="ev-info">
+    h += `<div class="section-title">Próximas tarefas <button class="link-btn" ${go('tarefas')}>ver todas</button></div>
+      ${proxT.length ? `<div class="box">${proxT.map(x => taskRow(x, e)).join('')}</div>` : `<div class="empty">Nenhuma tarefa pendente 🎉</div>`}`;
+    if (e.objetivo || e.publico || e.orcamento || e.notas) h += `<div class="section-title">Informações</div><div class="ev-info">
       ${e.objetivo ? `🎯 <b>Objetivo:</b> ${esc(e.objetivo)}<br>` : ''}
       ${e.publico ? `👥 <b>Público:</b> ${esc(e.publico)}<br>` : ''}
       ${e.orcamento ? `💰 <b>Orçamento:</b> ${money(e.orcamento)}<br>` : ''}
-      ${e.notas ? `<div style="white-space:pre-wrap">${esc(e.notas)}</div>` : ''}
-      ${!e.objetivo && !e.publico && !e.orcamento && !e.notas ? '<span style="color:var(--text-4)">Toque em Editar para adicionar objetivo, público, orçamento e notas.</span>' : ''}
-    </div>
-    <div class="section-title">Quem faz o quê <button class="link-btn" data-sub="equipe">ver equipe</button></div>
-    ${e.equipe.length ? `<div class="box">${e.equipe.map(memberLine).join('')}</div>` : `<div class="empty">Ninguém na equipe ainda. <button class="link-btn" id="fAddMem">Adicionar pessoa</button></div>`}
-    <div class="section-title">Próximas tarefas <button class="link-btn" data-sub="tarefas">ver todas</button></div>
-    ${proxT.length ? `<div class="box">${proxT.map(x => taskRow(x, e)).join('')}</div>` : `<div class="empty">Tudo em dia! 🎉</div>`}
-    ${semResp ? `<p class="hint">⚠️ ${semResp} tarefa(s) sem responsável — toque numa tarefa para atribuir.</p>` : ''}
-    <div class="section-title">Próximos posts <button class="link-btn" data-sub="posts">ver todos</button></div>
-    ${posts.filter(p => p.data >= t).slice(0, 3).map(postCard).join('') || `<div class="empty">Nenhum post futuro. <button class="link-btn" id="fGen">Gerar cronograma de divulgação</button></div>`}`;
+      ${e.notas ? `<div style="white-space:pre-wrap">${esc(e.notas)}</div>` : ''}</div>`;
   }
 
-  if (evTab === 'equipe') {
-    const grupos = {};
-    e.equipe.forEach(m => { (grupos[m.funcao || 'Sem função definida'] ||= []).push(m); });
-    h += Object.keys(grupos).length ? Object.entries(grupos).sort().map(([f, ms]) => `
-      <div class="section-title">${esc(f)}</div>` + ms.map(m => {
-        const tks = e.tarefas.filter(x => x.responsavel === m.nome);
-        const feitas = tks.filter(x => x.feito).length;
-        const tel = (m.contato || '').replace(/\D/g, '');
-        return `<div class="member">
-          <div class="m-head" data-mem="${m.id}">
-            <div class="avatar" style="background:${evColor(e)}">${esc(initials(m.nome))}</div>
-            <div class="body"><div class="t">${esc(m.nome)}</div><div class="m-role">${esc(m.funcao || 'Sem função')}</div>
-            ${m.contato ? `<div class="s">📞 ${esc(m.contato)}</div>` : ''}</div>
-            ${tel.length >= 10 ? `<a class="wa" href="https://wa.me/${tel.length <= 11 ? '55' + tel : tel}" target="_blank" rel="noopener" onclick="event.stopPropagation()">WhatsApp</a>` : ''}
-          </div>
-          ${m.responsabilidades ? `<div class="m-resp">${esc(m.responsabilidades)}</div>` : ''}
-          ${tks.length ? `<div class="m-tasks"><div class="meta">Tarefas · ${feitas}/${tks.length}</div>${tks.map(x => taskRow(x, e)).join('')}</div>` : ''}
-        </div>`;
-      }).join('')).join('') : `<div class="empty">Monte a equipe do evento: quem cuida da comunicação, fotos, liturgia, recepção...<br>Toque em <b>+</b> para adicionar uma pessoa.</div>`;
-    if (semResp) h += `<p class="hint">⚠️ ${semResp} tarefa(s) ainda sem responsável. <button class="link-btn" data-sub="tarefas">Atribuir</button></p>`;
+  // ----- Marketing -----
+  if (evTab === 'marketing') {
+    const m = e.marketing;
+    h += `<div class="section-title">Responsável</div>
+      <div class="field-card" ${edit('Responsável do marketing', [{ k: 'responsavel', label: 'Nome do responsável', type: 'person' }], m)}>
+        <div><div class="fc-label">Marketing</div><div class="fc-val">${pessoa(m.responsavel)}</div></div><span class="fc-edit">editar</span></div>
+
+      <div class="section-title">Postagens (${posts.length})
+        <button class="link-btn" ${act(() => openPostForm({ eventoId: e.id, data: e.data > t ? addDays(e.data, -7) : t, responsavel: m.responsavel }))}>+ post</button></div>
+      ${posts.length ? `<div class="box">${posts.map(p => `<div class="post-line" data-post="${p.id}">
+          <span class="pl-date">${parse(p.data).getDate()}/${pad(parse(p.data).getMonth() + 1)}${p.hora ? '<br>' + esc(p.hora) : ''}</span>
+          <span class="pl-body"><b>${esc(p.titulo)}</b><small><span class="net-dot" style="background:${REDES[p.rede] || REDES.Outro}"></span>${esc(p.rede)} · ${esc(p.formato)}${p.responsavel ? ' · 👤 ' + esc(p.responsavel) : ''}</small></span>
+          <span class="tag st-${esc(p.status)}">${esc(p.status)}</span></div>`).join('')}</div>`
+        : `<div class="empty">Nenhuma postagem ainda.</div>`}
+      <button class="btn small wide" ${act(() => { const n = gerarPosts(e.id); save(); render(); toast(n ? `${n} posts de divulgação criados` : 'Os posts do modelo já existem'); })}>📣 Gerar cronograma de divulgação</button>
+
+      <div class="section-title">Cobertura no dia do evento
+        <button class="link-btn" ${act(() => openForm({ title: 'Item de cobertura', people, fields: [{ k: 'texto', label: 'O que cobrir', req: true, ph: 'Ex.: Drone, Transmissão ao vivo' }, { k: 'responsavel', label: 'Responsável', type: 'person' }], onSave: v => m.cobertura.push({ id: uid(), ...v, feito: false }) }))}>+ item</button></div>
+      <div class="box">${m.cobertura.map(c => `<div class="task ${c.feito ? 'done' : ''}">
+          <input type="checkbox" ${c.feito ? 'checked' : ''} ${act(() => { c.feito = !c.feito; save(); render(); })}>
+          <div class="tx" ${act(() => openForm({ title: 'Item de cobertura', people, vals: c, fields: [{ k: 'texto', label: 'O que cobrir', req: true }, { k: 'responsavel', label: 'Responsável', type: 'person' }], onSave: v => Object.assign(c, v), onDelete: () => { m.cobertura = m.cobertura.filter(x => x !== c); } }))}>${esc(c.texto)}<div class="meta">${pessoa(c.responsavel)}</div></div>
+        </div>`).join('') || '<div class="hint">Nenhum item.</div>'}</div>
+      <div class="field-card" ${edit('Observações da cobertura', [{ k: 'coberturaNotas', label: 'Equipamentos, horários, onde ficar, o que não pode faltar', type: 'textarea' }], m)}>
+        <div><div class="fc-label">Observações da cobertura</div><div class="fc-val small">${m.coberturaNotas ? esc(m.coberturaNotas) : '<i class="falta">adicionar observações</i>'}</div></div><span class="fc-edit">editar</span></div>`;
   }
 
+  // ----- Organização geral -----
+  if (evTab === 'org') {
+    const o = e.org, mu = o.musica;
+    const pregForm = (p = {}) => openForm({
+      title: p.id ? 'Editar pregador' : 'Novo pregador', people, vals: p,
+      fields: [{ k: 'nome', label: 'Nome', req: true }, { k: 'tema', label: 'Tema da pregação' }, { k: 'horario', label: 'Horário', type: 'time' },
+        { k: 'contato', label: 'Contato (WhatsApp)', type: 'tel' }, { k: 'confirmado', label: 'Presença confirmada', type: 'check' }],
+      onSave: v => p.id ? Object.assign(p, v) : o.pregadores.push({ id: uid(), ...v }),
+      onDelete: p.id ? () => { o.pregadores = o.pregadores.filter(x => x !== p); } : null,
+    });
+    const cronForm = (c = {}) => openForm({
+      title: c.id ? 'Editar momento' : 'Novo momento do cronograma', people, vals: c,
+      fields: [{ k: 'hora', label: 'Horário', type: 'time', req: true }, { k: 'atividade', label: 'Atividade', req: true, ph: 'Ex.: Acolhida, Louvor, Pregação, Missa' }, { k: 'responsavel', label: 'Responsável', type: 'person' }],
+      onSave: v => c.id ? Object.assign(c, v) : o.cronograma.push({ id: uid(), ...v }),
+      onDelete: c.id ? () => { o.cronograma = o.cronograma.filter(x => x !== c); } : null,
+    });
+    h += `<div class="section-title">Responsável e tema</div>
+      <div class="field-card" ${edit('Responsável e tema', [{ k: 'responsavel', label: 'Responsável geral', type: 'person' }, { k: 'tema', label: 'Tema do evento', ph: 'Ex.: Alcançados pela Misericórdia' }], o)}>
+        <div><div class="fc-label">Responsável geral</div><div class="fc-val">${pessoa(o.responsavel)}</div>
+        <div class="fc-label" style="margin-top:8px">Tema</div><div class="fc-val tema">${o.tema ? esc(o.tema) : '<i class="falta">definir tema</i>'}</div></div><span class="fc-edit">editar</span></div>
+
+      <div class="section-title">Pregadores (${o.pregadores.length}) <button class="link-btn" ${act(() => pregForm())}>+ pregador</button></div>
+      ${o.pregadores.length ? o.pregadores.slice().sort((a, b) => (a.horario || '99').localeCompare(b.horario || '99')).map(p => `<div class="member" ${act(() => pregForm(p))}>
+          <div class="m-head"><div class="avatar" style="background:${evColor(e)}">${esc(initials(p.nome))}</div>
+          <div class="body"><div class="t">${esc(p.nome)}</div>${p.tema ? `<div class="m-role">${esc(p.tema)}</div>` : ''}
+          <div class="s">${p.horario ? '🕒 ' + esc(p.horario) + ' · ' : ''}${p.confirmado ? '<b style="color:var(--ok)">✔ confirmado</b>' : '<b style="color:var(--danger)">aguardando confirmação</b>'}</div></div>
+          ${waLink(p.contato)}</div></div>`).join('') : `<div class="empty">Nenhum pregador ainda.</div>`}
+
+      <div class="section-title">Ministério de música</div>
+      <div class="member" ${edit('Ministério de música', [{ k: 'nome', label: 'Nome do ministério / banda' }, { k: 'responsavel', label: 'Responsável', type: 'person' },
+        { k: 'contato', label: 'Contato (WhatsApp)', type: 'tel' }, { k: 'notas', label: 'Repertório, horário de passagem de som, necessidades', type: 'textarea' }, { k: 'confirmado', label: 'Confirmado', type: 'check' }], mu)}>
+        <div class="m-head"><div class="avatar" style="background:${evColor(e)}">🎵</div>
+        <div class="body"><div class="t">${mu.nome ? esc(mu.nome) : '<i class="falta">definir ministério</i>'}</div>
+        <div class="s">${pessoa(mu.responsavel)} · ${mu.confirmado ? '<b style="color:var(--ok)">✔ confirmado</b>' : '<b style="color:var(--danger)">não confirmado</b>'}</div></div>
+        ${waLink(mu.contato)}</div>
+        ${mu.notas ? `<div class="m-resp">${esc(mu.notas)}</div>` : ''}</div>
+
+      <div class="section-title">Cronograma do evento <button class="link-btn" ${act(() => cronForm())}>+ momento</button></div>
+      ${o.cronograma.length ? `<div class="timeline">${o.cronograma.slice().sort((a, b) => a.hora.localeCompare(b.hora)).map(c => `
+        <div class="tl-item" ${act(() => cronForm(c))}><span class="tl-hora">${esc(c.hora)}</span>
+        <div class="tl-body"><b>${esc(c.atividade)}</b><small>${pessoa(c.responsavel)}</small></div></div>`).join('')}</div>`
+        : `<div class="empty">Monte a programação: acolhida, louvor, pregação, missa, encerramento...</div>`}`;
+  }
+
+  // ----- Estrutura -----
+  if (evTab === 'estrutura') {
+    const frenteForm = (f = {}) => openForm({
+      title: f.id ? f.nome : 'Nova frente de estrutura', people, vals: f,
+      fields: [{ k: 'nome', label: 'Frente', req: true, ph: 'Ex.: Decoração, Estacionamento' }, { k: 'responsavel', label: 'Responsável', type: 'person' },
+        { k: 'contato', label: 'Contato / fornecedor', type: 'tel' }, { k: 'horario', label: 'Quando (montagem / chegada)', ph: 'Ex.: Sábado 14h' },
+        { k: 'status', label: 'Status', type: 'select', options: STATUS_FRENTE }, { k: 'notas', label: 'O que precisa, valores, observações', type: 'textarea' }],
+      onSave: v => f.id ? Object.assign(f, v) : e.estrutura.push({ id: uid(), ...v }),
+      onDelete: f.id ? () => { e.estrutura = e.estrutura.filter(x => x !== f); } : null,
+    });
+    const prontas = e.estrutura.filter(f => f.status === 'Pronto').length;
+    h += `<div class="section-title">Frentes · ${prontas}/${e.estrutura.length} prontas <button class="link-btn" ${act(() => frenteForm())}>+ frente</button></div>`;
+    h += e.estrutura.map(f => `<div class="member" ${act(() => frenteForm(f))}>
+        <div class="m-head"><div class="body"><div class="t">${esc(f.nome)}</div>
+        <div class="s">${pessoa(f.responsavel)}${f.horario ? ' · 🕒 ' + esc(f.horario) : ''}</div></div>
+        <span class="tag ${ST_FRENTE_CLS[f.status] || ''}">${esc(f.status)}</span></div>
+        ${f.notas ? `<div class="m-resp">${esc(f.notas)}</div>` : ''}
+        ${f.contato ? `<div class="s" style="margin-top:6px;display:flex;justify-content:space-between;align-items:center">📞 ${esc(f.contato)} ${waLink(f.contato)}</div>` : ''}
+      </div>`).join('') || `<div class="empty">Nenhuma frente.</div>`;
+  }
+
+  // ----- Tarefas -----
   if (evTab === 'tarefas') {
     const fases = FASES.concat([...new Set(e.tarefas.map(x => x.fase))].filter(f => !FASES.includes(f)));
-    const html = fases.map(f => {
+    h += fases.map(f => {
       const list = e.tarefas.filter(x => x.fase === f).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9'));
       if (!list.length) return '';
       return `<div class="fase"><h3>${esc(f)} · ${list.filter(x => x.feito).length}/${list.length}</h3><div class="box">${list.map(x => taskRow(x, e)).join('')}</div></div>`;
-    }).join('');
-    h += html || '<div class="empty">Sem tarefas ainda.</div>';
-    h += `<p class="hint">Toque numa tarefa para editar ou escolher o responsável.</p><button class="btn primary" id="fAddTask" style="width:100%;margin-top:8px">+ Nova tarefa</button>`;
+    }).join('') || '<div class="empty">Sem tarefas ainda.</div>';
+    h += `<p class="hint">Toque numa tarefa para editar ou escolher o responsável.</p><button class="btn primary wide" ${act(() => openTaskForm(e.id))}>+ Nova tarefa</button>`;
   }
 
-  if (evTab === 'posts') {
-    h += `<div class="btns" style="margin-top:0;margin-bottom:10px"><button class="btn small" id="fGen">📣 Gerar cronograma de divulgação</button></div>`;
-    h += posts.length ? posts.map(postCard).join('') : '<div class="empty">Nenhum post ligado a este evento.</div>';
+  // ----- Equipe -----
+  if (evTab === 'equipe') {
+    const grupos = {};
+    e.equipe.forEach(m => { (grupos[m.funcao || 'Sem função definida'] ||= []).push(m); });
+    h += Object.keys(grupos).length ? Object.entries(grupos).sort().map(([f, ms]) => `<div class="section-title">${esc(f)}</div>` + ms.map(m => {
+      const tks = e.tarefas.filter(x => x.responsavel === m.nome);
+      return `<div class="member">
+        <div class="m-head" ${act(() => openMemberForm(e.id, m.id))}>
+          <div class="avatar" style="background:${evColor(e)}">${esc(initials(m.nome))}</div>
+          <div class="body"><div class="t">${esc(m.nome)}</div><div class="m-role">${esc(m.funcao || 'Sem função')}</div>
+          ${m.contato ? `<div class="s">📞 ${esc(m.contato)}</div>` : ''}</div>${waLink(m.contato)}
+        </div>
+        ${m.responsabilidades ? `<div class="m-resp">${esc(m.responsabilidades)}</div>` : ''}
+        ${tks.length ? `<div class="m-tasks"><div class="meta">Tarefas · ${tks.filter(x => x.feito).length}/${tks.length}</div>${tks.map(x => taskRow(x, e)).join('')}</div>` : ''}
+      </div>`;
+    }).join('')).join('') : `<div class="empty">Cadastre as pessoas da equipe para escolher os responsáveis mais rápido.<br>Toque em <b>+</b> para adicionar.</div>`;
   }
   return h;
-}
-function memberLine(m) {
-  return `<div class="m-line" data-mem="${m.id}"><b>${esc(m.nome)}</b><span>${esc(m.funcao || 'Sem função')}</span></div>`;
 }
 
 // ---------- Modal ----------
@@ -969,6 +1168,7 @@ function openEventForm(e = {}) {
       id = uid();
       const tarefas = $('eModelo').checked ? MODELO_TAREFAS.map(([fase, texto, off]) => ({ id: uid(), fase, texto, prazo: addDays(data, off), responsavel: '', feito: false })) : [];
       store.eventos.push({ id, ...obj, tarefas, equipe: [] });
+      ensureAreas(evById(id));
       if ($('ePosts').checked) gerarPosts(id);
     } else {
       const ev = evById(id);
