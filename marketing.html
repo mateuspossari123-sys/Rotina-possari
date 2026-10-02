@@ -270,6 +270,9 @@
   .tl-body { flex: 1; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 8px 10px; font-size: 13.5px; }
   .tl-body b { display: block; }
   .tl-body small { color: var(--text-3); font-size: 12px; }
+  .time-pick { display: flex; align-items: center; gap: 4px; }
+  .time-pick select { flex: 1; min-width: 0; padding: 10px 6px; text-align: center; }
+  .time-pick span { font-weight: 700; color: var(--text-3); }
   label.chk { display: flex; gap: 8px; align-items: center; margin-top: 14px; font-size: 13.5px; }
   label.chk input { width: 18px; height: 18px; accent-color: var(--blue); }
   .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -796,6 +799,23 @@ function waLink(contato) {
 }
 const pessoa = n => n ? `👤 ${esc(n)}` : '<i class="falta">definir responsável</i>';
 
+// Seletor de horário (hora + minuto) que funciona igual em qualquer celular
+function timePick(id, value) {
+  const [vh, vm] = (value || '').split(':');
+  const mins = [...new Set(['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', ...(vm ? [vm] : [])])].sort();
+  const hs = Array.from({ length: 24 }, (_, i) => pad(i));
+  return `<div class="time-pick" id="${id}">
+    <select class="in" data-part="h" aria-label="Hora"><option value="">--</option>${hs.map(x => `<option ${x === vh ? 'selected' : ''}>${x}</option>`).join('')}</select>
+    <span>:</span>
+    <select class="in" data-part="m" aria-label="Minutos">${mins.map(x => `<option ${x === (vm || '00') ? 'selected' : ''}>${x}</option>`).join('')}</select>
+  </div>`;
+}
+function readTime(id) {
+  const box = document.getElementById(id);
+  const h = box.querySelector('[data-part=h]').value;
+  return h ? `${h}:${box.querySelector('[data-part=m]').value}` : '';
+}
+
 // Formulário genérico em folha inferior
 function openForm({ title, fields, vals = {}, onSave, onDelete, people = [] }) {
   const ctl = f => {
@@ -803,6 +823,7 @@ function openForm({ title, fields, vals = {}, onSave, onDelete, people = [] }) {
     const ph = f.ph ? `placeholder="${esc(f.ph)}"` : '';
     if (f.type === 'textarea') return `<textarea class="in" id="ff_${f.k}" ${ph}>${esc(v)}</textarea>`;
     if (f.type === 'select') return `<select class="in" id="ff_${f.k}">${opts(f.options, v || f.options[0])}</select>`;
+    if (f.type === 'time') return timePick(`ff_${f.k}`, v);
     if (f.type === 'check') return `<label class="chk"><input type="checkbox" id="ff_${f.k}" ${v ? 'checked' : ''}> ${esc(f.label)}</label>`;
     const type = f.type === 'person' ? 'text' : (f.type || 'text');
     return `<input class="in" id="ff_${f.k}" type="${type}" ${f.type === 'person' ? 'list="ffPeople"' : ''} ${ph} value="${esc(v)}">`;
@@ -815,7 +836,7 @@ function openForm({ title, fields, vals = {}, onSave, onDelete, people = [] }) {
     const out = {};
     for (const f of fields) {
       const el = document.getElementById('ff_' + f.k);
-      out[f.k] = f.type === 'check' ? el.checked : el.value.trim();
+      out[f.k] = f.type === 'check' ? el.checked : f.type === 'time' ? readTime('ff_' + f.k) : el.value.trim();
       if (f.req && !out[f.k]) { toast(`Preencha: ${f.label}`); return; }
     }
     onSave(out); save(); closeSheet(); render(); toast('Salvo');
@@ -1130,7 +1151,7 @@ function openPostForm(p = {}) {
     <input class="in" id="pTitulo" placeholder="Ex.: Lançamento do produto X" value="${esc(p.titulo)}">
     <div class="row2">
       <div><label class="f">Data *</label><input class="in" type="date" id="pData" value="${esc(p.data || today())}"></div>
-      <div><label class="f">Horário</label><input class="in" type="time" id="pHora" value="${esc(p.hora)}"></div>
+      <div><label class="f">Horário</label>${timePick('pHora', p.hora)}</div>
     </div>
     <div class="row2">
       <div><label class="f">Rede social</label><select class="in" id="pRede">${opts(Object.keys(REDES), p.rede || 'Instagram')}</select></div>
@@ -1161,7 +1182,7 @@ function openPostForm(p = {}) {
     const data = $('pData').value;
     if (!titulo || !data) { toast('Preencha o que vai ser postado e a data'); return; }
     const obj = {
-      id: p.id || uid(), titulo, data, hora: $('pHora').value, rede: $('pRede').value, formato: $('pFormato').value,
+      id: p.id || uid(), titulo, data, hora: readTime('pHora'), rede: $('pRede').value, formato: $('pFormato').value,
       status: $('pStatus').value, eventoId: $('pEvento').value, responsavel: $('pResp').value, legenda: $('pLegenda').value,
       hashtags: $('pHashtags').value.trim(), objetivo: $('pObjetivo').value.trim(), notas: $('pNotas').value,
     };
@@ -1189,7 +1210,7 @@ function openEventForm(e = {}) {
     <input class="in" id="eNome" placeholder="Ex.: Missa dos 30 anos" value="${esc(e.nome)}">
     <div class="row2">
       <div><label class="f">Data *</label><input class="in" type="date" id="eData" value="${esc(e.data || addDays(today(), 30))}"></div>
-      <div><label class="f">Horário</label><input class="in" type="time" id="eHora" value="${esc(e.hora)}"></div>
+      <div><label class="f">Horário</label>${timePick('eHora', e.hora)}</div>
     </div>
     <label class="f">Cor da pasta (aparece no calendário)</label>
     <div class="swatches">${CORES_EV.map(c => `<button type="button" class="sw ${c === cor ? 'on' : ''}" data-cor="${c}" style="background:${c}" aria-label="Cor ${c}"></button>`).join('')}</div>
@@ -1220,7 +1241,7 @@ function openEventForm(e = {}) {
     const data = $('eData').value;
     if (!nome || !data) { toast('Preencha o nome e a data'); return; }
     const obj = {
-      nome, data, hora: $('eHora').value, cor, local: $('eLocal').value.trim(), objetivo: $('eObjetivo').value.trim(),
+      nome, data, hora: readTime('eHora'), cor, local: $('eLocal').value.trim(), objetivo: $('eObjetivo').value.trim(),
       publico: $('ePublico').value.trim(), orcamento: $('eOrcamento').value, status: $('eStatus').value, notas: $('eNotas').value,
     };
     let id = e.id;
