@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Estratégia de Marketing</title>
+<link rel="manifest" href="manifest-marketing.json">
+<meta name="theme-color" content="#5b2a86">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-mkt-192.png">
+<link rel="apple-touch-icon" href="icon-mkt-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Marketing">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: oklch(0.965 0.006 300);
+    --bg-card: oklch(0.995 0.003 300);
+    --bg-surface: oklch(0.975 0.006 300);
+    --border: oklch(0.91 0.012 300);
+    --border-input: oklch(0.85 0.015 300);
+    --pill-bg: oklch(0.94 0.015 300);
+    --primary: oklch(0.42 0.15 305);
+    --primary-soft: oklch(0.93 0.04 305);
+    --accent: oklch(0.72 0.16 40);
+    --ok: oklch(0.62 0.14 150);
+    --warn: oklch(0.72 0.14 75);
+    --danger: oklch(0.58 0.18 25);
+    --text-1: oklch(0.22 0.02 300);
+    --text-2: oklch(0.32 0.02 300);
+    --text-3: oklch(0.5 0.02 300);
+    --text-4: oklch(0.62 0.02 300);
+    --shadow-color: oklch(0.3 0.04 300 / 0.3);
+  }
+  body.dark {
+    --bg-page: oklch(0.14 0.014 300);
+    --bg-card: oklch(0.185 0.016 300);
+    --bg-surface: oklch(0.22 0.018 300);
+    --border: oklch(0.32 0.022 300);
+    --border-input: oklch(0.38 0.022 300);
+    --pill-bg: oklch(0.27 0.025 300);
+    --primary: oklch(0.72 0.13 305);
+    --primary-soft: oklch(0.3 0.06 305);
+    --text-1: oklch(0.95 0.01 300);
+    --text-2: oklch(0.86 0.01 300);
+    --text-3: oklch(0.72 0.015 300);
+    --text-4: oklch(0.6 0.015 300);
+    --shadow-color: oklch(0 0 0 / 0.5);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg-page); font-family: 'Work Sans', system-ui, sans-serif; color: var(--text-1); }
+  button, input, select, textarea { font-family: inherit; font-size: 14px; color: inherit; }
+  ::-webkit-scrollbar { display: none; }
+
+  .page { min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 32px 16px; }
+  .card {
+    width: 430px; max-width: 100%; min-height: 840px; background: var(--bg-card); border-radius: 28px;
+    box-shadow: 0 24px 60px -20px var(--shadow-color); overflow: hidden;
+    display: flex; flex-direction: column; position: relative;
+  }
+  @media all and (display-mode: standalone) {
+    .page { padding: 0; align-items: stretch; }
+    .card { width: 100%; min-height: 100vh; border-radius: 0; box-shadow: none;
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+  }
+  @media (max-width: 480px) {
+    .page { padding: 0; }
+    .card { border-radius: 0; min-height: 100vh; box-shadow: none; }
+  }
+
+  header.top {
+    background: linear-gradient(135deg, oklch(0.36 0.15 305), oklch(0.5 0.17 340));
+    color: white; padding: 22px 20px 18px; position: relative;
+  }
+  header.top .kicker { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+  header.top h1 { margin: 4px 0 0; font-size: 22px; font-weight: 700; }
+  .top-actions { position: absolute; top: 16px; right: 14px; display: flex; gap: 6px; }
+  .icon-btn {
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid oklch(1 0 0 / .35);
+    background: oklch(1 0 0 / .12); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .icon-btn svg { width: 16px; height: 16px; }
+
+  main { flex: 1; padding: 16px 16px 96px; overflow-y: auto; }
+  .section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); margin: 18px 2px 8px; display: flex; justify-content: space-between; align-items: center; }
+  .section-title:first-child { margin-top: 2px; }
+  .link-btn { background: none; border: none; color: var(--primary); font-weight: 600; font-size: 12px; cursor: pointer; text-transform: none; letter-spacing: 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .stat { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px 8px; text-align: center; }
+  .stat b { display: block; font-size: 20px; color: var(--primary); }
+  .stat span { font-size: 10.5px; color: var(--text-3); }
+
+  .item {
+    background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px; margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  }
+  .item:active { transform: scale(.995); }
+  .item .date-box { flex: 0 0 46px; text-align: center; background: var(--primary-soft); border-radius: 10px; padding: 6px 0; }
+  .item .date-box b { display: block; font-size: 17px; color: var(--primary); line-height: 1.1; }
+  .item .date-box span { font-size: 10px; text-transform: uppercase; color: var(--text-3); }
+  .item .body { flex: 1; min-width: 0; }
+  .item .t { font-weight: 600; font-size: 14.5px; color: var(--text-1); overflow-wrap: anywhere; }
+  .item .s { font-size: 12.5px; color: var(--text-3); margin-top: 3px; overflow-wrap: anywhere; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .tag { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--pill-bg); color: var(--text-2); }
+  .net-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+  .st-Ideia { background: oklch(0.93 0.02 250); color: oklch(0.4 0.08 250); }
+  .st-Produção { background: oklch(0.94 0.06 85); color: oklch(0.45 0.1 70); }
+  .st-Agendado { background: oklch(0.93 0.05 305); color: oklch(0.42 0.14 305); }
+  .st-Publicado { background: oklch(0.93 0.06 150); color: oklch(0.42 0.12 150); }
+  .st-Planejando { background: oklch(0.93 0.02 250); color: oklch(0.4 0.08 250); }
+  .st-Confirmado { background: oklch(0.93 0.05 305); color: oklch(0.42 0.14 305); }
+  .st-Realizado { background: oklch(0.93 0.06 150); color: oklch(0.42 0.12 150); }
+  .st-Cancelado { background: oklch(0.93 0.04 25); color: oklch(0.5 0.15 25); }
+  body.dark .tag[class*="st-"] { filter: brightness(.55) saturate(1.3); color: white; }
+
+  .progress { height: 6px; background: var(--pill-bg); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+  .progress i { display: block; height: 100%; background: var(--ok); border-radius: 99px; }
+
+  .empty { text-align: center; color: var(--text-4); font-size: 13px; padding: 22px 10px; border: 1.5px dashed var(--border); border-radius: 14px; }
+
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
+  .chip { flex: 0 0 auto; border: 1px solid var(--border); background: var(--bg-surface); border-radius: 999px; padding: 6px 12px; font-size: 12.5px; cursor: pointer; color: var(--text-2); }
+  .chip.on { background: var(--primary); border-color: var(--primary); color: white; }
+  body.dark .chip.on { color: oklch(0.15 0.02 300); }
+
+  /* Calendário */
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .cal-head b { font-size: 16px; text-transform: capitalize; }
+  .cal-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-surface); cursor: pointer; font-size: 16px; color: var(--text-2); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-dow { font-size: 10.5px; text-align: center; color: var(--text-4); font-weight: 600; padding-bottom: 4px; }
+  .cal-day {
+    aspect-ratio: 1 / 1.05; border-radius: 10px; background: var(--bg-surface); border: 1px solid transparent;
+    display: flex; flex-direction: column; align-items: center; padding-top: 5px; cursor: pointer; font-size: 13px; color: var(--text-2); min-width: 0;
+  }
+  .cal-day.out { opacity: .35; }
+  .cal-day.today { border-color: var(--primary); font-weight: 700; color: var(--primary); }
+  .cal-day.sel { background: var(--primary); color: white; }
+  body.dark .cal-day.sel { color: oklch(0.15 0.02 300); }
+  .cal-day .dots { display: flex; gap: 2px; margin-top: 4px; flex-wrap: wrap; justify-content: center; max-width: 90%; }
+  .cal-day .dots i { width: 6px; height: 6px; border-radius: 50%; }
+  .cal-day .dots i.ev { border-radius: 2px; background: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--text-3); margin: 10px 2px 0; }
+
+  /* Tabs */
+  nav.tabs {
+    position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--bg-card); border-top: 1px solid var(--border); padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+  }
+  @media all and (display-mode: standalone), (max-width: 480px) { nav.tabs { position: fixed; } }
+  .tab { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10.5px; color: var(--text-4); cursor: pointer; padding: 4px 0; }
+  .tab svg { width: 22px; height: 22px; }
+  .tab.on { color: var(--primary); font-weight: 600; }
+
+  .fab {
+    position: absolute; right: 18px; bottom: 78px; width: 54px; height: 54px; border-radius: 50%; border: none;
+    background: var(--accent); color: white; font-size: 28px; cursor: pointer; box-shadow: 0 8px 20px -6px var(--shadow-color);
+  }
+  @media all and (display-mode: standalone), (max-width: 480px) { .fab { position: fixed; } }
+
+  /* Modal */
+  .overlay { position: fixed; inset: 0; background: oklch(0 0 0 / .45); display: none; align-items: flex-end; justify-content: center; z-index: 50; }
+  .overlay.open { display: flex; }
+  .sheet {
+    background: var(--bg-card); width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto;
+    border-radius: 22px 22px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+  }
+  .sheet h2 { margin: 0 0 12px; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .close-x { background: var(--pill-bg); border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px; color: var(--text-2); }
+  label.f { display: block; font-size: 12px; font-weight: 600; color: var(--text-3); margin: 10px 0 4px; }
+  .in { width: 100%; padding: 10px 12px; border: 1px solid var(--border-input); border-radius: 10px; background: var(--bg-surface); outline: none; }
+  .in:focus { border-color: var(--primary); }
+  textarea.in { min-height: 80px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btns { display: flex; gap: 8px; margin-top: 16px; }
+  .btn { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-surface); font-weight: 600; cursor: pointer; }
+  .btn.primary { background: var(--primary); border-color: var(--primary); color: white; }
+  body.dark .btn.primary { color: oklch(0.15 0.02 300); }
+  .btn.danger { color: var(--danger); flex: 0 0 auto; }
+  .btn.small { padding: 8px 10px; font-size: 12.5px; }
+
+  /* Detalhe do evento */
+  .ev-info { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; font-size: 13px; color: var(--text-2); line-height: 1.6; }
+  .ev-info b { color: var(--text-1); }
+  .fase { margin-top: 14px; }
+  .fase h3 { font-size: 13px; margin: 0 0 6px; color: var(--primary); }
+  .task { display: flex; align-items: flex-start; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); }
+  .task input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--ok); margin-top: 1px; flex: 0 0 auto; }
+  .task .tx { flex: 1; font-size: 13.5px; min-width: 0; overflow-wrap: anywhere; }
+  .task.done .tx { text-decoration: line-through; color: var(--text-4); }
+  .task .meta { font-size: 11px; color: var(--text-4); }
+  .task .meta.late { color: var(--danger); font-weight: 600; }
+  .task .del { background: none; border: none; color: var(--text-4); cursor: pointer; font-size: 16px; }
+  .add-task { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; }
+  .add-task .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+
+  .toast { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); background: var(--text-1); color: var(--bg-card); padding: 10px 16px; border-radius: 99px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 60; }
+  .toast.show { opacity: 1; }
+  .copy-box { white-space: pre-wrap; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px; color: var(--text-2); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+    <header class="top">
+      <div class="kicker">Estratégia de Marketing</div>
+      <h1 id="hdrTitle">Início</h1>
+      <div class="top-actions">
+        <button class="icon-btn" id="btnBackup" title="Backup" aria-label="Backup dos dados">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/></svg>
+        </button>
+        <button class="icon-btn" id="btnDark" title="Modo escuro" aria-label="Alternar modo escuro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="view"></main>
+
+    <button class="fab" id="fab" aria-label="Adicionar">+</button>
+
+    <nav class="tabs">
+      <button class="tab on" data-tab="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Início
+      </button>
+      <button class="tab" data-tab="calendario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendário
+      </button>
+      <button class="tab" data-tab="posts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Posts
+      </button>
+      <button class="tab" data-tab="eventos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Eventos
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept="application/json" hidden>
+
+<script>
+const STORE_KEY = 'mkt-estrategia-v1';
+const DARK_KEY = 'mkt-dark';
+
+const REDES = {
+  Instagram: 'oklch(0.62 0.2 350)',
+  Facebook: 'oklch(0.55 0.15 260)',
+  TikTok: 'oklch(0.35 0.02 260)',
+  WhatsApp: 'oklch(0.65 0.16 150)',
+  YouTube: 'oklch(0.58 0.21 27)',
+  LinkedIn: 'oklch(0.5 0.12 240)',
+  'E-mail': 'oklch(0.7 0.12 70)',
+  Outro: 'oklch(0.6 0.03 300)',
+};
+const FORMATOS = ['Feed', 'Carrossel', 'Reels', 'Stories', 'Vídeo', 'Live', 'Texto', 'Outro'];
+const STATUS_POST = ['Ideia', 'Produção', 'Agendado', 'Publicado'];
+const STATUS_EV = ['Planejando', 'Confirmado', 'Realizado', 'Cancelado'];
+const FASES = ['Pré-evento', 'Dia do evento', 'Pós-evento'];
+
+const MODELO_TAREFAS = [
+  ['Pré-evento', 'Definir objetivo e público-alvo', -45],
+  ['Pré-evento', 'Fechar local, data e horário', -40],
+  ['Pré-evento', 'Montar orçamento', -40],
+  ['Pré-evento', 'Criar identidade visual (arte, cores, logo)', -30],
+  ['Pré-evento', 'Contratar fornecedores (som, buffet, foto/vídeo)', -25],
+  ['Pré-evento', 'Abrir inscrições / vendas / convites', -21],
+  ['Pré-evento', 'Produzir posts de divulgação', -16],
+  ['Pré-evento', 'Confirmar presença dos convidados', -3],
+  ['Pré-evento', 'Checklist de materiais e equipe', -1],
+  ['Dia do evento', 'Cobertura em Stories ao vivo', 0],
+  ['Dia do evento', 'Fotos e vídeos para conteúdo', 0],
+  ['Dia do evento', 'Coletar depoimentos', 0],
+  ['Pós-evento', 'Post de agradecimento', 1],
+  ['Pós-evento', 'Publicar fotos/vídeo resumo', 3],
+  ['Pós-evento', 'Pesquisa de satisfação', 3],
+  ['Pós-evento', 'Avaliar resultados e fechar custos', 7],
+];
+const MODELO_POSTS = [
+  [-14, 'Teaser: algo vem aí 👀', 'Instagram', 'Stories'],
+  [-10, 'Anúncio oficial do evento', 'Instagram', 'Carrossel'],
+  [-7, 'O que vai acontecer (programação)', 'Instagram', 'Reels'],
+  [-7, 'Convite no grupo/lista', 'WhatsApp', 'Texto'],
+  [-3, 'Contagem regressiva: faltam 3 dias', 'Instagram', 'Stories'],
+  [-1, 'É amanhã! Últimas informações', 'Instagram', 'Feed'],
+  [0, 'Ao vivo do evento', 'Instagram', 'Stories'],
+  [1, 'Obrigado a todos que vieram!', 'Instagram', 'Carrossel'],
+  [3, 'Vídeo resumo do evento', 'Instagram', 'Reels'],
+];
+
+// ---------- Store ----------
+let store = load();
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORE_KEY));
+    if (s && Array.isArray(s.posts) && Array.isArray(s.eventos)) return s;
+  } catch (e) {}
+  return { posts: [], eventos: [] };
+}
+function save() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch (e) { toast('Não foi possível salvar'); }
+}
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+// ---------- Helpers ----------
+const MESES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const MES_CURTO = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const DOW = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const pad = n => String(n).padStart(2, '0');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parse = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const today = () => iso(new Date());
+const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return iso(d); };
+const fmtLong = s => { const d = parse(s); return `${DOW[d.getDay()]}, ${d.getDate()} de ${MESES[d.getMonth()]}`; };
+const diffDays = s => Math.round((parse(s) - parse(today())) / 86400000);
+const relLabel = s => { const n = diffDays(s); return n === 0 ? 'hoje' : n === 1 ? 'amanhã' : n === -1 ? 'ontem' : n > 0 ? `em ${n} dias` : `há ${-n} dias`; };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const opts = (arr, sel) => arr.map(v => `<option ${v === sel ? 'selected' : ''}>${esc(v)}</option>`).join('');
+const byDate = (a, b) => (a.data + (a.hora || '')).localeCompare(b.data + (b.hora || ''));
+const evById = id => store.eventos.find(e => e.id === id);
+const money = v => v ? Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '';
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ---------- Navegação ----------
+let tab = 'inicio';
+let postFilter = 'Todos';
+let evFilter = 'Próximos';
+let calMonth = (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); })();
+let calSel = today();
+
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  tab = b.dataset.tab;
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+document.getElementById('fab').onclick = () => {
+  if (tab === 'eventos') openEventForm();
+  else if (tab === 'calendario') openPostForm({ data: calSel });
+  else openPostForm();
+};
+
+function render() {
+  const titles = { inicio: 'Início', calendario: 'Calendário', posts: 'Posts', eventos: 'Eventos' };
+  document.getElementById('hdrTitle').textContent = titles[tab];
+  const v = document.getElementById('view');
+  v.innerHTML = ({ inicio: viewInicio, calendario: viewCalendario, posts: viewPosts, eventos: viewEventos })[tab]();
+  bindItems(v);
+}
+
+function bindItems(root) {
+  root.querySelectorAll('[data-post]').forEach(el => el.onclick = () => openPostForm(store.posts.find(p => p.id === el.dataset.post)));
+  root.querySelectorAll('[data-ev]').forEach(el => el.onclick = () => openEventDetail(el.dataset.ev));
+  root.querySelectorAll('[data-go]').forEach(el => el.onclick = () => document.querySelector(`.tab[data-tab="${el.dataset.go}"]`).click());
+}
+
+// ---------- Cards ----------
+function postCard(p) {
+  const d = parse(p.data);
+  const ev = p.eventoId && evById(p.eventoId);
+  return `<div class="item" data-post="${p.id}">
+    <div class="date-box"><b>${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
+    <div class="body">
+      <div class="t">${esc(p.titulo)}</div>
+      <div class="s"><span class="net-dot" style="background:${REDES[p.rede] || REDES.Outro}"></span>${esc(p.rede)} · ${esc(p.formato)}${p.hora ? ' · ' + esc(p.hora) : ''}</div>
+      <div class="tags"><span class="tag st-${esc(p.status)}">${esc(p.status)}</span>${ev ? `<span class="tag">🎯 ${esc(ev.nome)}</span>` : ''}</div>
+    </div></div>`;
+}
+function evProgress(e) {
+  const t = e.tarefas || [];
+  const done = t.filter(x => x.feito).length;
+  return { done, total: t.length, pct: t.length ? Math.round(done / t.length * 100) : 0 };
+}
+function evCard(e) {
+  const d = parse(e.data);
+  const pr = evProgress(e);
+  const nPosts = store.posts.filter(p => p.eventoId === e.id).length;
+  return `<div class="item" data-ev="${e.id}">
+    <div class="date-box" style="background:oklch(0.72 0.16 40 / .18)"><b style="color:var(--accent)">${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
+    <div class="body">
+      <div class="t">${esc(e.nome)}</div>
+      <div class="s">${relLabel(e.data)}${e.local ? ' · ' + esc(e.local) : ''}</div>
+      <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">✅ ${pr.done}/${pr.total} tarefas</span><span class="tag">📣 ${nPosts} posts</span></div>
+      ${pr.total ? `<div class="progress"><i style="width:${pr.pct}%"></i></div>` : ''}
+    </div></div>`;
+}
+
+// ---------- Views ----------
+function viewInicio() {
+  const t = today();
+  const semana = addDays(t, 7);
+  const proxPosts = store.posts.filter(p => p.data >= t && p.status !== 'Publicado').sort(byDate);
+  const atrasados = store.posts.filter(p => p.data < t && p.status !== 'Publicado').sort(byDate);
+  const proxEv = store.eventos.filter(e => e.data >= t && e.status !== 'Cancelado' && e.status !== 'Realizado').sort(byDate);
+  const tarefasPend = [];
+  store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (!x.feito && x.prazo && x.prazo <= semana && e.status !== 'Cancelado') tarefasPend.push({ ...x, ev: e }); }));
+  tarefasPend.sort((a, b) => a.prazo.localeCompare(b.prazo));
+
+  const semanaCount = store.posts.filter(p => p.data >= t && p.data <= semana).length;
+  const publicados = store.posts.filter(p => p.status === 'Publicado').length;
+
+  let h = `<div class="section-title">Resumo</div>
+  <div class="stats">
+    <div class="stat"><b>${semanaCount}</b><span>posts em 7 dias</span></div>
+    <div class="stat"><b>${proxEv.length}</b><span>eventos</span></div>
+    <div class="stat"><b>${tarefasPend.length}</b><span>tarefas p/ fazer</span></div>
+    <div class="stat"><b>${publicados}</b><span>publicados</span></div>
+  </div>`;
+
+  if (atrasados.length) {
+    h += `<div class="section-title" style="color:var(--danger)">⚠️ Atrasados (não publicados)</div>` + atrasados.map(postCard).join('');
+  }
+  h += `<div class="section-title">Próximas postagens <button class="link-btn" data-go="posts">ver todas</button></div>`;
+  h += proxPosts.length ? proxPosts.slice(0, 5).map(postCard).join('') : `<div class="empty">Nenhuma postagem planejada.<br>Toque em <b>+</b> para adicionar.</div>`;
+
+  h += `<div class="section-title">Próximos eventos <button class="link-btn" data-go="eventos">ver todos</button></div>`;
+  h += proxEv.length ? proxEv.slice(0, 3).map(evCard).join('') : `<div class="empty">Nenhum evento planejado.</div>`;
+
+  if (tarefasPend.length) {
+    h += `<div class="section-title">Tarefas desta semana</div>`;
+    h += tarefasPend.slice(0, 8).map(x => `<div class="item" data-ev="${x.ev.id}">
+      <div class="body"><div class="t">${esc(x.texto)}</div>
+      <div class="s" style="${x.prazo < t ? 'color:var(--danger);font-weight:600' : ''}">${esc(x.ev.nome)} · ${relLabel(x.prazo)}${x.responsavel ? ' · ' + esc(x.responsavel) : ''}</div></div></div>`).join('');
+  }
+  return h;
+}
+
+function viewCalendario() {
+  const y = calMonth.getFullYear(), m = calMonth.getMonth();
+  const start = new Date(y, m, 1 - new Date(y, m, 1).getDay());
+  const t = today();
+  let cells = DOW.map(d => `<div class="cal-dow">${d[0]}</div>`).join('');
+  for (let i = 0; i < 42; i++) {
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    const s = iso(d);
+    const posts = store.posts.filter(p => p.data === s);
+    const evs = store.eventos.filter(e => e.data === s);
+    const dots = evs.map(() => `<i class="ev"></i>`).join('') + posts.slice(0, 5).map(p => `<i style="background:${REDES[p.rede] || REDES.Outro}"></i>`).join('');
+    cells += `<div class="cal-day ${d.getMonth() !== m ? 'out' : ''} ${s === t ? 'today' : ''} ${s === calSel ? 'sel' : ''}" data-day="${s}">${d.getDate()}<div class="dots">${dots}</div></div>`;
+  }
+  const dayPosts = store.posts.filter(p => p.data === calSel).sort(byDate);
+  const dayEvs = store.eventos.filter(e => e.data === calSel);
+  const dayTasks = [];
+  store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (x.prazo === calSel) dayTasks.push({ ...x, ev: e }); }));
+
+  setTimeout(() => {
+    document.querySelectorAll('[data-day]').forEach(el => el.onclick = () => { calSel = el.dataset.day; render(); });
+    document.getElementById('calPrev').onclick = () => { calMonth = new Date(y, m - 1, 1); render(); };
+    document.getElementById('calNext').onclick = () => { calMonth = new Date(y, m + 1, 1); render(); };
+  });
+
+  let h = `<div class="cal-head"><button class="cal-nav" id="calPrev">‹</button><b>${MESES[m]} ${y}</b><button class="cal-nav" id="calNext">›</button></div>
+  <div class="cal-grid">${cells}</div>
+  <div class="legend"><span><span class="net-dot" style="background:var(--accent);border-radius:2px"></span>Evento</span>${Object.entries(REDES).slice(0, 6).map(([k, c]) => `<span><span class="net-dot" style="background:${c}"></span>${k}</span>`).join('')}</div>
+  <div class="section-title">${fmtLong(calSel)}</div>`;
+  h += dayEvs.map(evCard).join('') + dayPosts.map(postCard).join('');
+  h += dayTasks.map(x => `<div class="item" data-ev="${x.ev.id}"><div class="body"><div class="t">${x.feito ? '✅' : '⬜'} ${esc(x.texto)}</div><div class="s">Tarefa · ${esc(x.ev.nome)}</div></div></div>`).join('');
+  if (!dayEvs.length && !dayPosts.length && !dayTasks.length) h += `<div class="empty">Nada neste dia. Toque em <b>+</b> para planejar um post.</div>`;
+  return h;
+}
+
+function viewPosts() {
+  setTimeout(() => document.querySelectorAll('[data-pf]').forEach(el => el.onclick = () => { postFilter = el.dataset.pf; render(); }));
+  const filtros = ['Todos', 'Próximos', ...STATUS_POST];
+  let list = store.posts.slice().sort(byDate);
+  if (postFilter === 'Próximos') list = list.filter(p => p.data >= today());
+  else if (postFilter !== 'Todos') list = list.filter(p => p.status === postFilter);
+  let h = `<div class="chips">${filtros.map(f => `<button class="chip ${f === postFilter ? 'on' : ''}" data-pf="${f}">${f}</button>`).join('')}</div>`;
+  if (!list.length) return h + `<div class="empty">Nenhum post aqui ainda.<br>Toque em <b>+</b> para criar.</div>`;
+  let lastMonth = '';
+  list.forEach(p => {
+    const d = parse(p.data);
+    const mk = `${MESES[d.getMonth()]} ${d.getFullYear()}`;
+    if (mk !== lastMonth) { h += `<div class="section-title">${mk}</div>`; lastMonth = mk; }
+    h += postCard(p);
+  });
+  return h;
+}
+
+function viewEventos() {
+  setTimeout(() => document.querySelectorAll('[data-ef]').forEach(el => el.onclick = () => { evFilter = el.dataset.ef; render(); }));
+  let list = store.eventos.slice().sort(byDate);
+  if (evFilter === 'Próximos') list = list.filter(e => e.data >= today());
+  else if (evFilter === 'Passados') list = list.filter(e => e.data < today()).reverse();
+  let h = `<div class="chips">${['Próximos', 'Passados', 'Todos'].map(f => `<button class="chip ${f === evFilter ? 'on' : ''}" data-ef="${f}">${f}</button>`).join('')}</div>`;
+  h += list.length ? list.map(evCard).join('') : `<div class="empty">Nenhum evento.<br>Toque em <b>+</b> para planejar um evento.</div>`;
+  return h;
+}
+
+// ---------- Modal ----------
+const overlay = document.getElementById('overlay');
+const sheet = document.getElementById('sheet');
+function openSheet(html) { sheet.innerHTML = html; overlay.classList.add('open'); sheet.scrollTop = 0; sheet.querySelectorAll('.close-x').forEach(b => b.onclick = closeSheet); }
+function closeSheet() { overlay.classList.remove('open'); }
+overlay.onclick = e => { if (e.target === overlay) closeSheet(); };
+
+// ---------- Post form ----------
+function openPostForm(p = {}) {
+  const isNew = !p.id;
+  const evOpts = `<option value="">— nenhum —</option>` + store.eventos.slice().sort(byDate).map(e => `<option value="${e.id}" ${e.id === p.eventoId ? 'selected' : ''}>${esc(e.nome)}</option>`).join('');
+  openSheet(`<h2>${isNew ? 'Novo post' : 'Editar post'} <button class="close-x">✕</button></h2>
+    <label class="f">O que vai ser postado *</label>
+    <input class="in" id="pTitulo" placeholder="Ex.: Lançamento do produto X" value="${esc(p.titulo)}">
+    <div class="row2">
+      <div><label class="f">Data *</label><input class="in" type="date" id="pData" value="${esc(p.data || today())}"></div>
+      <div><label class="f">Horário</label><input class="in" type="time" id="pHora" value="${esc(p.hora)}"></div>
+    </div>
+    <div class="row2">
+      <div><label class="f">Rede social</label><select class="in" id="pRede">${opts(Object.keys(REDES), p.rede || 'Instagram')}</select></div>
+      <div><label class="f">Formato</label><select class="in" id="pFormato">${opts(FORMATOS, p.formato || 'Feed')}</select></div>
+    </div>
+    <div class="row2">
+      <div><label class="f">Status</label><select class="in" id="pStatus">${opts(STATUS_POST, p.status || 'Ideia')}</select></div>
+      <div><label class="f">Evento / campanha</label><select class="in" id="pEvento">${evOpts}</select></div>
+    </div>
+    <label class="f">Legenda</label>
+    <textarea class="in" id="pLegenda" placeholder="Texto da publicação...">${esc(p.legenda)}</textarea>
+    <label class="f">Hashtags</label>
+    <input class="in" id="pHashtags" placeholder="#marca #evento" value="${esc(p.hashtags)}">
+    <label class="f">Objetivo / chamada para ação</label>
+    <input class="in" id="pObjetivo" placeholder="Ex.: gerar inscrições, link na bio" value="${esc(p.objetivo)}">
+    <label class="f">Notas (referências, quem produz, link da arte)</label>
+    <textarea class="in" id="pNotas" style="min-height:60px">${esc(p.notas)}</textarea>
+    <div class="btns">
+      ${isNew ? '' : '<button class="btn danger" id="pDel">Excluir</button><button class="btn" id="pCopy">Copiar legenda</button>'}
+      <button class="btn primary" id="pSave">Salvar</button>
+    </div>`);
+  const $ = id => document.getElementById(id);
+  $('pSave').onclick = () => {
+    const titulo = $('pTitulo').value.trim();
+    const data = $('pData').value;
+    if (!titulo || !data) { toast('Preencha o que vai ser postado e a data'); return; }
+    const obj = {
+      id: p.id || uid(), titulo, data, hora: $('pHora').value, rede: $('pRede').value, formato: $('pFormato').value,
+      status: $('pStatus').value, eventoId: $('pEvento').value, legenda: $('pLegenda').value, hashtags: $('pHashtags').value.trim(),
+      objetivo: $('pObjetivo').value.trim(), notas: $('pNotas').value,
+    };
+    if (isNew) store.posts.push(obj); else Object.assign(store.posts.find(x => x.id === p.id), obj);
+    save(); closeSheet(); render(); toast('Post salvo');
+  };
+  if (!isNew) {
+    $('pDel').onclick = () => {
+      if (!confirm('Excluir este post?')) return;
+      store.posts = store.posts.filter(x => x.id !== p.id); save(); closeSheet(); render(); toast('Post excluído');
+    };
+    $('pCopy').onclick = () => {
+      const txt = [$('pLegenda').value, $('pHashtags').value].filter(Boolean).join('\n\n');
+      navigator.clipboard?.writeText(txt).then(() => toast('Legenda copiada'), () => toast('Não foi possível copiar'));
+    };
+  }
+}
+
+// ---------- Event form ----------
+function openEventForm(e = {}) {
+  const isNew = !e.id;
+  openSheet(`<h2>${isNew ? 'Novo evento' : 'Editar evento'} <button class="close-x">✕</button></h2>
+    <label class="f">Nome do evento / campanha *</label>
+    <input class="in" id="eNome" placeholder="Ex.: Inauguração da loja" value="${esc(e.nome)}">
+    <div class="row2">
+      <div><label class="f">Data *</label><input class="in" type="date" id="eData" value="${esc(e.data || addDays(today(), 30))}"></div>
+      <div><label class="f">Horário</label><input class="in" type="time" id="eHora" value="${esc(e.hora)}"></div>
+    </div>
+    <label class="f">Local</label>
+    <input class="in" id="eLocal" placeholder="Endereço ou online" value="${esc(e.local)}">
+    <label class="f">Objetivo</label>
+    <input class="in" id="eObjetivo" placeholder="Ex.: 200 inscritos, vender 50 ingressos" value="${esc(e.objetivo)}">
+    <label class="f">Público-alvo</label>
+    <input class="in" id="ePublico" placeholder="Quem queremos alcançar" value="${esc(e.publico)}">
+    <div class="row2">
+      <div><label class="f">Orçamento (R$)</label><input class="in" type="number" min="0" step="0.01" id="eOrcamento" value="${esc(e.orcamento)}"></div>
+      <div><label class="f">Status</label><select class="in" id="eStatus">${opts(STATUS_EV, e.status || 'Planejando')}</select></div>
+    </div>
+    <label class="f">Notas</label>
+    <textarea class="in" id="eNotas" style="min-height:60px">${esc(e.notas)}</textarea>
+    ${isNew ? `<label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px"><input type="checkbox" id="eModelo" checked style="width:18px;height:18px"> Criar checklist padrão de organização</label>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-size:13px"><input type="checkbox" id="ePosts" style="width:18px;height:18px"> Gerar cronograma de posts de divulgação</label>` : ''}
+    <div class="btns">
+      ${isNew ? '' : '<button class="btn danger" id="eDel">Excluir</button>'}
+      <button class="btn primary" id="eSave">Salvar</button>
+    </div>`);
+  const $ = id => document.getElementById(id);
+  $('eSave').onclick = () => {
+    const nome = $('eNome').value.trim();
+    const data = $('eData').value;
+    if (!nome || !data) { toast('Preencha o nome e a data'); return; }
+    const obj = {
+      nome, data, hora: $('eHora').value, local: $('eLocal').value.trim(), objetivo: $('eObjetivo').value.trim(),
+      publico: $('ePublico').value.trim(), orcamento: $('eOrcamento').value, status: $('eStatus').value, notas: $('eNotas').value,
+    };
+    let id = e.id;
+    if (isNew) {
+      id = uid();
+      const tarefas = $('eModelo').checked ? MODELO_TAREFAS.map(([fase, texto, off]) => ({ id: uid(), fase, texto, prazo: addDays(data, off), responsavel: '', feito: false })) : [];
+      store.eventos.push({ id, ...obj, tarefas });
+      if ($('ePosts').checked) gerarPosts(id);
+    } else {
+      const ev = evById(id);
+      const delta = Math.round((parse(data) - parse(ev.data)) / 86400000);
+      if (delta && confirm('A data mudou. Mover também os prazos das tarefas e os posts ligados a este evento?')) {
+        ev.tarefas.forEach(t => { if (t.prazo) t.prazo = addDays(t.prazo, delta); });
+        store.posts.forEach(p => { if (p.eventoId === id && p.status !== 'Publicado') p.data = addDays(p.data, delta); });
+      }
+      Object.assign(ev, obj);
+    }
+    save(); render(); openEventDetail(id); toast('Evento salvo');
+  };
+  if (!isNew) {
+    $('eDel').onclick = () => {
+      const n = store.posts.filter(p => p.eventoId === e.id).length;
+      if (!confirm(`Excluir este evento?${n ? `\nOs ${n} posts ligados a ele serão mantidos, sem vínculo.` : ''}`)) return;
+      store.eventos = store.eventos.filter(x => x.id !== e.id);
+      store.posts.forEach(p => { if (p.eventoId === e.id) p.eventoId = ''; });
+      save(); closeSheet(); render(); toast('Evento excluído');
+    };
+  }
+}
+
+function gerarPosts(evId) {
+  const e = evById(evId);
+  let n = 0;
+  MODELO_POSTS.forEach(([off, titulo, rede, formato]) => {
+    const data = addDays(e.data, off);
+    if (store.posts.some(p => p.eventoId === evId && p.titulo === titulo && p.data === data)) return;
+    store.posts.push({ id: uid(), titulo, data, hora: '', rede, formato, status: 'Ideia', eventoId: evId, legenda: '', hashtags: '', objetivo: '', notas: '' });
+    n++;
+  });
+  return n;
+}
+
+// ---------- Event detail (planejamento) ----------
+function openEventDetail(id) {
+  const e = evById(id);
+  if (!e) { closeSheet(); return; }
+  e.tarefas = e.tarefas || [];
+  const pr = evProgress(e);
+  const t = today();
+  const posts = store.posts.filter(p => p.eventoId === id).sort(byDate);
+  const fases = FASES.concat([...new Set(e.tarefas.map(x => x.fase))].filter(f => !FASES.includes(f)));
+  const taskHtml = fases.map(f => {
+    const list = e.tarefas.filter(x => x.fase === f).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9'));
+    if (!list.length) return '';
+    return `<div class="fase"><h3>${esc(f)} · ${list.filter(x => x.feito).length}/${list.length}</h3>${list.map(x => `
+      <div class="task ${x.feito ? 'done' : ''}">
+        <input type="checkbox" data-tk="${x.id}" ${x.feito ? 'checked' : ''}>
+        <div class="tx">${esc(x.texto)}<div class="meta ${!x.feito && x.prazo && x.prazo < t ? 'late' : ''}">${x.prazo ? `${parse(x.prazo).getDate()} ${MES_CURTO[parse(x.prazo).getMonth()]} (${relLabel(x.prazo)})` : 'sem prazo'}${x.responsavel ? ' · 👤 ' + esc(x.responsavel) : ''}</div></div>
+        <button class="del" data-tkdel="${x.id}" aria-label="Remover tarefa">✕</button>
+      </div>`).join('')}</div>`;
+  }).join('');
+
+  openSheet(`<h2>${esc(e.nome)} <button class="close-x">✕</button></h2>
+    <div class="ev-info">
+      📅 <b>${fmtLong(e.data)}</b>${e.hora ? ' às ' + esc(e.hora) : ''} (${relLabel(e.data)})<br>
+      ${e.local ? `📍 ${esc(e.local)}<br>` : ''}
+      ${e.objetivo ? `🎯 <b>Objetivo:</b> ${esc(e.objetivo)}<br>` : ''}
+      ${e.publico ? `👥 <b>Público:</b> ${esc(e.publico)}<br>` : ''}
+      ${e.orcamento ? `💰 <b>Orçamento:</b> ${money(e.orcamento)}<br>` : ''}
+      <span class="tag st-${esc(e.status)}">${esc(e.status)}</span>
+      ${e.notas ? `<div style="margin-top:6px;white-space:pre-wrap">${esc(e.notas)}</div>` : ''}
+    </div>
+    <div class="btns" style="margin-top:10px"><button class="btn small" id="dEdit">✏️ Editar</button><button class="btn small" id="dGen">📣 Gerar posts</button><button class="btn small" id="dNewPost">+ Post</button></div>
+
+    <div class="section-title">Planejamento · ${pr.done}/${pr.total} (${pr.pct}%)</div>
+    ${pr.total ? `<div class="progress" style="margin-top:0"><i style="width:${pr.pct}%"></i></div>` : ''}
+    ${taskHtml || '<div class="empty">Sem tarefas ainda. Adicione abaixo.</div>'}
+    <div class="add-task">
+      <input class="in" id="tTexto" placeholder="Nova tarefa...">
+      <div class="row3">
+        <select class="in" id="tFase">${opts(FASES, 'Pré-evento')}</select>
+        <input class="in" type="date" id="tPrazo">
+        <input class="in" id="tResp" placeholder="Responsável">
+      </div>
+      <button class="btn primary small" id="tAdd">Adicionar tarefa</button>
+    </div>
+
+    <div class="section-title">Posts do evento (${posts.length})</div>
+    <div id="dPosts">${posts.length ? posts.map(postCard).join('') : '<div class="empty">Nenhum post ligado a este evento.</div>'}</div>`);
+
+  const $ = id => document.getElementById(id);
+  $('dEdit').onclick = () => openEventForm(e);
+  $('dNewPost').onclick = () => openPostForm({ eventoId: id, data: e.data > t ? addDays(e.data, -7) : t });
+  $('dGen').onclick = () => {
+    const n = gerarPosts(id); save(); render(); openEventDetail(id);
+    toast(n ? `${n} posts de divulgação criados` : 'Os posts do modelo já existem');
+  };
+  sheet.querySelectorAll('[data-tk]').forEach(cb => cb.onchange = () => {
+    e.tarefas.find(x => x.id === cb.dataset.tk).feito = cb.checked; save(); render(); openEventDetail(id);
+  });
+  sheet.querySelectorAll('[data-tkdel]').forEach(b => b.onclick = () => {
+    e.tarefas = e.tarefas.filter(x => x.id !== b.dataset.tkdel); save(); render(); openEventDetail(id);
+  });
+  $('tAdd').onclick = () => {
+    const texto = $('tTexto').value.trim();
+    if (!texto) { toast('Escreva a tarefa'); return; }
+    e.tarefas.push({ id: uid(), texto, fase: $('tFase').value, prazo: $('tPrazo').value, responsavel: $('tResp').value.trim(), feito: false });
+    save(); render(); openEventDetail(id);
+  };
+  bindItems($('dPosts'));
+}
+
+// ---------- Backup ----------
+document.getElementById('btnBackup').onclick = () => {
+  openSheet(`<h2>Backup dos dados <button class="close-x">✕</button></h2>
+    <p style="font-size:13px;color:var(--text-3);margin-top:0">Os dados ficam salvos neste aparelho. Exporte um arquivo para guardar ou passar para outro celular.</p>
+    <div class="btns"><button class="btn primary" id="bExp">Exportar</button><button class="btn" id="bImp">Importar</button></div>
+    <div class="btns"><button class="btn" id="bTxt">Copiar cronograma em texto</button></div>`);
+  document.getElementById('bExp').onclick = () => {
+    const blob = new Blob([JSON.stringify(store, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = `marketing-backup-${today()}.json`; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  document.getElementById('bImp').onclick = () => document.getElementById('importFile').click();
+  document.getElementById('bTxt').onclick = () => {
+    const linhas = store.posts.filter(p => p.data >= today()).sort(byDate)
+      .map(p => `${parse(p.data).getDate()}/${pad(parse(p.data).getMonth() + 1)}${p.hora ? ' ' + p.hora : ''} · ${p.rede} ${p.formato} · ${p.titulo} [${p.status}]`);
+    const txt = '📅 Cronograma de postagens\n\n' + (linhas.join('\n') || 'Nenhum post futuro.');
+    navigator.clipboard?.writeText(txt).then(() => toast('Cronograma copiado'), () => toast('Não foi possível copiar'));
+  };
+};
+document.getElementById('importFile').onchange = ev => {
+  const f = ev.target.files[0];
+  if (!f) return;
+  f.text().then(txt => {
+    const d = JSON.parse(txt);
+    if (!Array.isArray(d.posts) || !Array.isArray(d.eventos)) throw new Error();
+    if (!confirm('Substituir os dados atuais pelos do arquivo?')) return;
+    store = d; save(); closeSheet(); render(); toast('Dados importados');
+  }).catch(() => toast('Arquivo inválido'));
+  ev.target.value = '';
+};
+
+// ---------- Dark mode ----------
+function setDark(on) { document.body.classList.toggle('dark', on); try { localStorage.setItem(DARK_KEY, on ? '1' : '0'); } catch (e) {} }
+document.getElementById('btnDark').onclick = () => setDark(!document.body.classList.contains('dark'));
+try { setDark(localStorage.getItem(DARK_KEY) === '1'); } catch (e) {}
+
+render();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js').catch(() => {}));
+}
+</script>
+</body>
+</html>
