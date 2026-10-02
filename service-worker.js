@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ora-et-labora-v2';
+const CACHE_NAME = 'ora-et-labora-v3';
 const FILES_TO_CACHE = [
   './rotina-familia-v2-5.html',
   './manifest.json',
@@ -8,6 +8,7 @@ const FILES_TO_CACHE = [
   './manifest-marketing.json',
   './icon-mkt-192.png',
   './icon-mkt-512.png',
+  './logo-30anos.png',
 ];
 
 self.addEventListener('install', (event) => {

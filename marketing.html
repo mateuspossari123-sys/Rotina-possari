@@ -5,51 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Estratégia de Marketing</title>
 <link rel="manifest" href="manifest-marketing.json">
-<meta name="theme-color" content="#5b2a86">
+<meta name="theme-color" content="#06283a">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-mkt-192.png">
 <link rel="apple-touch-icon" href="icon-mkt-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Marketing">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
 <style>
+  /* Identidade visual "30 anos — Alcançados pela Misericórdia" */
   :root {
-    --bg-page: oklch(0.965 0.006 300);
-    --bg-card: oklch(0.995 0.003 300);
-    --bg-surface: oklch(0.975 0.006 300);
-    --border: oklch(0.91 0.012 300);
-    --border-input: oklch(0.85 0.015 300);
-    --pill-bg: oklch(0.94 0.015 300);
-    --primary: oklch(0.42 0.15 305);
-    --primary-soft: oklch(0.93 0.04 305);
-    --accent: oklch(0.72 0.16 40);
-    --ok: oklch(0.62 0.14 150);
-    --warn: oklch(0.72 0.14 75);
-    --danger: oklch(0.58 0.18 25);
-    --text-1: oklch(0.22 0.02 300);
-    --text-2: oklch(0.32 0.02 300);
-    --text-3: oklch(0.5 0.02 300);
-    --text-4: oklch(0.62 0.02 300);
-    --shadow-color: oklch(0.3 0.04 300 / 0.3);
+    --navy: #06283a;
+    --blue: #1c5170;
+    --blue-light: #4483a3;
+    --gold-1: #f3cf8f;
+    --gold-2: #c9a24f;
+    --gold-3: #a07a20;
+    --gold-grad: linear-gradient(100deg, var(--gold-1), var(--gold-2) 55%, var(--gold-3));
+    --cream: #fdeee0;
+    --bg-page: var(--cream);
+    --bg-card: #fff8f1;
+    --bg-surface: #fffdfa;
+    --border: #efdcc6;
+    --border-input: #e3c9aa;
+    --pill-bg: #f8e6d2;
+    --primary: var(--blue);
+    --primary-soft: #e3edf2;
+    --accent: var(--gold-3);
+    --ok: #2f7d5b;
+    --danger: #b4432f;
+    --text-1: var(--navy);
+    --text-2: #1f3e50;
+    --text-3: #5e6f78;
+    --text-4: #8c8a85;
+    --shadow-color: rgb(6 40 58 / 0.28);
   }
   body.dark {
-    --bg-page: oklch(0.14 0.014 300);
-    --bg-card: oklch(0.185 0.016 300);
-    --bg-surface: oklch(0.22 0.018 300);
-    --border: oklch(0.32 0.022 300);
-    --border-input: oklch(0.38 0.022 300);
-    --pill-bg: oklch(0.27 0.025 300);
-    --primary: oklch(0.72 0.13 305);
-    --primary-soft: oklch(0.3 0.06 305);
-    --text-1: oklch(0.95 0.01 300);
-    --text-2: oklch(0.86 0.01 300);
-    --text-3: oklch(0.72 0.015 300);
-    --text-4: oklch(0.6 0.015 300);
-    --shadow-color: oklch(0 0 0 / 0.5);
+    --bg-page: #031923;
+    --bg-card: var(--navy);
+    --bg-surface: #0b3449;
+    --border: #164560;
+    --border-input: #22587a;
+    --pill-bg: #11405a;
+    --primary: var(--gold-1);
+    --primary-soft: #133e55;
+    --accent: var(--gold-2);
+    --text-1: #fdeee0;
+    --text-2: #ecdcc9;
+    --text-3: #a9bfcb;
+    --text-4: #7f98a6;
+    --shadow-color: rgb(0 0 0 / 0.5);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg-page); font-family: 'Work Sans', system-ui, sans-serif; color: var(--text-1); }
+  body { margin: 0; background: var(--bg-page); font-family: 'Montserrat', system-ui, sans-serif; color: var(--text-1); }
   button, input, select, textarea { font-family: inherit; font-size: 14px; color: inherit; }
   ::-webkit-scrollbar { display: none; }
 
@@ -70,26 +79,31 @@
   }
 
   header.top {
-    background: linear-gradient(135deg, oklch(0.36 0.15 305), oklch(0.5 0.17 340));
-    color: white; padding: 22px 20px 18px; position: relative;
+    background: var(--navy); color: var(--cream); padding: 18px 18px 16px; position: relative;
+    display: flex; align-items: center; gap: 12px; border-bottom: 3px solid transparent;
+    border-image: var(--gold-grad) 1;
   }
-  header.top .kicker { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
-  header.top h1 { margin: 4px 0 0; font-size: 22px; font-weight: 700; }
-  .top-actions { position: absolute; top: 16px; right: 14px; display: flex; gap: 6px; }
+  header.top .logo { width: 58px; height: 58px; flex: 0 0 auto; filter: drop-shadow(0 4px 8px rgb(0 0 0 / .35)); }
+  header.top .kicker { font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-1); opacity: .9; font-weight: 600; }
+  header.top h1 {
+    margin: 2px 0 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; font-weight: 700; line-height: 1.05;
+    background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .top-actions { position: absolute; top: 14px; right: 12px; display: flex; gap: 6px; }
   .icon-btn {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid oklch(1 0 0 / .35);
-    background: oklch(1 0 0 / .12); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgb(243 207 143 / .45);
+    background: rgb(243 207 143 / .08); color: var(--gold-1); cursor: pointer; display: flex; align-items: center; justify-content: center;
   }
   .icon-btn svg { width: 16px; height: 16px; }
 
   main { flex: 1; padding: 16px 16px 96px; overflow-y: auto; }
-  .section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); margin: 18px 2px 8px; display: flex; justify-content: space-between; align-items: center; }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--text-3); margin: 18px 2px 8px; display: flex; justify-content: space-between; align-items: center; }
   .section-title:first-child { margin-top: 2px; }
   .link-btn { background: none; border: none; color: var(--primary); font-weight: 600; font-size: 12px; cursor: pointer; text-transform: none; letter-spacing: 0; }
 
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .stat { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px 8px; text-align: center; }
-  .stat b { display: block; font-size: 20px; color: var(--primary); }
+  .stat b { display: block; font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.1; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .stat span { font-size: 10.5px; color: var(--text-3); }
 
   .item {
@@ -98,7 +112,11 @@
   }
   .item:active { transform: scale(.995); }
   .item .date-box { flex: 0 0 46px; text-align: center; background: var(--primary-soft); border-radius: 10px; padding: 6px 0; }
-  .item .date-box b { display: block; font-size: 17px; color: var(--primary); line-height: 1.1; }
+  .item .date-box b { display: block; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--primary); line-height: 1.1; }
+  .item .ev-box { background: var(--navy); }
+  .item .ev-box b { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .item .ev-box span { color: var(--gold-1) !important; }
+  body.dark .item .ev-box { background: #031923; border: 1px solid var(--gold-3); }
   .item .date-box span { font-size: 10px; text-transform: uppercase; color: var(--text-3); }
   .item .body { flex: 1; min-width: 0; }
   .item .t { font-weight: 600; font-size: 14.5px; color: var(--text-1); overflow-wrap: anywhere; }
@@ -107,29 +125,30 @@
   .tag { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--pill-bg); color: var(--text-2); }
   .net-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
 
-  .st-Ideia { background: oklch(0.93 0.02 250); color: oklch(0.4 0.08 250); }
-  .st-Produção { background: oklch(0.94 0.06 85); color: oklch(0.45 0.1 70); }
-  .st-Agendado { background: oklch(0.93 0.05 305); color: oklch(0.42 0.14 305); }
-  .st-Publicado { background: oklch(0.93 0.06 150); color: oklch(0.42 0.12 150); }
-  .st-Planejando { background: oklch(0.93 0.02 250); color: oklch(0.4 0.08 250); }
-  .st-Confirmado { background: oklch(0.93 0.05 305); color: oklch(0.42 0.14 305); }
-  .st-Realizado { background: oklch(0.93 0.06 150); color: oklch(0.42 0.12 150); }
-  .st-Cancelado { background: oklch(0.93 0.04 25); color: oklch(0.5 0.15 25); }
-  body.dark .tag[class*="st-"] { filter: brightness(.55) saturate(1.3); color: white; }
+  .st-Ideia, .st-Planejando { background: #e6eef2; color: #4483a3; }
+  .st-Produção { background: #f8e7c4; color: #8a6514; }
+  .st-Agendado, .st-Confirmado { background: #d5e3ec; color: #1c5170; }
+  .st-Publicado, .st-Realizado { background: #06283a; color: #f3cf8f; }
+  .st-Cancelado { background: #f5ddd6; color: #b4432f; }
+  body.dark .st-Ideia, body.dark .st-Planejando { background: #163f57; color: #9cc6dc; }
+  body.dark .st-Produção { background: #4a3a14; color: #f3cf8f; }
+  body.dark .st-Agendado, body.dark .st-Confirmado { background: #1c5170; color: #fdeee0; }
+  body.dark .st-Publicado, body.dark .st-Realizado { background: var(--gold-grad); color: #06283a; }
+  body.dark .st-Cancelado { background: #4d2219; color: #f0a593; }
 
   .progress { height: 6px; background: var(--pill-bg); border-radius: 99px; overflow: hidden; margin-top: 8px; }
-  .progress i { display: block; height: 100%; background: var(--ok); border-radius: 99px; }
+  .progress i { display: block; height: 100%; background: var(--gold-grad); border-radius: 99px; }
 
   .empty { text-align: center; color: var(--text-4); font-size: 13px; padding: 22px 10px; border: 1.5px dashed var(--border); border-radius: 14px; }
 
   .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
   .chip { flex: 0 0 auto; border: 1px solid var(--border); background: var(--bg-surface); border-radius: 999px; padding: 6px 12px; font-size: 12.5px; cursor: pointer; color: var(--text-2); }
   .chip.on { background: var(--primary); border-color: var(--primary); color: white; }
-  body.dark .chip.on { color: oklch(0.15 0.02 300); }
+  body.dark .chip.on { color: var(--navy); }
 
   /* Calendário */
   .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  .cal-head b { font-size: 16px; text-transform: capitalize; }
+  .cal-head b { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; text-transform: capitalize; }
   .cal-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-surface); cursor: pointer; font-size: 16px; color: var(--text-2); }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .cal-dow { font-size: 10.5px; text-align: center; color: var(--text-4); font-weight: 600; padding-bottom: 4px; }
@@ -140,10 +159,10 @@
   .cal-day.out { opacity: .35; }
   .cal-day.today { border-color: var(--primary); font-weight: 700; color: var(--primary); }
   .cal-day.sel { background: var(--primary); color: white; }
-  body.dark .cal-day.sel { color: oklch(0.15 0.02 300); }
+  body.dark .cal-day.sel { color: var(--navy); }
   .cal-day .dots { display: flex; gap: 2px; margin-top: 4px; flex-wrap: wrap; justify-content: center; max-width: 90%; }
   .cal-day .dots i { width: 6px; height: 6px; border-radius: 50%; }
-  .cal-day .dots i.ev { border-radius: 2px; background: var(--accent); }
+  .cal-day .dots i.ev { border-radius: 2px; background: var(--gold-2); }
   .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--text-3); margin: 10px 2px 0; }
 
   /* Tabs */
@@ -155,21 +174,23 @@
   .tab { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10.5px; color: var(--text-4); cursor: pointer; padding: 4px 0; }
   .tab svg { width: 22px; height: 22px; }
   .tab.on { color: var(--primary); font-weight: 600; }
+  body:not(.dark) .tab.on { color: var(--navy); }
+  .tab.on svg { stroke: var(--accent); }
 
   .fab {
-    position: absolute; right: 18px; bottom: 78px; width: 54px; height: 54px; border-radius: 50%; border: none;
-    background: var(--accent); color: white; font-size: 28px; cursor: pointer; box-shadow: 0 8px 20px -6px var(--shadow-color);
+    position: absolute; right: 18px; bottom: 78px; width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold-1);
+    background: var(--gold-grad); color: var(--navy); font-size: 30px; font-weight: 500; cursor: pointer; box-shadow: 0 10px 22px -6px var(--shadow-color);
   }
   @media all and (display-mode: standalone), (max-width: 480px) { .fab { position: fixed; } }
 
   /* Modal */
-  .overlay { position: fixed; inset: 0; background: oklch(0 0 0 / .45); display: none; align-items: flex-end; justify-content: center; z-index: 50; }
+  .overlay { position: fixed; inset: 0; background: rgb(3 25 35 / .55); display: none; align-items: flex-end; justify-content: center; z-index: 50; }
   .overlay.open { display: flex; }
   .sheet {
     background: var(--bg-card); width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto;
     border-radius: 22px 22px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
   }
-  .sheet h2 { margin: 0 0 12px; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .sheet h2 { margin: 0 0 12px; font-family: 'Playfair Display', serif; font-size: 22px; display: flex; justify-content: space-between; align-items: center; }
   .close-x { background: var(--pill-bg); border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px; color: var(--text-2); }
   label.f { display: block; font-size: 12px; font-weight: 600; color: var(--text-3); margin: 10px 0 4px; }
   .in { width: 100%; padding: 10px 12px; border: 1px solid var(--border-input); border-radius: 10px; background: var(--bg-surface); outline: none; }
@@ -179,7 +200,7 @@
   .btns { display: flex; gap: 8px; margin-top: 16px; }
   .btn { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-surface); font-weight: 600; cursor: pointer; }
   .btn.primary { background: var(--primary); border-color: var(--primary); color: white; }
-  body.dark .btn.primary { color: oklch(0.15 0.02 300); }
+  body.dark .btn.primary { color: var(--navy); }
   .btn.danger { color: var(--danger); flex: 0 0 auto; }
   .btn.small { padding: 8px 10px; font-size: 12.5px; }
 
@@ -187,9 +208,9 @@
   .ev-info { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; font-size: 13px; color: var(--text-2); line-height: 1.6; }
   .ev-info b { color: var(--text-1); }
   .fase { margin-top: 14px; }
-  .fase h3 { font-size: 13px; margin: 0 0 6px; color: var(--primary); }
+  .fase h3 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 6px; color: var(--accent); }
   .task { display: flex; align-items: flex-start; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); }
-  .task input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--ok); margin-top: 1px; flex: 0 0 auto; }
+  .task input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--blue); margin-top: 1px; flex: 0 0 auto; }
   .task .tx { flex: 1; font-size: 13.5px; min-width: 0; overflow-wrap: anywhere; }
   .task.done .tx { text-decoration: line-through; color: var(--text-4); }
   .task .meta { font-size: 11px; color: var(--text-4); }
@@ -207,8 +228,11 @@
 <div class="page">
   <div class="card">
     <header class="top">
-      <div class="kicker">Estratégia de Marketing</div>
-      <h1 id="hdrTitle">Início</h1>
+      <img class="logo" src="logo-30anos.png" alt="30 anos — Alcançados pela Misericórdia">
+      <div>
+        <div class="kicker">Marketing · 30 anos</div>
+        <h1 id="hdrTitle">Início</h1>
+      </div>
       <div class="top-actions">
         <button class="icon-btn" id="btnBackup" title="Backup" aria-label="Backup dos dados">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/></svg>
@@ -249,14 +273,14 @@ const STORE_KEY = 'mkt-estrategia-v1';
 const DARK_KEY = 'mkt-dark';
 
 const REDES = {
-  Instagram: 'oklch(0.62 0.2 350)',
-  Facebook: 'oklch(0.55 0.15 260)',
-  TikTok: 'oklch(0.35 0.02 260)',
-  WhatsApp: 'oklch(0.65 0.16 150)',
-  YouTube: 'oklch(0.58 0.21 27)',
-  LinkedIn: 'oklch(0.5 0.12 240)',
-  'E-mail': 'oklch(0.7 0.12 70)',
-  Outro: 'oklch(0.6 0.03 300)',
+  Instagram: '#c9467a',
+  Facebook: '#3b5fa8',
+  TikTok: '#2b2b2b',
+  WhatsApp: '#2f9e62',
+  YouTube: '#c8322b',
+  LinkedIn: '#1c6fa0',
+  'E-mail': '#c9a24f',
+  Outro: '#8c8a85',
 };
 const FORMATOS = ['Feed', 'Carrossel', 'Reels', 'Stories', 'Vídeo', 'Live', 'Texto', 'Outro'];
 const STATUS_POST = ['Ideia', 'Produção', 'Agendado', 'Publicado'];
@@ -385,7 +409,7 @@ function evCard(e) {
   const pr = evProgress(e);
   const nPosts = store.posts.filter(p => p.eventoId === e.id).length;
   return `<div class="item" data-ev="${e.id}">
-    <div class="date-box" style="background:oklch(0.72 0.16 40 / .18)"><b style="color:var(--accent)">${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
+    <div class="date-box ev-box"><b>${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
     <div class="body">
       <div class="t">${esc(e.nome)}</div>
       <div class="s">${relLabel(e.data)}${e.local ? ' · ' + esc(e.local) : ''}</div>
@@ -460,7 +484,7 @@ function viewCalendario() {
 
   let h = `<div class="cal-head"><button class="cal-nav" id="calPrev">‹</button><b>${MESES[m]} ${y}</b><button class="cal-nav" id="calNext">›</button></div>
   <div class="cal-grid">${cells}</div>
-  <div class="legend"><span><span class="net-dot" style="background:var(--accent);border-radius:2px"></span>Evento</span>${Object.entries(REDES).slice(0, 6).map(([k, c]) => `<span><span class="net-dot" style="background:${c}"></span>${k}</span>`).join('')}</div>
+  <div class="legend"><span><span class="net-dot" style="background:var(--gold-2);border-radius:2px"></span>Evento</span>${Object.entries(REDES).slice(0, 6).map(([k, c]) => `<span><span class="net-dot" style="background:${c}"></span>${k}</span>`).join('')}</div>
   <div class="section-title">${fmtLong(calSel)}</div>`;
   h += dayEvs.map(evCard).join('') + dayPosts.map(postCard).join('');
   h += dayTasks.map(x => `<div class="item" data-ev="${x.ev.id}"><div class="body"><div class="t">${x.feito ? '✅' : '⬜'} ${esc(x.texto)}</div><div class="s">Tarefa · ${esc(x.ev.nome)}</div></div></div>`).join('');
