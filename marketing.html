@@ -398,7 +398,7 @@ const REDES = {
 const FORMATOS = ['Feed', 'Carrossel', 'Reels', 'Stories', 'Vídeo', 'Live', 'Texto', 'Outro'];
 const STATUS_POST = ['Ideia', 'Produção', 'Agendado', 'Publicado'];
 const STATUS_EV = ['Planejando', 'Confirmado', 'Realizado', 'Cancelado'];
-const FASES = ['Pré-evento', 'Dia do evento', 'Pós-evento'];
+const FASES = ['Pré-evento', 'Dia do evento'];
 
 const MODELO_TAREFAS = [
   ['Pré-evento', 'Definir objetivo e público-alvo', -45],
@@ -413,10 +413,6 @@ const MODELO_TAREFAS = [
   ['Dia do evento', 'Cobertura em Stories ao vivo', 0],
   ['Dia do evento', 'Fotos e vídeos para conteúdo', 0],
   ['Dia do evento', 'Coletar depoimentos', 0],
-  ['Pós-evento', 'Post de agradecimento', 1],
-  ['Pós-evento', 'Publicar fotos/vídeo resumo', 3],
-  ['Pós-evento', 'Pesquisa de satisfação', 3],
-  ['Pós-evento', 'Avaliar resultados e fechar custos', 7],
 ];
 const MODELO_POSTS = [
   [-14, 'Teaser: algo vem aí 👀', 'Instagram', 'Stories'],
@@ -435,7 +431,11 @@ let store = load();
 function load() {
   try {
     const s = JSON.parse(localStorage.getItem(STORE_KEY));
-    if (s && Array.isArray(s.posts) && Array.isArray(s.eventos)) return s;
+    if (s && Array.isArray(s.posts) && Array.isArray(s.eventos)) {
+      // A fase "Pós-evento" foi removida
+      s.eventos.forEach(e => { e.tarefas = (e.tarefas || []).filter(x => x.fase !== 'Pós-evento'); });
+      return s;
+    }
   } catch (e) {}
   return { posts: [], eventos: [] };
 }
