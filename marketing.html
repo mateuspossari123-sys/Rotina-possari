@@ -114,9 +114,8 @@
   .item .date-box { flex: 0 0 46px; text-align: center; background: var(--primary-soft); border-radius: 10px; padding: 6px 0; }
   .item .date-box b { display: block; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--primary); line-height: 1.1; }
   .item .ev-box { background: var(--navy); }
-  .item .ev-box b { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .item .ev-box span { color: var(--gold-1) !important; }
-  body.dark .item .ev-box { background: #031923; border: 1px solid var(--gold-3); }
+  .item .ev-box b { color: #fdeee0; }
+  .item .ev-box span { color: #fdeee0 !important; opacity: .85; }
   .item .date-box span { font-size: 10px; text-transform: uppercase; color: var(--text-3); }
   .item .body { flex: 1; min-width: 0; }
   .item .t { font-weight: 600; font-size: 14.5px; color: var(--text-1); overflow-wrap: anywhere; }
@@ -152,17 +151,66 @@
   .cal-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-surface); cursor: pointer; font-size: 16px; color: var(--text-2); }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .cal-dow { font-size: 10.5px; text-align: center; color: var(--text-4); font-weight: 600; padding-bottom: 4px; }
+  .cal-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .seg { display: inline-flex; background: var(--pill-bg); border-radius: 999px; padding: 3px; }
+  .seg button { border: none; background: none; padding: 6px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: var(--text-3); cursor: pointer; }
+  .seg button.on { background: var(--navy); color: var(--gold-1); }
+  body.dark .seg button.on { background: var(--gold-grad); color: var(--navy); }
+  .cal-grid { gap: 3px; }
   .cal-day {
-    aspect-ratio: 1 / 1.05; border-radius: 10px; background: var(--bg-surface); border: 1px solid transparent;
-    display: flex; flex-direction: column; align-items: center; padding-top: 5px; cursor: pointer; font-size: 13px; color: var(--text-2); min-width: 0;
+    min-height: 78px; border-radius: 8px; background: var(--bg-surface); border: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: stretch; gap: 2px; padding: 3px 2px; cursor: pointer; color: var(--text-2); min-width: 0; overflow: hidden;
   }
-  .cal-day.out { opacity: .35; }
-  .cal-day.today { border-color: var(--primary); font-weight: 700; color: var(--primary); }
-  .cal-day.sel { background: var(--primary); color: white; }
-  body.dark .cal-day.sel { color: var(--navy); }
-  .cal-day .dots { display: flex; gap: 2px; margin-top: 4px; flex-wrap: wrap; justify-content: center; max-width: 90%; }
-  .cal-day .dots i { width: 6px; height: 6px; border-radius: 50%; }
-  .cal-day .dots i.ev { border-radius: 2px; background: var(--gold-2); }
+  .cal-day .n { font-size: 11.5px; font-weight: 600; text-align: center; line-height: 1.3; border-radius: 99px; }
+  .cal-day.out { opacity: .4; }
+  .cal-day.today .n { background: var(--navy); color: var(--gold-1); }
+  body.dark .cal-day.today .n { background: var(--gold-1); color: var(--navy); }
+  .cal-day.sel { border: 2px solid var(--gold-2); box-shadow: 0 0 0 2px rgb(201 162 79 / .25); }
+  .cc { display: block; font-size: 8.5px; line-height: 1.35; padding: 0 3px; border-radius: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cc-ev { color: #fff; font-weight: 700; }
+  .cc-post { border-left: 2.5px solid; background: var(--pill-bg); color: var(--text-2); }
+  .cc-task { font-weight: 600; color: var(--text-3); }
+  .cc-task i { font-style: normal; }
+  body.dark .cc-task i, body.dark .net-dot { box-shadow: 0 0 0 1px rgb(253 238 224 / .35); border-radius: 50%; }
+  .cc-task.done { text-decoration: line-through; opacity: .6; }
+  .cc-more { font-size: 8.5px; color: var(--text-4); text-align: center; font-weight: 600; }
+  .section-title.is-today { color: var(--accent); }
+  /* Pastas */
+  .folders { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px; }
+  .folder { position: relative; cursor: pointer; padding-top: 12px; }
+  .folder .f-tab { position: absolute; top: 0; left: 0; width: 46%; height: 18px; background: var(--c); border-radius: 10px 14px 0 0; }
+  .folder .f-body { position: relative; background: var(--bg-surface); border: 1px solid var(--border); border-top: 5px solid var(--c); border-radius: 0 14px 14px 14px; padding: 10px 10px 12px; min-height: 120px; display: flex; flex-direction: column; }
+  .folder .f-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 16.5px; line-height: 1.2; margin: 4px 0 6px; flex: 1; overflow-wrap: anywhere; }
+  .f-date { font-size: 11px; color: var(--text-3); font-weight: 500; }
+  .f-meta { font-size: 11px; color: var(--text-3); }
+  .back-btn { background: none; border: none; color: var(--primary); font-weight: 600; font-size: 13px; padding: 0 0 10px; cursor: pointer; }
+  .f-hero { background: var(--bg-surface); border: 1px solid var(--border); border-left: 6px solid var(--c); border-radius: 14px; padding: 12px; }
+  .f-hero-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+  .f-hero-top .btn { flex: 0 0 auto; }
+  .f-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 24px; line-height: 1.15; margin: 2px 0 4px; overflow-wrap: anywhere; }
+  .subtabs { margin-top: 12px; }
+  .box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 2px 10px; margin-bottom: 8px; }
+  .box .task:last-child { border-bottom: none; }
+  .hint { font-size: 12px; color: var(--text-3); margin: 8px 2px; }
+  .m-line { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; cursor: pointer; }
+  .m-line:last-child { border-bottom: none; }
+  .m-line span { color: var(--accent); font-weight: 600; font-size: 12px; text-align: right; }
+  .member { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 8px; }
+  .m-head { display: flex; gap: 10px; align-items: center; cursor: pointer; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .m-role { font-size: 12px; font-weight: 600; color: var(--accent); margin-top: 1px; }
+  .m-head .body { flex: 1; min-width: 0; }
+  .wa { font-size: 11.5px; font-weight: 600; color: #fff; background: #2f9e62; padding: 6px 10px; border-radius: 99px; text-decoration: none; flex: 0 0 auto; }
+  .m-resp { font-size: 13px; color: var(--text-2); margin-top: 8px; white-space: pre-wrap; background: var(--pill-bg); border-radius: 10px; padding: 8px 10px; }
+  .m-tasks { margin-top: 8px; }
+  .m-tasks > .meta { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); }
+  .member .t { font-weight: 600; font-size: 15px; }
+  .member .s { font-size: 12.5px; color: var(--text-3); margin-top: 2px; }
+  .m-tasks .task:last-child { border-bottom: none; }
+  .task .tx { cursor: pointer; }
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+  .sw { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+  .sw.on { border-color: var(--bg-card); box-shadow: 0 0 0 2px var(--gold-2); }
   .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--text-3); margin: 10px 2px 0; }
 
   /* Tabs */
@@ -215,9 +263,6 @@
   .task.done .tx { text-decoration: line-through; color: var(--text-4); }
   .task .meta { font-size: 11px; color: var(--text-4); }
   .task .meta.late { color: var(--danger); font-weight: 600; }
-  .task .del { background: none; border: none; color: var(--text-4); cursor: pointer; font-size: 16px; }
-  .add-task { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; }
-  .add-task .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
 
   .toast { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); background: var(--text-1); color: var(--bg-card); padding: 10px 16px; border-radius: 99px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 60; }
   .toast.show { opacity: 1; }
@@ -355,36 +400,79 @@ function toast(msg) {
   clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 1800);
 }
 
+// ---------- Eventos: cores e funções ----------
+const CORES_EV = ['#1c5170', '#a07a20', '#4483a3', '#7a3b5c', '#2f7d5b', '#06283a', '#b4432f', '#5b4a8a'];
+const FUNCOES = ['Coordenação geral', 'Comunicação / Redes sociais', 'Design / Artes', 'Fotografia', 'Filmagem', 'Liturgia',
+  'Música', 'Recepção', 'Decoração', 'Som e luz', 'Alimentação', 'Financeiro', 'Logística', 'Voluntários', 'Segurança'];
+function evColor(e) {
+  if (e && e.cor) return e.cor;
+  const i = e ? [...e.id].reduce((a, c) => a + c.charCodeAt(0), 0) : 0;
+  return CORES_EV[i % CORES_EV.length];
+}
+const initials = n => n.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+
 // ---------- Navegação ----------
 let tab = 'inicio';
 let postFilter = 'Todos';
 let evFilter = 'Próximos';
 let calMonth = (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); })();
 let calSel = today();
+let calMode = 'Mês';
+let calFilter = 'Tudo';
+let openEvId = null;
+let evTab = 'geral';
 
+function setTab(t) {
+  tab = t;
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x.dataset.tab === t));
+}
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
-  tab = b.dataset.tab;
-  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  openEvId = null;
+  setTab(b.dataset.tab);
   render();
+  document.getElementById('view').scrollTop = 0;
+  window.scrollTo(0, 0);
 });
+function openFolder(id, sub = 'geral') {
+  closeSheet();
+  openEvId = id; evTab = sub;
+  setTab('eventos');
+  render();
+  window.scrollTo(0, 0);
+}
 document.getElementById('fab').onclick = () => {
-  if (tab === 'eventos') openEventForm();
+  if (tab === 'eventos' && openEvId) {
+    const e = evById(openEvId);
+    if (evTab === 'equipe') openMemberForm(openEvId);
+    else if (evTab === 'tarefas') openTaskForm(openEvId);
+    else openPostForm({ eventoId: openEvId, data: e.data > today() ? addDays(e.data, -7) : today() });
+  } else if (tab === 'eventos') openEventForm();
   else if (tab === 'calendario') openPostForm({ data: calSel });
   else openPostForm();
 };
 
 function render() {
   const titles = { inicio: 'Início', calendario: 'Calendário', posts: 'Posts', eventos: 'Eventos' };
-  document.getElementById('hdrTitle').textContent = titles[tab];
   const v = document.getElementById('view');
-  v.innerHTML = ({ inicio: viewInicio, calendario: viewCalendario, posts: viewPosts, eventos: viewEventos })[tab]();
+  if (tab === 'eventos' && openEvId && !evById(openEvId)) openEvId = null;
+  document.getElementById('hdrTitle').textContent = tab === 'eventos' && openEvId ? 'Pasta do evento' : titles[tab];
+  v.innerHTML = tab === 'eventos' && openEvId ? viewPasta()
+    : ({ inicio: viewInicio, calendario: viewCalendario, posts: viewPosts, eventos: viewEventos })[tab]();
   bindItems(v);
 }
 
 function bindItems(root) {
-  root.querySelectorAll('[data-post]').forEach(el => el.onclick = () => openPostForm(store.posts.find(p => p.id === el.dataset.post)));
-  root.querySelectorAll('[data-ev]').forEach(el => el.onclick = () => openEventDetail(el.dataset.ev));
+  root.querySelectorAll('[data-post]').forEach(el => el.onclick = ev => { ev.stopPropagation(); openPostForm(store.posts.find(p => p.id === el.dataset.post)); });
+  root.querySelectorAll('[data-ev]').forEach(el => el.onclick = ev => { ev.stopPropagation(); openFolder(el.dataset.ev, el.dataset.sub || 'geral'); });
   root.querySelectorAll('[data-go]').forEach(el => el.onclick = () => document.querySelector(`.tab[data-tab="${el.dataset.go}"]`).click());
+  root.querySelectorAll('[data-tkev]').forEach(cb => {
+    cb.onclick = ev => ev.stopPropagation();
+    cb.onchange = () => {
+      const t = (evById(cb.dataset.tkev).tarefas || []).find(x => x.id === cb.dataset.tk);
+      if (t) { t.feito = cb.checked; save(); render(); }
+    };
+  });
+  root.querySelectorAll('[data-tkedit]').forEach(el => el.onclick = ev => { ev.stopPropagation(); openTaskForm(el.dataset.tkevid, el.dataset.tkedit); });
 }
 
 // ---------- Cards ----------
@@ -395,8 +483,8 @@ function postCard(p) {
     <div class="date-box"><b>${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
     <div class="body">
       <div class="t">${esc(p.titulo)}</div>
-      <div class="s"><span class="net-dot" style="background:${REDES[p.rede] || REDES.Outro}"></span>${esc(p.rede)} · ${esc(p.formato)}${p.hora ? ' · ' + esc(p.hora) : ''}</div>
-      <div class="tags"><span class="tag st-${esc(p.status)}">${esc(p.status)}</span>${ev ? `<span class="tag">🎯 ${esc(ev.nome)}</span>` : ''}</div>
+      <div class="s"><span class="net-dot" style="background:${REDES[p.rede] || REDES.Outro}"></span>${esc(p.rede)} · ${esc(p.formato)}${p.hora ? ' · ' + esc(p.hora) : ''}${p.responsavel ? ' · 👤 ' + esc(p.responsavel) : ''}</div>
+      <div class="tags"><span class="tag st-${esc(p.status)}">${esc(p.status)}</span>${ev ? `<span class="tag" style="border-left:3px solid ${evColor(ev)}">📁 ${esc(ev.nome)}</span>` : ''}</div>
     </div></div>`;
 }
 function evProgress(e) {
@@ -409,13 +497,23 @@ function evCard(e) {
   const pr = evProgress(e);
   const nPosts = store.posts.filter(p => p.eventoId === e.id).length;
   return `<div class="item" data-ev="${e.id}">
-    <div class="date-box ev-box"><b>${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
+    <div class="date-box ev-box" style="background:${evColor(e)}"><b>${d.getDate()}</b><span>${MES_CURTO[d.getMonth()]}</span></div>
     <div class="body">
-      <div class="t">${esc(e.nome)}</div>
+      <div class="t">📁 ${esc(e.nome)}</div>
       <div class="s">${relLabel(e.data)}${e.local ? ' · ' + esc(e.local) : ''}</div>
-      <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">✅ ${pr.done}/${pr.total} tarefas</span><span class="tag">📣 ${nPosts} posts</span></div>
+      <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">👥 ${(e.equipe || []).length}</span><span class="tag">✅ ${pr.done}/${pr.total}</span><span class="tag">📣 ${nPosts}</span></div>
       ${pr.total ? `<div class="progress"><i style="width:${pr.pct}%"></i></div>` : ''}
     </div></div>`;
+}
+function taskRow(x, e, showEv) {
+  const t = today();
+  const late = !x.feito && x.prazo && x.prazo < t;
+  return `<div class="task ${x.feito ? 'done' : ''}">
+    <input type="checkbox" data-tkev="${e.id}" data-tk="${x.id}" ${x.feito ? 'checked' : ''} aria-label="Concluir tarefa">
+    <div class="tx" data-tkedit="${x.id}" data-tkevid="${e.id}">${esc(x.texto)}
+      <div class="meta ${late ? 'late' : ''}">${x.prazo ? `${parse(x.prazo).getDate()} ${MES_CURTO[parse(x.prazo).getMonth()]} (${relLabel(x.prazo)})` : 'sem prazo'}${x.responsavel ? ' · 👤 ' + esc(x.responsavel) : ' · <i>sem responsável</i>'}${showEv ? ` · <span class="net-dot" style="background:${evColor(e)};border-radius:2px;margin-left:2px"></span>${esc(e.nome)}` : ''}</div>
+    </div>
+  </div>`;
 }
 
 // ---------- Views ----------
@@ -426,8 +524,8 @@ function viewInicio() {
   const atrasados = store.posts.filter(p => p.data < t && p.status !== 'Publicado').sort(byDate);
   const proxEv = store.eventos.filter(e => e.data >= t && e.status !== 'Cancelado' && e.status !== 'Realizado').sort(byDate);
   const tarefasPend = [];
-  store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (!x.feito && x.prazo && x.prazo <= semana && e.status !== 'Cancelado') tarefasPend.push({ ...x, ev: e }); }));
-  tarefasPend.sort((a, b) => a.prazo.localeCompare(b.prazo));
+  store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (!x.feito && x.prazo && x.prazo <= semana && e.status !== 'Cancelado') tarefasPend.push({ x, e }); }));
+  tarefasPend.sort((a, b) => a.x.prazo.localeCompare(b.x.prazo));
 
   const semanaCount = store.posts.filter(p => p.data >= t && p.data <= semana).length;
   const publicados = store.posts.filter(p => p.status === 'Publicado').length;
@@ -446,49 +544,91 @@ function viewInicio() {
   h += `<div class="section-title">Próximas postagens <button class="link-btn" data-go="posts">ver todas</button></div>`;
   h += proxPosts.length ? proxPosts.slice(0, 5).map(postCard).join('') : `<div class="empty">Nenhuma postagem planejada.<br>Toque em <b>+</b> para adicionar.</div>`;
 
-  h += `<div class="section-title">Próximos eventos <button class="link-btn" data-go="eventos">ver todos</button></div>`;
+  h += `<div class="section-title">Próximos eventos <button class="link-btn" data-go="eventos">ver pastas</button></div>`;
   h += proxEv.length ? proxEv.slice(0, 3).map(evCard).join('') : `<div class="empty">Nenhum evento planejado.</div>`;
 
   if (tarefasPend.length) {
-    h += `<div class="section-title">Tarefas desta semana</div>`;
-    h += tarefasPend.slice(0, 8).map(x => `<div class="item" data-ev="${x.ev.id}">
-      <div class="body"><div class="t">${esc(x.texto)}</div>
-      <div class="s" style="${x.prazo < t ? 'color:var(--danger);font-weight:600' : ''}">${esc(x.ev.nome)} · ${relLabel(x.prazo)}${x.responsavel ? ' · ' + esc(x.responsavel) : ''}</div></div></div>`).join('');
+    h += `<div class="section-title">Tarefas desta semana</div><div class="box">`;
+    h += tarefasPend.slice(0, 8).map(({ x, e }) => taskRow(x, e, true)).join('') + '</div>';
   }
   return h;
 }
 
+// ---------- Calendário geral ----------
+function itensDoDia(s) {
+  const out = [];
+  if (calFilter === 'Tudo' || calFilter === 'Eventos')
+    store.eventos.filter(e => e.data === s).forEach(e => out.push({ tipo: 'ev', e }));
+  if (calFilter === 'Tudo' || calFilter === 'Posts')
+    store.posts.filter(p => p.data === s).sort(byDate).forEach(p => out.push({ tipo: 'post', p }));
+  if (calFilter === 'Tudo' || calFilter === 'Tarefas')
+    store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (x.prazo === s) out.push({ tipo: 'task', x, e }); }));
+  return out;
+}
+function chipCal(it) {
+  if (it.tipo === 'ev') return `<span class="cc cc-ev" style="background:${evColor(it.e)}">${esc(it.e.nome)}</span>`;
+  if (it.tipo === 'post') {
+    const ev = it.p.eventoId && evById(it.p.eventoId);
+    return `<span class="cc cc-post" style="border-color:${REDES[it.p.rede] || REDES.Outro};${ev ? `background:${evColor(ev)}22` : ''}">${esc(it.p.titulo)}</span>`;
+  }
+  return `<span class="cc cc-task ${it.x.feito ? 'done' : ''}"><i style="color:${evColor(it.e)}">${it.x.feito ? '✓' : '●'}</i> ${esc(it.x.texto)}</span>`;
+}
+function itemCard(it) {
+  if (it.tipo === 'ev') return evCard(it.e);
+  if (it.tipo === 'post') return postCard(it.p);
+  return `<div class="box">${taskRow(it.x, it.e, true)}</div>`;
+}
 function viewCalendario() {
   const y = calMonth.getFullYear(), m = calMonth.getMonth();
-  const start = new Date(y, m, 1 - new Date(y, m, 1).getDay());
   const t = today();
-  let cells = DOW.map(d => `<div class="cal-dow">${d[0]}</div>`).join('');
-  for (let i = 0; i < 42; i++) {
-    const d = new Date(start); d.setDate(start.getDate() + i);
-    const s = iso(d);
-    const posts = store.posts.filter(p => p.data === s);
-    const evs = store.eventos.filter(e => e.data === s);
-    const dots = evs.map(() => `<i class="ev"></i>`).join('') + posts.slice(0, 5).map(p => `<i style="background:${REDES[p.rede] || REDES.Outro}"></i>`).join('');
-    cells += `<div class="cal-day ${d.getMonth() !== m ? 'out' : ''} ${s === t ? 'today' : ''} ${s === calSel ? 'sel' : ''}" data-day="${s}">${d.getDate()}<div class="dots">${dots}</div></div>`;
-  }
-  const dayPosts = store.posts.filter(p => p.data === calSel).sort(byDate);
-  const dayEvs = store.eventos.filter(e => e.data === calSel);
-  const dayTasks = [];
-  store.eventos.forEach(e => (e.tarefas || []).forEach(x => { if (x.prazo === calSel) dayTasks.push({ ...x, ev: e }); }));
-
   setTimeout(() => {
     document.querySelectorAll('[data-day]').forEach(el => el.onclick = () => { calSel = el.dataset.day; render(); });
+    document.querySelectorAll('[data-cm]').forEach(el => el.onclick = () => { calMode = el.dataset.cm; render(); });
+    document.querySelectorAll('[data-cf]').forEach(el => el.onclick = () => { calFilter = el.dataset.cf; render(); });
     document.getElementById('calPrev').onclick = () => { calMonth = new Date(y, m - 1, 1); render(); };
     document.getElementById('calNext').onclick = () => { calMonth = new Date(y, m + 1, 1); render(); };
+    document.getElementById('calHoje').onclick = () => { const d = new Date(); calMonth = new Date(d.getFullYear(), d.getMonth(), 1); calSel = today(); render(); };
   });
 
-  let h = `<div class="cal-head"><button class="cal-nav" id="calPrev">‹</button><b>${MESES[m]} ${y}</b><button class="cal-nav" id="calNext">›</button></div>
-  <div class="cal-grid">${cells}</div>
-  <div class="legend"><span><span class="net-dot" style="background:var(--gold-2);border-radius:2px"></span>Evento</span>${Object.entries(REDES).slice(0, 6).map(([k, c]) => `<span><span class="net-dot" style="background:${c}"></span>${k}</span>`).join('')}</div>
-  <div class="section-title">${fmtLong(calSel)}</div>`;
-  h += dayEvs.map(evCard).join('') + dayPosts.map(postCard).join('');
-  h += dayTasks.map(x => `<div class="item" data-ev="${x.ev.id}"><div class="body"><div class="t">${x.feito ? '✅' : '⬜'} ${esc(x.texto)}</div><div class="s">Tarefa · ${esc(x.ev.nome)}</div></div></div>`).join('');
-  if (!dayEvs.length && !dayPosts.length && !dayTasks.length) h += `<div class="empty">Nada neste dia. Toque em <b>+</b> para planejar um post.</div>`;
+  let h = `<div class="cal-head"><button class="cal-nav" id="calPrev" aria-label="Mês anterior">‹</button>
+    <b>${MESES[m]} ${y}</b>
+    <button class="cal-nav" id="calNext" aria-label="Próximo mês">›</button></div>
+  <div class="cal-bar">
+    <div class="seg">${['Mês', 'Agenda'].map(x => `<button class="${x === calMode ? 'on' : ''}" data-cm="${x}">${x}</button>`).join('')}</div>
+    <button class="link-btn" id="calHoje">Hoje</button>
+  </div>
+  <div class="chips">${['Tudo', 'Eventos', 'Posts', 'Tarefas'].map(f => `<button class="chip ${f === calFilter ? 'on' : ''}" data-cf="${f}">${f}</button>`).join('')}</div>`;
+
+  if (calMode === 'Mês') {
+    const start = new Date(y, m, 1 - new Date(y, m, 1).getDay());
+    let cells = DOW.map(d => `<div class="cal-dow">${d[0]}</div>`).join('');
+    for (let i = 0; i < 42; i++) {
+      const d = new Date(start); d.setDate(start.getDate() + i);
+      const s = iso(d);
+      const its = itensDoDia(s);
+      const more = its.length > 3 ? `<span class="cc-more">+${its.length - 3}</span>` : '';
+      cells += `<div class="cal-day ${d.getMonth() !== m ? 'out' : ''} ${s === t ? 'today' : ''} ${s === calSel ? 'sel' : ''}" data-day="${s}">
+        <span class="n">${d.getDate()}</span>${its.slice(0, 3).map(chipCal).join('')}${more}</div>`;
+    }
+    h += `<div class="cal-grid">${cells}</div>`;
+    const evMes = store.eventos.filter(e => parse(e.data).getMonth() === m && parse(e.data).getFullYear() === y);
+    h += `<div class="legend">${evMes.map(e => `<span><span class="net-dot" style="background:${evColor(e)};border-radius:2px"></span>${esc(e.nome)}</span>`).join('')}
+      <span><span class="net-dot" style="border:2px solid var(--text-3);background:none;border-radius:2px"></span>Post (borda = rede)</span><span>● Tarefa</span></div>`;
+    const its = itensDoDia(calSel);
+    h += `<div class="section-title">${fmtLong(calSel)}</div>`;
+    h += its.length ? its.map(itemCard).join('') : `<div class="empty">Nada neste dia. Toque em <b>+</b> para planejar um post.</div>`;
+  } else {
+    const last = new Date(y, m + 1, 0).getDate();
+    let any = false;
+    for (let dd = 1; dd <= last; dd++) {
+      const s = iso(new Date(y, m, dd));
+      const its = itensDoDia(s);
+      if (!its.length) continue;
+      any = true;
+      h += `<div class="section-title ${s === t ? 'is-today' : ''}">${fmtLong(s)}${s === t ? ' · hoje' : ''}</div>` + its.map(itemCard).join('');
+    }
+    if (!any) h += `<div class="empty">Nada planejado neste mês.</div>`;
+  }
   return h;
 }
 
@@ -510,14 +650,122 @@ function viewPosts() {
   return h;
 }
 
+// ---------- Pastas de eventos ----------
 function viewEventos() {
   setTimeout(() => document.querySelectorAll('[data-ef]').forEach(el => el.onclick = () => { evFilter = el.dataset.ef; render(); }));
   let list = store.eventos.slice().sort(byDate);
   if (evFilter === 'Próximos') list = list.filter(e => e.data >= today());
   else if (evFilter === 'Passados') list = list.filter(e => e.data < today()).reverse();
   let h = `<div class="chips">${['Próximos', 'Passados', 'Todos'].map(f => `<button class="chip ${f === evFilter ? 'on' : ''}" data-ef="${f}">${f}</button>`).join('')}</div>`;
-  h += list.length ? list.map(evCard).join('') : `<div class="empty">Nenhum evento.<br>Toque em <b>+</b> para planejar um evento.</div>`;
+  if (!list.length) return h + `<div class="empty">Nenhum evento.<br>Toque em <b>+</b> para criar a pasta de um evento.</div>`;
+  h += '<div class="folders">' + list.map(e => {
+    const pr = evProgress(e);
+    const nPosts = store.posts.filter(p => p.eventoId === e.id).length;
+    return `<div class="folder" data-ev="${e.id}" style="--c:${evColor(e)}">
+      <div class="f-tab"></div>
+      <div class="f-body">
+        <div class="f-date">${parse(e.data).getDate()} ${MES_CURTO[parse(e.data).getMonth()]} · ${relLabel(e.data)}</div>
+        <div class="f-name">${esc(e.nome)}</div>
+        <div class="f-meta">👥 ${(e.equipe || []).length} · ✅ ${pr.done}/${pr.total} · 📣 ${nPosts}</div>
+        <div class="progress"><i style="width:${pr.pct}%"></i></div>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
   return h;
+}
+
+function viewPasta() {
+  const e = evById(openEvId);
+  e.tarefas = e.tarefas || [];
+  e.equipe = e.equipe || [];
+  const pr = evProgress(e);
+  const t = today();
+  const posts = store.posts.filter(p => p.eventoId === e.id).sort(byDate);
+  const semResp = e.tarefas.filter(x => !x.feito && !x.responsavel).length;
+
+  setTimeout(() => {
+    const $ = id => document.getElementById(id);
+    $('fBack').onclick = () => { openEvId = null; render(); };
+    $('fEdit').onclick = () => openEventForm(e);
+    document.querySelectorAll('[data-sub]').forEach(el => { if (!el.dataset.ev) el.onclick = () => { evTab = el.dataset.sub; render(); }; });
+    document.querySelectorAll('[data-mem]').forEach(el => el.onclick = () => openMemberForm(e.id, el.dataset.mem));
+    $('fGen') && ($('fGen').onclick = () => { const n = gerarPosts(e.id); save(); render(); toast(n ? `${n} posts de divulgação criados` : 'Os posts do modelo já existem'); });
+    $('fAddMem') && ($('fAddMem').onclick = () => openMemberForm(e.id));
+    $('fAddTask') && ($('fAddTask').onclick = () => openTaskForm(e.id));
+  });
+
+  const subs = [['geral', 'Visão geral'], ['equipe', `Equipe (${e.equipe.length})`], ['tarefas', `Tarefas ${pr.done}/${pr.total}`], ['posts', `Posts (${posts.length})`]];
+  let h = `<button class="back-btn" id="fBack">‹ Todas as pastas</button>
+  <div class="f-hero" style="--c:${evColor(e)}">
+    <div class="f-hero-top"><div>
+      <div class="f-date">${fmtLong(e.data)}${e.hora ? ' · ' + esc(e.hora) : ''} · ${relLabel(e.data)}</div>
+      <div class="f-title">${esc(e.nome)}</div>
+      ${e.local ? `<div class="f-date">📍 ${esc(e.local)}</div>` : ''}
+    </div><button class="btn small" id="fEdit">✏️ Editar</button></div>
+    <div class="tags"><span class="tag st-${esc(e.status)}">${esc(e.status)}</span><span class="tag">${pr.pct}% organizado</span></div>
+    <div class="progress"><i style="width:${pr.pct}%"></i></div>
+  </div>
+  <div class="chips subtabs">${subs.map(([k, l]) => `<button class="chip ${k === evTab ? 'on' : ''}" data-sub="${k}">${l}</button>`).join('')}</div>`;
+
+  if (evTab === 'geral') {
+    const proxT = e.tarefas.filter(x => !x.feito).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9')).slice(0, 4);
+    h += `<div class="ev-info">
+      ${e.objetivo ? `🎯 <b>Objetivo:</b> ${esc(e.objetivo)}<br>` : ''}
+      ${e.publico ? `👥 <b>Público:</b> ${esc(e.publico)}<br>` : ''}
+      ${e.orcamento ? `💰 <b>Orçamento:</b> ${money(e.orcamento)}<br>` : ''}
+      ${e.notas ? `<div style="white-space:pre-wrap">${esc(e.notas)}</div>` : ''}
+      ${!e.objetivo && !e.publico && !e.orcamento && !e.notas ? '<span style="color:var(--text-4)">Toque em Editar para adicionar objetivo, público, orçamento e notas.</span>' : ''}
+    </div>
+    <div class="section-title">Quem faz o quê <button class="link-btn" data-sub="equipe">ver equipe</button></div>
+    ${e.equipe.length ? `<div class="box">${e.equipe.map(memberLine).join('')}</div>` : `<div class="empty">Ninguém na equipe ainda. <button class="link-btn" id="fAddMem">Adicionar pessoa</button></div>`}
+    <div class="section-title">Próximas tarefas <button class="link-btn" data-sub="tarefas">ver todas</button></div>
+    ${proxT.length ? `<div class="box">${proxT.map(x => taskRow(x, e)).join('')}</div>` : `<div class="empty">Tudo em dia! 🎉</div>`}
+    ${semResp ? `<p class="hint">⚠️ ${semResp} tarefa(s) sem responsável — toque numa tarefa para atribuir.</p>` : ''}
+    <div class="section-title">Próximos posts <button class="link-btn" data-sub="posts">ver todos</button></div>
+    ${posts.filter(p => p.data >= t).slice(0, 3).map(postCard).join('') || `<div class="empty">Nenhum post futuro. <button class="link-btn" id="fGen">Gerar cronograma de divulgação</button></div>`}`;
+  }
+
+  if (evTab === 'equipe') {
+    const grupos = {};
+    e.equipe.forEach(m => { (grupos[m.funcao || 'Sem função definida'] ||= []).push(m); });
+    h += Object.keys(grupos).length ? Object.entries(grupos).sort().map(([f, ms]) => `
+      <div class="section-title">${esc(f)}</div>` + ms.map(m => {
+        const tks = e.tarefas.filter(x => x.responsavel === m.nome);
+        const feitas = tks.filter(x => x.feito).length;
+        const tel = (m.contato || '').replace(/\D/g, '');
+        return `<div class="member">
+          <div class="m-head" data-mem="${m.id}">
+            <div class="avatar" style="background:${evColor(e)}">${esc(initials(m.nome))}</div>
+            <div class="body"><div class="t">${esc(m.nome)}</div><div class="m-role">${esc(m.funcao || 'Sem função')}</div>
+            ${m.contato ? `<div class="s">📞 ${esc(m.contato)}</div>` : ''}</div>
+            ${tel.length >= 10 ? `<a class="wa" href="https://wa.me/${tel.length <= 11 ? '55' + tel : tel}" target="_blank" rel="noopener" onclick="event.stopPropagation()">WhatsApp</a>` : ''}
+          </div>
+          ${m.responsabilidades ? `<div class="m-resp">${esc(m.responsabilidades)}</div>` : ''}
+          ${tks.length ? `<div class="m-tasks"><div class="meta">Tarefas · ${feitas}/${tks.length}</div>${tks.map(x => taskRow(x, e)).join('')}</div>` : ''}
+        </div>`;
+      }).join('')).join('') : `<div class="empty">Monte a equipe do evento: quem cuida da comunicação, fotos, liturgia, recepção...<br>Toque em <b>+</b> para adicionar uma pessoa.</div>`;
+    if (semResp) h += `<p class="hint">⚠️ ${semResp} tarefa(s) ainda sem responsável. <button class="link-btn" data-sub="tarefas">Atribuir</button></p>`;
+  }
+
+  if (evTab === 'tarefas') {
+    const fases = FASES.concat([...new Set(e.tarefas.map(x => x.fase))].filter(f => !FASES.includes(f)));
+    const html = fases.map(f => {
+      const list = e.tarefas.filter(x => x.fase === f).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9'));
+      if (!list.length) return '';
+      return `<div class="fase"><h3>${esc(f)} · ${list.filter(x => x.feito).length}/${list.length}</h3><div class="box">${list.map(x => taskRow(x, e)).join('')}</div></div>`;
+    }).join('');
+    h += html || '<div class="empty">Sem tarefas ainda.</div>';
+    h += `<p class="hint">Toque numa tarefa para editar ou escolher o responsável.</p><button class="btn primary" id="fAddTask" style="width:100%;margin-top:8px">+ Nova tarefa</button>`;
+  }
+
+  if (evTab === 'posts') {
+    h += `<div class="btns" style="margin-top:0;margin-bottom:10px"><button class="btn small" id="fGen">📣 Gerar cronograma de divulgação</button></div>`;
+    h += posts.length ? posts.map(postCard).join('') : '<div class="empty">Nenhum post ligado a este evento.</div>';
+  }
+  return h;
+}
+function memberLine(m) {
+  return `<div class="m-line" data-mem="${m.id}"><b>${esc(m.nome)}</b><span>${esc(m.funcao || 'Sem função')}</span></div>`;
 }
 
 // ---------- Modal ----------
@@ -526,6 +774,93 @@ const sheet = document.getElementById('sheet');
 function openSheet(html) { sheet.innerHTML = html; overlay.classList.add('open'); sheet.scrollTop = 0; sheet.querySelectorAll('.close-x').forEach(b => b.onclick = closeSheet); }
 function closeSheet() { overlay.classList.remove('open'); }
 overlay.onclick = e => { if (e.target === overlay) closeSheet(); };
+
+function teamOptions(evId, sel) {
+  const e = evById(evId);
+  const nomes = (e && e.equipe || []).map(m => m.nome);
+  if (sel && !nomes.includes(sel)) nomes.push(sel);
+  return `<option value="">— ninguém ainda —</option>` + nomes.map(n => {
+    const m = e && (e.equipe || []).find(x => x.nome === n);
+    return `<option value="${esc(n)}" ${n === sel ? 'selected' : ''}>${esc(n)}${m && m.funcao ? ' · ' + esc(m.funcao) : ''}</option>`;
+  }).join('');
+}
+
+// ---------- Equipe ----------
+function openMemberForm(evId, memId) {
+  const e = evById(evId);
+  e.equipe = e.equipe || [];
+  const m = e.equipe.find(x => x.id === memId) || {};
+  const isNew = !m.id;
+  openSheet(`<h2>${isNew ? 'Adicionar à equipe' : 'Editar pessoa'} <button class="close-x">✕</button></h2>
+    <label class="f">Nome *</label>
+    <input class="in" id="mNome" placeholder="Ex.: Ana Paula" value="${esc(m.nome)}">
+    <label class="f">Função no evento *</label>
+    <input class="in" id="mFuncao" list="funcoesList" placeholder="Escolha ou escreva" value="${esc(m.funcao)}">
+    <datalist id="funcoesList">${[...new Set([...FUNCOES, ...store.eventos.flatMap(x => (x.equipe || []).map(y => y.funcao))])].filter(Boolean).map(f => `<option value="${esc(f)}">`).join('')}</datalist>
+    <label class="f">Contato (WhatsApp)</label>
+    <input class="in" id="mContato" type="tel" placeholder="(11) 99999-9999" value="${esc(m.contato)}">
+    <label class="f">O que essa pessoa faz</label>
+    <textarea class="in" id="mResp" placeholder="Ex.: Fotografar a missa, enviar fotos até 2 dias depois">${esc(m.responsabilidades)}</textarea>
+    <div class="btns">
+      ${isNew ? '' : '<button class="btn danger" id="mDel">Remover</button>'}
+      <button class="btn primary" id="mSave">Salvar</button>
+    </div>`);
+  const $ = id => document.getElementById(id);
+  $('mSave').onclick = () => {
+    const nome = $('mNome').value.trim(), funcao = $('mFuncao').value.trim();
+    if (!nome || !funcao) { toast('Preencha o nome e a função'); return; }
+    if (e.equipe.some(x => x.nome === nome && x.id !== m.id)) { toast('Já existe alguém com esse nome'); return; }
+    if (!isNew && m.nome !== nome) {
+      e.tarefas.forEach(x => { if (x.responsavel === m.nome) x.responsavel = nome; });
+      store.posts.forEach(p => { if (p.eventoId === e.id && p.responsavel === m.nome) p.responsavel = nome; });
+    }
+    const obj = { id: m.id || uid(), nome, funcao, contato: $('mContato').value.trim(), responsabilidades: $('mResp').value };
+    if (isNew) e.equipe.push(obj); else Object.assign(m, obj);
+    save(); closeSheet(); render(); toast('Equipe atualizada');
+  };
+  if (!isNew) $('mDel').onclick = () => {
+    if (!confirm(`Remover ${m.nome} da equipe? As tarefas dessa pessoa ficarão sem responsável.`)) return;
+    e.equipe = e.equipe.filter(x => x.id !== m.id);
+    e.tarefas.forEach(x => { if (x.responsavel === m.nome) x.responsavel = ''; });
+    save(); closeSheet(); render();
+  };
+}
+
+// ---------- Tarefa ----------
+function openTaskForm(evId, taskId) {
+  const e = evById(evId);
+  const x = (e.tarefas || []).find(t => t.id === taskId) || {};
+  const isNew = !x.id;
+  openSheet(`<h2>${isNew ? 'Nova tarefa' : 'Editar tarefa'} <button class="close-x">✕</button></h2>
+    <div class="s" style="color:${evColor(e)};font-weight:600;margin-top:-6px">📁 ${esc(e.nome)}</div>
+    <label class="f">Tarefa *</label>
+    <input class="in" id="tTexto" placeholder="Ex.: Contratar fotógrafo" value="${esc(x.texto)}">
+    <div class="row2">
+      <div><label class="f">Fase</label><select class="in" id="tFase">${opts(FASES, x.fase || 'Pré-evento')}</select></div>
+      <div><label class="f">Prazo</label><input class="in" type="date" id="tPrazo" value="${esc(x.prazo)}"></div>
+    </div>
+    <label class="f">Responsável</label>
+    <select class="in" id="tResp">${teamOptions(evId, x.responsavel)}</select>
+    ${(e.equipe || []).length ? '' : '<p class="hint">Adicione pessoas na aba Equipe para escolher o responsável.</p>'}
+    ${isNew ? '' : `<label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px"><input type="checkbox" id="tFeito" ${x.feito ? 'checked' : ''} style="width:18px;height:18px"> Concluída</label>`}
+    <div class="btns">
+      ${isNew ? '' : '<button class="btn danger" id="tDel">Excluir</button>'}
+      <button class="btn primary" id="tSave">Salvar</button>
+    </div>`);
+  const $ = id => document.getElementById(id);
+  $('tSave').onclick = () => {
+    const texto = $('tTexto').value.trim();
+    if (!texto) { toast('Escreva a tarefa'); return; }
+    const obj = { texto, fase: $('tFase').value, prazo: $('tPrazo').value, responsavel: $('tResp').value };
+    if (isNew) e.tarefas.push({ id: uid(), ...obj, feito: false });
+    else Object.assign(x, obj, { feito: $('tFeito').checked });
+    save(); closeSheet(); render(); toast('Tarefa salva');
+  };
+  if (!isNew) $('tDel').onclick = () => {
+    if (!confirm('Excluir esta tarefa?')) return;
+    e.tarefas = e.tarefas.filter(t => t.id !== x.id); save(); closeSheet(); render();
+  };
+}
 
 // ---------- Post form ----------
 function openPostForm(p = {}) {
@@ -544,29 +879,32 @@ function openPostForm(p = {}) {
     </div>
     <div class="row2">
       <div><label class="f">Status</label><select class="in" id="pStatus">${opts(STATUS_POST, p.status || 'Ideia')}</select></div>
-      <div><label class="f">Evento / campanha</label><select class="in" id="pEvento">${evOpts}</select></div>
+      <div><label class="f">Evento (pasta)</label><select class="in" id="pEvento">${evOpts}</select></div>
     </div>
+    <label class="f">Quem produz</label>
+    <select class="in" id="pResp">${teamOptions(p.eventoId, p.responsavel)}</select>
     <label class="f">Legenda</label>
     <textarea class="in" id="pLegenda" placeholder="Texto da publicação...">${esc(p.legenda)}</textarea>
     <label class="f">Hashtags</label>
     <input class="in" id="pHashtags" placeholder="#marca #evento" value="${esc(p.hashtags)}">
     <label class="f">Objetivo / chamada para ação</label>
     <input class="in" id="pObjetivo" placeholder="Ex.: gerar inscrições, link na bio" value="${esc(p.objetivo)}">
-    <label class="f">Notas (referências, quem produz, link da arte)</label>
+    <label class="f">Notas (referências, link da arte)</label>
     <textarea class="in" id="pNotas" style="min-height:60px">${esc(p.notas)}</textarea>
     <div class="btns">
       ${isNew ? '' : '<button class="btn danger" id="pDel">Excluir</button><button class="btn" id="pCopy">Copiar legenda</button>'}
       <button class="btn primary" id="pSave">Salvar</button>
     </div>`);
   const $ = id => document.getElementById(id);
+  $('pEvento').onchange = () => { $('pResp').innerHTML = teamOptions($('pEvento').value, $('pResp').value); };
   $('pSave').onclick = () => {
     const titulo = $('pTitulo').value.trim();
     const data = $('pData').value;
     if (!titulo || !data) { toast('Preencha o que vai ser postado e a data'); return; }
     const obj = {
       id: p.id || uid(), titulo, data, hora: $('pHora').value, rede: $('pRede').value, formato: $('pFormato').value,
-      status: $('pStatus').value, eventoId: $('pEvento').value, legenda: $('pLegenda').value, hashtags: $('pHashtags').value.trim(),
-      objetivo: $('pObjetivo').value.trim(), notas: $('pNotas').value,
+      status: $('pStatus').value, eventoId: $('pEvento').value, responsavel: $('pResp').value, legenda: $('pLegenda').value,
+      hashtags: $('pHashtags').value.trim(), objetivo: $('pObjetivo').value.trim(), notas: $('pNotas').value,
     };
     if (isNew) store.posts.push(obj); else Object.assign(store.posts.find(x => x.id === p.id), obj);
     save(); closeSheet(); render(); toast('Post salvo');
@@ -586,17 +924,20 @@ function openPostForm(p = {}) {
 // ---------- Event form ----------
 function openEventForm(e = {}) {
   const isNew = !e.id;
-  openSheet(`<h2>${isNew ? 'Novo evento' : 'Editar evento'} <button class="close-x">✕</button></h2>
+  let cor = e.id ? evColor(e) : CORES_EV[store.eventos.length % CORES_EV.length];
+  openSheet(`<h2>${isNew ? 'Nova pasta de evento' : 'Editar evento'} <button class="close-x">✕</button></h2>
     <label class="f">Nome do evento / campanha *</label>
-    <input class="in" id="eNome" placeholder="Ex.: Inauguração da loja" value="${esc(e.nome)}">
+    <input class="in" id="eNome" placeholder="Ex.: Missa dos 30 anos" value="${esc(e.nome)}">
     <div class="row2">
       <div><label class="f">Data *</label><input class="in" type="date" id="eData" value="${esc(e.data || addDays(today(), 30))}"></div>
       <div><label class="f">Horário</label><input class="in" type="time" id="eHora" value="${esc(e.hora)}"></div>
     </div>
+    <label class="f">Cor da pasta (aparece no calendário)</label>
+    <div class="swatches">${CORES_EV.map(c => `<button type="button" class="sw ${c === cor ? 'on' : ''}" data-cor="${c}" style="background:${c}" aria-label="Cor ${c}"></button>`).join('')}</div>
     <label class="f">Local</label>
     <input class="in" id="eLocal" placeholder="Endereço ou online" value="${esc(e.local)}">
     <label class="f">Objetivo</label>
-    <input class="in" id="eObjetivo" placeholder="Ex.: 200 inscritos, vender 50 ingressos" value="${esc(e.objetivo)}">
+    <input class="in" id="eObjetivo" placeholder="Ex.: 200 inscritos, igreja cheia" value="${esc(e.objetivo)}">
     <label class="f">Público-alvo</label>
     <input class="in" id="ePublico" placeholder="Quem queremos alcançar" value="${esc(e.publico)}">
     <div class="row2">
@@ -612,37 +953,41 @@ function openEventForm(e = {}) {
       <button class="btn primary" id="eSave">Salvar</button>
     </div>`);
   const $ = id => document.getElementById(id);
+  sheet.querySelectorAll('[data-cor]').forEach(b => b.onclick = () => {
+    cor = b.dataset.cor; sheet.querySelectorAll('[data-cor]').forEach(x => x.classList.toggle('on', x === b));
+  });
   $('eSave').onclick = () => {
     const nome = $('eNome').value.trim();
     const data = $('eData').value;
     if (!nome || !data) { toast('Preencha o nome e a data'); return; }
     const obj = {
-      nome, data, hora: $('eHora').value, local: $('eLocal').value.trim(), objetivo: $('eObjetivo').value.trim(),
+      nome, data, hora: $('eHora').value, cor, local: $('eLocal').value.trim(), objetivo: $('eObjetivo').value.trim(),
       publico: $('ePublico').value.trim(), orcamento: $('eOrcamento').value, status: $('eStatus').value, notas: $('eNotas').value,
     };
     let id = e.id;
     if (isNew) {
       id = uid();
       const tarefas = $('eModelo').checked ? MODELO_TAREFAS.map(([fase, texto, off]) => ({ id: uid(), fase, texto, prazo: addDays(data, off), responsavel: '', feito: false })) : [];
-      store.eventos.push({ id, ...obj, tarefas });
+      store.eventos.push({ id, ...obj, tarefas, equipe: [] });
       if ($('ePosts').checked) gerarPosts(id);
     } else {
       const ev = evById(id);
       const delta = Math.round((parse(data) - parse(ev.data)) / 86400000);
       if (delta && confirm('A data mudou. Mover também os prazos das tarefas e os posts ligados a este evento?')) {
-        ev.tarefas.forEach(t => { if (t.prazo) t.prazo = addDays(t.prazo, delta); });
+        (ev.tarefas || []).forEach(t => { if (t.prazo) t.prazo = addDays(t.prazo, delta); });
         store.posts.forEach(p => { if (p.eventoId === id && p.status !== 'Publicado') p.data = addDays(p.data, delta); });
       }
       Object.assign(ev, obj);
     }
-    save(); render(); openEventDetail(id); toast('Evento salvo');
+    save(); openFolder(id, isNew ? 'geral' : evTab); toast('Evento salvo');
   };
   if (!isNew) {
     $('eDel').onclick = () => {
       const n = store.posts.filter(p => p.eventoId === e.id).length;
-      if (!confirm(`Excluir este evento?${n ? `\nOs ${n} posts ligados a ele serão mantidos, sem vínculo.` : ''}`)) return;
+      if (!confirm(`Excluir a pasta "${e.nome}"?${n ? `\nOs ${n} posts ligados a ela serão mantidos, sem vínculo.` : ''}`)) return;
       store.eventos = store.eventos.filter(x => x.id !== e.id);
       store.posts.forEach(p => { if (p.eventoId === e.id) p.eventoId = ''; });
+      openEvId = null;
       save(); closeSheet(); render(); toast('Evento excluído');
     };
   }
@@ -654,80 +999,10 @@ function gerarPosts(evId) {
   MODELO_POSTS.forEach(([off, titulo, rede, formato]) => {
     const data = addDays(e.data, off);
     if (store.posts.some(p => p.eventoId === evId && p.titulo === titulo && p.data === data)) return;
-    store.posts.push({ id: uid(), titulo, data, hora: '', rede, formato, status: 'Ideia', eventoId: evId, legenda: '', hashtags: '', objetivo: '', notas: '' });
+    store.posts.push({ id: uid(), titulo, data, hora: '', rede, formato, status: 'Ideia', eventoId: evId, responsavel: '', legenda: '', hashtags: '', objetivo: '', notas: '' });
     n++;
   });
   return n;
-}
-
-// ---------- Event detail (planejamento) ----------
-function openEventDetail(id) {
-  const e = evById(id);
-  if (!e) { closeSheet(); return; }
-  e.tarefas = e.tarefas || [];
-  const pr = evProgress(e);
-  const t = today();
-  const posts = store.posts.filter(p => p.eventoId === id).sort(byDate);
-  const fases = FASES.concat([...new Set(e.tarefas.map(x => x.fase))].filter(f => !FASES.includes(f)));
-  const taskHtml = fases.map(f => {
-    const list = e.tarefas.filter(x => x.fase === f).sort((a, b) => (a.prazo || '9').localeCompare(b.prazo || '9'));
-    if (!list.length) return '';
-    return `<div class="fase"><h3>${esc(f)} · ${list.filter(x => x.feito).length}/${list.length}</h3>${list.map(x => `
-      <div class="task ${x.feito ? 'done' : ''}">
-        <input type="checkbox" data-tk="${x.id}" ${x.feito ? 'checked' : ''}>
-        <div class="tx">${esc(x.texto)}<div class="meta ${!x.feito && x.prazo && x.prazo < t ? 'late' : ''}">${x.prazo ? `${parse(x.prazo).getDate()} ${MES_CURTO[parse(x.prazo).getMonth()]} (${relLabel(x.prazo)})` : 'sem prazo'}${x.responsavel ? ' · 👤 ' + esc(x.responsavel) : ''}</div></div>
-        <button class="del" data-tkdel="${x.id}" aria-label="Remover tarefa">✕</button>
-      </div>`).join('')}</div>`;
-  }).join('');
-
-  openSheet(`<h2>${esc(e.nome)} <button class="close-x">✕</button></h2>
-    <div class="ev-info">
-      📅 <b>${fmtLong(e.data)}</b>${e.hora ? ' às ' + esc(e.hora) : ''} (${relLabel(e.data)})<br>
-      ${e.local ? `📍 ${esc(e.local)}<br>` : ''}
-      ${e.objetivo ? `🎯 <b>Objetivo:</b> ${esc(e.objetivo)}<br>` : ''}
-      ${e.publico ? `👥 <b>Público:</b> ${esc(e.publico)}<br>` : ''}
-      ${e.orcamento ? `💰 <b>Orçamento:</b> ${money(e.orcamento)}<br>` : ''}
-      <span class="tag st-${esc(e.status)}">${esc(e.status)}</span>
-      ${e.notas ? `<div style="margin-top:6px;white-space:pre-wrap">${esc(e.notas)}</div>` : ''}
-    </div>
-    <div class="btns" style="margin-top:10px"><button class="btn small" id="dEdit">✏️ Editar</button><button class="btn small" id="dGen">📣 Gerar posts</button><button class="btn small" id="dNewPost">+ Post</button></div>
-
-    <div class="section-title">Planejamento · ${pr.done}/${pr.total} (${pr.pct}%)</div>
-    ${pr.total ? `<div class="progress" style="margin-top:0"><i style="width:${pr.pct}%"></i></div>` : ''}
-    ${taskHtml || '<div class="empty">Sem tarefas ainda. Adicione abaixo.</div>'}
-    <div class="add-task">
-      <input class="in" id="tTexto" placeholder="Nova tarefa...">
-      <div class="row3">
-        <select class="in" id="tFase">${opts(FASES, 'Pré-evento')}</select>
-        <input class="in" type="date" id="tPrazo">
-        <input class="in" id="tResp" placeholder="Responsável">
-      </div>
-      <button class="btn primary small" id="tAdd">Adicionar tarefa</button>
-    </div>
-
-    <div class="section-title">Posts do evento (${posts.length})</div>
-    <div id="dPosts">${posts.length ? posts.map(postCard).join('') : '<div class="empty">Nenhum post ligado a este evento.</div>'}</div>`);
-
-  const $ = id => document.getElementById(id);
-  $('dEdit').onclick = () => openEventForm(e);
-  $('dNewPost').onclick = () => openPostForm({ eventoId: id, data: e.data > t ? addDays(e.data, -7) : t });
-  $('dGen').onclick = () => {
-    const n = gerarPosts(id); save(); render(); openEventDetail(id);
-    toast(n ? `${n} posts de divulgação criados` : 'Os posts do modelo já existem');
-  };
-  sheet.querySelectorAll('[data-tk]').forEach(cb => cb.onchange = () => {
-    e.tarefas.find(x => x.id === cb.dataset.tk).feito = cb.checked; save(); render(); openEventDetail(id);
-  });
-  sheet.querySelectorAll('[data-tkdel]').forEach(b => b.onclick = () => {
-    e.tarefas = e.tarefas.filter(x => x.id !== b.dataset.tkdel); save(); render(); openEventDetail(id);
-  });
-  $('tAdd').onclick = () => {
-    const texto = $('tTexto').value.trim();
-    if (!texto) { toast('Escreva a tarefa'); return; }
-    e.tarefas.push({ id: uid(), texto, fase: $('tFase').value, prazo: $('tPrazo').value, responsavel: $('tResp').value.trim(), feito: false });
-    save(); render(); openEventDetail(id);
-  };
-  bindItems($('dPosts'));
 }
 
 // ---------- Backup ----------
