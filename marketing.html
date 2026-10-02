@@ -65,7 +65,7 @@
   .page { min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 32px 16px; }
   .card {
     width: 430px; max-width: 100%; min-height: 840px; background: var(--bg-card); border-radius: 28px;
-    box-shadow: 0 24px 60px -20px var(--shadow-color); overflow: hidden;
+    box-shadow: 0 24px 60px -20px var(--shadow-color); overflow: clip;
     display: flex; flex-direction: column; position: relative;
   }
   @media all and (display-mode: standalone) {
@@ -78,22 +78,55 @@
     .card { border-radius: 0; min-height: 100vh; box-shadow: none; }
   }
 
+  /* Cabeçalho: compacto (fixo no topo) e destaque na tela Início */
   header.top {
-    background: var(--navy); color: var(--cream); padding: 18px 18px 16px; position: relative;
-    display: flex; align-items: center; gap: 12px; border-bottom: 3px solid transparent;
-    border-image: var(--gold-grad) 1;
+    position: sticky; top: 0; z-index: 20; color: var(--cream);
+    background:
+      radial-gradient(120% 140% at 50% -40%, rgb(201 162 79 / .28), transparent 60%),
+      linear-gradient(180deg, #0a3249, var(--navy));
+    padding: 12px 14px 12px; padding-top: max(12px, env(safe-area-inset-top));
+    display: flex; align-items: center; gap: 10px;
+    border-radius: 0 0 22px 22px; box-shadow: 0 10px 24px -14px rgb(6 40 58 / .7);
   }
-  header.top .logo { width: 58px; height: 58px; flex: 0 0 auto; filter: drop-shadow(0 4px 8px rgb(0 0 0 / .35)); }
-  header.top .kicker { font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-1); opacity: .9; font-weight: 600; }
+  header.top::after {
+    content: ''; position: absolute; left: 22%; right: 22%; bottom: 0; height: 2px;
+    background: var(--gold-grad); border-radius: 2px; opacity: .9;
+  }
+  header.top .logo { width: 42px; height: 42px; flex: 0 0 auto; filter: drop-shadow(0 3px 6px rgb(0 0 0 / .4)); }
+  header.top .h-text { flex: 1; min-width: 0; }
+  header.top .kicker { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-1); opacity: .85; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   header.top h1 {
-    margin: 2px 0 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; font-weight: 700; line-height: 1.05;
+    margin: 1px 0 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 23px; font-weight: 700; line-height: 1.1;
     background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 4px;
   }
-  .top-actions { position: absolute; top: 14px; right: 12px; display: flex; gap: 6px; }
+  header.top .h-sub { display: none; }
+  .top-actions { display: flex; gap: 6px; flex: 0 0 auto; }
   .icon-btn {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgb(243 207 143 / .45);
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgb(243 207 143 / .4);
     background: rgb(243 207 143 / .08); color: var(--gold-1); cursor: pointer; display: flex; align-items: center; justify-content: center;
   }
+  .icon-btn.back { display: none; }
+  header.top.in-folder .icon-btn.back { display: flex; }
+  header.top.in-folder .logo { display: none; }
+
+  /* Destaque (Início) */
+  header.top.hero {
+    position: relative; flex-direction: column; text-align: center; gap: 0;
+    padding: 22px 18px 24px; padding-top: max(22px, calc(env(safe-area-inset-top) + 10px)); border-radius: 0 0 34px 34px;
+  }
+  header.top.hero .logo { width: 92px; height: 92px; margin-bottom: 10px; filter: drop-shadow(0 8px 16px rgb(0 0 0 / .5)); }
+  header.top.hero .h-text { width: 100%; }
+  header.top.hero .kicker { font-size: 10px; letter-spacing: .32em; color: var(--cream); opacity: .9; }
+  header.top.hero h1 { font-size: 44px; line-height: 1.05; margin-top: 2px; padding: 0 4px; }
+  header.top.hero .h-sub {
+    display: inline-flex; gap: 8px; align-items: center; margin-top: 10px; font-size: 11.5px; font-weight: 500; color: var(--cream);
+    background: rgb(253 238 224 / .08); border: 1px solid rgb(243 207 143 / .3); border-radius: 999px; padding: 5px 12px;
+  }
+  header.top.hero .h-sub b { color: var(--gold-1); font-weight: 600; }
+  header.top.hero .top-actions { position: absolute; top: max(14px, env(safe-area-inset-top)); right: 14px; }
+  header.top.hero::after { left: 35%; right: 35%; }
+  body.dark header.top { background: radial-gradient(120% 140% at 50% -40%, rgb(201 162 79 / .3), transparent 60%), linear-gradient(180deg, #0d3a54, #072c40); box-shadow: 0 1px 0 rgb(243 207 143 / .18), 0 12px 24px -12px rgb(0 0 0 / .7); }
   .icon-btn svg { width: 16px; height: 16px; }
 
   main { flex: 1; padding: 16px 16px 96px; overflow-y: auto; }
@@ -303,11 +336,15 @@
 <body>
 <div class="page">
   <div class="card">
-    <header class="top">
+    <header class="top hero" id="hdr">
+      <button class="icon-btn back" id="btnBack" aria-label="Voltar para as pastas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
       <img class="logo" src="logo-30anos.png" alt="30 anos — Alcançados pela Misericórdia">
-      <div>
-        <div class="kicker">Marketing · 30 anos</div>
-        <h1 id="hdrTitle">Início</h1>
+      <div class="h-text">
+        <div class="kicker" id="hdrKicker">Alcançados pela</div>
+        <h1 id="hdrTitle">Misericórdia</h1>
+        <div class="h-sub" id="hdrSub"></div>
       </div>
       <div class="top-actions">
         <button class="icon-btn" id="btnBackup" title="Backup" aria-label="Backup dos dados">
@@ -490,11 +527,35 @@ function render() {
   const v = document.getElementById('view');
   ACTS = {};
   if (tab === 'eventos' && openEvId && !evById(openEvId)) openEvId = null;
-  document.getElementById('hdrTitle').textContent = tab === 'eventos' && openEvId ? 'Pasta do evento' : titles[tab];
+  renderHeader(titles);
   v.innerHTML = tab === 'eventos' && openEvId ? viewPasta()
     : ({ inicio: viewInicio, calendario: viewCalendario, posts: viewPosts, eventos: viewEventos })[tab]();
   bindItems(v);
 }
+
+function renderHeader(titles) {
+  const hdr = document.getElementById('hdr');
+  const ev = tab === 'eventos' && openEvId && evById(openEvId);
+  const hero = tab === 'inicio';
+  hdr.classList.toggle('hero', hero);
+  hdr.classList.toggle('in-folder', !!ev);
+  const k = document.getElementById('hdrKicker'), h1 = document.getElementById('hdrTitle');
+  if (hero) {
+    k.textContent = 'Alcançados pela';
+    h1.textContent = 'Misericórdia';
+    const d = new Date();
+    const prox = store.eventos.filter(e => e.data >= today() && e.status !== 'Cancelado').sort(byDate)[0];
+    document.getElementById('hdrSub').innerHTML = `${DOW[d.getDay()]}, ${d.getDate()} de ${MESES[d.getMonth()]}` +
+      (prox ? ` · <b>${esc(prox.nome)} ${relLabel(prox.data)}</b>` : ' · <b>30 anos · 1996–2026</b>');
+  } else if (ev) {
+    k.textContent = 'Pasta do evento';
+    h1.textContent = ev.nome;
+  } else {
+    k.textContent = 'Alcançados pela Misericórdia';
+    h1.textContent = titles[tab];
+  }
+}
+document.getElementById('btnBack').onclick = () => { openEvId = null; render(); window.scrollTo(0, 0); };
 
 function bindItems(root) {
   root.querySelectorAll('[data-post]').forEach(el => el.onclick = ev => { ev.stopPropagation(); openPostForm(store.posts.find(p => p.id === el.dataset.post)); });
@@ -808,8 +869,7 @@ function viewPasta() {
 
   const subs = [['geral', 'Visão geral'], ['marketing', 'Marketing'], ['org', 'Organização'], ['estrutura', 'Estrutura'],
     ['tarefas', `Tarefas ${pr.done}/${pr.total}`], ['equipe', `Equipe (${e.equipe.length})`]];
-  let h = `<button class="back-btn" ${act(() => { openEvId = null; render(); })}>‹ Todas as pastas</button>
-  <div class="f-hero" style="--c:${evColor(e)}">
+  let h = `<div class="f-hero" style="--c:${evColor(e)}">
     <div class="f-hero-top"><div>
       <div class="f-date">${fmtLong(e.data)}${e.hora ? ' · ' + esc(e.hora) : ''} · ${relLabel(e.data)}</div>
       <div class="f-title">${esc(e.nome)}</div>
