@@ -1,0 +1,377 @@
+<title>Roteiro SIM 30 Anos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: documento de roteiro em coluna única, capítulos (atos) marcados pela barra dourada vertical da identidade SIM 30 anos */
+:root {
+  --noite: #02283a;      /* principal */
+  --ouro-claro: #efc989; /* principal (início do gradiente) */
+  --ouro: #ab7c23;       /* principal (fim do gradiente) */
+  --petroleo: #18506e;   /* secundário */
+  --ceu: #4283a1;        /* secundário */
+  --creme: #fff0e1;      /* fundo */
+
+  --bg: var(--creme);
+  --surface: #fbe6cf;
+  --fg: var(--noite);
+  --muted: #5b6f79;
+  --line: #e6cfae;
+  --accent: var(--ouro);
+  --accent-2: var(--petroleo);
+  --gold: linear-gradient(90deg, var(--ouro-claro), var(--ouro));
+
+  --display: "Playfair Display", "Awesome Serif", Georgia, "Times New Roman", serif;
+  --body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #021d2b; --surface: #06324a; --fg: #fff0e1; --muted: #a9bcc6;
+    --line: #1d4a62; --accent: #efc989; --accent-2: #7fb6cf; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #021d2b; --surface: #06324a; --fg: #fff0e1; --muted: #a9bcc6;
+  --line: #1d4a62; --accent: #efc989; --accent-2: #7fb6cf; color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.65; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px 96px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-2); }
+
+/* Capa */
+.cover { display: grid; gap: 14px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.cover h1 { font-size: clamp(44px, 9vw, 84px); font-weight: 800; letter-spacing: -.01em; }
+.cover h1 em { font-style: italic; font-weight: 700; background: var(--gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cover .lead { max-width: 62ch; color: var(--muted); }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; margin-top: 10px; }
+.meta div { display: grid; gap: 2px; }
+.meta dt { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.meta dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+section.block { margin-top: 56px; display: grid; gap: 18px; }
+section.block > h2 { font-size: clamp(28px, 5vw, 38px); }
+.note { font-size: 13.5px; color: var(--muted); max-width: 66ch; }
+
+/* Identidade */
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.sw { border-radius: 6px; padding: 54px 12px 10px; font-size: 11px; letter-spacing: .08em; line-height: 1.4; }
+.sw b { display: block; font-size: 12px; letter-spacing: .04em; }
+.sw-noite { background: var(--noite); color: var(--creme); }
+.sw-ouro { background: linear-gradient(90deg, var(--ouro-claro), var(--ouro)); color: var(--noite); }
+.sw-pet { background: var(--petroleo); color: var(--creme); }
+.sw-ceu { background: var(--ceu); color: var(--creme); }
+.sw-creme { background: var(--creme); color: var(--noite); box-shadow: inset 0 0 0 1px var(--line); }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px; }
+.rules div { display: grid; gap: 4px; align-content: start; }
+.rules h3 { font-size: 19px; }
+.rules p { font-size: 14px; color: var(--muted); }
+
+/* Exemplos de grafismo */
+.mocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.mock { aspect-ratio: 16 / 9; max-width: 100%; border-radius: 4px; position: relative; overflow: hidden; background: var(--noite); color: var(--creme); }
+.mock .cap { position: absolute; left: 0; right: 0; bottom: -26px; font-size: 11px; color: var(--muted); }
+.mock-wrap { display: grid; gap: 8px; }
+.mock-wrap small { font-size: 12px; color: var(--muted); }
+.m-title { display: grid; place-content: center; text-align: center; gap: 2px; background: radial-gradient(circle at 50% 40%, #0b3d57, var(--noite) 70%); }
+.m-title span { font-size: 8px; letter-spacing: .3em; font-weight: 600; }
+.m-title strong { font-family: var(--display); font-style: italic; font-size: 30px; line-height: 1; background: linear-gradient(90deg, var(--ouro-claro), var(--ouro)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.m-lower { background: linear-gradient(160deg, #5a4630, #2b2118); }
+.m-lower .lt { position: absolute; left: 7%; bottom: 14%; display: grid; gap: 1px; padding-left: 9px; border-left: 2px solid var(--ouro-claro); }
+.m-lower .lt b { font-family: var(--display); font-size: 17px; line-height: 1.1; }
+.m-lower .lt i { font-style: normal; font-size: 7.5px; letter-spacing: .2em; text-transform: uppercase; }
+.m-chap { background: var(--creme); color: var(--noite); display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; padding: 0 12%; }
+.m-chap .n { font-family: var(--display); font-style: italic; font-size: 64px; line-height: 1; background: linear-gradient(180deg, var(--ouro-claro), var(--ouro)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.m-chap .t { display: grid; gap: 2px; }
+.m-chap .t span { font-size: 7.5px; letter-spacing: .25em; font-weight: 600; color: var(--petroleo); }
+.m-chap .t b { font-family: var(--display); font-size: 20px; line-height: 1.05; }
+
+/* Linha do tempo de atos */
+.acts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.acts div { display: grid; gap: 4px; }
+.acts .bar { height: 6px; border-radius: 3px; background: var(--accent-2); }
+.acts div:nth-child(odd) .bar { background: var(--accent); }
+.acts span { font-size: 11px; color: var(--muted); line-height: 1.35; }
+.acts b { font-size: 12px; display: block; color: var(--fg); }
+@media (max-width: 560px) { .acts { grid-template-columns: 1fr; } }
+
+/* Atos e cenas */
+.act { margin-top: 64px; display: grid; gap: 22px; }
+.act-head { display: grid; gap: 6px; padding-left: 16px; border-left: 3px solid var(--accent); }
+.act-head h2 { font-size: clamp(30px, 6vw, 44px); }
+.act-head h2 em { font-weight: 500; }
+.act-head p { color: var(--muted); max-width: 62ch; }
+.scene { display: grid; gap: 12px; padding: 22px 0 6px; border-top: 1px solid var(--line); }
+.scene-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.scene h3 { font-size: 24px; }
+.scene h3 small { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-right: 10px; }
+.tc { font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--accent-2); white-space: nowrap; }
+.who { font-size: 13px; font-weight: 600; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px 28px; }
+.grid2 > div { min-width: 0; display: grid; gap: 4px; align-content: start; }
+.lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; }
+li { font-size: 14px; }
+.onscreen { background: var(--surface); border-radius: 4px; padding: 14px 16px; display: grid; gap: 4px; }
+.onscreen q { font-family: var(--display); font-style: italic; font-size: 22px; line-height: 1.25; quotes: "“" "”"; }
+.sub { display: grid; gap: 12px; }
+.sub-item { display: grid; grid-template-columns: minmax(130px, 200px) 1fr; gap: 6px 18px; padding: 10px 0; border-top: 1px dashed var(--line); }
+.sub-item:first-child { border-top: 0; }
+.sub-item > div { min-width: 0; }
+.sub-item h4 { margin: 0; font-family: var(--display); font-size: 18px; line-height: 1.2; }
+.sub-item .tc { display: block; margin-top: 2px; }
+@media (max-width: 560px) { .sub-item { grid-template-columns: 1fr; } }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--accent-2); font-weight: 600; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
+.checks > div { display: grid; gap: 6px; align-content: start; }
+.checks h3 { font-size: 19px; }
+footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+</style>
+
+<div class="wrap">
+
+<header class="cover">
+  <span class="eyebrow">Alcançados pela Misericórdia · 1996 — 2026</span>
+  <h1>SIM <em>30 anos</em></h1>
+  <p class="lead">Roteiro do documentário institucional. Organiza as cenas gravadas em cinco atos, define o que cada depoimento precisa entregar e aplica a identidade visual dos 30 anos em todos os grafismos, na cor e no som.</p>
+  <dl class="meta">
+    <div><dt>Formato</dt><dd>Documentário · 16:9</dd></div>
+    <div><dt>Resolução</dt><dd>1920 × 1080</dd></div>
+    <div><dt>Duração alvo</dt><dd>≈ 14 min 30 s</dd></div>
+    <div><dt>Cortes extras</dt><dd>Teaser 60 s · 9:16</dd></div>
+  </dl>
+</header>
+
+<section class="block">
+  <span class="eyebrow">Fio condutor</span>
+  <h2>A história de um sim que já dura 30 anos</h2>
+  <p class="note">O vídeo vai da semente aos frutos: uma profecia, o começo, a missão, as frentes que nasceram dela, a Igreja que caminhou junto e quem conduziu a obra. A palavra <b>SIM</b> funciona como eixo: é o nome do movimento e também a resposta de cada pessoa que aparece. O encerramento devolve a pergunta ao espectador, como na peça “Jesus espera o seu sim”.</p>
+  <div class="acts" aria-label="Distribuição dos atos no tempo">
+    <div><div class="bar"></div><span><b>I · A semente</b>Cenas 1–3 · 0:00–3:00</span></div>
+    <div><div class="bar"></div><span><b>II · A missão</b>Cenas 4–5 · 3:00–5:15</span></div>
+    <div><div class="bar"></div><span><b>III · Os frutos</b>Cena 6 · 5:15–10:15</span></div>
+    <div><div class="bar"></div><span><b>IV · Caminhar junto</b>Cenas 7–8 · 10:15–13:30</span></div>
+    <div><div class="bar"></div><span><b>V · O seu sim</b>Cena 9 · 13:30–14:30</span></div>
+  </div>
+  <p class="note">A sua lista tinha duas “Cena 5”. Renumerei: os vídeos gravados do Reinaldo ficam como Cena 5, os depoimentos das frentes como Cena 6, padres como Cena 7, ex-presidentes como Cena 8. Acrescentei a Cena 9, o encerramento.</p>
+</section>
+
+<section class="block">
+  <span class="eyebrow">Identidade visual no vídeo</span>
+  <h2>Cor, tipo e luz</h2>
+  <div class="swatches">
+    <div class="sw sw-noite"><b>Azul-noite</b>#02283A · principal<br>Fundos de cartela, sombras</div>
+    <div class="sw sw-ouro"><b>Dourado</b>#EFC989 → #AB7C23 · principal<br>Títulos, números, filetes</div>
+    <div class="sw sw-pet"><b>Azul petróleo</b>#18506E · secundário<br>Etiquetas, faixas</div>
+    <div class="sw sw-ceu"><b>Azul céu</b>#4283A1 · secundário<br>Detalhes, legendas</div>
+    <div class="sw sw-creme"><b>Creme</b>#FFF0E1 · fundo<br>Cartelas de capítulo</div>
+  </div>
+  <div class="rules">
+    <div><h3>Awesome Serif</h3><p>Títulos, nomes nos créditos, números grandes e frases de impacto. Use o itálico para a palavra-chave da frase (<i>Misericórdia</i>, <i>sim</i>, <i>3</i>), sempre em dourado.</p></div>
+    <div><h3>Montserrat</h3><p>Textos de apoio, cargos e legendas. Em caixa alta com espaçamento largo para chamadas curtas, como em “ALCANÇADOS PELA”.</p></div>
+    <div><h3>Tratamento de imagem</h3><p>Gradação quente, entre âmbar e dourado, com sombras puxadas para o azul-noite. Luz de vitral, contraluz, fumaça de incenso. Grão leve e uniforme em todo o filme.</p></div>
+    <div><h3>Material de arquivo</h3><p>Fotos e vídeos antigos com tom sépia-dourado, moldura fina dourada e data no canto em Montserrat (ex.: 1996). Movimento lento de zoom nas fotos.</p></div>
+    <div><h3>Selo 30 anos</h3><p>Aparece inteiro na abertura e no encerramento. No restante, só em versão pequena no canto inferior direito, com 60% de opacidade e apenas nas cartelas.</p></div>
+    <div><h3>Transições</h3><p>Fusão por luz dourada (light leak) entre atos, fade para o azul-noite entre cenas, fumaça cobrindo a troca nas cenas de oração. Nada de efeitos 3D ou wipes.</p></div>
+  </div>
+
+  <span class="lbl">Três grafismos-base</span>
+  <div class="mocks">
+    <div class="mock-wrap">
+      <div class="mock m-title" role="img" aria-label="Exemplo de cartela de título"><span>ALCANÇADOS PELA</span><strong>Misericórdia</strong></div>
+      <small>Cartela de título e frases-chave · fundo azul-noite</small>
+    </div>
+    <div class="mock-wrap">
+      <div class="mock m-lower" role="img" aria-label="Exemplo de identificação do entrevistado"><div class="lt"><b>Reinaldo</b><i>Fundador · SIM</i></div></div>
+      <small>Identificação (lower third) · filete dourado, nome em serifa, cargo em Montserrat</small>
+    </div>
+    <div class="mock-wrap">
+      <div class="mock m-chap" role="img" aria-label="Exemplo de cartela de capítulo"><div class="n">III</div><div class="t"><span>OS FRUTOS</span><b>Jovens Renovados</b></div></div>
+      <small>Cartela de capítulo e de frente · fundo creme, numeral dourado</small>
+    </div>
+  </div>
+  <p class="note">A Awesome Serif não está no Google Fonts; nesta página uso a Playfair Display só para visualização. Na edição, use o arquivo da Awesome Serif. Os cargos das identificações são exemplos: confirme cada um com a coordenação.</p>
+</section>
+
+<!-- ATO I -->
+<section class="act">
+  <div class="act-head">
+    <span class="eyebrow">Ato I · 0:00 – 3:00</span>
+    <h2>A <em>semente</em></h2>
+    <p>Prender a atenção nos primeiros segundos e plantar a pergunta: como tudo isso começou?</p>
+  </div>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 1</small>Takes de abertura</h3><span class="tc">0:00 – 0:40</span></div>
+    <p>Montagem sem fala, só imagem e trilha. Detalhes antes do todo: mãos em oração, o terço, o ostensório entre a fumaça, rostos de perfil em contraluz, a igreja cheia. Cortes lentos que vão ganhando ritmo.</p>
+    <div class="grid2">
+      <div><span class="lbl">Imagens</span><ul><li>Takes atuais de encontros e missas</li><li>3 ou 4 fotos de arquivo intercaladas (fusão do antigo para o atual)</li><li>Plano aberto final da assembleia</li></ul></div>
+      <div><span class="lbl">Som e grafismo</span><ul><li>Trilha: piano solo, entrada suave</li><li>Som ambiente do louvor em volume baixo</li><li>Sem texto na tela; fade para azul-noite no fim</li></ul></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 2</small>A frase profética</h3><span class="tc">0:40 – 1:25</span></div>
+    <p class="who">Valter</p>
+    <p>A frase entra seca, sobre fundo escuro ou com Valter em plano fechado. Depois de dita, ela aparece escrita em tela e se dissolve no selo dos 30 anos, que abre o filme.</p>
+    <div class="onscreen"><span class="lbl">Texto em tela</span><q>[Frase profética exata dita pelo Valter]</q><span class="note">Awesome Serif, palavra-chave em itálico dourado. Em seguida: selo 30 anos + “ALCANÇADOS PELA <i>Misericórdia</i>” + 1996 — 2026.</span></div>
+    <div class="grid2">
+      <div><span class="lbl">Som</span><ul><li>Trilha para quase em silêncio antes da frase</li><li>Primeiro acorde das cordas entra junto com o selo</li></ul></div>
+      <div><span class="lbl">Pergunta-guia (se faltar material)</span><ul><li>Qual foi a palavra que vocês receberam antes de tudo começar?</li></ul></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 3</small>Como a SIM começou</h3><span class="tc">1:25 – 3:00</span></div>
+    <p class="who">Reinaldo</p>
+    <p>A origem contada por quem estava lá. Cobrir a fala com arquivo sempre que ele citar um lugar, uma data ou uma pessoa.</p>
+    <div class="grid2">
+      <div><span class="lbl">O depoimento precisa entregar</span><ul><li>Onde e quando começou (ano, cidade, paróquia)</li><li>Quem eram as primeiras pessoas</li><li>O que motivou o início</li><li>Uma lembrança concreta do primeiro encontro</li></ul></div>
+      <div><span class="lbl">Cobertura e grafismo</span><ul><li>Fotos dos primeiros anos com tratamento sépia-dourado</li><li>Identificação do Reinaldo na primeira fala</li><li>Data “1996” em Montserrat sobre a primeira foto</li></ul></div>
+    </div>
+  </article>
+</section>
+
+<!-- ATO II -->
+<section class="act">
+  <div class="act-head">
+    <span class="eyebrow">Ato II · 3:00 – 5:15</span>
+    <h2>A <em>missão</em></h2>
+    <p>Explicar com clareza o que a SIM é e como funciona, para quem não conhece.</p>
+  </div>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 4</small>Como a SIM funciona</h3><span class="tc">3:00 – 4:15</span></div>
+    <p class="who">Luciano</p>
+    <p>A cena mais didática do filme. Quando ele listar as frentes ou a estrutura, os nomes entram na tela, um por vez, para preparar o Ato III.</p>
+    <div class="grid2">
+      <div><span class="lbl">O depoimento precisa entregar</span><ul><li>A missão em uma frase</li><li>Como a SIM se organiza (frentes, coordenações, encontros)</li><li>Quem pode participar</li><li>O alcance hoje (cidades, pessoas, encontros por ano)</li></ul></div>
+      <div><span class="lbl">Grafismo</span><ul><li>Lista das frentes em Montserrat caixa alta, surgindo em sequência</li><li>Números de alcance em Awesome Serif dourada, grandes, um por tela</li></ul></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 5</small>Vídeos gravados do Reinaldo</h3><span class="tc">4:15 – 5:15</span></div>
+    <p>Trechos de pregações e momentos registrados do Reinaldo ao longo dos anos. Funciona como um respiro emocional entre a explicação e os testemunhos.</p>
+    <div class="grid2">
+      <div><span class="lbl">Seleção</span><ul><li>2 ou 3 trechos curtos (15 a 25 s cada)</li><li>Priorizar falas sobre misericórdia, chamado e o “sim”</li><li>Ordem cronológica, do mais antigo ao mais recente</li></ul></div>
+      <div><span class="lbl">Tratamento</span><ul><li>Moldura fina dourada e ano do registro no canto</li><li>Corrigir áudio e cor para uniformizar com o resto</li><li>Legendar trechos com som ruim</li></ul></div>
+    </div>
+  </article>
+</section>
+
+<!-- ATO III -->
+<section class="act">
+  <div class="act-head">
+    <span class="eyebrow">Ato III · 5:15 – 10:15</span>
+    <h2>Os <em>frutos</em></h2>
+    <p>Cena 6. Cada frente ganha uma cartela creme com o nome e cerca de 50 segundos de depoimento. O ritmo fica mais vivo e a trilha cresce.</p>
+  </div>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 6</small>Depoimentos das frentes</h3><span class="tc">5:15 – 10:15</span></div>
+    <p>Pergunta-base para todos: <i>como essa frente nasceu, o que ela faz e uma vida que você viu mudar por causa dela?</i> Cobrir cada bloco com imagens da própria frente.</p>
+    <div class="sub">
+      <div class="sub-item"><div><h4>Jovens Renovados</h4><span class="tc">5:15 – 6:05</span></div><div><p class="who">Syrlanie e João Pedro</p><p class="note">Energia e louvor. Takes de grupo de jovens, música alta, câmera na mão.</p></div></div>
+      <div class="sub-item"><div><h4>Encheivos</h4><span class="tc">6:05 – 6:55</span></div><div><p class="who">Nice e Nadjma</p><p class="note">Imagens de oração e louvor da frente. Confirmar a grafia oficial do nome na cartela.</p></div></div>
+      <div class="sub-item"><div><h4>Santificai-vos</h4><span class="tc">6:55 – 7:45</span></div><div><p class="who">Paulo Peres</p><p class="note">Tom mais contemplativo. Adoração, fumaça, planos lentos.</p></div></div>
+      <div class="sub-item"><div><h4>Ministério Kids</h4><span class="tc">7:45 – 8:35</span></div><div><p class="who">Tanga e Erasmo</p><p class="note">Crianças nas atividades, sorrisos, cores mais claras. Usar só imagens com autorização dos pais.</p></div></div>
+      <div class="sub-item"><div><h4>SIM Paraná</h4><span class="tc">8:35 – 9:25</span></div><div><p class="who">Cris e Wendel</p><p class="note">Mostrar a expansão. Plano da cidade ou estrada na abertura do bloco.</p></div></div>
+      <div class="sub-item"><div><h4>Demais frentes</h4><span class="tc">9:25 – 10:15</span></div><div><p class="who">Valter</p><p class="note">Fechamento do ato. Enquanto ele cita as outras frentes, montagem rápida com o nome de cada uma em tela.</p></div></div>
+    </div>
+    <p class="note">Nas duplas, alternar as falas dentro do mesmo bloco em vez de colocar um depoimento depois do outro. Se tiverem gravado juntos, use o plano a dois na abertura do bloco.</p>
+  </article>
+</section>
+
+<!-- ATO IV -->
+<section class="act">
+  <div class="act-head">
+    <span class="eyebrow">Ato IV · 10:15 – 13:30</span>
+    <h2>Caminhar <em>junto</em></h2>
+    <p>A SIM vista de fora e por quem conduziu a obra. O ritmo desacelera para preparar o final.</p>
+  </div>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 7</small>Padres que fizeram parte da SIM</h3><span class="tc">10:15 – 11:45</span></div>
+    <div class="grid2">
+      <div><span class="lbl">Perguntas-guia</span><ul><li>Quando o senhor conheceu a SIM?</li><li>O que a SIM representa para a Igreja e para a paróquia?</li><li>Que fruto o senhor viu nascer da SIM?</li></ul></div>
+      <div><span class="lbl">Cobertura e grafismo</span><ul><li>Missas, bênçãos, adoração</li><li>Identificação com nome e paróquia</li><li>Fundo de igreja desfocado, luz quente</li></ul></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 8</small>Antigos presidentes</h3><span class="tc">11:45 – 13:30</span></div>
+    <p class="who">Célio, Valter e Josi</p>
+    <p>Ordem cronológica dos mandatos. Na cartela de cada um, o período em Montserrat (ex.: “Presidente · 2005 — 2012”). Fechar com uma fala sobre o futuro da SIM.</p>
+    <div class="grid2">
+      <div><span class="lbl">Perguntas-guia</span><ul><li>Qual foi o maior desafio da sua gestão?</li><li>Um momento que você nunca vai esquecer</li><li>O que você deseja para os próximos 30 anos?</li></ul></div>
+      <div><span class="lbl">Cobertura</span><ul><li>Foto de cada presidente na época, ao lado da imagem atual</li><li>Registros de eventos marcantes de cada período</li></ul></div>
+    </div>
+  </article>
+</section>
+
+<!-- ATO V -->
+<section class="act">
+  <div class="act-head">
+    <span class="eyebrow">Ato V · 13:30 – 14:30</span>
+    <h2>O <em>seu</em> sim</h2>
+    <p>Encerramento. Transforma 30 anos de história em um convite.</p>
+  </div>
+
+  <article class="scene">
+    <div class="scene-top"><h3><small>Cena 9</small>Encerramento</h3><span class="tc">13:30 – 14:30</span></div>
+    <p>Montagem final com os melhores rostos e momentos do filme, alternando arquivo e presente. A trilha chega ao ponto mais alto e depois baixa até ficar só o piano.</p>
+    <div class="onscreen">
+      <span class="lbl">Sequência de cartelas</span>
+      <ul>
+        <li>“30 anos” · Awesome Serif dourada sobre azul-noite</li>
+        <li>“ALCANÇADOS PELA <i>Misericórdia</i>”</li>
+        <li>“JESUS ESPERA · O <i>seu sim</i>” sobre imagem de oração, com a barra dourada vertical</li>
+        <li>Selo 30 anos inteiro + 1996 — 2026</li>
+        <li>Créditos em Montserrat sobre azul-noite</li>
+      </ul>
+    </div>
+    <p class="note">Opção: fechar com a frase profética do Valter (Cena 2) repetida em off, agora sobre imagens do presente, mostrando que ela se cumpriu.</p>
+  </article>
+</section>
+
+<section class="block">
+  <span class="eyebrow">Decupagem</span>
+  <h2>Resumo para a edição</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tempo</th><th>Cena</th><th>Quem</th><th>Grafismo</th></tr></thead>
+      <tbody>
+        <tr><td class="num">0:00 – 0:40</td><td>1 · Takes de abertura</td><td>—</td><td>Nenhum</td></tr>
+        <tr><td class="num">0:40 – 1:25</td><td>2 · Frase profética</td><td>Valter</td><td>Frase em tela + selo de abertura</td></tr>
+        <tr><td class="num">1:25 – 3:00</td><td>3 · O começo</td><td>Reinaldo</td><td>Lower third, data 1996</td></tr>
+        <tr><td class="num">3:00 – 4:15</td><td>4 · Como funciona</td><td>Luciano</td><td>Lista de frentes, números</td></tr>
+        <tr><td class="num">4:15 – 5:15</td><td>5 · Vídeos do Reinaldo</td><td>Arquivo</td><td>Moldura dourada + ano</td></tr>
+        <tr><td class="num">5:15 – 10:15</td><td>6 · Frentes</td><td>Syrlanie, João Pedro, Nice, Nadjma, Paulo Peres, Tanga, Erasmo, Cris, Wendel, Valter</td><td>Cartela creme por frente</td></tr>
+        <tr><td class="num">10:15 – 11:45</td><td>7 · Padres</td><td>A definir</td><td>Lower third com paróquia</td></tr>
+        <tr><td class="num">11:45 – 13:30</td><td>8 · Ex-presidentes</td><td>Célio, Valter, Josi</td><td>Lower third com período</td></tr>
+        <tr><td class="num">13:30 – 14:30</td><td>9 · Encerramento</td><td>Montagem</td><td>Cartelas finais, selo, créditos</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block">
+  <span class="eyebrow">Produção</span>
+  <h2>Checklists</h2>
+  <div class="checks">
+    <div><h3>Gravação das entrevistas</h3><ul><li>Mesmo cenário para todos: fundo escuro ou de igreja desfocado</li><li>Luz lateral suave e quente, contraluz dourado</li><li>Duas câmeras: plano médio e close</li><li>Microfone de lapela; 10 s de som ambiente em cada local</li><li>Pedir que respondam em frase completa, repetindo a pergunta</li></ul></div>
+    <div><h3>Material a reunir</h3><ul><li>Fotos e vídeos de 1996 em diante, com o ano de cada um</li><li>Logos e grafia oficial de cada frente</li><li>Nomes, cargos e períodos de todos os entrevistados</li><li>Autorizações de imagem (principalmente crianças)</li><li>Arquivos das fontes e do selo em PNG transparente</li></ul></div>
+    <div><h3>Entregas</h3><ul><li>Versão completa · 16:9 · ≈ 14 min 30 s</li><li>Teaser · 60 s · frase profética + frentes + “O seu sim”</li><li>Cortes verticais 9:16 de cada frente para Instagram</li><li>Versão com legenda embutida</li></ul></div>
+  </div>
+</section>
+
+<footer><span>SIM · Alcançados pela Misericórdia</span><span>1996 — 2026</span></footer>
+</div>
