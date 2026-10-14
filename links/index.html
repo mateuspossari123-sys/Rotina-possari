@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIM 30 Anos · Eventos</title>
-<meta name="description" content="Eventos e links da comunidade SIM — 30 anos, Alcançados pela Misericórdia.">
+<title>SIM Dracena · Links</title>
+<meta name="description" content="Links da comunidade SIM — Dracena-SP. 30 anos, Alcançados pela Misericórdia.">
 <meta name="theme-color" content="#04263a">
-<meta property="og:title" content="SIM 30 Anos · Eventos">
+<meta property="og:title" content="SIM Dracena · Links">
 <meta property="og:description" content="Alcançados pela Misericórdia — 1996 · 2026">
-<meta property="og:image" content="img/selo-30-anos.png">
-<link rel="icon" href="img/selo-30-anos.png">
+<meta property="og:image" content="img/logo-sim.jpg">
+<link rel="icon" href="img/logo-sim.jpg">
+<link rel="apple-touch-icon" href="img/logo-sim.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
 <style>
   /* Paleta da apresentação "30 anos" */
   :root {
@@ -26,9 +27,10 @@
     --ouro: linear-gradient(90deg, var(--ouro-1), var(--ouro-2) 55%, var(--ouro-3));
     --serif: "Playfair Display", Georgia, serif;
     --sans: "Montserrat", system-ui, sans-serif;
+    --script: "Pinyon Script", "Playfair Display", cursive;
   }
   * { box-sizing: border-box; margin: 0; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; background: var(--azul-noite); }
   body {
     min-height: 100vh;
     font-family: var(--sans);
@@ -46,27 +48,20 @@
   }
   main { position: relative; max-width: 560px; margin: 0 auto; padding: 32px 16px 48px; }
 
-  header { text-align: center; margin-bottom: 36px; }
-  .selo { width: 132px; height: auto; filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); }
-  .titulo {
-    display: flex; align-items: baseline; justify-content: center; gap: 12px;
-    margin-top: 14px; line-height: 1;
+  header { text-align: center; margin-bottom: 32px; }
+  .logo {
+    width: 116px; height: 116px; border-radius: 50%; object-fit: cover;
+    box-shadow: 0 12px 28px rgba(0,0,0,.45), 0 0 0 3px rgba(243,209,151,.35);
   }
-  .titulo b {
-    font-family: var(--sans); font-weight: 700; font-size: clamp(34px, 10vw, 52px);
-    letter-spacing: .02em; color: #fff;
-  }
-  .titulo i {
-    font-family: var(--serif); font-style: italic; font-weight: 800;
-    font-size: clamp(38px, 11vw, 58px);
-    background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
+  .nome {
+    margin-top: 14px; font-family: var(--serif); font-weight: 800; font-size: 26px; color: #fff;
   }
   .lema {
-    margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: .28em;
+    margin-top: 6px; font-size: 11px; font-weight: 600; letter-spacing: .26em;
     text-transform: uppercase; color: var(--ouro-1); opacity: .9;
   }
 
-  .eventos { display: grid; gap: 22px; list-style: none; padding: 0; }
+  .abas { display: grid; gap: 20px; list-style: none; padding: 0; }
   .card {
     position: relative; display: flex; align-items: center; overflow: hidden;
     min-height: 124px; border-radius: 26px;
@@ -78,34 +73,56 @@
   .card:focus-visible { outline: 2px solid var(--ouro-1); outline-offset: 3px; }
   .card .bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
   .card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--veu, none); }
-  .card .txt { padding: 0 22px; width: 100%; }
+  .card .txt { position: relative; padding: 0 22px; width: 100%; }
   .card small {
     display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase;
     color: var(--ouro-1);
   }
-  .card strong { display: block; font-family: var(--serif); font-weight: 800; line-height: 1.02; font-size: clamp(24px, 7.4vw, 36px); }
+  .card strong { display: block; font-family: var(--serif); font-weight: 800; line-height: 1.02; font-size: clamp(24px, 7.4vw, 34px); }
   .card em { font-family: var(--serif); font-style: italic; }
-  .card .info { display: block; margin-top: 4px; font-size: 11.5px; font-weight: 500; opacity: .9; }
+  .card .info { display: block; margin-top: 5px; font-size: 11.5px; font-weight: 500; opacity: .9; }
   .ouro { background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  /* foto ocupando só o lado direito do banner, esmaecendo para a esquerda */
+  .card .foto {
+    position: absolute; top: 0; right: 0; z-index: -1; height: 100%; width: 56%; object-fit: cover;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%);
+            mask-image: linear-gradient(90deg, transparent, #000 45%);
+  }
 
-  /* variações de banner */
-  .c-jubileu { --veu: linear-gradient(90deg, rgba(4,38,58,.92) 0%, rgba(4,38,58,.55) 55%, rgba(4,38,58,.1)); }
-  .c-jubileu .selo-mini { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); height: 78%; width: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
-  .c-adoracao { --veu: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,.85) 62%); }
-  .c-adoracao .txt { text-align: right; }
-  .c-contagem { background: linear-gradient(115deg, #f7e2c2, var(--creme) 50%, #f3d7ad); color: var(--azul-noite); justify-content: center; }
-  .c-contagem .txt { display: flex; align-items: center; justify-content: center; gap: 14px; }
-  .c-contagem small { color: var(--azul-noite); }
-  .c-contagem .num { font-family: var(--serif); font-style: italic; font-weight: 800; font-size: clamp(64px, 20vw, 96px); line-height: .9; background: var(--ouro); background: linear-gradient(160deg, var(--ouro-1), var(--ouro-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .c-sim { --veu: linear-gradient(90deg, rgba(253,238,224,.95) 0%, rgba(253,238,224,.8) 45%, rgba(253,238,224,0) 80%); color: var(--azul); }
-  .c-sim small { color: var(--azul); }
-  .c-sim strong { color: var(--azul-noite); }
-  .c-sim .txt { border-left: 3px solid var(--ouro-2); margin-left: 22px; padding-left: 14px; }
-  .c-grupo { background: radial-gradient(120% 140% at 85% 50%, var(--azul-claro), var(--azul) 45%, var(--azul-noite)); }
-  .c-grupo .traco { position: absolute; right: 10px; bottom: -12%; height: 120%; width: auto; opacity: .35; z-index: -1; }
+  /* 1 · Sócio benfeitor — "O seu sim" */
+  .c-socio { --veu: linear-gradient(90deg, rgba(253,238,224,.96) 0%, rgba(253,238,224,.82) 48%, rgba(253,238,224,0) 82%); color: var(--azul); }
+  .c-socio .bg { object-position: 70% 40%; }
+  .c-socio .txt { border-left: 3px solid var(--ouro-2); margin-left: 22px; padding-left: 14px; }
+  .c-socio small { color: var(--azul); }
+  .c-socio strong { color: var(--azul-noite); }
 
-  /* links simples abaixo dos banners */
-  .rapidos { display: grid; gap: 12px; margin-top: 34px; }
+  /* 2 · Kairós 30 anos */
+  .c-kairos { --veu: linear-gradient(90deg, rgba(4,38,58,.94) 0%, rgba(4,38,58,.6) 55%, rgba(4,38,58,.1)); }
+  .c-kairos .selo { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); height: 82%; width: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
+
+  /* 3 · Seminário Diga SIM a Deus — pomba de fogo */
+  .c-seminario { background: #000; }
+  .c-seminario .foto { width: 62%; object-position: 50% 35%; }
+  .c-seminario small { color: #f5a01a; }
+  .c-seminario strong { font-family: var(--sans); font-weight: 800; letter-spacing: -.01em; font-size: clamp(22px, 6.8vw, 30px); }
+  .c-seminario strong span { color: #f5a01a; }
+
+  /* 4 · Curso Santificai-vos */
+  .c-santificai { background: radial-gradient(90% 120% at 0% 0%, rgba(231,120,48,.45), transparent 60%), #fbeee2; color: #7a3b1d; }
+  .c-santificai .foto { width: 46%; object-position: 50% 18%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%); mask-image: linear-gradient(90deg, transparent, #000 35%); }
+  .c-santificai small { color: #8a5a3c; }
+  .c-santificai strong { font-family: var(--script); font-weight: 400; font-size: clamp(38px, 12vw, 52px); line-height: 1; color: #8c3f1c; margin: 2px 0 -2px; }
+  .c-santificai .info { color: #5a3a2a; }
+  .c-santificai .txt { max-width: 64%; padding-right: 0; }
+  .c-santificai strong { font-size: clamp(34px, 10.5vw, 48px); }
+
+  /* 5 · Eventos */
+  .c-eventos { --veu: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,.85) 62%); }
+  .c-eventos .txt { text-align: right; }
+  .c-eventos strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
+
+  /* botões */
+  .rapidos { display: grid; gap: 12px; margin-top: 32px; }
   .rapidos a {
     display: flex; align-items: center; justify-content: center; gap: 10px;
     padding: 15px 18px; border-radius: 999px; text-decoration: none;
@@ -120,67 +137,63 @@
 <body>
 <main>
   <header>
-    <img class="selo" src="img/selo-30-anos.png" alt="Selo SIM 30 anos — 1996 a 2026 — Alcançados pela Misericórdia" width="320" height="320">
-    <h1 class="titulo"><b>EVENTOS</b><i>SIM</i></h1>
+    <img class="logo" src="img/logo-sim.jpg" alt="Logo SIM" width="360" height="360">
+    <h1 class="nome">SIM Dracena</h1>
     <p class="lema">Alcançados pela Misericórdia</p>
   </header>
 
   <!--
-    COMO EDITAR: cada <a class="card"> é um banner.
-    - Troque o texto e a data.
-    - Troque href="#" pelo link de inscrição (Sympla, Google Forms, WhatsApp…).
-    - Para usar uma arte pronta do Canva no lugar do banner, apague o conteúdo
-      do <a> e deixe só: <img class="bg" src="img/sua-arte.jpg" alt="Nome do evento">
-      (arte no formato 1200 x 300 px).
+    COMO EDITAR: cada <a class="card"> é uma aba.
+    Troque href="#" pelo link de destino (formulário, Sympla, WhatsApp, post…).
   -->
-  <ul class="eventos">
+  <ul class="abas">
     <li>
-      <a class="card c-jubileu" href="#">
+      <a class="card c-socio" href="#">
+        <img class="bg" src="img/oracao.jpg" alt="" loading="eager">
+        <span class="txt">
+          <small>Jesus espera o seu sim</small>
+          <strong>Seja um sócio <em>benfeitor</em></strong>
+          <span class="info">Ajude a missão a continuar</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="card c-kairos" href="#">
         <img class="bg" src="img/igreja.jpg" alt="" loading="eager">
         <span class="txt">
-          <small>Jubileu · 1996 – 2026</small>
-          <strong><span class="ouro">30 anos</span><br>de Misericórdia</strong>
-          <span class="info">Missa e celebração · data a confirmar</span>
+          <small>1996 – 2026</small>
+          <strong>Kairós<br><span class="ouro">30 anos</span></strong>
+          <span class="info">Alcançados pela Misericórdia</span>
         </span>
-        <img class="selo-mini" src="img/selo-30-anos.png" alt="">
+        <img class="selo" src="img/selo-30-anos.png" alt="">
       </a>
     </li>
     <li>
-      <a class="card c-adoracao" href="#">
+      <a class="card c-seminario" href="#">
+        <img class="foto" src="img/pomba.jpg" alt="" loading="lazy">
+        <span class="txt">
+          <small>Seminário</small>
+          <strong>Diga <span>SIM</span><br>a Deus</strong>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="card c-santificai" href="#">
+        <img class="foto" src="img/santificai.jpg" alt="" loading="lazy">
+        <span class="txt">
+          <small>Curso</small>
+          <strong>Santificai-vos</strong>
+          <span class="info">Um tempo de graça</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="card c-eventos" href="#">
         <img class="bg" src="img/adoracao.jpg" alt="" loading="lazy">
         <span class="txt">
-          <small>Alcançados pela</small>
-          <strong class="ouro"><em>Misericórdia</em></strong>
-          <span class="info">Noite de adoração ao Santíssimo</span>
-        </span>
-      </a>
-    </li>
-    <li>
-      <a class="card c-sim" href="#">
-        <img class="bg" src="img/oracao.jpg" alt="" loading="lazy">
-        <span class="txt">
-          <small>Jesus espera</small>
-          <strong>O seu <em>sim</em></strong>
-          <span class="info">Retiro de cura e libertação</span>
-        </span>
-      </a>
-    </li>
-    <li>
-      <a class="card c-contagem" href="#">
-        <span class="txt">
-          <small>Faltam</small>
-          <span class="num" id="dias">30</span>
-          <small id="dias-rotulo">dias</small>
-        </span>
-      </a>
-    </li>
-    <li>
-      <a class="card c-grupo" href="#">
-        <img class="traco" src="img/traco-sim.png" alt="">
-        <span class="txt">
-          <small>Toda semana</small>
-          <strong>Grupo de <em class="ouro">Oração</em></strong>
-          <span class="info">Venha rezar com a gente</span>
+          <small>Agenda da comunidade</small>
+          <strong>EVENTOS</strong>
+          <span class="info">Retiros, encontros e celebrações</span>
         </span>
       </a>
     </li>
@@ -192,25 +205,16 @@
       Fale conosco no WhatsApp
     </a>
     <a class="alt" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+      Visite nosso site
+    </a>
+    <a class="alt" href="https://www.google.com/maps/search/?api=1&query=SIM+Dracena+SP" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
       Como chegar
     </a>
-    <a class="alt" href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21C7 17 3 14 3 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9 2.5C21 14 17 17 12 21z"/></svg>
-      Seja um benfeitor
-    </a>
   </nav>
 
-  <footer>SIM · 1996 — 2026</footer>
+  <footer>SIM · Dracena-SP · 1996 — 2026</footer>
 </main>
-
-<script>
-  // Contagem regressiva: troque a data do evento aqui (ano, mês-1, dia).
-  var DATA_EVENTO = new Date(2026, 10, 15);
-  var hoje = new Date(); hoje.setHours(0, 0, 0, 0);
-  var dias = Math.max(0, Math.ceil((DATA_EVENTO - hoje) / 86400000));
-  document.getElementById('dias').textContent = dias;
-  document.getElementById('dias-rotulo').textContent = dias === 1 ? 'dia' : 'dias';
-</script>
 </body>
 </html>
