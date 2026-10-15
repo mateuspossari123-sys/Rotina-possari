@@ -79,7 +79,6 @@
   /* lista de eventos */
   .lista { padding: 100px 0 60px; }
   .ev { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 96px; }
-  .ev:nth-child(even) .foto { order: 2; }
   .ev .foto { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 26px 50px -28px rgba(4,38,58,.7); background: #000; }
   .ev .foto img { width: 100%; height: 100%; object-fit: cover; }
   .ev .quando { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro-3); }
@@ -106,7 +105,28 @@
   .grupo .frase { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 21px; color: var(--azul); margin-top: 8px; }
 
   .lista .ouro { background: linear-gradient(100deg, #c99a4e, #a1701f 55%, #7d5414); -webkit-background-clip: text; background-clip: text; }
-  footer { background: var(--azul-noite); color: rgba(253,238,224,.75); padding: 34px 0; font-size: 13px; text-align: center; }
+
+  /* faixas alternadas: azul · branco · azul · bege · azul */
+  .faixa { padding: 96px 0; }
+  .faixa .ev { margin-bottom: 0; }
+  .ev.inv .foto { order: 2; }
+  .tom-branco { background: #fffaf4; }
+  .tom-bege { background: linear-gradient(180deg, var(--creme-2), #f6dcb4); }
+  .tom-branco .ouro, .tom-bege .ouro { background: linear-gradient(100deg, #c99a4e, #a1701f 55%, #7d5414); -webkit-background-clip: text; background-clip: text; }
+  .tom-azul { background: var(--azul-noite); color: var(--creme); }
+  .tom-azul .ev h3, .tom-azul .grupo h3 { color: #fff; }
+  .tom-azul .ev .frase, .tom-azul .grupo .frase { color: var(--ouro-1); }
+  .tom-azul .ev .quando, .tom-azul .eyebrow { color: var(--ouro-1); }
+  .tom-azul p { color: rgba(253,238,224,.88); }
+  .tom-azul .btn-azul { background: var(--ouro); color: var(--azul-noite); }
+  .tom-azul .ev h3 .script { color: var(--ouro-1); }
+  .tom-azul .ev .foto { box-shadow: 0 26px 50px -24px rgba(0,0,0,.9); }
+  .tom-azul .grupo { background: linear-gradient(120deg, #0b3550, #0f3d5a); box-shadow: inset 0 0 0 1.5px rgba(201,154,78,.5); margin-bottom: 0; }
+  .tom-azul .grupo .dia { background: var(--ouro); }
+  .tom-azul .grupo .dia b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--azul-noite); }
+  .tom-azul .grupo .dia span { color: var(--azul-noite); }
+  .oson { border-bottom: 1px solid rgba(201,154,78,.25); }
+  footer { background: #021a29; color: rgba(253,238,224,.75); padding: 34px 0; font-size: 13px; text-align: center; }
   footer a { color: var(--ouro-1); text-decoration: none; }
 
   @media (max-width: 860px) {
@@ -117,8 +137,8 @@
     .oson .fotos .f2 { right: 10px; bottom: -36px; }
     .oson .fotos { margin-bottom: 30px; }
     .ev { margin-bottom: 72px; }
-    .ev:nth-child(even) .foto { order: 0; }
-    .lista { padding: 70px 0 30px; }
+    .faixa { padding: 70px 0; }
+    .ev.inv .foto { order: 0; }
     .grupo { grid-template-columns: 1fr; padding: 36px 22px; text-align: center; gap: 22px; }
     .grupo .dia { margin: 0 auto; }
     .grupo .btn { width: 100%; }
@@ -177,9 +197,8 @@
     </div>
   </section>
 
-  <section class="lista">
+  <section class="faixa tom-branco">
     <div class="wrap">
-
       <article class="ev" id="festa">
         <div class="foto"><img src="img/festa-misericordia.jpg" alt="Festa da Misericórdia: padres e fiéis com imagens de Jesus Misericordioso" ></div>
         <div>
@@ -190,8 +209,11 @@
           <a class="btn btn-azul" href="#">Saiba mais</a>
         </div>
       </article>
-
-      <article class="ev" id="santificai">
+    </div>
+  </section>
+  <section class="faixa tom-azul">
+    <div class="wrap">
+      <article class="ev inv" id="santificai">
         <div class="foto arte" style="background:#f6f4f0"><img src="img/santificai-arte.jpg" alt="Retiro Santificai-vos: 12 de fevereiro de 2026, inscrições abertas"></div>
         <div>
           <span class="quando"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>12 de fevereiro</span>
@@ -201,7 +223,10 @@
           <a class="btn btn-azul" href="#">Saiba mais</a>
         </div>
       </article>
-
+    </div>
+  </section>
+  <section class="faixa tom-bege">
+    <div class="wrap">
       <article class="ev" id="diga-sim">
         <div class="foto arte" style="background:#0a0a0a"><img src="img/diga-sim-arte.jpg" alt="Seminário de vida Diga SIM a Deus: sábados, a partir de 8 de novembro, na Paróquia de Dracena"></div>
         <div>
@@ -212,7 +237,10 @@
           <a class="btn btn-azul" href="#">Saiba mais</a>
         </div>
       </article>
-
+    </div>
+  </section>
+  <section class="faixa tom-azul">
+    <div class="wrap">
       <div class="grupo" id="grupo">
         <div class="dia"><span><b>Toda<br>quarta</b>FEIRA</span></div>
         <div>
@@ -223,7 +251,6 @@
         </div>
         <a class="btn btn-azul" href="https://www.google.com/maps/search/?api=1&query=Rua+Spinard%2C+23+-+Jardim+Vera+Cruz%2C+Dracena+-+SP%2C+17900-368" target="_blank" rel="noopener">Como chegar</a>
       </div>
-
     </div>
   </section>
 </main>
