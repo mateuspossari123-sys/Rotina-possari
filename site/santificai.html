@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curso Santificai-vos · SIM</title>
+<meta name="description" content="Curso Santificai-vos da Sociedade Irmãos da Misericórdia: muito mais que um curso, uma escola segura para a santidade. 17 semanas de formação, oração e estudo.">
+<meta name="theme-color" content="#3a1c12">
+<link rel="icon" href="img/logo-sim.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: #e6e6e6;
+    --laranja: #e8692c;
+    --laranja-2: #f08a4b;
+    --marrom: #5a2a17;
+    --marrom-escuro: #3a1c12;
+    --texto: #4a3328;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Montserrat", system-ui, sans-serif;
+    --script: "Pinyon Script", cursive;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--sans); color: var(--texto); background: var(--fundo); line-height: 1.65; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--laranja); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 26px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-cheio { background: var(--laranja); color: #fff; box-shadow: 0 10px 22px -12px rgba(232,105,44,.9); }
+  .btn-linha { color: var(--marrom); box-shadow: inset 0 0 0 1.5px var(--marrom); }
+  .sep { border-top: 1px solid rgba(90,42,23,.15); }
+  .poeira { position: absolute; pointer-events: none; width: 340px; height: 160px; background: radial-gradient(closest-side, rgba(232,105,44,.95), rgba(232,105,44,0)); filter: url(#grao); opacity: .85; }
+
+  /* topo */
+  header { position: sticky; top: 0; z-index: 20; background: rgba(230,230,230,.94); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(90,42,23,.12); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .marca { font-family: var(--script); font-size: 34px; color: var(--marrom); text-decoration: none; line-height: 1; }
+  .nav ul { display: flex; align-items: center; gap: 26px; list-style: none; padding: 0; }
+  .nav ul a { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--marrom); text-decoration: none; }
+  .nav ul a:hover { color: var(--laranja); }
+  .nav .btn { padding: 10px 18px; font-size: 11px; color: #fff; }
+
+  /* abertura */
+  .hero { position: relative; overflow: hidden; padding: 80px 0 90px; }
+  .hero .poeira { left: -120px; top: -40px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center; }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5.6vw, 62px); line-height: 1.1; color: var(--marrom); margin-top: 18px; }
+  .hero h1 em { color: var(--laranja); }
+  .hero p { margin-top: 20px; font-size: 17px; max-width: 560px; }
+  .hero .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .hero .pomba { width: 100%; max-width: 280px; justify-self: center; }
+
+  /* versículo */
+  .verso { position: relative; overflow: hidden; padding: 90px 0; }
+  .verso .poeira.a { left: -100px; top: -50px; }
+  .verso .poeira.b { right: -110px; bottom: -60px; }
+  .verso .wrap { display: grid; grid-template-columns: 300px 1fr; gap: 50px; align-items: center; }
+  .selo { position: relative; width: 240px; height: 240px; margin: 0 auto; }
+  .selo .circ { position: absolute; inset: 30px; border-radius: 50%; background: var(--laranja); display: grid; place-items: center; box-shadow: 0 18px 40px -18px rgba(232,105,44,.9); }
+  .selo .circ img { width: 52%; filter: brightness(0) invert(1); }
+  .selo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .verso blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.2; color: var(--marrom); margin-top: 14px; }
+  .verso cite { display: block; margin-top: 14px; font-style: normal; font-size: 12px; letter-spacing: .26em; color: var(--laranja); }
+
+  /* amigos */
+  .amigos { padding: 90px 0; }
+  .amigos .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; }
+  .amigos h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 4vw, 42px); line-height: 1.12; color: var(--marrom); margin-top: 14px; }
+  .amigos p { margin-top: 16px; font-size: 15.5px; }
+  .amigos .cit { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--laranja); font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--marrom); }
+  .amigos .cit small { display: block; font-family: var(--sans); font-style: normal; font-size: 11px; letter-spacing: .26em; color: var(--laranja); margin-top: 4px; }
+  .santos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; text-align: center; }
+  .santos figure:last-child { transform: translateY(-60px); }
+  .santos img { border-radius: 999px 999px 0 0; aspect-ratio: 172/242; object-fit: cover; width: 100%; }
+  .santos figcaption { font-family: var(--serif); font-size: 17px; color: var(--marrom); margin-top: 10px; }
+  .santos .nota { grid-column: 1 / -1; font-size: 13px; color: #7a6458; margin-top: -40px; }
+
+  /* amamos */
+  .amamos { padding: 90px 0; text-align: center; }
+  .amamos h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.8vw, 52px); color: var(--marrom); }
+  .amamos p { max-width: 520px; margin: 14px auto 26px; }
+
+  /* estudo */
+  .estudo { padding: 90px 0 70px; }
+  .estudo h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5vw, 54px); color: var(--marrom); margin-top: 12px; }
+  .estudo .intro { max-width: 600px; margin-top: 14px; }
+  .numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--laranja); border-bottom: 1px solid var(--laranja); padding: 18px 0; margin: 34px 0 50px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--marrom); align-items: center; }
+  .numeros b { font-family: var(--serif); font-size: 34px; font-weight: 400; color: var(--laranja); letter-spacing: 0; margin-right: 8px; vertical-align: middle; }
+  .temas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .tema { background: #fff; border-radius: 6px; border: 1px solid rgba(90,42,23,.12); padding: 26px 28px; }
+  .tema:last-child { grid-column: 1 / -1; }
+  .tema small { font-size: 11px; font-weight: 600; letter-spacing: .24em; color: var(--laranja); }
+  .tema h3 { font-family: var(--serif); font-weight: 600; font-size: 24px; color: var(--marrom); margin-top: 6px; }
+  .tema p { font-size: 14.5px; margin-top: 6px; }
+
+  /* céu */
+  .ceu { background: var(--marrom-escuro); color: #f6e8de; text-align: center; padding: 80px 0; }
+  .ceu h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.8vw, 40px); line-height: 1.25; }
+  .ceu h2 em { color: var(--laranja-2); }
+  .ceu p { font-family: var(--serif); font-style: italic; margin-top: 18px; opacity: .85; }
+  .ceu small { display: block; margin-top: 10px; font-size: 11px; letter-spacing: .26em; color: var(--laranja-2); }
+
+  /* inscrição */
+  .inscricao { position: relative; overflow: hidden; padding: 80px 0; }
+  .inscricao .poeira { left: -120px; top: -50px; }
+  .inscricao .wrap { display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: center; }
+  .diretor { text-align: center; }
+  .diretor img { border-radius: 999px 999px 0 0; width: 100%; aspect-ratio: 260/322; object-fit: cover; }
+  .diretor small { display: block; margin-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: .26em; color: var(--laranja); }
+  .diretor b { display: block; font-family: var(--serif); font-weight: 400; font-size: 20px; color: var(--marrom); }
+  .inscricao h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.6vw, 48px); line-height: 1.1; color: var(--marrom); margin-top: 12px; }
+  .inscricao p { margin-top: 14px; font-size: 15px; }
+  .inscricao .dados { font-size: 13.5px; color: #7a6458; }
+  .inscricao .btn { margin-top: 22px; }
+
+  footer { background: var(--marrom-escuro); color: #f6e8de; padding: 30px 0; font-size: 13px; }
+  footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  footer span { display: flex; align-items: center; gap: 12px; }
+  footer img { height: 40px; }
+  footer a { color: var(--laranja-2); text-decoration: none; }
+
+  @media (max-width: 820px) {
+    .wrap { padding: 0 16px; }
+    .nav ul li:not(:last-child) { display: none; }
+    .marca { font-size: 28px; }
+    .hero, .verso, .amigos, .amamos, .estudo, .inscricao, .ceu { padding: 60px 0; }
+    .hero .wrap, .verso .wrap, .amigos .wrap, .inscricao .wrap { grid-template-columns: 1fr; }
+    .hero .pomba { max-width: 180px; order: -1; }
+    .verso { text-align: center; }
+    .santos figure:last-child { transform: none; }
+    .santos .nota { margin-top: 0; }
+    .numeros { grid-template-columns: 1fr; text-align: center; gap: 10px; }
+    .temas { grid-template-columns: 1fr; }
+    .tema:last-child { grid-column: auto; }
+    .diretor { max-width: 240px; margin: 0 auto; }
+    .inscricao { text-align: center; }
+    .hero .btn, .inscricao .btn { width: 100%; }
+    footer .wrap { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="grao"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 2.6 -1.4" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+
+<header>
+  <nav class="wrap nav" aria-label="Principal">
+    <a class="marca" href="#curso">Santificai-vos</a>
+    <ul>
+      <li><a href="#curso">O curso</a></li>
+      <li><a href="#estudo">O que vamos estudar</a></li>
+      <li><a class="btn btn-cheio" href="#inscricao">Inscreva-se</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="curso">
+    <div class="poeira"></div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Curso Santificai-vos · SIM</span>
+        <h1>Muito mais que um curso, <em>uma escola segura para a santidade.</em></h1>
+        <p>Deus nos criou para sermos santos. Este curso tem uma finalidade: mostrar um caminho de santidade, que se percorre passo a passo, em comunidade.</p>
+        <div class="acoes">
+          <a class="btn btn-cheio" href="#inscricao">Quero me inscrever</a>
+          <a class="btn btn-linha" href="#estudo">Conheça os temas</a>
+        </div>
+      </div>
+      <img class="pomba" src="img/sant-pomba.png" alt="Pomba do Espírito Santo sobre um coração em chamas">
+    </div>
+  </section>
+
+  <section class="verso sep">
+    <div class="poeira a"></div><div class="poeira b"></div>
+    <div class="wrap">
+      <div class="selo">
+        <svg viewBox="0 0 240 240"><defs><path id="arc" d="M120 120 m-104 0 a104 104 0 1 1 208 0"/></defs>
+          <text font-family="Playfair Display" font-style="italic" font-size="14" fill="#e8692c" transform="rotate(-70 120 120)"><textPath href="#arc">“Esta é a vontade de Deus: a vossa santificação” (1Ts 4,3)</textPath></text>
+        </svg>
+        <div class="circ"><img src="img/logo-sim-ouro.png" alt="Logo SIM"></div>
+      </div>
+      <div>
+        <span class="eyebrow">Fomos criados para isso</span>
+        <blockquote>“Esta é a vontade de Deus: a vossa santificação.”</blockquote>
+        <cite>1 TESSALONICENSES 4,3</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="amigos sep">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">O que aprendemos na comunidade</span>
+        <h2>Antes de servos,<br>Deus quer amigos.</h2>
+        <p>Dentro da comunidade sempre aprendemos isso. E, para sermos amigos de Deus, precisamos estar caminhando rumo à santidade. O curso existe para ajudar você a dar esses passos, com firmeza e sem caminhar sozinho.</p>
+        <p class="cit">“Já não vos chamo servos, mas amigos.”<small>JOÃO 15,15</small></p>
+      </div>
+      <div class="santos">
+        <figure><img src="img/sant-jp2.jpg" alt="São João Paulo II"><figcaption>São João Paulo II</figcaption></figure>
+        <figure><img src="img/sant-teresa.jpg" alt="Santa Teresa de Calcutá"><figcaption>Santa Teresa de Calcutá</figcaption></figure>
+        <p class="nota">Homens e mulheres do nosso tempo que trilharam esse caminho.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="amamos sep">
+    <div class="wrap">
+      <h2>Amamos aquilo que conhecemos.</h2>
+      <p>Por isso o curso une formação, oração e estudo: para conhecer mais a Deus e, conhecendo, amá-Lo mais.</p>
+      <a class="btn btn-cheio" href="#estudo">Ver o que vamos estudar</a>
+    </div>
+  </section>
+
+  <section class="estudo sep" id="estudo">
+    <div class="wrap">
+      <span class="eyebrow">Formação, oração e estudo</span>
+      <h2>O que vamos estudar</h2>
+      <p class="intro">Encontros semanais em que, através da Bíblia e do Catecismo da Igreja Católica, vamos aprofundar nossa fé. Aqui entram temas que não dá para ver com calma no Seminário de Vida no Espírito Santo.</p>
+      <div class="numeros"><span><b>17</b>semanas</span><span>Encontros semanais</span><span>Bíblia e Catecismo</span></div>
+      <div class="temas">
+        <div class="tema"><small>MATEUS 25,31-46</small><h3>Obras de misericórdia</h3><p>A santidade vivida no amor concreto ao próximo, cuidando do corpo e da alma.</p></div>
+        <div class="tema"><small>COMBATE ESPIRITUAL</small><h3>Vícios e virtudes</h3><p>Reconhecer o que nos afasta de Deus e cultivar, com a graça, o que nos aproxima d’Ele.</p></div>
+        <div class="tema"><small>DONS INFUSOS</small><h3>Os sete dons do Espírito Santo</h3><p>Sabedoria, entendimento, conselho, fortaleza, ciência, piedade e temor de Deus.</p></div>
+        <div class="tema"><small>GÁLATAS 5,22-23</small><h3>Frutos do Espírito Santo</h3><p>Os sinais de uma vida conduzida por Deus: caridade, alegria, paz, paciência e tantos outros.</p></div>
+        <div class="tema"><small>MATEUS 5,3-12</small><h3>Bem-aventuranças</h3><p>O retrato do coração de Cristo e o caminho da verdadeira felicidade que Ele nos propõe.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ceu">
+    <div class="wrap">
+      <h2>Você sai do curso sabendo que seu lugar é no céu. <em>Aqui estamos de passagem.</em></h2>
+      <p>“A nossa pátria está nos céus.”</p>
+      <small>FILIPENSES 3,20</small>
+    </div>
+  </section>
+
+  <section class="inscricao" id="inscricao">
+    <div class="poeira"></div>
+    <div class="wrap">
+      <div class="diretor">
+        <img src="img/sant-padre.jpg" alt="Padre Mario Sartori">
+        <small>DIRETOR ESPIRITUAL</small>
+        <b>Padre Mario Sartori</b>
+      </div>
+      <div>
+        <span class="eyebrow">Novas turmas em breve</span>
+        <h2>Comece o seu caminho de santidade.</h2>
+        <p>São 17 semanas de formação, oração e estudo, com a direção espiritual do Padre Mario Sartori.</p>
+        <p class="dados">As datas, os horários e o local da próxima turma serão divulgados em breve.</p>
+        <!-- INSCRIÇÃO: troque o link abaixo pelo formulário quando abrir a próxima turma -->
+        <a class="btn btn-cheio" href="https://wa.me/5518996708825?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20pr%C3%B3xima%20turma%20do%20Santificai-vos." target="_blank" rel="noopener">Quero ser avisado</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><img src="img/logo-sim-ouro.png" alt="">Curso Santificai-vos · Sociedade Irmãos da Misericórdia</span>
+    <span>Dracena-SP · <a href="eventos.html">Ver outros eventos</a></span>
+  </div>
+</footer>
+</body>
+</html>
