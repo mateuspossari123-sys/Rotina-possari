@@ -1,0 +1,12 @@
+<!-- @dsCard group="Modelos" height=600 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Post</title></head>
+<body>
+<div id="root" class="ds-row"></div>
+<script>
+  var D = window.DigaSim, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById("root")).render(h(React.Fragment, null, h(D.Post, { selo: "Seminário de Vida", antes: "Faça sua", destaque: "inscrição", depois: "hoje mesmo!" }, "Diga ", h("b", null, "SIM"), " a Deus e viva uma experiência que pode ", h("b", null, "transformar sua vida!")), h(D.Post, { estilo: "titulo", antes: "Uma experiência", destaque: "que transforma.", site: false }, "Muitas pessoas encontram no Seminário ", h("b", null, "um novo sentido para a vida"), ", fortalecem sua família e descobrem uma amizade verdadeira com Deus.")));
+</script>
+</body>
+</html>

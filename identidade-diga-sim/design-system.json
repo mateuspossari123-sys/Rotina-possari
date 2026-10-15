@@ -1,0 +1,103 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-15T14:20:00Z"
+ },
+ "title": "Diga SIM a Deus",
+ "namespace": "DigaSim",
+ "libraries": [
+  {
+   "name": "react",
+   "version": "18"
+  },
+  {
+   "name": "react-dom",
+   "version": "18"
+  }
+ ],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Referencias"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "m",
+   "order": [
+    "sim-mark-branco.svg",
+    "sim-mark-fogo.svg",
+    "sim-mark-escuro.svg",
+    "sim-original.jpg"
+   ],
+   "files": {
+    "sim-mark-branco.svg": {
+     "name": "sim-mark-branco.svg",
+     "blob": "c6f67435c3499a67bc13014ff3983840",
+     "size": 8104,
+     "type": "image/svg+xml"
+    },
+    "sim-mark-fogo.svg": {
+     "name": "sim-mark-fogo.svg",
+     "blob": "9f103350e990c11593f4674099736e83",
+     "size": 8104,
+     "type": "image/svg+xml"
+    },
+    "sim-mark-escuro.svg": {
+     "name": "sim-mark-escuro.svg",
+     "blob": "1a6f102cd1b9db9adf0a8393fd35c996",
+     "size": 8104,
+     "type": "image/svg+xml"
+    },
+    "sim-original.jpg": {
+     "name": "sim-original.jpg",
+     "blob": "74ca2133560d6e101c92191e4da222a0",
+     "size": 64057,
+     "type": "image/jpeg"
+    }
+   }
+  },
+  "Referencias": {
+   "name": "Referencias",
+   "tile": "l",
+   "order": [
+    "post-1-o-que-e.jpg",
+    "post-4-experiencia.jpg",
+    "post-5-inscricao.jpg"
+   ],
+   "files": {
+    "post-1-o-que-e.jpg": {
+     "name": "post-1-o-que-e.jpg",
+     "blob": "48ad4c5e30eb30dac6bd16625a96421d",
+     "size": 208523,
+     "type": "image/jpeg"
+    },
+    "post-4-experiencia.jpg": {
+     "name": "post-4-experiencia.jpg",
+     "blob": "bee8b7ca4eac82b7f500fc9cd243649b",
+     "size": 185412,
+     "type": "image/jpeg"
+    },
+    "post-5-inscricao.jpg": {
+     "name": "post-5-inscricao.jpg",
+     "blob": "c83ac56ecbc92510b56eb449e9d896b5",
+     "size": 235027,
+     "type": "image/jpeg"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Mateus Possari",
+  "at": "2026-10-15T14:20:00Z",
+  "via": "Claude Code",
+  "note": "Identidade visual inicial a partir dos posts e do logo SIM"
+ }
+}

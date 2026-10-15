@@ -1,0 +1,66 @@
+<!-- @dsCard height=320 -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Diga SIM a Deus</title>
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--surface); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
+  .cover { position:relative; height:320px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:320px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:320px; }
+  .brasa { fill:var(--brasa); }
+  .fogo { fill:var(--fogo); }
+  .brilho { fill:var(--brilho); }
+  .blk { rx:var(--radius-0); }
+  /* faíscas: discos de space-2, rx = metade = radius-sm */
+  .fa { rx:var(--radius-sm); }
+  .fa.f { fill:var(--fogo); }
+  .fa.b { fill:var(--brilho); }
+  .words { position:absolute; left:var(--space-5); bottom:var(--space-5); max-width:440px; }
+  .name { margin:0; font-family:var(--font-display); font-weight:400; font-size:88px; line-height:.95; letter-spacing:.005em; color:var(--ink); }
+  .name .sim { color:var(--fogo); }
+  .tag { margin:var(--space-3) 0 0 2px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 320" width="480" height="320">
+<!--
+  blocks      brasa 128×280 sangrando pelo topo · fogo 152×200 sangrando à direita · brilho 288×8, a linha do Divisor sob os dois — cerca de 25% de 960×320; fundo surface
+  arrangement uma laje alta de brasa com o bloco fogo ao lado, bases alinhadas em y=264, gutter space-3; a linha brilho logo abaixo, como o Divisor sob a chamada
+  pattern     faíscas (o motivo literal: "fogo no escuro", as faíscas dos posts): discos space-2 subindo em passo space-4 e rareando para o alto, em fogo e brilho; três recortadas na laje
+  scales      lados em múltiplos de space-2; gutter space-3; passo space-4; blocos radius-0 (cantos retos, como os posts); faíscas rx radius-sm
+-->
+<rect class="brasa blk" x="200" y="-16" width="128" height="280"/>
+<rect class="fogo blk" x="344" y="64" width="152" height="200"/>
+<rect class="brilho" x="200" y="280" width="296" height="8" rx="4"/>
+<rect class="fa b" x="240" y="200" width="8" height="8" rx="4"/>
+<rect class="fa b" x="280" y="152" width="8" height="8" rx="4"/>
+<rect class="fa b" x="256" y="104" width="8" height="8" rx="4"/>
+<rect class="fa f" x="40" y="272" width="8" height="8" rx="4"/>
+<rect class="fa b" x="88" y="272" width="8" height="8" rx="4"/>
+<rect class="fa f" x="136" y="272" width="8" height="8" rx="4"/>
+<rect class="fa f" x="160" y="248" width="8" height="8" rx="4"/>
+<rect class="fa b" x="64" y="248" width="8" height="8" rx="4"/>
+<rect class="fa f" x="112" y="224" width="8" height="8" rx="4"/>
+<rect class="fa b" x="160" y="200" width="8" height="8" rx="4"/>
+<rect class="fa f" x="40" y="200" width="8" height="8" rx="4"/>
+<rect class="fa f" x="136" y="176" width="8" height="8" rx="4"/>
+<rect class="fa b" x="88" y="152" width="8" height="8" rx="4"/>
+<rect class="fa f" x="160" y="128" width="8" height="8" rx="4"/>
+<rect class="fa f" x="64" y="104" width="8" height="8" rx="4"/>
+<rect class="fa b" x="136" y="80" width="8" height="8" rx="4"/>
+<rect class="fa f" x="112" y="32" width="8" height="8" rx="4"/>
+<rect class="fa b" x="168" y="8" width="8" height="8" rx="4"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Diga <span class="sim">SIM</span><br>a Deus</h1>
+<p class="tag">Uma experiência de encontro com Deus que pode transformar sua vida.</p>
+</div>
+</div>
+</body>
+</html>

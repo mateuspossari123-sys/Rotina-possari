@@ -1,0 +1,12 @@
+<!-- @dsCard group="Marca" height=360 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Chamada</title></head>
+<body>
+<div id="root" class="ds-stack"></div>
+<script>
+  var D = window.DigaSim, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById("root")).render(h(React.Fragment, null, h(D.Chamada, { antes: "Faça sua", destaque: "inscrição", depois: "hoje mesmo!" }), h(D.Chamada, { estilo: "titulo", antes: "Uma experiência", destaque: "que transforma." })));
+</script>
+</body>
+</html>
