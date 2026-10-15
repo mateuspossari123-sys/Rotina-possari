@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rede SIM · Sociedade Irmãos da Misericórdia</title>
+<meta name="description" content="Comunidade Católica em Dracena-SP. 30 anos evangelizando — Alcançados pela Misericórdia.">
+<meta name="theme-color" content="#04263a">
+<meta property="og:title" content="Rede SIM · Sociedade Irmãos da Misericórdia">
+<meta property="og:description" content="Comunidade Católica · 30 anos evangelizando · Dracena-SP">
+<meta property="og:image" content="img/multidao.jpg">
+<link rel="icon" href="img/logo-sim.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-noite: #04263a;
+    --azul: #1b5070;
+    --azul-claro: #4583a2;
+    --creme: #fdeee0;
+    --creme-2: #f8e4cf;
+    --ouro-1: #f3d197;
+    --ouro-2: #c99a4e;
+    --ouro-3: #a1701f;
+    --ouro: linear-gradient(100deg, var(--ouro-1), var(--ouro-2) 55%, var(--ouro-3));
+    --texto: #18323f;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Montserrat", system-ui, sans-serif;
+    --max: 1180px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--sans); color: var(--texto); background: var(--creme); line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--ouro-3); }
+  .titulo { font-family: var(--serif); font-weight: 800; line-height: 1.05; color: var(--azul-noite); font-size: clamp(34px, 5vw, 56px); margin-top: 10px; }
+  .titulo em { font-style: italic; background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 14px; letter-spacing: .04em; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-ouro { background: var(--ouro); color: var(--azul-noite); box-shadow: 0 10px 24px -10px rgba(161,112,31,.8); }
+  .btn-linha { color: #fff; box-shadow: inset 0 0 0 1.5px rgba(253,238,224,.7); }
+  .btn-azul { background: var(--azul-noite); color: var(--creme); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* topo */
+  header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s; }
+  header.solido { background: rgba(4,38,58,.96); box-shadow: 0 6px 20px rgba(0,0,0,.25); backdrop-filter: blur(8px); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+  .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+  .marca img { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 0 0 2px var(--ouro-2); }
+  .marca b { font-family: var(--serif); font-size: 20px; line-height: 1; display: block; }
+  .marca small { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro-1); }
+  .menu { display: flex; align-items: center; gap: 28px; list-style: none; padding: 0; }
+  .menu a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; opacity: .9; }
+  .menu a:hover { color: var(--ouro-1); opacity: 1; }
+  .menu .btn { padding: 11px 20px; opacity: 1; color: var(--azul-noite); }
+  .hamb { display: none; background: none; border: 0; color: #fff; padding: 8px; cursor: pointer; }
+  .hamb svg { width: 28px; height: 28px; }
+
+  /* hero */
+  .hero { position: relative; min-height: 100svh; display: flex; align-items: center; color: #fff; overflow: hidden; isolation: isolate; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(90deg, rgba(4,38,58,.95) 0%, rgba(4,38,58,.75) 45%, rgba(4,38,58,.35) 100%), linear-gradient(0deg, rgba(4,38,58,.9), transparent 40%); }
+  .hero .wrap { padding-top: 110px; padding-bottom: 80px; width: 100%; }
+  .hero .selo { width: 116px; margin-bottom: 26px; filter: drop-shadow(0 10px 20px rgba(0,0,0,.4)); }
+  .hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(44px, 7.4vw, 92px); line-height: .98; max-width: 760px; }
+  .hero h1 small { display: block; font-family: var(--sans); font-size: clamp(12px, 1.3vw, 15px); font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--ouro-1); margin-bottom: 14px; }
+  .hero h1 em { font-style: italic; background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { max-width: 520px; margin-top: 22px; font-size: 17px; color: rgba(253,238,224,.9); }
+  .hero .acoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .rolar { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: .3em; color: var(--ouro-1); text-decoration: none; }
+
+  /* faixa de números */
+  .faixa { background: var(--azul-noite); color: var(--creme); }
+  .faixa .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-top: 34px; padding-bottom: 34px; text-align: center; }
+  .faixa b { display: block; font-family: var(--serif); font-size: 40px; line-height: 1.1; background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .faixa span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
+
+  section { padding: 100px 0; }
+
+  /* quem somos */
+  .sobre .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  .sobre .fotos { position: relative; }
+  .sobre .fotos img { border-radius: 22px; box-shadow: 0 30px 50px -25px rgba(4,38,58,.5); }
+  .sobre .fotos .f2 { position: absolute; width: 46%; right: -24px; bottom: -40px; border: 6px solid var(--creme); }
+  .sobre p { margin-top: 18px; font-size: 16.5px; }
+  .citacao { margin-top: 28px; padding-left: 20px; border-left: 3px solid var(--ouro-2); font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--azul); }
+
+  /* eventos */
+  .eventos { background: linear-gradient(180deg, var(--creme-2), var(--creme)); }
+  .cab { display: flex; align-items: end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 44px; }
+  .grade-ev { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .ev { background: #fff; border-radius: 20px; overflow: hidden; text-decoration: none; box-shadow: 0 16px 34px -22px rgba(4,38,58,.55); transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; }
+  .ev:hover { transform: translateY(-6px); box-shadow: 0 26px 40px -22px rgba(4,38,58,.6); }
+  .ev .capa { aspect-ratio: 4/5; position: relative; overflow: hidden; background: #000; }
+  .ev .capa img { width: 100%; height: 100%; object-fit: cover; }
+  .ev .capa .data { position: absolute; top: 14px; left: 14px; background: var(--azul-noite); color: var(--ouro-1); font-weight: 700; font-size: 12px; letter-spacing: .1em; padding: 6px 12px; border-radius: 999px; }
+  .ev .info { padding: 18px 20px 22px; }
+  .ev h3 { font-family: var(--serif); font-size: 21px; color: var(--azul-noite); line-height: 1.15; }
+  .ev p { font-size: 13.5px; color: #4b5d66; margin-top: 6px; }
+  .ev .mais { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro-3); }
+  .capa-seminario { display: flex; align-items: flex-end; padding: 22px; }
+  .capa-seminario img { position: absolute; inset: 0; opacity: .95; }
+  .capa-seminario span { position: relative; color: #fff; font-weight: 800; font-size: 32px; line-height: 1; }
+  .capa-seminario span small { display: block; font-size: 11px; letter-spacing: .26em; color: #f5a01a; margin-bottom: 6px; }
+  .capa-seminario span i { font-style: normal; color: #f5a01a; }
+
+  /* benfeitor */
+  .benfeitor { background: var(--azul-noite); color: var(--creme); position: relative; overflow: hidden; }
+  .benfeitor .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .benfeitor .titulo { color: #fff; }
+  .benfeitor p { margin-top: 18px; color: rgba(253,238,224,.85); font-size: 16.5px; }
+  .benfeitor ul { list-style: none; padding: 0; margin: 26px 0 34px; display: grid; gap: 12px; }
+  .benfeitor li { display: flex; gap: 12px; align-items: flex-start; }
+  .benfeitor li::before { content: ""; flex: none; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--ouro) ; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-1.6 17.2-5-5 1.8-1.8 3.2 3.2 6.8-6.8 1.8 1.8z'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-1.6 17.2-5-5 1.8-1.8 3.2 3.2 6.8-6.8 1.8 1.8z'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .benfeitor .foto { position: relative; }
+  .benfeitor .foto img { border-radius: 24px; aspect-ratio: 4/5; object-fit: cover; object-position: 55% 30%; }
+  .benfeitor .foto::before { content: ""; position: absolute; inset: -16px 16px 16px -16px; border: 2px solid var(--ouro-2); border-radius: 28px; z-index: 0; }
+  .benfeitor .foto img { position: relative; z-index: 1; }
+
+  /* galeria */
+  .galeria .mosaico { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 14px; margin-top: 40px; }
+  .mosaico img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+  .mosaico .g1 { grid-row: span 2; }
+
+  /* loja */
+  .loja { padding: 0 0 100px; }
+  .loja .caixa { border-radius: 28px; padding: 56px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    background: radial-gradient(80% 120% at 100% 0%, rgba(243,209,151,.55), transparent 60%), linear-gradient(120deg, #f6dcb4, var(--creme-2)); }
+  .loja p { margin-top: 14px; font-size: 16px; }
+  .loja .itens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .loja .item { aspect-ratio: 1; border-radius: 18px; background: var(--azul-noite); display: grid; place-items: center; color: var(--ouro-1); text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 10px; }
+  .loja .item svg { width: 40px; height: 40px; margin: 0 auto 8px; stroke: var(--ouro-1); fill: none; stroke-width: 1.6; }
+
+  /* contato */
+  .contato { background: var(--creme-2); }
+  .contato .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: stretch; }
+  .contato dl { margin-top: 28px; display: grid; gap: 20px; }
+  .contato dt { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro-3); }
+  .contato dd { font-size: 17px; font-weight: 500; }
+  .contato .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .mapa { border-radius: 24px; overflow: hidden; min-height: 380px; box-shadow: 0 20px 40px -25px rgba(4,38,58,.6); }
+  .mapa iframe { width: 100%; height: 100%; min-height: 380px; border: 0; }
+
+  footer { background: var(--azul-noite); color: rgba(253,238,224,.8); padding: 56px 0 30px; font-size: 14px; }
+  footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+  footer h4 { color: var(--ouro-1); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 14px; }
+  footer ul { list-style: none; padding: 0; display: grid; gap: 8px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ouro-1); }
+  footer .lema { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--creme); margin-top: 16px; }
+  .copy { grid-column: 1 / -1; border-top: 1px solid rgba(253,238,224,.15); padding-top: 22px; margin-top: 10px; font-size: 12px; opacity: .7; text-align: center; }
+
+  .zap { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+  .zap svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* responsivo */
+  @media (max-width: 980px) {
+    .grade-ev { grid-template-columns: repeat(2, 1fr); }
+    .sobre .wrap, .benfeitor .wrap, .contato .wrap, .loja .caixa { grid-template-columns: 1fr; }
+    .sobre .fotos .f2 { right: 10px; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+    footer .wrap > :first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    section { padding: 72px 0; }
+    .menu { display: none; position: absolute; top: 78px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--azul-noite); padding: 10px 16px 20px; }
+    .menu.aberto { display: flex; }
+    .menu li { width: 100%; }
+    .menu a { display: block; padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .menu .btn { margin-top: 12px; justify-content: center; border-bottom: 0; }
+    .hamb { display: block; }
+    .hero::before { background: linear-gradient(0deg, rgba(4,38,58,.97) 10%, rgba(4,38,58,.6) 70%, rgba(4,38,58,.45)); }
+    .hero .wrap { padding-top: 120px; }
+    .hero .selo { width: 90px; }
+    .faixa .wrap { grid-template-columns: repeat(2, 1fr); row-gap: 26px; }
+    .grade-ev { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ev .info { padding: 12px 12px 16px; }
+    .ev h3 { font-size: 16px; }
+    .ev p { display: none; }
+    .capa-seminario span { font-size: 22px; }
+    .galeria .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px 140px; }
+    .mosaico .g1 { grid-row: auto; grid-column: span 2; }
+    .loja .caixa { padding: 32px 22px; }
+    footer .wrap { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header id="topo">
+  <nav class="wrap nav" aria-label="Principal">
+    <a class="marca" href="#inicio">
+      <img src="img/logo-sim.jpg" alt="Logo SIM">
+      <span><b>Rede SIM</b><small>Irmãos da Misericórdia</small></span>
+    </a>
+    <button class="hamb" aria-label="Abrir menu" onclick="document.querySelector('.menu').classList.toggle('aberto')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="menu">
+      <li><a href="#sobre">Quem somos</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#loja">Loja SIM</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a class="btn btn-ouro" href="socio.html">Seja sócio</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <img src="img/multidao.jpg" alt="Jovens louvando em um evento da comunidade SIM">
+    <div class="wrap">
+      <img class="selo" src="img/selo-30-anos.png" alt="Selo 30 anos — 1996 a 2026">
+      <h1><small>Comunidade Católica · Dracena-SP</small>Alcançados pela <em>Misericórdia</em></h1>
+      <p>Há 30 anos conectando pessoas a Jesus através da evangelização, da oração e do serviço. Jesus, eu confio em vós!</p>
+      <div class="acoes">
+        <a class="btn btn-ouro" href="#eventos">Ver próximos eventos</a>
+        <a class="btn btn-linha" href="socio.html">Seja um sócio SIM</a>
+      </div>
+    </div>
+    <a class="rolar" href="#sobre">ROLE ↓</a>
+  </section>
+
+  <div class="faixa">
+    <div class="wrap">
+      <div><b>1996</b><span>Fundação</span></div>
+      <div><b>30 anos</b><span>Evangelizando</span></div>
+      <div><b>Dracena</b><span>São Paulo</span></div>
+      <div><b>RedeSim</b><span>Conectando propósitos</span></div>
+    </div>
+  </div>
+
+  <section class="sobre" id="sobre">
+    <div class="wrap">
+      <div class="fotos">
+        <img src="img/pregador-costas.jpg" alt="Pregação para a comunidade">
+        <img class="f2" src="img/confio.jpg" alt="Jesus, eu confio em vós">
+      </div>
+      <div>
+        <span class="eyebrow">Quem somos</span>
+        <h2 class="titulo">Uma família que diz <em>sim</em> a Deus</h2>
+        <p>A Sociedade Irmãos da Misericórdia nasceu em 1996, em Dracena, com o desejo de levar a misericórdia de Jesus a cada pessoa. Ao longo de 30 anos, a RedeSim tem conectado pessoas e propósitos, servindo com alegria e compromisso cristão.</p>
+        <p>Por meio de retiros, seminários, grupos de oração e eventos de evangelização, convidamos você a fazer parte desta jornada de transformação e inspiração.</p>
+        <p class="citacao">“Jesus, eu confio em vós!”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="eventos" id="eventos">
+    <div class="wrap">
+      <div class="cab">
+        <div>
+          <span class="eyebrow">Agenda</span>
+          <h2 class="titulo">Próximos <em>eventos</em></h2>
+        </div>
+        <a class="btn btn-azul" href="eventos.html">Ver agenda completa</a>
+      </div>
+      <div class="grade-ev">
+        <a class="ev" href="#">
+          <div class="capa"><img src="img/evangelizashow.jpg" alt="Evangelizashow" loading="lazy"><span class="data">21 NOV</span></div>
+          <div class="info"><h3>Evangelizashow</h3><p>19h30 · Centro de Evangelização Mãe da Divina Misericórdia.</p><span class="mais">Saiba mais →</span></div>
+        </a>
+        <a class="ev" href="#">
+          <div class="capa"><img src="img/kairos.jpg" alt="Kairós — Alcançados pela Misericórdia" loading="lazy"><span class="data">30 ANOS</span></div>
+          <div class="info"><h3>Kairós 30 anos</h3><p>Alcançados pela Misericórdia.</p><span class="mais">Inscreva-se →</span></div>
+        </a>
+        <a class="ev" href="#">
+          <div class="capa capa-seminario"><img src="img/pomba.jpg" alt="" loading="lazy"><span><small>RETIRO</small>Diga <i>SIM</i><br>a Deus</span></div>
+          <div class="info"><h3>Retiro Diga SIM a Deus</h3><p>Sábados, a partir de 8 de novembro.</p><span class="mais">Inscreva-se →</span></div>
+        </a>
+        <a class="ev" href="#">
+          <div class="capa"><img src="img/santificai.jpg" alt="Retiro Santificai-vos" loading="lazy"></div>
+          <div class="info"><h3>Retiro Santificai-vos</h3><p>12 de fevereiro · Um tempo de graça.</p><span class="mais">Saiba mais →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="benfeitor" id="benfeitor">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" style="color:var(--ouro-1)">Jesus espera o seu sim</span>
+        <h2 class="titulo">Seja um sócio <em>benfeitor</em></h2>
+        <p>A missão só continua porque pessoas generosas dizem sim. Com uma contribuição mensal, você sustenta a evangelização e se torna parte desta obra.</p>
+        <ul>
+          <li>Ajude a manter retiros, seminários e eventos</li>
+          <li>Leve a misericórdia de Jesus a mais pessoas</li>
+          <li>Seja lembrado nas orações da comunidade</li>
+        </ul>
+        <a class="btn btn-ouro" href="socio.html">Quero ser sócio</a>
+      </div>
+      <div class="foto"><img src="img/pregador.jpg" alt="Pregador da comunidade SIM" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="galeria" id="galeria">
+    <div class="wrap">
+      <span class="eyebrow">Galeria</span>
+      <h2 class="titulo">Momentos de <em>graça</em></h2>
+      <div class="mosaico">
+        <img class="g1" src="img/multidao.jpg" alt="Multidão em louvor">
+        <img src="img/adoracao.jpg" alt="Adoração ao Santíssimo">
+        <img src="img/igreja.jpg" alt="Igreja">
+        <img src="img/pregador-costas.jpg" alt="Pregação">
+        <img src="img/pregador.jpg" alt="Pregador">
+      </div>
+    </div>
+  </section>
+
+  <section class="loja" id="loja">
+    <div class="wrap">
+      <div class="caixa">
+        <div>
+          <span class="eyebrow">Loja SIM</span>
+          <h2 class="titulo">Leve a missão <em>com você</em></h2>
+          <p>Camisetas, terços, livros e artigos religiosos. Cada compra ajuda a sustentar a evangelização.</p>
+          <a class="btn btn-azul" href="#" style="margin-top:26px">Visitar a Loja SIM</a>
+        </div>
+        <div class="itens">
+          <div class="item"><span><svg viewBox="0 0 24 24"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-1 2-2.5 3-4 3S9 5 8 3z"/></svg>Camisetas</span></div>
+          <div class="item"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg>Terços</span></div>
+          <div class="item"><span><svg viewBox="0 0 24 24"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Livros</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contato" id="contato">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Contato</span>
+        <h2 class="titulo">Venha nos <em>visitar</em></h2>
+        <dl>
+          <div><dt>Endereço</dt><dd>Rua Spinard, 23 · Jd. Vera Cruz<br>Dracena-SP · 17900-368</dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://instagram.com/sim_dracena" target="_blank" rel="noopener">@sim_dracena</a></dd></div>
+          <div><dt>WhatsApp</dt><dd>(18) 0000-0000</dd></div>
+        </dl>
+        <div class="acoes">
+          <a class="btn btn-ouro" href="#">Falar no WhatsApp</a>
+          <a class="btn btn-azul" href="https://www.google.com/maps/search/?api=1&query=Rua+Spinard%2C+23+-+Jardim+Vera+Cruz%2C+Dracena+-+SP%2C+17900-368" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+      </div>
+      <div class="mapa">
+        <iframe title="Mapa" loading="lazy" src="https://maps.google.com/maps?q=Rua%20Spinard%2C%2023%2C%20Dracena%20-%20SP&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="marca" href="#inicio"><img src="img/logo-sim.jpg" alt=""><span><b>Rede SIM</b><small>Irmãos da Misericórdia</small></span></a>
+      <p class="lema">Jesus, eu confio em vós!</p>
+    </div>
+    <div>
+      <h4>Navegue</h4>
+      <ul><li><a href="#sobre">Quem somos</a></li><li><a href="#eventos">Eventos</a></li><li><a href="socio.html">Seja sócio</a></li><li><a href="#loja">Loja SIM</a></li></ul>
+    </div>
+    <div>
+      <h4>Encontre-nos</h4>
+      <ul><li>Rua Spinard, 23 · Jd. Vera Cruz</li><li>Dracena-SP</li><li><a href="https://instagram.com/sim_dracena" target="_blank" rel="noopener">@sim_dracena</a></li></ul>
+    </div>
+    <p class="copy">© 1996–2026 Sociedade Irmãos da Misericórdia · Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<a class="zap" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+<script>
+  var topo = document.getElementById('topo');
+  function checar() { topo.classList.toggle('solido', window.scrollY > 40); }
+  window.addEventListener('scroll', checar, { passive: true }); checar();
+  document.querySelectorAll('.menu a').forEach(function (a) {
+    a.addEventListener('click', function () { document.querySelector('.menu').classList.remove('aberto'); });
+  });
+</script>
+</body>
+</html>
