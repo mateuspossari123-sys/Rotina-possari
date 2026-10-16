@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rede SIM · Notícias</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  .lista { padding-top: 50px; }
+  .lista .filtros { margin-bottom: 34px; }
+  .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .mat { overflow: hidden; display: flex; flex-direction: column; }
+  .mat img { aspect-ratio: 16/10; object-fit: cover; width: 100%; }
+  .mat .tx { padding: 20px 22px 24px; }
+  .mat .cat { font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--ouro-3); }
+  .mat h3 { font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--azul-noite); margin-top: 6px; }
+  .mat p { font-size: 14px; color: #52646c; margin-top: 8px; }
+  .mat .meta { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12px; color: #6b7d85; }
+  .mat .meta i { width: 28px; height: 28px; border-radius: 50%; background: var(--azul-noite); color: var(--ouro-1); display: grid; place-items: center; font-style: normal; font-weight: 700; font-size: 11px; }
+  .destaque { grid-column: 1 / -1; display: grid; grid-template-columns: 1.3fr 1fr; }
+  .destaque img { aspect-ratio: auto; height: 100%; min-height: 340px; }
+  .destaque .tx { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+  .destaque h3 { font-size: 32px; }
+  .paginas { display: flex; justify-content: center; gap: 8px; margin-top: 44px; }
+  .paginas span { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #fff; font-weight: 700; color: var(--azul-noite); }
+  .paginas span.on { background: var(--azul-noite); color: var(--ouro-1); }
+  @media (max-width: 860px) { .grade { grid-template-columns: 1fr; } .destaque { grid-template-columns: 1fr; } .destaque img { min-height: 220px; } .destaque .tx { padding: 22px; } .destaque h3 { font-size: 24px; } }
+</style></head>
+<body data-ativo="noticias">
+<section class="capa-int"><img src="img/multidao.jpg" alt=""><div class="wrap"><span class="migalha">Início › Notícias</span><h1>Acontece na <em>SIM</em></h1><p>Notícias, testemunhos e reflexões da Sociedade Irmãos da Misericórdia.</p></div></section>
+<section class="lista">
+  <div class="wrap">
+    <div class="filtros"><span class="on">Todas</span><span>Comunidade</span><span>Retiros</span><span>Formação</span><span>30 anos</span><span>Testemunhos</span></div>
+    <div class="grade">
+      <a class="mat cartao destaque" href="materia.html"><img src="img/festa-misericordia.jpg" alt=""><div class="tx"><span class="cat">Comunidade · Destaque</span><h3>Festa da Misericórdia reúne famílias em oração diante de Jesus Misericordioso</h3><p>Padres, servos e famílias celebraram o carisma da comunidade com Santa Missa, adoração e a bênção das imagens.</p><div class="meta"><i>ES</i>Por Equipe SIM · 12 de outubro de 2026</div></div></a>
+      <a class="mat cartao"><img src="img/oson-palco.jpg" alt=""><div class="tx"><span class="cat">Retiros</span><h3>OSON 2026: mais de 2 mil pessoas no maior retiro da comunidade</h3><p>Três dias de louvor, pregação e encontro com Jesus.</p><div class="meta"><i>ES</i>28 de setembro</div></div></a>
+      <a class="mat cartao"><img src="img/diga-sim-antigo.jpg" alt="" style="filter:sepia(.3)"><div class="tx"><span class="cat">30 anos</span><h3>Era dezembro de 1996: a história de um SIM</h3><p>Como uma oração deu origem à comunidade.</p><div class="meta"><i>RA</i>15 de outubro</div></div></a>
+      <a class="mat cartao"><img src="img/missa-bispo.jpg" alt=""><div class="tx"><span class="cat">Formação</span><h3>Novas turmas do Diga SIM a Deus no próximo ano</h3><p>Inscrições serão abertas em breve em várias cidades.</p><div class="meta"><i>ES</i>10 de outubro</div></div></a>
+      <a class="mat cartao"><img src="img/pregador.jpg" alt=""><div class="tx"><span class="cat">Testemunhos</span><h3>“Entrei de um jeito e saí de outro”</h3><p>Participantes contam o que viveram no Seminário de Vida.</p><div class="meta"><i>ES</i>2 de outubro</div></div></a>
+      <a class="mat cartao"><img src="img/adoracao.jpg" alt=""><div class="tx"><span class="cat">Espiritualidade</span><h3>Por que rezar o Terço da Misericórdia às 15h?</h3><p>Entenda a Hora da Misericórdia e como rezar.</p><div class="meta"><i>PM</i>25 de setembro</div></div></a>
+      <a class="mat cartao"><img src="img/evangelizashow.jpg" alt="" style="object-position:50% 20%"><div class="tx"><span class="cat">Eventos</span><h3>Evangelizashow: louvor, oração e muita música em 21/11</h3><p>Uma noite para toda a família no Centro de Evangelização.</p><div class="meta"><i>ES</i>20 de setembro</div></div></a>
+    </div>
+    <div class="paginas"><span class="on">1</span><span>2</span><span>3</span><span>›</span></div>
+  </div>
+</section>
+<script src="partes.js"></script>
+</body></html>
