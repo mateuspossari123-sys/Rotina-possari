@@ -4,79 +4,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="base.css">
 <style>
-  .eixos { padding-top: 60px; }
-  .eixos .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
-  .eixo { border-radius: 26px; padding: 34px; display: flex; flex-direction: column; min-height: 300px; }
-  .eixo .ic { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; font-size: 28px; }
-  .eixo h3 { font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.1; margin-top: 20px; }
-  .eixo p { font-size: 15px; margin-top: 10px; flex: 1; }
-  .eixo .qtd { margin-top: 18px; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
-  .e-igreja { background: var(--azul-noite); color: var(--creme); } .e-igreja h3 { color: #fff; } .e-igreja .ic { background: var(--ouro); color: var(--azul-noite); } .e-igreja .qtd { color: var(--ouro-1); }
-  .e-biblia { background: #fff; box-shadow: 0 20px 40px -30px rgba(4,38,58,.7); } .e-biblia h3 { color: var(--azul-noite); } .e-biblia .ic { background: var(--azul-noite); color: var(--ouro-1); } .e-biblia .qtd { color: var(--ouro-3); }
-  .e-cat { background: linear-gradient(120deg, #f6dcb4, var(--creme-2)); } .e-cat h3 { color: var(--azul-noite); } .e-cat .ic { background: var(--azul-noite); color: var(--ouro-1); } .e-cat .qtd { color: var(--ouro-3); }
-
-  .bloco-f { padding: 70px 0; }
-  .bloco-f .cab { margin-bottom: 28px; }
-  .lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .art { padding: 24px; border-radius: 18px; background: #fff; box-shadow: 0 14px 30px -24px rgba(4,38,58,.7); }
-  .tom-azul .art { background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(201,154,78,.3); }
-  .art small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-3); }
-  .tom-azul .art small { color: var(--ouro-1); }
-  .art h4 { font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--azul-noite); margin-top: 8px; }
-  .tom-azul .art h4 { color: #fff; }
+  .lista { padding-top: 60px; }
+  .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+  .art { overflow: hidden; }
+  .art img { aspect-ratio: 16/10; object-fit: cover; width: 100%; }
+  .art .tx { padding: 20px 22px 24px; }
+  .art h3 { font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--azul-noite); }
   .art p { font-size: 14px; color: #52646c; margin-top: 6px; }
-  .tom-azul .art p { color: rgba(253,238,224,.8); }
   .art .le { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ouro-3); }
-  .tom-azul .art .le { color: var(--ouro-1); }
-
-  .busca { display: flex; gap: 10px; margin-top: 26px; max-width: 620px; }
-  .busca span { flex: 1; padding: 14px 18px; border-radius: 999px; background: #fff; color: #8a9aa2; font-size: 14px; box-shadow: inset 0 0 0 1px #e6ddd2; }
-  @media (max-width: 860px) { .eixos .grade, .lista { grid-template-columns: 1fr; } .eixo { min-height: 0; padding: 26px; } .bloco-f { padding: 50px 0; } }
+  @media (max-width: 860px) { .grade { grid-template-columns: 1fr; } }
 </style></head>
 <body data-ativo="formacao">
-<section class="capa-int"><img src="../site/img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Formação</span><h1>Formação para <em>conhecer e amar</em></h1><p>Conteúdos sobre a Igreja, a Bíblia e o Catecismo para aprofundar a fé. Amamos aquilo que conhecemos.</p><div class="busca"><span>🔍 Buscar um tema: Eucaristia, Maria, sacramentos…</span></div></div></section>
-
-<section class="eixos">
+<section class="capa-int"><img src="../site/img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Formação</span><h1><em>Formação</em></h1><p>Conteúdos para aprofundar a fé. Amamos aquilo que conhecemos.</p></div></section>
+<section class="lista">
   <div class="wrap">
-    <span class="eyebrow">Escolha um caminho</span>
-    <h2 class="titulo">Três fontes da <em>nossa fé</em></h2>
+    <span class="eyebrow">Conteúdos</span>
+    <h2 class="titulo">Para <em>aprofundar</em></h2>
     <div class="grade">
-      <a class="eixo e-igreja" href="#igreja"><span class="ic">⛪</span><h3>Formação da Igreja</h3><p>Sacramentos, liturgia, a vida dos santos e o que a Igreja ensina sobre a fé e a moral.</p><span class="qtd">Sacramentos · Liturgia · Santos →</span></a>
-      <a class="eixo e-biblia" href="#biblia"><span class="ic">📖</span><h3>Formação da Bíblia</h3><p>Como ler, rezar e entender as Sagradas Escrituras, livro por livro.</p><span class="qtd">Antigo e Novo Testamento →</span></a>
-      <a class="eixo e-cat" href="#catecismo"><span class="ic">✝</span><h3>Formação de Catecismo</h3><p>O Catecismo da Igreja Católica explicado em partes: o Credo, os Sacramentos, os Mandamentos e a Oração.</p><span class="qtd">As 4 partes do Catecismo →</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="bloco-f" id="igreja">
-  <div class="wrap">
-    <div class="cab"><div><span class="eyebrow">Formação da Igreja</span><h2 class="titulo">A vida da <em>Igreja</em></h2></div><a class="btn btn-azul">Ver todos</a></div>
-    <div class="lista">
-      <div class="art"><small>SACRAMENTOS</small><h4>Os sete sacramentos</h4><p>Sinais visíveis da graça de Deus em cada etapa da vida.</p><span class="le">LER →</span></div>
-      <div class="art"><small>LITURGIA</small><h4>Entendendo a Santa Missa</h4><p>O sentido de cada parte da celebração.</p><span class="le">LER →</span></div>
-      <div class="art"><small>MISERICÓRDIA</small><h4>A Divina Misericórdia</h4><p>A devoção revelada a Santa Faustina e o centro do nosso carisma.</p><span class="le">LER →</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="bloco-f tom-azul" id="biblia">
-  <div class="wrap">
-    <div class="cab"><div><span class="eyebrow">Formação da Bíblia</span><h2 class="titulo">A Palavra <em>de Deus</em></h2></div><a class="btn btn-ouro">Ver todos</a></div>
-    <div class="lista">
-      <div class="art"><small>COMEÇAR</small><h4>Como ler a Bíblia</h4><p>Um guia simples para quem quer começar.</p><span class="le">LER →</span></div>
-      <div class="art"><small>LECTIO DIVINA</small><h4>Rezar com a Palavra</h4><p>Leitura, meditação, oração e contemplação.</p><span class="le">LER →</span></div>
-      <div class="art"><small>EVANGELHOS</small><h4>As Bem-aventuranças (Mt 5)</h4><p>O retrato do coração de Cristo.</p><span class="le">LER →</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="bloco-f tom-bege" id="catecismo">
-  <div class="wrap">
-    <div class="cab"><div><span class="eyebrow">Formação de Catecismo</span><h2 class="titulo">O Catecismo <em>explicado</em></h2></div><a class="btn btn-azul">Ver todos</a></div>
-    <div class="lista">
-      <div class="art"><small>1ª PARTE</small><h4>A profissão da fé: o Credo</h4><p>Aquilo em que cremos.</p><span class="le">LER →</span></div>
-      <div class="art"><small>3ª PARTE</small><h4>A vida em Cristo</h4><p>Os Mandamentos, as virtudes e a vida moral.</p><span class="le">LER →</span></div>
-      <div class="art"><small>4ª PARTE</small><h4>A oração cristã</h4><p>O Pai-Nosso e a vida de oração.</p><span class="le">LER →</span></div>
+      <a class="art cartao"><img src="../site/img/adoracao.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
+      <a class="art cartao"><img src="../site/img/pregador.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
+      <a class="art cartao"><img src="../site/img/festa-misericordia.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
+      <a class="art cartao"><img src="../site/img/oson-missa.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
+      <a class="art cartao"><img src="../site/img/pregador-costas.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
+      <a class="art cartao"><img src="../site/img/igreja.jpg" alt=""><div class="tx"><h3>Título da formação</h3><p>Um breve resumo do conteúdo.</p><span class="le">LER →</span></div></a>
     </div>
   </div>
 </section>

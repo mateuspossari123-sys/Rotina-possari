@@ -6,9 +6,10 @@ As imagens vêm de `../site/img/`.
 | Tela | Arquivo | Vem do painel Django |
 |---|---|---|
 | Início (Ano Jubilar) | index.html | Sliders, Destaques, Eventos |
+| Quem somos | quem-somos.html | (texto fixo) |
 | Eventos | eventos.html | Eventos, Lugares |
 | Cursos | cursos.html | (abre site/diga-sim.html e site/santificai.html) |
-| Formação | formacao.html | Matérias (categoria Formação) |
+| Formação | formacao.html | Matérias |
 | Evento + inscrição | evento.html | Eventos, Lugares, Inscrições, Pagamentos |
 | Pedido de oração | oracao.html | Pedidos de Oração |
 | Seja sócio | socio.html | Pagamentos (recorrente) |
