@@ -1,133 +1,83 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rede SIM · Formação</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<title>Comunidade SIM · Formação</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="base.css">
 <style>
-  /* caminho de formação */
-  .caminho { padding-top: 70px; }
-  .trilha { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; position: relative; }
-  .trilha::before { content: ""; position: absolute; left: 12%; right: 12%; top: 34px; height: 2px; background: linear-gradient(90deg, var(--ouro-2), var(--ouro-3)); }
-  .etapa { text-align: center; padding: 0 14px; position: relative; }
-  .etapa i { display: grid; place-items: center; width: 68px; height: 68px; margin: 0 auto; border-radius: 50%; background: var(--azul-noite); color: var(--ouro-1); font-style: normal; font-family: var(--serif); font-size: 26px; font-weight: 800; box-shadow: 0 0 0 6px var(--creme); }
-  .etapa b { display: block; font-family: var(--serif); font-size: 20px; color: var(--azul-noite); margin-top: 16px; }
-  .etapa span { font-size: 14px; color: #52646c; }
+  .eixos { padding-top: 60px; }
+  .eixos .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
+  .eixo { border-radius: 26px; padding: 34px; display: flex; flex-direction: column; min-height: 300px; }
+  .eixo .ic { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; font-size: 28px; }
+  .eixo h3 { font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.1; margin-top: 20px; }
+  .eixo p { font-size: 15px; margin-top: 10px; flex: 1; }
+  .eixo .qtd { margin-top: 18px; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+  .e-igreja { background: var(--azul-noite); color: var(--creme); } .e-igreja h3 { color: #fff; } .e-igreja .ic { background: var(--ouro); color: var(--azul-noite); } .e-igreja .qtd { color: var(--ouro-1); }
+  .e-biblia { background: #fff; box-shadow: 0 20px 40px -30px rgba(4,38,58,.7); } .e-biblia h3 { color: var(--azul-noite); } .e-biblia .ic { background: var(--azul-noite); color: var(--ouro-1); } .e-biblia .qtd { color: var(--ouro-3); }
+  .e-cat { background: linear-gradient(120deg, #f6dcb4, var(--creme-2)); } .e-cat h3 { color: var(--azul-noite); } .e-cat .ic { background: var(--azul-noite); color: var(--ouro-1); } .e-cat .qtd { color: var(--ouro-3); }
 
-  /* cursos */
-  .cursos .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
-  .curso { border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
-  .curso .topo { position: relative; min-height: 260px; padding: 34px; display: flex; flex-direction: column; justify-content: flex-end; isolation: isolate; }
-  .curso .topo img { position: absolute; z-index: -1; }
-  .c-diga .topo { background: #000; color: #fff; }
-  .c-diga .topo img { inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .75; }
-  .c-diga .topo small { color: #f5a01a; } .c-diga h3 { font-weight: 800; font-size: 46px; line-height: 1; } .c-diga h3 i { font-style: normal; color: #f5a01a; }
-  .c-sant .topo { background: radial-gradient(80% 90% at 0% 0%, rgba(232,105,44,.5), transparent 60%), #f3ece6; color: #4a2a1a; }
-  .c-sant .topo img { right: 24px; top: 24px; width: 170px; }
-  .c-sant .topo small { color: #e8692c; } .c-sant h3 { font-family: "Pinyon Script", cursive; font-weight: 400; font-size: 62px; line-height: 1; color: #6a2f16; }
-  .curso small { font-size: 12px; font-weight: 800; letter-spacing: .22em; }
-  .curso .corpo { background: #fff; padding: 28px 34px 32px; flex: 1; }
-  .curso .corpo p { font-size: 15px; }
-  .curso ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-top: 16px; font-size: 14px; color: var(--azul-noite); font-weight: 600; }
-  .curso li::before { content: "✦ "; color: var(--ouro-2); }
-  .curso .rodape { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 12px; flex-wrap: wrap; }
-  .curso .rodape span { font-size: 13px; color: #6b7d85; }
-  .c-diga .btn { background: #f5a01a; color: #1a0d00; } .c-sant .btn { background: #e8692c; color: #fff; }
+  .bloco-f { padding: 70px 0; }
+  .bloco-f .cab { margin-bottom: 28px; }
+  .lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .art { padding: 24px; border-radius: 18px; background: #fff; box-shadow: 0 14px 30px -24px rgba(4,38,58,.7); }
+  .tom-azul .art { background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(201,154,78,.3); }
+  .art small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-3); }
+  .tom-azul .art small { color: var(--ouro-1); }
+  .art h4 { font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--azul-noite); margin-top: 8px; }
+  .tom-azul .art h4 { color: #fff; }
+  .art p { font-size: 14px; color: #52646c; margin-top: 6px; }
+  .tom-azul .art p { color: rgba(253,238,224,.8); }
+  .art .le { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ouro-3); }
+  .tom-azul .art .le { color: var(--ouro-1); }
 
-  /* estudos (Matérias categoria Formação) */
-  .estudos .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .est { padding: 26px; border-top: 4px solid var(--ouro-2); border-radius: 18px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(201,154,78,.3); }
-  .est small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-1); }
-  .est h3 { font-family: var(--serif); font-size: 22px; color: #fff; line-height: 1.2; margin-top: 8px; }
-  .est p { font-size: 14px; opacity: .8; margin-top: 8px; }
-  .est .le { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ouro-1); }
-
-  /* vídeos */
-  .videos .grade { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
-  .vid { position: relative; border-radius: 20px; overflow: hidden; background: var(--azul-noite); }
-  .vid img { width: 100%; height: 100%; object-fit: cover; opacity: .7; }
-  .vid .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 70px; height: 70px; border-radius: 50%; background: var(--ouro); display: grid; place-items: center; color: var(--azul-noite); font-size: 22px; }
-  .vid .leg { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; color: #fff; background: linear-gradient(0deg, rgba(4,38,58,.95), transparent); }
-  .vid .leg small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-1); }
-  .vid .leg b { display: block; font-family: var(--serif); font-size: 20px; line-height: 1.2; }
-  .vid.g { aspect-ratio: 16/9; } .vid.g .leg b { font-size: 26px; }
-  .vids-p { display: grid; gap: 22px; } .vids-p .vid { aspect-ratio: 16/8.4; }
-
-  /* revista + grupo */
-  .extra .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .bloco { border-radius: 26px; padding: 40px; display: grid; grid-template-columns: 140px 1fr; gap: 26px; align-items: center; }
-  .b-rev { background: linear-gradient(120deg, #f6dcb4, var(--creme-2)); }
-  .revista { aspect-ratio: 3/4; border-radius: 8px; background: var(--azul-noite); color: var(--ouro-1); display: flex; flex-direction: column; justify-content: space-between; padding: 14px; box-shadow: 10px 14px 24px -10px rgba(4,38,58,.7); transform: rotate(-4deg); }
-  .revista b { font-family: var(--serif); font-size: 22px; line-height: 1; color: #fff; } .revista small { font-size: 9px; letter-spacing: .2em; }
-  .b-gru { background: var(--azul-noite); color: var(--creme); }
-  .dia { width: 140px; height: 140px; border-radius: 50%; background: var(--ouro); display: grid; place-items: center; text-align: center; color: var(--azul-noite); }
-  .dia b { display: block; font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1.05; } .dia span { font-size: 10px; font-weight: 800; letter-spacing: .2em; }
-  .bloco h3 { font-family: var(--serif); font-size: 28px; line-height: 1.1; margin-top: 6px; }
-  .b-rev h3 { color: var(--azul-noite); } .b-gru h3 { color: #fff; }
-  .bloco p { font-size: 14.5px; margin-top: 8px; opacity: .9; }
-  .bloco .btn { margin-top: 16px; }
-
-  @media (max-width: 860px) {
-    .trilha { grid-template-columns: 1fr 1fr; row-gap: 30px; } .trilha::before { display: none; }
-    .cursos .grade, .estudos .grade, .videos .grade, .extra .wrap { grid-template-columns: 1fr; }
-    .curso .topo { min-height: 220px; padding: 26px; } .curso .corpo { padding: 22px; }
-    .c-sant .topo img { width: 110px; }
-    .curso ul { grid-template-columns: 1fr; }
-    .bloco { grid-template-columns: 1fr; padding: 28px 22px; text-align: center; } .revista, .dia { margin: 0 auto; width: 120px; } .dia { height: 120px; }
-  }
+  .busca { display: flex; gap: 10px; margin-top: 26px; max-width: 620px; }
+  .busca span { flex: 1; padding: 14px 18px; border-radius: 999px; background: #fff; color: #8a9aa2; font-size: 14px; box-shadow: inset 0 0 0 1px #e6ddd2; }
+  @media (max-width: 860px) { .eixos .grade, .lista { grid-template-columns: 1fr; } .eixo { min-height: 0; padding: 26px; } .bloco-f { padding: 50px 0; } }
 </style></head>
 <body data-ativo="formacao">
-<section class="capa-int"><img src="../site/img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Formação</span><h1>Formação para <em>a santidade</em></h1><p>Estudos, vídeos e encontros para conhecer mais a Deus e, conhecendo, amá-Lo mais.</p></div></section>
+<section class="capa-int"><img src="../site/img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Formação</span><h1>Formação para <em>conhecer e amar</em></h1><p>Conteúdos sobre a Igreja, a Bíblia e o Catecismo para aprofundar a fé. Amamos aquilo que conhecemos.</p><div class="busca"><span>🔍 Buscar um tema: Eucaristia, Maria, sacramentos…</span></div></div></section>
 
-<section class="caminho">
-  <div class="wrap" style="text-align:center">
-    <span class="eyebrow">O caminho na comunidade</span>
-    <h2 class="titulo">Passo a passo, <em>em comunidade</em></h2>
-    <div class="trilha">
-      <div class="etapa"><i>1</i><b>Grupo de Oração</b><span>Toda quarta-feira. A porta de entrada.</span></div>
-      <div class="etapa"><i>2</i><b>Diga SIM a Deus</b><span>Seminário de Vida: o encontro pessoal com Jesus.</span></div>
-      <div class="etapa"><i>3</i><b>Santificai-vos</b><span>Aprofundar a fé com Bíblia e Catecismo.</span></div>
-      <div class="etapa"><i>4</i><b>Servir</b><span>Tornar-se servo da evangelização.</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="tom-branco" style="padding:50px 0">
-  <div class="wrap"><div class="cartao" style="padding:30px 34px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
-    <div><span class="eyebrow">Cursos</span><h3 style="font-family:var(--serif);font-size:26px;color:var(--azul-noite);margin-top:6px">Diga SIM a Deus e Santificai-vos</h3><p style="font-size:15px;color:#4a5e67">Os dois cursos da comunidade têm uma página própria, com todo o material.</p></div>
-    <a class="btn btn-azul" href="cursos.html">Ver os cursos</a></div></div>
-</section>
-
-<section class="estudos tom-azul">
+<section class="eixos">
   <div class="wrap">
-    <div class="cab"><div><span class="eyebrow">Estudos</span><h2 class="titulo">Para <em>aprofundar</em></h2></div><a class="btn btn-ouro">Ver todos os estudos</a></div>
+    <span class="eyebrow">Escolha um caminho</span>
+    <h2 class="titulo">Três fontes da <em>nossa fé</em></h2>
     <div class="grade">
-      <div class="est"><small>MISERICÓRDIA</small><h3>O que é a Divina Misericórdia?</h3><p>A devoção revelada a Santa Faustina e o centro do nosso carisma.</p><span class="le">LER ESTUDO →</span></div>
-      <div class="est"><small>ORAÇÃO</small><h3>Como rezar o Terço da Misericórdia</h3><p>Passo a passo da oração e o sentido da Hora da Misericórdia.</p><span class="le">LER ESTUDO →</span></div>
-      <div class="est"><small>ESPÍRITO SANTO</small><h3>Os sete dons do Espírito Santo</h3><p>Sabedoria, entendimento, conselho, fortaleza, ciência, piedade e temor de Deus.</p><span class="le">LER ESTUDO →</span></div>
-      <div class="est"><small>SANTIDADE</small><h3>Obras de misericórdia</h3><p>A santidade vivida no amor concreto ao próximo (Mt 25).</p><span class="le">LER ESTUDO →</span></div>
-      <div class="est"><small>BÍBLIA</small><h3>As Bem-aventuranças</h3><p>O retrato do coração de Cristo e o caminho da felicidade.</p><span class="le">LER ESTUDO →</span></div>
-      <div class="est"><small>VIDA ESPIRITUAL</small><h3>Vícios e virtudes</h3><p>O combate espiritual de cada dia, com a graça de Deus.</p><span class="le">LER ESTUDO →</span></div>
+      <a class="eixo e-igreja" href="#igreja"><span class="ic">⛪</span><h3>Formação da Igreja</h3><p>Sacramentos, liturgia, a vida dos santos e o que a Igreja ensina sobre a fé e a moral.</p><span class="qtd">Sacramentos · Liturgia · Santos →</span></a>
+      <a class="eixo e-biblia" href="#biblia"><span class="ic">📖</span><h3>Formação da Bíblia</h3><p>Como ler, rezar e entender as Sagradas Escrituras, livro por livro.</p><span class="qtd">Antigo e Novo Testamento →</span></a>
+      <a class="eixo e-cat" href="#catecismo"><span class="ic">✝</span><h3>Formação de Catecismo</h3><p>O Catecismo da Igreja Católica explicado em partes: o Credo, os Sacramentos, os Mandamentos e a Oração.</p><span class="qtd">As 4 partes do Catecismo →</span></a>
     </div>
   </div>
 </section>
 
-<section class="videos">
+<section class="bloco-f" id="igreja">
   <div class="wrap">
-    <div class="cab"><div><span class="eyebrow">Vídeos</span><h2 class="titulo">Pregações e <em>formações</em></h2></div><a class="btn btn-azul">Canal no YouTube</a></div>
-    <div class="grade">
-      <div class="vid g"><img src="../site/img/pregador.jpg" alt=""><span class="play">▶</span><div class="leg"><small>PREGAÇÃO</small><b>Alcançados pela Misericórdia</b></div></div>
-      <div class="vids-p">
-        <div class="vid"><img src="../site/img/oson-palco.jpg" alt=""><span class="play">▶</span><div class="leg"><small>OSON</small><b>Ou Santo ou Nada</b></div></div>
-        <div class="vid"><img src="../site/img/pregador-costas.jpg" alt=""><span class="play">▶</span><div class="leg"><small>FORMAÇÃO</small><b>O que é ser santo hoje?</b></div></div>
-      </div>
+    <div class="cab"><div><span class="eyebrow">Formação da Igreja</span><h2 class="titulo">A vida da <em>Igreja</em></h2></div><a class="btn btn-azul">Ver todos</a></div>
+    <div class="lista">
+      <div class="art"><small>SACRAMENTOS</small><h4>Os sete sacramentos</h4><p>Sinais visíveis da graça de Deus em cada etapa da vida.</p><span class="le">LER →</span></div>
+      <div class="art"><small>LITURGIA</small><h4>Entendendo a Santa Missa</h4><p>O sentido de cada parte da celebração.</p><span class="le">LER →</span></div>
+      <div class="art"><small>MISERICÓRDIA</small><h4>A Divina Misericórdia</h4><p>A devoção revelada a Santa Faustina e o centro do nosso carisma.</p><span class="le">LER →</span></div>
     </div>
   </div>
 </section>
 
-<section class="extra tom-branco">
+<section class="bloco-f tom-azul" id="biblia">
   <div class="wrap">
-    <div class="bloco b-rev"><div class="revista"><small>REVISTA SIM</small><b>Formação<br>mensal</b><small>EDIÇÃO 30 ANOS</small></div><div><span class="eyebrow">Revista</span><h3>Formação em casa todo mês</h3><p>Os sócios recebem a revista com conteúdos formativos de evangelização.</p><a class="btn btn-azul">Quero receber</a></div></div>
-    <div class="bloco b-gru"><div class="dia"><span><b>Toda<br>quarta</b>FEIRA</span></div><div><span class="eyebrow">Grupo de oração</span><h3>Jesus Misericordioso</h3><p>Mais que um grupo, uma família que reza junto. No nosso centro de formação.</p><a class="btn btn-ouro">Como chegar</a></div></div>
+    <div class="cab"><div><span class="eyebrow">Formação da Bíblia</span><h2 class="titulo">A Palavra <em>de Deus</em></h2></div><a class="btn btn-ouro">Ver todos</a></div>
+    <div class="lista">
+      <div class="art"><small>COMEÇAR</small><h4>Como ler a Bíblia</h4><p>Um guia simples para quem quer começar.</p><span class="le">LER →</span></div>
+      <div class="art"><small>LECTIO DIVINA</small><h4>Rezar com a Palavra</h4><p>Leitura, meditação, oração e contemplação.</p><span class="le">LER →</span></div>
+      <div class="art"><small>EVANGELHOS</small><h4>As Bem-aventuranças (Mt 5)</h4><p>O retrato do coração de Cristo.</p><span class="le">LER →</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloco-f tom-bege" id="catecismo">
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Formação de Catecismo</span><h2 class="titulo">O Catecismo <em>explicado</em></h2></div><a class="btn btn-azul">Ver todos</a></div>
+    <div class="lista">
+      <div class="art"><small>1ª PARTE</small><h4>A profissão da fé: o Credo</h4><p>Aquilo em que cremos.</p><span class="le">LER →</span></div>
+      <div class="art"><small>3ª PARTE</small><h4>A vida em Cristo</h4><p>Os Mandamentos, as virtudes e a vida moral.</p><span class="le">LER →</span></div>
+      <div class="art"><small>4ª PARTE</small><h4>A oração cristã</h4><p>O Pai-Nosso e a vida de oração.</p><span class="le">LER →</span></div>
+    </div>
   </div>
 </section>
 <script src="partes.js"></script>
