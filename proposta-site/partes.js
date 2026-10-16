@@ -1,7 +1,7 @@
 // Cabeçalho e rodapé comuns a todas as telas da proposta.
 (function () {
   var ativo = document.body.getAttribute('data-ativo') || '';
-  var itens = [['inicio', 'Início', 'inicio.html'], ['sobre', 'A Comunidade', 'inicio.html#sobre'], ['eventos', 'Eventos', 'evento.html'], ['noticias', 'Notícias', 'noticias.html'], ['oracao', 'Pedido de Oração', 'oracao.html']];
+  var itens = [['inicio', 'Início', 'inicio.html'], ['sobre', 'A Comunidade', 'inicio.html#sobre'], ['formacao', 'Formação', 'formacao.html'], ['eventos', 'Eventos', 'evento.html'], ['noticias', 'Notícias', 'noticias.html'], ['oracao', 'Pedido de Oração', 'oracao.html']];
   var menu = itens.map(function (i) { return '<li><a class="' + (i[0] === ativo ? 'ativo' : '') + '" href="' + i[2] + '">' + i[1] + '</a></li>'; }).join('');
   document.body.insertAdjacentHTML('afterbegin',
     '<div class="topbar"><div class="wrap"><span>📍 Rua Spinard, 23 · Jd. Vera Cruz · Dracena-SP</span><span class="esc">WhatsApp <b>(18) 99670-8825</b> · <b>@sim_dracena</b></span></div></div>' +

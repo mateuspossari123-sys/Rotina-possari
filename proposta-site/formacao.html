@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rede SIM · Formação</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* caminho de formação */
+  .caminho { padding-top: 70px; }
+  .trilha { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; position: relative; }
+  .trilha::before { content: ""; position: absolute; left: 12%; right: 12%; top: 34px; height: 2px; background: linear-gradient(90deg, var(--ouro-2), var(--ouro-3)); }
+  .etapa { text-align: center; padding: 0 14px; position: relative; }
+  .etapa i { display: grid; place-items: center; width: 68px; height: 68px; margin: 0 auto; border-radius: 50%; background: var(--azul-noite); color: var(--ouro-1); font-style: normal; font-family: var(--serif); font-size: 26px; font-weight: 800; box-shadow: 0 0 0 6px var(--creme); }
+  .etapa b { display: block; font-family: var(--serif); font-size: 20px; color: var(--azul-noite); margin-top: 16px; }
+  .etapa span { font-size: 14px; color: #52646c; }
+
+  /* cursos */
+  .cursos .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .curso { border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
+  .curso .topo { position: relative; min-height: 260px; padding: 34px; display: flex; flex-direction: column; justify-content: flex-end; isolation: isolate; }
+  .curso .topo img { position: absolute; z-index: -1; }
+  .c-diga .topo { background: #000; color: #fff; }
+  .c-diga .topo img { inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .75; }
+  .c-diga .topo small { color: #f5a01a; } .c-diga h3 { font-weight: 800; font-size: 46px; line-height: 1; } .c-diga h3 i { font-style: normal; color: #f5a01a; }
+  .c-sant .topo { background: radial-gradient(80% 90% at 0% 0%, rgba(232,105,44,.5), transparent 60%), #f3ece6; color: #4a2a1a; }
+  .c-sant .topo img { right: 24px; top: 24px; width: 170px; }
+  .c-sant .topo small { color: #e8692c; } .c-sant h3 { font-family: "Pinyon Script", cursive; font-weight: 400; font-size: 62px; line-height: 1; color: #6a2f16; }
+  .curso small { font-size: 12px; font-weight: 800; letter-spacing: .22em; }
+  .curso .corpo { background: #fff; padding: 28px 34px 32px; flex: 1; }
+  .curso .corpo p { font-size: 15px; }
+  .curso ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-top: 16px; font-size: 14px; color: var(--azul-noite); font-weight: 600; }
+  .curso li::before { content: "✦ "; color: var(--ouro-2); }
+  .curso .rodape { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 12px; flex-wrap: wrap; }
+  .curso .rodape span { font-size: 13px; color: #6b7d85; }
+  .c-diga .btn { background: #f5a01a; color: #1a0d00; } .c-sant .btn { background: #e8692c; color: #fff; }
+
+  /* estudos (Matérias categoria Formação) */
+  .estudos .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .est { padding: 26px; border-top: 4px solid var(--ouro-2); border-radius: 18px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(201,154,78,.3); }
+  .est small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-1); }
+  .est h3 { font-family: var(--serif); font-size: 22px; color: #fff; line-height: 1.2; margin-top: 8px; }
+  .est p { font-size: 14px; opacity: .8; margin-top: 8px; }
+  .est .le { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ouro-1); }
+
+  /* vídeos */
+  .videos .grade { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
+  .vid { position: relative; border-radius: 20px; overflow: hidden; background: var(--azul-noite); }
+  .vid img { width: 100%; height: 100%; object-fit: cover; opacity: .7; }
+  .vid .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 70px; height: 70px; border-radius: 50%; background: var(--ouro); display: grid; place-items: center; color: var(--azul-noite); font-size: 22px; }
+  .vid .leg { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px; color: #fff; background: linear-gradient(0deg, rgba(4,38,58,.95), transparent); }
+  .vid .leg small { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ouro-1); }
+  .vid .leg b { display: block; font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+  .vid.g { aspect-ratio: 16/9; } .vid.g .leg b { font-size: 26px; }
+  .vids-p { display: grid; gap: 22px; } .vids-p .vid { aspect-ratio: 16/8.4; }
+
+  /* revista + grupo */
+  .extra .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .bloco { border-radius: 26px; padding: 40px; display: grid; grid-template-columns: 140px 1fr; gap: 26px; align-items: center; }
+  .b-rev { background: linear-gradient(120deg, #f6dcb4, var(--creme-2)); }
+  .revista { aspect-ratio: 3/4; border-radius: 8px; background: var(--azul-noite); color: var(--ouro-1); display: flex; flex-direction: column; justify-content: space-between; padding: 14px; box-shadow: 10px 14px 24px -10px rgba(4,38,58,.7); transform: rotate(-4deg); }
+  .revista b { font-family: var(--serif); font-size: 22px; line-height: 1; color: #fff; } .revista small { font-size: 9px; letter-spacing: .2em; }
+  .b-gru { background: var(--azul-noite); color: var(--creme); }
+  .dia { width: 140px; height: 140px; border-radius: 50%; background: var(--ouro); display: grid; place-items: center; text-align: center; color: var(--azul-noite); }
+  .dia b { display: block; font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1.05; } .dia span { font-size: 10px; font-weight: 800; letter-spacing: .2em; }
+  .bloco h3 { font-family: var(--serif); font-size: 28px; line-height: 1.1; margin-top: 6px; }
+  .b-rev h3 { color: var(--azul-noite); } .b-gru h3 { color: #fff; }
+  .bloco p { font-size: 14.5px; margin-top: 8px; opacity: .9; }
+  .bloco .btn { margin-top: 16px; }
+
+  @media (max-width: 860px) {
+    .trilha { grid-template-columns: 1fr 1fr; row-gap: 30px; } .trilha::before { display: none; }
+    .cursos .grade, .estudos .grade, .videos .grade, .extra .wrap { grid-template-columns: 1fr; }
+    .curso .topo { min-height: 220px; padding: 26px; } .curso .corpo { padding: 22px; }
+    .c-sant .topo img { width: 110px; }
+    .curso ul { grid-template-columns: 1fr; }
+    .bloco { grid-template-columns: 1fr; padding: 28px 22px; text-align: center; } .revista, .dia { margin: 0 auto; width: 120px; } .dia { height: 120px; }
+  }
+</style></head>
+<body data-ativo="formacao">
+<section class="capa-int"><img src="img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Formação</span><h1>Formação para <em>a santidade</em></h1><p>Cursos, estudos e encontros para conhecer mais a Deus e, conhecendo, amá-Lo mais.</p></div></section>
+
+<section class="caminho">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">O caminho na comunidade</span>
+    <h2 class="titulo">Passo a passo, <em>em comunidade</em></h2>
+    <div class="trilha">
+      <div class="etapa"><i>1</i><b>Grupo de Oração</b><span>Toda quarta-feira. A porta de entrada.</span></div>
+      <div class="etapa"><i>2</i><b>Diga SIM a Deus</b><span>Seminário de Vida: o encontro pessoal com Jesus.</span></div>
+      <div class="etapa"><i>3</i><b>Santificai-vos</b><span>Aprofundar a fé com Bíblia e Catecismo.</span></div>
+      <div class="etapa"><i>4</i><b>Servir</b><span>Tornar-se servo da evangelização.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cursos tom-branco">
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Cursos</span><h2 class="titulo">Nossos <em>cursos</em></h2></div></div>
+    <div class="grade">
+      <div class="curso c-diga cartao">
+        <div class="topo"><img src="img/pomba.jpg" alt=""><small>SEMINÁRIO DE VIDA NO ESPÍRITO SANTO</small><h3>Diga <i>SIM</i><br>a Deus</h3></div>
+        <div class="corpo"><p>O coração da nossa comunidade: uma experiência real com a pessoa de Jesus Cristo. Você entra de um jeito e sai de outro.</p>
+          <ul><li>17 semanas</li><li>Kerigma</li><li>Carismas do Espírito Santo</li><li>2 retiros</li></ul>
+          <div class="rodape"><span>Novas turmas em breve</span><a class="btn">Conhecer o curso</a></div></div>
+      </div>
+      <div class="curso c-sant cartao">
+        <div class="topo"><img src="img/sant-pomba.png" alt=""><small>CURSO DE FORMAÇÃO</small><h3>Santificai-vos</h3></div>
+        <div class="corpo"><p>Muito mais que um curso, uma escola segura para a santidade, com direção espiritual do Padre Mario Sartori.</p>
+          <ul><li>17 semanas</li><li>Bíblia e Catecismo</li><li>Virtudes e dons</li><li>Bem-aventuranças</li></ul>
+          <div class="rodape"><span>Novas turmas em breve</span><a class="btn">Conhecer o curso</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="estudos tom-azul">
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Estudos</span><h2 class="titulo">Para <em>aprofundar</em></h2></div><a class="btn btn-ouro">Ver todos os estudos</a></div>
+    <div class="grade">
+      <div class="est"><small>MISERICÓRDIA</small><h3>O que é a Divina Misericórdia?</h3><p>A devoção revelada a Santa Faustina e o centro do nosso carisma.</p><span class="le">LER ESTUDO →</span></div>
+      <div class="est"><small>ORAÇÃO</small><h3>Como rezar o Terço da Misericórdia</h3><p>Passo a passo da oração e o sentido da Hora da Misericórdia.</p><span class="le">LER ESTUDO →</span></div>
+      <div class="est"><small>ESPÍRITO SANTO</small><h3>Os sete dons do Espírito Santo</h3><p>Sabedoria, entendimento, conselho, fortaleza, ciência, piedade e temor de Deus.</p><span class="le">LER ESTUDO →</span></div>
+      <div class="est"><small>SANTIDADE</small><h3>Obras de misericórdia</h3><p>A santidade vivida no amor concreto ao próximo (Mt 25).</p><span class="le">LER ESTUDO →</span></div>
+      <div class="est"><small>BÍBLIA</small><h3>As Bem-aventuranças</h3><p>O retrato do coração de Cristo e o caminho da felicidade.</p><span class="le">LER ESTUDO →</span></div>
+      <div class="est"><small>VIDA ESPIRITUAL</small><h3>Vícios e virtudes</h3><p>O combate espiritual de cada dia, com a graça de Deus.</p><span class="le">LER ESTUDO →</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="videos">
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Vídeos</span><h2 class="titulo">Pregações e <em>formações</em></h2></div><a class="btn btn-azul">Canal no YouTube</a></div>
+    <div class="grade">
+      <div class="vid g"><img src="img/pregador.jpg" alt=""><span class="play">▶</span><div class="leg"><small>PREGAÇÃO</small><b>Alcançados pela Misericórdia</b></div></div>
+      <div class="vids-p">
+        <div class="vid"><img src="img/oson-palco.jpg" alt=""><span class="play">▶</span><div class="leg"><small>OSON</small><b>Ou Santo ou Nada</b></div></div>
+        <div class="vid"><img src="img/pregador-costas.jpg" alt=""><span class="play">▶</span><div class="leg"><small>FORMAÇÃO</small><b>O que é ser santo hoje?</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="extra tom-branco">
+  <div class="wrap">
+    <div class="bloco b-rev"><div class="revista"><small>REVISTA SIM</small><b>Formação<br>mensal</b><small>EDIÇÃO 30 ANOS</small></div><div><span class="eyebrow">Revista</span><h3>Formação em casa todo mês</h3><p>Os sócios recebem a revista com conteúdos formativos de evangelização.</p><a class="btn btn-azul">Quero receber</a></div></div>
+    <div class="bloco b-gru"><div class="dia"><span><b>Toda<br>quarta</b>FEIRA</span></div><div><span class="eyebrow">Grupo de oração</span><h3>Jesus Misericordioso</h3><p>Mais que um grupo, uma família que reza junto. No nosso centro de formação.</p><a class="btn btn-ouro">Como chegar</a></div></div>
+  </div>
+</section>
+<script src="partes.js"></script>
+</body></html>

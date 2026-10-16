@@ -6,6 +6,7 @@ As imagens vêm de `../site/img/` (copie a pasta `img` para cá para abrir local
 | Tela | Arquivo | Vem do painel Django |
 |---|---|---|
 | Página inicial | inicio.html | Sliders, Destaques, Eventos, Matérias |
+| Formação | formacao.html | Matérias (categoria Formação) |
 | Evento + inscrição | evento.html | Eventos, Lugares, Inscrições, Pagamentos |
 | Notícias | noticias.html | Matérias, Categorias, Autores |
 | Matéria | materia.html | Matérias, Autores |
