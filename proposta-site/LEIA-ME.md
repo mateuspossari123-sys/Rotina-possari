@@ -1,7 +1,7 @@
 # Proposta de layout · redesim.com.br
 
 Telas em HTML estático usadas para gerar a proposta (`proposta-site-sim.pdf`).
-As imagens vêm de `../site/img/` (copie a pasta `img` para cá para abrir localmente).
+As imagens vêm de `../site/img/`.
 
 | Tela | Arquivo | Vem do painel Django |
 |---|---|---|
