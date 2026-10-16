@@ -5,10 +5,10 @@ As imagens vêm de `../site/img/`.
 
 | Tela | Arquivo | Vem do painel Django |
 |---|---|---|
-| Página inicial | inicio.html | Sliders, Destaques, Eventos, Matérias |
+| Início (Ano Jubilar) | index.html | Sliders, Destaques, Eventos |
+| Eventos | eventos.html | Eventos, Lugares |
+| Cursos | cursos.html | (abre site/diga-sim.html e site/santificai.html) |
 | Formação | formacao.html | Matérias (categoria Formação) |
 | Evento + inscrição | evento.html | Eventos, Lugares, Inscrições, Pagamentos |
-| Notícias | noticias.html | Matérias, Categorias, Autores |
-| Matéria | materia.html | Matérias, Autores |
 | Pedido de oração | oracao.html | Pedidos de Oração |
-| Contribua | contribua.html | Pagamentos (recorrente) |
+| Seja sócio | socio.html | Pagamentos (recorrente) |
