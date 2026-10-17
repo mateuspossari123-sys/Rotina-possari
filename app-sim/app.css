@@ -408,3 +408,20 @@ body.prancha{display:block;padding:60px}
 .data-l{gap:10px;color:var(--noite)!important;font-weight:700}
 .data-l svg{color:var(--o3)}
 .data-l em{margin-left:auto;font-style:normal;font-size:12px;color:var(--o3)}
+/* agenda: calendário minimalista */
+.mini-cal{background:none;box-shadow:none;padding:0 14px;margin:0 16px}
+.mc-topo{padding:0 2px 2px}
+.mc-topo b{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--o3)}
+.seta-m{width:24px;height:24px;background:none;color:var(--suave)}
+.seta-m svg{width:14px;height:14px}
+.mc-sem span{font-size:9px;color:#a9b5ba;padding:2px 0}
+.mc-dias button,.mc-dias span{height:28px;font-size:12px;font-weight:600;border-radius:50%;width:28px;margin:0 auto}
+.mc-dias button.hoje{box-shadow:none;color:var(--o3);font-weight:800}
+.mc-dias button.on{background:var(--noite);color:#fff}
+.mc-dias button i{bottom:1px;width:4px;height:4px;margin-left:-2px}
+.mc-dias button.on i{display:none}
+.dia-sel{margin-top:10px;padding-top:12px;border-top:1px solid rgba(4,38,58,.08)}
+.dia-sel .tag{display:none}
+.dia-sel h3{font-size:18px}
+#agenda .topo{padding-bottom:6px}
+#agenda .legenda{display:none}
