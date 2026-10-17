@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunidade SIM · Evento</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  .ev-capa { position: relative; color: #fff; isolation: isolate; overflow: hidden; padding: 100px 0 80px; }
+  .ev-capa > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; z-index: -2; }
+  .ev-capa::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,0,0,.9), rgba(4,38,58,.55)); }
+  .ev-capa .migalha { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro-1); }
+  .ev-capa h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(44px, 6.4vw, 80px); line-height: 1; margin-top: 14px; color: #c9a77a; }
+  .ev-capa h1 span { display: block; font-size: .6em; font-style: italic; background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .chips span { display: inline-flex; gap: 8px; align-items: center; padding: 10px 16px; border-radius: 999px; background: rgba(4,38,58,.6); box-shadow: inset 0 0 0 1px rgba(243,209,151,.45); font-size: 14px; font-weight: 600; }
+  .chips b { color: var(--ouro-1); }
+
+  .corpo .wrap { display: grid; grid-template-columns: 1fr 420px; gap: 50px; align-items: start; }
+  .corpo p { font-size: 16.5px; margin-top: 14px; }
+  .prog { margin-top: 28px; display: grid; gap: 0; }
+  .prog div { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid #ead9c6; }
+  .prog b { font-family: var(--serif); font-size: 22px; color: var(--ouro-3); }
+  .prog span { font-weight: 600; color: var(--azul-noite); }
+  .prog small { display: block; font-weight: 400; color: #6b7d85; font-size: 13px; }
+  .local { margin-top: 30px; padding: 22px; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+  .local i { width: 50px; height: 50px; border-radius: 14px; background: var(--azul-noite); display: grid; place-items: center; font-style: normal; font-size: 22px; }
+  .local b { color: var(--azul-noite); display: block; }
+  .local span { font-size: 14px; color: #52646c; }
+
+  /* inscrição (Inscrições + Pagamentos do painel) */
+  .insc { padding: 30px; position: sticky; top: 100px; }
+  .insc h3 { font-family: var(--serif); font-size: 26px; color: var(--azul-noite); }
+  .passos { display: flex; gap: 6px; margin: 14px 0 6px; }
+  .passos i { flex: 1; height: 5px; border-radius: 3px; background: #ead9c6; }
+  .passos i.on { background: var(--ouro-2); }
+  .passo-txt { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ouro-3); }
+  .lote { margin-top: 18px; display: grid; gap: 10px; }
+  .lote div { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 14px; box-shadow: inset 0 0 0 1.5px #ead9c6; font-weight: 600; color: var(--azul-noite); }
+  .lote div.on { box-shadow: inset 0 0 0 2px var(--azul-noite); background: #f7f3ee; }
+  .lote small { display: block; font-weight: 400; font-size: 12px; color: #6b7d85; }
+  .lote b { font-family: var(--serif); font-size: 20px; }
+  .pag { display: flex; gap: 8px; margin-top: 16px; }
+  .pag span { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-size: 13px; font-weight: 700; box-shadow: inset 0 0 0 1.5px #ead9c6; color: var(--azul-noite); }
+  .pag span.on { background: var(--azul-noite); color: var(--ouro-1); box-shadow: none; }
+  .insc .btn { width: 100%; margin-top: 20px; padding: 16px; }
+  .insc .seg { font-size: 12px; color: #6b7d85; text-align: center; margin-top: 10px; }
+  @media (max-width: 860px) { .corpo .wrap { grid-template-columns: 1fr; } .insc { position: static; padding: 22px; } .ev-capa { padding: 60px 0 50px; } }
+</style></head>
+<body data-ativo="eventos">
+<section class="ev-capa"><img src="../site/img/kairos-fundo.jpg" alt="">
+  <div class="wrap"><span class="migalha">Início › Eventos › Kairós</span>
+    <h1>kairós SIM<span>Alcançados pela Misericórdia</span></h1>
+    <div class="chips"><span>📅 <b>22/11</b> domingo</span><span>🕗 <b>8h</b> da manhã</span><span>📍 Centro de Evangelização</span><span>✦ <b>30 anos</b></span></div>
+  </div>
+</section>
+
+<section class="corpo">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Sobre o evento</span>
+      <h2 class="titulo">Um tempo de graça para <em>celebrar a misericórdia</em></h2>
+      <p>O Kairós dos 30 anos é um encontro para agradecer tudo o que Deus fez através da Sociedade Irmãos da Misericórdia desde 1996 e para deixar-se alcançar, mais uma vez, pela misericórdia de Jesus.</p>
+      <div class="prog">
+        <div><b>8h</b><span>Acolhida e louvor<small>Abertura com o ministério de música</small></span></div>
+        <div><b>9h</b><span>Pregação<small>“Alcançados pela Misericórdia”</small></span></div>
+        <div><b>11h</b><span>Santa Missa<small>Ação de graças pelos 30 anos</small></span></div>
+        <div><b>13h</b><span>Adoração e envio<small>Encerramento</small></span></div>
+      </div>
+      <div class="local cartao"><i>📍</i><div><b>Centro de Evangelização Mãe da Divina Misericórdia</b><span>Rua Spinard, 23 · Jd. Vera Cruz · Dracena-SP · Ver no mapa</span></div></div>
+    </div>
+    <div class="insc cartao">
+      <h3>Inscrição</h3>
+      <div class="passos"><i class="on"></i><i class="on"></i><i></i></div>
+      <span class="passo-txt">PASSO 2 DE 3 · ESCOLHA E PAGAMENTO</span>
+      <div class="campo-f"><label>Nome completo</label><span>Maria da Silva</span></div>
+      <div class="dupla"><div class="campo-f"><label>WhatsApp</label><span>(18) 9 ____-____</span></div><div class="campo-f"><label>Cidade</label><span>Dracena</span></div></div>
+      <div class="lote"><div class="on"><span>Inscrição individual<small>Inclui almoço</small></span><b>R$ 40</b></div><div><span>Casal<small>Inclui almoço</small></span><b>R$ 70</b></div></div>
+      <div class="pag"><span class="on">Pix</span><span>Cartão</span><span>Boleto</span></div>
+      <a class="btn btn-ouro">Confirmar inscrição</a>
+      <p class="seg">🔒 Pagamento seguro · você recebe a confirmação no WhatsApp e no e-mail</p>
+    </div>
+  </div>
+</section>
+<script src="partes.js"></script>
+</body></html>

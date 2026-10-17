@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunidade SIM · Ano Jubilar 30 anos</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* abertura: ano jubilar */
+  .jub { position: relative; min-height: 0; display: flex; align-items: center; color: #fff; isolation: isolate; overflow: hidden; padding: 56px 0; }
+  .jub > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .jub::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(70% 90% at 20% 50%, rgba(4,38,58,.96), rgba(4,38,58,.75) 60%, rgba(4,38,58,.45)); }
+  .jub .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; width: 100%; }
+  .jub .tag { display: inline-flex; gap: 10px; align-items: center; padding: 8px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--ouro-2); font-size: 12px; font-weight: 800; letter-spacing: .26em; color: var(--ouro-1); }
+  .jub h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(40px, 5.4vw, 70px); line-height: .98; margin-top: 16px; }
+  .jub h1 em { background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .jub h1 small { display: block; font-family: "Pinyon Script", cursive; font-weight: 400; font-size: .55em; line-height: 1.1; color: var(--ouro-1); }
+  .jub p { max-width: 540px; margin-top: 20px; font-size: 18px; color: rgba(253,238,224,.92); }
+  .jub .acoes { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  .jub .selo { width: 100%; max-width: 260px; justify-self: center; filter: drop-shadow(0 20px 40px rgba(0,0,0,.6)); }
+  .jub .anos { display: flex; gap: 16px; align-items: center; margin-top: 30px; font-family: var(--serif); font-size: 26px; color: var(--ouro-1); }
+  .jub .anos i { flex: none; width: 70px; height: 2px; background: var(--ouro-2); }
+
+  /* faixa jubilar */
+  .faixa { background: var(--ouro); color: var(--azul-noite); padding: 16px 0; overflow: hidden; }
+  .faixa .wrap { display: flex; justify-content: space-between; gap: 20px; font-weight: 800; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; flex-wrap: wrap; }
+
+  /* história em linha do tempo */
+  .hist .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hist p { margin-top: 16px; font-size: 16.5px; }
+  .linha { margin-top: 30px; display: grid; gap: 0; border-left: 2px solid var(--ouro-2); padding-left: 26px; }
+  .linha div { position: relative; padding-bottom: 18px; }
+  .linha div::before { content: ""; position: absolute; left: -33px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--ouro-2); box-shadow: 0 0 0 4px var(--branco); }
+  .linha b { font-family: var(--serif); font-size: 22px; color: var(--ouro-3); }
+  .linha span { display: block; font-size: 14.5px; color: #4a5e67; }
+  .hist .fotos { position: relative; }
+  .hist .fotos img { border-radius: 22px; box-shadow: 0 30px 50px -25px rgba(4,38,58,.5); }
+  .hist .fotos .antiga { position: absolute; width: 50%; left: -24px; bottom: -44px; border: 8px solid #fbefe2; border-bottom-width: 34px; border-radius: 4px; transform: rotate(-4deg); filter: sepia(.4); }
+
+  /* jubileu: o que vamos viver */
+  .viver .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .viver .item { padding: 30px; border-radius: 22px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(201,154,78,.35); }
+  .viver .item b { font-family: var(--serif); font-size: 44px; line-height: 1; background: var(--ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .viver .item h3 { font-family: var(--serif); font-size: 22px; color: #fff; margin-top: 10px; }
+  .viver .item p { font-size: 14.5px; opacity: .82; margin-top: 6px; }
+
+  /* eventos */
+  .ev-grade { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .ev { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 34px -24px rgba(4,38,58,.6); }
+  .ev .capa { position: relative; aspect-ratio: 4/5; background: #000; }
+  .ev .capa img { width: 100%; height: 100%; object-fit: cover; }
+  .ev .data { position: absolute; top: 12px; left: 12px; background: var(--azul-noite); color: var(--ouro-1); font-weight: 800; font-size: 12px; letter-spacing: .1em; padding: 6px 12px; border-radius: 999px; }
+  .ev .info { padding: 16px 18px 20px; }
+  .ev h3 { font-family: var(--serif); font-size: 19px; color: var(--azul-noite); line-height: 1.2; }
+  .ev p { font-size: 13px; color: #5a6d76; margin-top: 4px; }
+
+  /* cursos */
+  .cursos .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .curso { position: relative; border-radius: 26px; overflow: hidden; min-height: 300px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-end; isolation: isolate; }
+  .curso > img { position: absolute; z-index: -1; }
+  .c-diga { background: #000; color: #fff; } .c-diga > img { inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .7; }
+  .c-diga small { color: #f5a01a; } .c-diga h3 { font-weight: 800; font-size: 44px; line-height: 1; } .c-diga h3 i { font-style: normal; color: #f5a01a; }
+  .c-sant { background: radial-gradient(80% 90% at 0% 0%, rgba(232,105,44,.5), transparent 60%), #f3ece6; color: #4a2a1a; }
+  .c-sant > img { right: 26px; top: 26px; width: 150px; }
+  .c-sant small { color: #e8692c; } .c-sant h3 { font-family: "Pinyon Script", cursive; font-weight: 400; font-size: 60px; line-height: 1; color: #6a2f16; }
+  .curso small { font-size: 12px; font-weight: 800; letter-spacing: .24em; }
+  .curso p { margin-top: 10px; max-width: 320px; font-size: 15px; opacity: .9; }
+  .curso .btn { align-self: flex-start; margin-top: 18px; }
+  .c-diga .btn { background: #f5a01a; color: #1a0d00; } .c-sant .btn { background: #e8692c; color: #fff; }
+
+  /* sócio + oração + loja */
+  .tri .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { border-radius: 26px; padding: 34px; display: flex; flex-direction: column; }
+  .card h3 { font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.1; margin-top: 8px; }
+  .card p { margin-top: 10px; font-size: 15px; flex: 1; }
+  .card .btn { align-self: flex-start; margin-top: 20px; }
+  .k-socio { background: var(--azul-noite); color: var(--creme); } .k-socio h3 { color: #fff; } .k-socio .eyebrow { color: var(--ouro-1); }
+  .k-oracao { background: #fff; box-shadow: 0 20px 40px -30px rgba(4,38,58,.7); } .k-oracao h3 { color: var(--azul-noite); }
+  .k-loja { background: linear-gradient(120deg, #f6dcb4, var(--creme-2)); } .k-loja h3 { color: var(--azul-noite); }
+  .k-socio .cit { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ouro-1); margin-top: 14px; flex: 0; }
+
+  @media (max-width: 860px) {
+    .jub { min-height: 0; padding: 50px 0 60px; }
+    .jub::before { background: linear-gradient(0deg, rgba(4,38,58,.97) 30%, rgba(4,38,58,.7)); }
+    .jub .wrap, .hist .wrap, .cursos .grade, .viver .grade, .tri .grade { grid-template-columns: 1fr; }
+    .jub .selo { max-width: 200px; order: -1; }
+    .faixa .wrap { justify-content: center; font-size: 11px; }
+    .hist .fotos { margin: 0 0 50px; } .hist .fotos .antiga { left: 8px; }
+    .ev-grade { grid-template-columns: 1fr 1fr; gap: 12px; } .ev h3 { font-size: 16px; } .ev p { display: none; }
+    .curso { min-height: 260px; padding: 26px; } .c-sant > img { width: 100px; }
+    .card { padding: 26px; }
+  }
+</style></head>
+<body data-ativo="inicio">
+
+<section class="jub">
+  <img src="../site/img/oson-missa.jpg" alt="">
+  <div class="wrap">
+    <div>
+      <span class="tag">✦ ANO JUBILAR · 1996–2026</span>
+      <h1><small>Estamos em festa!</small>30 anos de <em>história e missão</em></h1>
+      <p>2026 é Ano Jubilar para a Comunidade SIM: 30 anos alcançados pela misericórdia de Deus.</p>
+      <div class="acoes"><a class="btn btn-ouro" href="quem-somos.html">Conheça nossa história</a><a class="btn btn-linha" href="socio.html">Seja um sócio</a></div>
+    </div>
+    <img class="selo" src="../site/img/selo-30-anos.png" alt="Selo 30 anos">
+  </div>
+</section>
+
+<div class="faixa"><div class="wrap"><span>✦ Ano Jubilar</span><span>Alcançados pela Misericórdia</span><span>Jesus, eu confio em vós</span><span>✦ 30 anos</span></div></div>
+
+<section class="hist tom-branco" id="historia">
+  <div class="wrap">
+    <div class="fotos"><img src="../site/img/oson-equipe.jpg" alt="Equipe no palco do Ou Santo ou Nada"><img class="antiga" src="../site/img/primeira-foto.jpg" alt="Primeira foto da comunidade, 1996"></div>
+    <div>
+      <span class="eyebrow">Quem somos</span>
+      <h2 class="titulo">Tudo começou <em>com um sim</em></h2>
+      <p>A SIM não foi pensada: nasceu dos frutos da evangelização. Tudo começou com um grupo de jovens em Dracena e com o primeiro Seminário de Vida no Espírito Santo, e aos poucos o Senhor nos confiava a sua obra.</p>
+      <div class="linha">
+        
+        <div><b>1993</b><span>Com 12 jovens acontece o primeiro Seminário de Vida no Espírito Santo.</span></div>
+        <div><b>21/12/1996</b><span>Fundação da Sociedade Irmãos da Misericórdia, em Dracena-SP.</span></div>
+        <div><b>Hoje</b><span>Milhares de pessoas nos cursos, presenciais em SP e PR e online no Brasil e no exterior.</span></div>
+        <div><b>2026</b><span>Ano Jubilar: 30 anos de alegrias, orações, renúncias, lágrimas e vitórias.</span></div>
+      </div>
+      <a class="btn btn-azul" href="quem-somos.html" style="margin-top:6px">Conheça quem somos</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Agenda</span><h2 class="titulo">Próximos <em>eventos</em></h2></div><a class="btn btn-azul" href="eventos.html">Ver todos os eventos</a></div>
+    <div class="ev-grade">
+      <a class="ev" href="eventos.html"><div class="capa"><img src="../site/img/evangelizashow.jpg" alt=""><span class="data">21 NOV</span></div><div class="info"><h3>Evangelizashow</h3><p>19h30 · Centro de Evangelização</p></div></a>
+      <a class="ev" href="evento.html"><div class="capa"><img src="../site/img/kairos.jpg" alt=""><span class="data">22 NOV</span></div><div class="info"><h3>Kairós 30 anos</h3><p>8h · Alcançados pela Misericórdia</p></div></a>
+      <a class="ev" href="eventos.html#oson"><div class="capa"><img src="../site/img/oson-palco.jpg" alt=""><span class="data">EM BREVE</span></div><div class="info"><h3>Ou Santo ou Nada</h3><p>O maior retiro da comunidade</p></div></a>
+      <a class="ev" href="eventos.html#festa"><div class="capa"><img src="../site/img/festa-misericordia.jpg" alt=""><span class="data">EM BREVE</span></div><div class="info"><h3>Festa da Misericórdia</h3><p>O evento do nosso carisma</p></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="cursos tom-branco">
+  <div class="wrap">
+    <div class="cab"><div><span class="eyebrow">Cursos</span><h2 class="titulo">Nossos <em>cursos</em></h2></div><a class="btn btn-azul" href="cursos.html">Ver os cursos</a></div>
+    <div class="grade">
+      <a class="curso c-diga" href="../site/diga-sim.html"><img src="../site/img/pomba.jpg" alt=""><small>SEMINÁRIO DE VIDA NO ESPÍRITO SANTO</small><h3>Diga <i>SIM</i><br>a Deus</h3><p>17 semanas de encontro com Jesus. Você entra de um jeito e sai de outro.</p><span class="btn">Conhecer o curso</span></a>
+      <a class="curso c-sant" href="../site/santificai.html"><img src="../site/img/sant-pomba.png" alt=""><small>CURSO DE FORMAÇÃO</small><h3>Santificai-vos</h3><p>Muito mais que um curso, uma escola segura para a santidade.</p><span class="btn">Conhecer o curso</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="tri">
+  <div class="wrap">
+    <div class="grade">
+      <div class="card k-socio"><span class="eyebrow">Seja sócio</span><h3>Faça parte da missão</h3><p>Nossas obras são sustentadas pela doação de irmãos. Todo mês você recebe uma revista formativa em casa.</p><span class="cit">“Quem ajuda na evangelização tem os mesmos méritos do evangelizador.”</span><a class="btn btn-ouro" href="socio.html">Quero ser sócio</a></div>
+      <div class="card k-oracao"><span class="eyebrow">Pedido de oração</span><h3>Nós rezamos por você</h3><p>Deixe sua intenção. Ela será apresentada nos grupos de oração, na adoração e na Santa Missa.</p><a class="btn btn-azul" href="oracao.html">Enviar pedido</a></div>
+      <div class="card k-loja"><span class="eyebrow">SIM Livraria</span><h3>Leve a missão com você</h3><p>Livros, terços, camisetas e artigos religiosos. Cada compra ajuda a sustentar a evangelização.</p><a class="btn btn-azul" href="https://www.simlivraria.com.br/" target="_blank" rel="noopener">Visitar a loja</a></div>
+    </div>
+  </div>
+</section>
+
+<script src="partes.js"></script>
+</body></html>

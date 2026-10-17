@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunidade SIM · Cursos</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  .cursos { padding-top: 70px; }
+  .curso { display: grid; grid-template-columns: 1.05fr 1fr; border-radius: 30px; overflow: hidden; margin-bottom: 30px; min-height: 460px; }
+  .curso .vis { position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; isolation: isolate; }
+  .curso .vis img { position: absolute; z-index: -1; }
+  .curso .tx { padding: 46px; display: flex; flex-direction: column; justify-content: center; }
+  .curso small { font-size: 12px; font-weight: 800; letter-spacing: .24em; }
+  .curso .tx p { font-size: 16px; margin-top: 14px; }
+  .curso .num { display: flex; gap: 26px; margin-top: 24px; }
+  .curso .num b { display: block; font-size: 34px; line-height: 1; }
+  .curso .num span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+  .curso .acoes { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+  .c-diga { background: #0c0a09; color: #f6f1ec; }
+  .c-diga .vis img { inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+  .c-diga .vis::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #0c0a09 5%, transparent 60%); }
+  .c-diga .vis small, .c-diga .tx small { color: #f47a2a; }
+  .c-diga h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 82px; line-height: .95; text-transform: uppercase; letter-spacing: .01em; }
+  .c-diga h2 i { font-style: normal; color: #f47a2a; display: block; }
+  .c-diga .num b { font-family: Anton, Impact, sans-serif; font-weight: 400; color: #fff; }
+  .c-diga .tx p em { color: #f47a2a; font-style: normal; font-weight: 700; }
+  .btn-fogo { background: #f47a2a; color: #140c07; }
+  .btn-fogo-l { color: #f6f1ec; box-shadow: inset 0 0 0 1.5px #f47a2a; }
+
+  .c-sant { background: #e6e6e6; color: #4a3328; }
+  .c-sant .vis { background: radial-gradient(80% 80% at 0% 0%, rgba(232,105,44,.55), transparent 60%), radial-gradient(60% 60% at 100% 100%, rgba(232,105,44,.35), transparent 60%), #efeae5; align-items: center; justify-content: center; text-align: center; }
+  .c-sant .vis img { position: static; width: 200px; margin-bottom: 16px; }
+  .c-sant small { color: #e8692c; }
+  .c-sant h2 { font-family: "Pinyon Script", cursive; font-weight: 400; font-size: 84px; line-height: 1; color: #5a2a17; }
+  .c-sant .tx h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.15; color: #5a2a17; margin-top: 10px; }
+  .c-sant .tx h3 em { color: #e8692c; }
+  .c-sant .num b { font-family: var(--serif); color: #e8692c; font-weight: 400; }
+  .btn-lar { background: #e8692c; color: #fff; }
+  .btn-lar-l { color: #5a2a17; box-shadow: inset 0 0 0 1.5px #5a2a17; }
+
+  .diferenca { padding: 30px 0 90px; }
+  .diferenca .cartao { padding: 34px; display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+  .diferenca .ic { width: 64px; height: 64px; border-radius: 18px; background: var(--azul-noite); display: grid; place-items: center; color: var(--ouro-1); font-size: 28px; }
+  .diferenca h3 { font-family: var(--serif); font-size: 24px; color: var(--azul-noite); }
+  .diferenca p { font-size: 15px; color: #4a5e67; margin-top: 4px; }
+
+  @media (max-width: 860px) {
+    .curso { grid-template-columns: 1fr; min-height: 0; }
+    .curso .vis { min-height: 300px; padding: 28px; }
+    .curso .tx { padding: 28px 24px 32px; }
+    .c-diga h2 { font-size: 60px; } .c-sant h2 { font-size: 60px; } .c-sant .vis img { width: 140px; }
+    .curso .btn { width: 100%; }
+    .diferenca .cartao { grid-template-columns: 1fr; text-align: center; } .diferenca .ic { margin: 0 auto; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body data-ativo="cursos">
+<section class="capa-int"><img src="../site/img/missa-bispo.jpg" alt=""><div class="wrap"><span class="migalha">Início › Cursos</span><h1>Nossos <em>cursos</em></h1><p>Dois caminhos para viver um encontro com Jesus e crescer na santidade, passo a passo, em comunidade.</p></div></section>
+
+<section class="cursos">
+  <div class="wrap">
+    <article class="curso c-diga">
+      <div class="vis"><img src="../site/img/pomba.jpg" alt=""><small>SEMINÁRIO DE VIDA NO ESPÍRITO SANTO</small><h2>Diga<i>SIM</i>a Deus</h2></div>
+      <div class="tx">
+        <small>O CORAÇÃO DA NOSSA COMUNIDADE</small>
+        <p>Não é apenas um curso. É um encontro com o <em>amor de Deus</em>, que tudo cura e transforma. Ao longo do Seminário acontecem curas interiores, mudanças de vida, e muitos se tornam novos servos da evangelização.</p>
+        <div class="num"><div><b>17</b><span>semanas</span></div><div><b>2</b><span>etapas</span></div><div><b>2</b><span>retiros</span></div></div>
+        <div class="acoes"><a class="btn btn-fogo" href="../site/diga-sim.html">Ver o material do curso</a><a class="btn btn-fogo-l">Novas turmas em breve</a></div>
+      </div>
+    </article>
+
+    <article class="curso c-sant">
+      <div class="vis"><img src="../site/img/sant-pomba.png" alt=""><small>CURSO DE FORMAÇÃO</small><h2>Santificai-vos</h2></div>
+      <div class="tx">
+        <small>CURSO SANTIFICAI-VOS · SIM</small>
+        <h3>Muito mais que um curso, <em>uma escola segura para a santidade.</em></h3>
+        <p>Encontros semanais em que, através da Bíblia e do Catecismo, aprofundamos a fé: obras de misericórdia, vícios e virtudes, dons e frutos do Espírito Santo e Bem-aventuranças. Direção espiritual do Padre Mario Sartori.</p>
+        <div class="num"><div><b>17</b><span>semanas</span></div><div><b>5</b><span>temas</span></div></div>
+        <div class="acoes"><a class="btn btn-lar" href="../site/santificai.html">Ver o material do curso</a><a class="btn btn-lar-l">Novas turmas em breve</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="diferenca">
+  <div class="wrap">
+    <div class="cartao"><span class="ic">✦</span><div><h3>Qual curso fazer primeiro?</h3><p>O caminho começa no <b>Diga SIM a Deus</b>, o encontro pessoal com Jesus. Depois, o <b>Santificai-vos</b> aprofunda temas que não dá para ver com calma no Seminário de Vida.</p></div></div>
+  </div>
+</section>
+<script src="partes.js"></script>
+</body></html>
