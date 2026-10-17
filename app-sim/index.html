@@ -32,6 +32,9 @@
 <symbol id="i-biblia" viewBox="0 0 24 24"><path d="M5 4a2 2 0 0 1 2-2h12v18H7a2 2 0 0 0-2 2z"/><path d="M5 20V4M12 6v7M9.5 8.5h5"/></symbol>
 <symbol id="i-capelo" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></symbol>
 <symbol id="i-fone" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+<symbol id="i-agenda" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-repete" viewBox="0 0 24 24"><path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4"/></symbol>
 </defs></svg>
 
 <div class="fone">
@@ -62,10 +65,10 @@
       <div class="pontos"><i class="on"></i><i></i></div>
       <div class="secao"><h2>Acesso rápido</h2></div>
       <div class="atalhos">
-        <a href="#eventos"><span><svg class="i"><use href="#i-cal"/></svg></span>Eventos</a>
         <a href="#liturgia"><span><svg class="i"><use href="#i-biblia"/></svg></span>Liturgia</a>
         <a href="#oracoes"><span><svg class="i"><use href="#i-maos"/></svg></span>Orações</a>
         <a href="#cursos"><span><svg class="i"><use href="#i-capelo"/></svg></span>Cursos</a>
+        <a href="#agenda"><span><svg class="i"><use href="#i-agenda"/></svg></span>Minha agenda</a>
         <a href="#formacao"><span><svg class="i"><use href="#i-revista"/></svg></span>Formação</a>
         <a class="dest" href="#socio"><span><svg class="i"><use href="#i-estrela"/></svg></span>Área do sócio</a>
       </div>
@@ -120,7 +123,7 @@
       <div class="secao"><h2>Sobre</h2></div>
       <p class="texto">Kairós é o tempo de Deus, o momento certo em que a graça entra na nossa história. Um dia inteiro de pregação, louvor e Santa Missa no Ano Jubilar dos 30 anos da comunidade.</p>
     </div>
-    <div class="rodape-acao"><span class="redondo"><svg class="i"><use href="#i-sino"/></svg></span><a class="btn btn-ouro" href="#evento">Quero me inscrever</a></div>
+    <div class="rodape-acao"><a class="redondo" href="#agenda" title="Adicionar à minha agenda"><svg class="i"><use href="#i-agenda"/></svg></a><a class="btn btn-ouro" href="#evento">Quero me inscrever</a></div>
   </section>
 
   <!-- LITURGIA DIÁRIA -->
@@ -149,6 +152,45 @@
       <a class="reza cartao"><img src="../site/img/sao-joao-paulo-ii.jpg" alt=""><div><h5>Oração a São João Paulo II</h5><small>Papa das Famílias e dos Jovens</small></div><em>›</em></a>
       <a class="reza cartao"><img src="../site/img/adoracao.jpg" alt=""><div><h5>Orações do dia a dia</h5><small>Manhã, refeições e noite</small></div><em>›</em></a>
     </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="tela" id="agenda" data-aba="agenda">
+    <div class="rolagem">
+      <div class="topo"><div><span class="eb">Fé e rotina</span><h1>Minha <em>agenda</em></h1></div><a class="redondo" href="#novo" style="background:var(--noite);color:var(--o1)"><svg class="i"><use href="#i-mais"/></svg></a></div>
+      <div class="dias"><span>QUI<b>15</b></span><span>SEX<b>16</b></span><span class="on">SÁB<b>17</b></span><span>DOM<b>18</b></span><span>SEG<b>19</b></span><span>TER<b>20</b><i class="pt"></i></span></div>
+      <div class="meta cartao">
+        <div class="anel" style="--p:60"><b>3/5</b></div>
+        <div><span class="tag">Vida de oração hoje</span><h4>3 de 5 momentos rezados</h4><p>Faltam o Terço da Misericórdia e a oração da noite.</p></div>
+      </div>
+      <div class="legenda"><span><i class="c-ora"></i>Oração</span><span><i class="c-pes"></i>Compromisso</span><span><i class="c-sim"></i>Comunidade SIM</span></div>
+      <div class="linha-t">
+        <div class="it ora feito"><time>06:00</time><div><b>Liturgia diária</b><small>Leituras e santo do dia</small></div><span class="ok"><svg class="i"><use href="#i-check"/></svg></span></div>
+        <div class="it pes"><time>08:00</time><div><b>Trabalho</b><small>Até 12h</small></div></div>
+        <div class="it ora feito"><time>12:00</time><div><b>Ângelus</b><small>Pausa de 3 minutos</small></div><span class="ok"><svg class="i"><use href="#i-check"/></svg></span></div>
+        <div class="it pes"><time>14:00</time><div><b>Médico · consulta</b><small>Lembrete 30 min antes</small></div></div>
+        <div class="it ora agora"><time>15:00</time><div><b>Terço da Misericórdia</b><small>Agora · toque para rezar</small></div><a class="mini-r" href="#oracoes">Rezar</a></div>
+        <div class="it ora feito"><time>18:30</time><div><b>Visita ao Santíssimo</b><small>Matriz N. Sra. Aparecida</small></div><span class="ok"><svg class="i"><use href="#i-check"/></svg></span></div>
+        <div class="it sim"><time>19:30</time><div><b>Grupo de oração</b><small>Comunidade SIM</small></div></div>
+        <div class="it ora"><time>22:00</time><div><b>Oração da noite</b><small>Exame de consciência</small></div></div>
+      </div>
+      <div class="sep"><svg class="i"><use href="#i-repete"/></svg><span>Sincronize com a <b>agenda do celular</b> (Google ou Apple).</span></div>
+    </div>
+  </section>
+
+  <!-- NOVO COMPROMISSO -->
+  <section class="tela" id="novo">
+    <div class="rolagem" style="padding-bottom:130px">
+      <div class="topo" style="padding-top:110px"><a class="redondo voltar" href="#agenda"><svg class="i"><use href="#i-volta"/></svg></a><div><span class="eb">Agenda</span><h1>Novo <em>momento</em></h1></div></div>
+      <div class="campo"><label>Tipo</label><div class="tipos">
+        <span class="on"><i class="c-ora"></i>Oração</span><span><i class="c-pes"></i>Compromisso</span><span><i class="c-sim"></i>Evento SIM</span></div></div>
+      <div class="campo"><label>O que vou rezar</label><div class="chips"><span class="chip">Liturgia</span><span class="chip on">Terço da Misericórdia</span><span class="chip">Santo Terço</span><span class="chip">Ângelus</span><span class="chip">Adoração</span><span class="chip">Outra</span></div></div>
+      <div class="dupla"><div class="campo" style="margin-right:0"><label>Horário</label><div class="linha">15:00</div></div><div class="campo" style="margin-left:0"><label>Duração</label><div class="linha">15 min</div></div></div>
+      <div class="campo"><label>Repetir</label><div class="sem"><span class="on">D</span><span class="on">S</span><span class="on">T</span><span class="on">Q</span><span class="on">Q</span><span class="on">S</span><span class="on">S</span></div></div>
+      <div class="opcao cartao"><p>Lembrete no celular<small>Avisar 5 minutos antes</small></p><span class="chave"></span></div>
+      <div class="opcao cartao"><p>Proteger este horário<small>Avisa se marcar um compromisso por cima</small></p><span class="chave"></span></div>
+    </div>
+    <div class="rodape-acao"><a class="btn btn-azul" href="#agenda">Salvar na agenda</a></div>
   </section>
 
   <!-- 5. CURSOS -->
@@ -276,6 +318,7 @@
     <a href="#eventos" data-aba="eventos"><svg class="i"><use href="#i-cal"/></svg>Eventos</a>
     <a href="#liturgia" data-aba="liturgia"><svg class="i"><use href="#i-biblia"/></svg>Liturgia</a>
     <a href="#oracoes" data-aba="oracoes"><svg class="i"><use href="#i-maos"/></svg>Orações</a>
+    <a href="#agenda" data-aba="agenda"><svg class="i"><use href="#i-agenda"/></svg>Agenda</a>
     <a href="#cursos" data-aba="cursos"><svg class="i"><use href="#i-capelo"/></svg>Cursos</a>
     <a href="#formacao" data-aba="formacao"><svg class="i"><use href="#i-revista"/></svg>Formação</a>
     <a href="#socio" data-aba="socio"><svg class="i"><use href="#i-estrela"/></svg>Sócio</a>

@@ -336,3 +336,37 @@ body.prancha{display:block;padding:60px}
 .santo h4{font-family:var(--serif);font-size:18px;color:var(--noite);line-height:1.15;margin-top:2px}
 .santo p{font-size:12px;color:var(--suave)}
 .santo em{margin-left:auto;font-style:normal;color:#b0bcc1;font-size:20px}
+/* abas: 7 itens */
+.abas{left:8px;right:8px;padding:0 2px}.abas a{font-size:8.6px;gap:4px}.abas svg.i{width:21px;height:21px}
+/* agenda */
+.dias span{position:relative}.dias .pt{position:absolute;bottom:7px;width:5px;height:5px;border-radius:50%;background:var(--o2)}
+.meta{margin:14px 20px 0;padding:16px;display:flex;gap:16px;align-items:center}
+.anel{--p:0;width:68px;height:68px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(var(--o2) calc(var(--p)*1%),#f1e4d2 0);position:relative}
+.anel::before{content:"";position:absolute;inset:7px;border-radius:50%;background:#fff}
+.anel b{position:relative;font-family:var(--serif);font-size:19px;color:var(--noite)}
+.meta h4{font-family:var(--serif);font-size:17px;color:var(--noite);margin-top:2px}
+.meta p{font-size:12px;color:var(--suave);margin-top:2px;line-height:1.4}
+.legenda{display:flex;gap:14px;padding:16px 20px 4px;font-size:11px;font-weight:700;color:var(--suave)}
+.legenda span{display:flex;align-items:center;gap:6px}
+.legenda i,.tipos i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.c-ora{background:var(--o2)}.c-pes{background:#8fa3ad}.c-sim{background:#f47a2a}
+.linha-t{padding:6px 20px 0}
+.it{display:flex;gap:12px;align-items:center;padding:11px 14px;margin-top:8px;border-radius:16px;background:#fff;border-left:5px solid #8fa3ad;box-shadow:0 10px 20px -18px rgba(4,38,58,.6)}
+.it time{font-size:12px;font-weight:800;color:var(--noite);width:40px;flex:none}
+.it b{display:block;font-size:13.5px;color:var(--noite)}
+.it small{font-size:11px;color:var(--suave)}
+.it.ora{border-left-color:var(--o2)}.it.sim{border-left-color:#f47a2a}
+.it.pes{background:#f6efe7}
+.it.feito b{text-decoration:line-through;text-decoration-color:rgba(4,38,58,.35)}
+.it .ok{margin-left:auto;width:26px;height:26px;border-radius:50%;background:var(--o2);color:#fff;display:grid;place-items:center;flex:none}
+.it .ok svg{width:14px;height:14px;stroke-width:2.6}
+.it.agora{background:var(--noite);border-left-color:var(--o1)}.it.agora time,.it.agora b{color:#fff}.it.agora small{color:var(--o1)}
+.mini-r{margin-left:auto;height:30px;padding:0 14px;border-radius:999px;background:var(--ouro);color:var(--noite);font-size:12px;font-weight:800;display:flex;align-items:center}
+/* novo momento */
+.tipos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tipos span{height:46px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:700;color:var(--noite);box-shadow:inset 0 0 0 1px rgba(4,38,58,.1)}
+.tipos span.on{box-shadow:inset 0 0 0 2px var(--o2);background:#fbf1e2}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px}.dupla .campo{margin:16px 0 0}
+.sem{display:flex;justify-content:space-between}
+.sem span{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:#fff;color:var(--suave)}
+.sem span.on{background:var(--noite);color:var(--o1)}
