@@ -29,6 +29,9 @@
 <symbol id="i-engr" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
 <symbol id="i-cora" viewBox="0 0 24 24"><path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.3 12 20 12 20z"/></symbol>
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+<symbol id="i-biblia" viewBox="0 0 24 24"><path d="M5 4a2 2 0 0 1 2-2h12v18H7a2 2 0 0 0-2 2z"/><path d="M5 20V4M12 6v7M9.5 8.5h5"/></symbol>
+<symbol id="i-capelo" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></symbol>
+<symbol id="i-fone" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
 </defs></svg>
 
 <div class="fone">
@@ -49,7 +52,7 @@
     <div class="rolagem">
       <div class="topo">
         <div class="ola"><img src="../site/img/logo-sim.jpg" alt=""><div><small>Paz e bem!</small><b>Olá, irmão</b></div></div>
-        <a class="redondo" href="#perfil"><svg class="i"><use href="#i-sino"/></svg><i class="ponto"></i></a>
+        <a class="redondo" href="#perfil"><svg class="i"><use href="#i-user"/></svg><i class="ponto"></i></a>
       </div>
       <a class="jubileu" href="#eventos" style="display:block">
         <img src="../site/img/oson-multidao.jpg" alt="">
@@ -63,16 +66,16 @@
       <div class="secao"><h2>Acesso rápido</h2></div>
       <div class="atalhos">
         <a href="#eventos"><span><svg class="i"><use href="#i-cal"/></svg></span>Eventos</a>
-        <a href="#cursos"><span><svg class="i"><use href="#i-livro"/></svg></span>Cursos</a>
+        <a href="#liturgia"><span><svg class="i"><use href="#i-biblia"/></svg></span>Liturgia</a>
+        <a href="#oracoes"><span><svg class="i"><use href="#i-maos"/></svg></span>Orações</a>
+        <a href="#cursos"><span><svg class="i"><use href="#i-capelo"/></svg></span>Cursos</a>
         <a href="#formacao"><span><svg class="i"><use href="#i-revista"/></svg></span>Formação</a>
-        <a href="#oracao"><span><svg class="i"><use href="#i-maos"/></svg></span>Oração</a>
-        <a href="#perfil"><span><svg class="i"><use href="#i-sacola"/></svg></span>Loja</a>
-        <a class="dest" href="#socio"><span><svg class="i"><use href="#i-estrela"/></svg></span>Seja sócio</a>
+        <a class="dest" href="#socio"><span><svg class="i"><use href="#i-estrela"/></svg></span>Área do sócio</a>
       </div>
       <div class="secao"><h2>Hora da Misericórdia</h2></div>
       <div class="hora">
         <img src="../site/img/confio.jpg" alt="">
-        <div><h4>Terço da Misericórdia</h4><p>Todos os dias às 15h. Reze com a comunidade.</p><span class="mini">Rezar agora</span></div>
+        <div><h4>Terço da Misericórdia</h4><p>Todos os dias às 15h. Reze com a comunidade.</p><a class="mini" href="#oracoes">Rezar agora</a></div>
       </div>
       <div class="secao"><h2>Para aprofundar</h2><a href="#formacao">Ver tudo</a></div>
       <div class="trilho">
@@ -123,10 +126,37 @@
     <div class="rodape-acao"><span class="redondo"><svg class="i"><use href="#i-sino"/></svg></span><a class="btn btn-ouro" href="#evento">Quero me inscrever</a></div>
   </section>
 
+  <!-- LITURGIA DIÁRIA -->
+  <section class="tela" id="liturgia" data-aba="liturgia">
+    <div class="rolagem">
+      <div class="topo"><div><span class="eb">Palavra de Deus</span><h1>Liturgia <em>diária</em></h1></div><span class="redondo"><svg class="i"><use href="#i-cal"/></svg></span></div>
+      <div class="dias"><span>QUI<b>15</b></span><span>SEX<b>16</b></span><span class="on">SÁB<b>17</b></span><span>DOM<b>18</b></span><span>SEG<b>19</b></span><span>TER<b>20</b></span></div>
+      <div class="tempo-lit"><div><small>TEMPO COMUM · COR LITÚRGICA</small><b>Sábado, 17 de outubro</b></div><i></i></div>
+      <div class="leit cartao"><div class="ref"><b>PRIMEIRA LEITURA</b><span class="ouvir"><svg class="i"><use href="#i-play"/></svg>Ouvir</span></div><h4>Leitura do dia</h4><p>O texto completo da leitura aparece aqui, atualizado automaticamente todos os dias…</p></div>
+      <div class="leit cartao"><div class="ref"><b>SALMO RESPONSORIAL</b><span class="ouvir"><svg class="i"><use href="#i-play"/></svg>Ouvir</span></div><h4>Refrão do salmo</h4><p>O salmo do dia com o refrão destacado para rezar junto…</p></div>
+      <div class="leit cartao ev"><div class="ref"><b>EVANGELHO</b><span class="ouvir"><svg class="i"><use href="#i-play"/></svg>Ouvir</span></div><h4>Evangelho do dia</h4><p>O Evangelho do dia e, logo abaixo, uma meditação curta da Comunidade SIM.</p></div>
+      <div class="sep"><svg class="i"><use href="#i-sino"/></svg><span>Receba a <b>liturgia todo dia às 6h</b> com uma notificação.</span></div>
+    </div>
+  </section>
+
+  <!-- ORAÇÕES -->
+  <section class="tela" id="oracoes" data-aba="oracoes">
+    <div class="rolagem">
+      <div class="topo"><div><span class="eb">Vida de oração</span><h1>Nossas <em>orações</em></h1></div></div>
+      <a class="pedido-c" href="#oracao"><span><svg class="i"><use href="#i-maos"/></svg></span><div><b>Fazer um pedido de oração</b><small>A comunidade reza com você</small></div></a>
+      <div class="secao"><h2>Rezar agora</h2></div>
+      <a class="reza cartao"><img src="../site/img/confio.jpg" alt=""><div><h5>Terço da Misericórdia</h5><small>Áudio guiado · 15 min</small></div><em>15H</em></a>
+      <a class="reza cartao"><img src="../site/img/form-nossa-senhora.jpg" alt=""><div><h5>Santo Terço</h5><small>Mistérios do dia</small></div><em>DIÁRIO</em></a>
+      <a class="reza cartao"><img src="../site/img/santa-faustina.jpg" alt=""><div><h5>Novena a Santa Faustina</h5><small>Apóstola da Misericórdia</small></div><em>9 DIAS</em></a>
+      <a class="reza cartao"><img src="../site/img/sao-joao-paulo-ii.jpg" alt=""><div><h5>Oração a São João Paulo II</h5><small>Papa das Famílias e dos Jovens</small></div><em>›</em></a>
+      <a class="reza cartao"><img src="../site/img/adoracao.jpg" alt=""><div><h5>Orações do dia a dia</h5><small>Manhã, refeições e noite</small></div><em>›</em></a>
+    </div>
+  </section>
+
   <!-- 5. CURSOS -->
   <section class="tela" id="cursos" data-aba="cursos">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Caminhos de fé</span><h1>Meus <em>cursos</em></h1></div></div>
+      <div class="topo"><div><span class="eb">Caminhos de fé</span><h1>Nossos <em>cursos</em></h1></div></div>
       <a class="curso c-diga" href="#aula">
         <div class="vis"><img src="../site/img/pomba.jpg" alt=""><h3>Diga<i> SIM</i><br>a Deus</h3></div>
         <div class="tx"><span class="tag">Seminário de Vida no Espírito Santo</span>
@@ -139,6 +169,9 @@
           <div class="prog"><div class="barra"><i style="width:0%"></i></div>Comece quando quiser</div>
           <div class="seg"><small style="font-size:12px;opacity:.75">17 semanas · 5 temas</small><span class="btn b-lar">Começar</span></div></div>
       </a>
+      <div class="secao"><h2>Exclusivos para sócios</h2><a href="#socio">Ver área</a></div>
+      <a class="exc cartao bloq" href="#bloqueado"><div class="cap"><img src="../site/img/form-pregador.jpg" alt=""><span class="cad"><svg class="i"><use href="#i-cadeado"/></svg></span></div><div><span class="selo-s"><svg class="i"><use href="#i-estrela"/></svg>SÓCIO</span><h5>Escola de pregadores</h5><small>8 aulas · em vídeo</small></div></a>
+      <a class="exc cartao bloq" href="#bloqueado"><div class="cap"><img src="../site/img/adoracao.jpg" alt=""><span class="cad"><svg class="i"><use href="#i-cadeado"/></svg></span></div><div><span class="selo-s"><svg class="i"><use href="#i-estrela"/></svg>SÓCIO</span><h5>Retiro online do Ano Jubilar</h5><small>5 encontros</small></div></a>
     </div>
   </section>
 
@@ -161,8 +194,24 @@
     </div>
   </section>
 
+  <!-- CURSO EXCLUSIVO (BLOQUEADO) -->
+  <section class="tela" id="bloqueado" data-status="claro">
+    <div class="rolagem" style="padding-bottom:40px">
+      <div class="capa-b"><img src="../site/img/form-pregador.jpg" alt=""><a class="redondo voltar" href="#cursos"><svg class="i"><use href="#i-volta"/></svg></a><span class="cad-g"><svg class="i"><use href="#i-cadeado"/></svg></span></div>
+      <h2>Escola de pregadores é <em class="ouro-t">exclusivo para sócios</em></h2>
+      <p class="sub">Seja sócio da Comunidade SIM para liberar este e todos os cursos da Área do Sócio.</p>
+      <ul>
+        <li><span><svg class="i"><use href="#i-check"/></svg></span>Todos os cursos exclusivos liberados</li>
+        <li><span><svg class="i"><use href="#i-check"/></svg></span>Revista mensal no aplicativo</li>
+        <li><span><svg class="i"><use href="#i-check"/></svg></span>Carteira de sócio digital</li>
+        <li><span><svg class="i"><use href="#i-check"/></svg></span>Você ajuda a evangelização a chegar mais longe</li>
+      </ul>
+      <div class="bts"><a class="btn btn-ouro" href="#socio">Quero ser sócio</a><a class="btn btn-linha" href="#socio">Já sou sócio · entrar</a></div>
+    </div>
+  </section>
+
   <!-- 7. FORMAÇÃO -->
-  <section class="tela" id="formacao" data-aba="inicio">
+  <section class="tela" id="formacao" data-aba="formacao">
     <div class="rolagem">
       <div class="topo"><div><span class="eb">Conteúdos</span><h1><em>Formação</em></h1></div></div>
       <div class="busca"><svg class="i"><use href="#i-busca"/></svg>Buscar um tema…</div>
@@ -175,9 +224,9 @@
   </section>
 
   <!-- 8. PEDIDO DE ORAÇÃO -->
-  <section class="tela" id="oracao" data-aba="oracao">
+  <section class="tela" id="oracao" data-aba="oracoes">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Intercessão</span><h1>Pedido de <em>oração</em></h1></div></div>
+      <div class="topo" style="padding-top:110px"><a class="redondo voltar" href="#oracoes"><svg class="i"><use href="#i-volta"/></svg></a><div><span class="eb">Intercessão</span><h1>Pedido de <em>oração</em></h1></div></div>
       <div class="ora-capa"><h3>“Jesus, eu confio em vós!”</h3><p>Deixe a sua intenção. A comunidade reza com você.</p></div>
       <div class="campo"><label>Rezar por</label><div class="chips"><span class="chip on">Por mim</span><span class="chip">Família</span><span class="chip">Saúde</span><span class="chip">Trabalho</span><span class="chip">Outro</span></div></div>
       <div class="campo"><label>Seu pedido</label><div class="area">Escreva aqui a sua intenção…</div></div>
@@ -186,36 +235,35 @@
     </div>
   </section>
 
-  <!-- 9. SÓCIO -->
-  <section class="tela" id="socio" data-aba="perfil">
+  <!-- 9. ÁREA DO SÓCIO -->
+  <section class="tela" id="socio" data-aba="socio">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Família SIM</span><h1>Seja <em>sócio</em></h1></div></div>
+      <div class="topo"><div><span class="eb">Exclusivo</span><h1>Área do <em>sócio</em></h1></div><a class="redondo" href="#perfil"><svg class="i"><use href="#i-user"/></svg></a></div>
       <div class="carteira">
         <div class="lg"><img src="../site/img/logo-sim.jpg" alt=""><div><b>Comunidade SIM</b><small>CARTEIRA DE SÓCIO</small></div></div>
         <img class="selo" src="../site/img/selo-30-anos.png" alt="">
-        <div class="nome"><small>SÓCIO EVANGELIZADOR</small><b>Seu nome aqui</b><span>Nº 0000 · desde 2026</span></div>
+        <div class="nome"><small>SÓCIO EVANGELIZADOR</small><b>Seu nome aqui</b><span>Nº 0000 · ativo</span></div>
         <div class="qr"><i></i></div>
       </div>
-      <div class="secao"><h2>O que você recebe</h2></div>
-      <div class="beneficios">
-        <div class="cartao"><span><svg class="i"><use href="#i-revista"/></svg></span><b>Revista mensal</b><small>Chega todo mês no app</small></div>
-        <div class="cartao"><span><svg class="i"><use href="#i-maos"/></svg></span><b>Oração diária</b><small>A comunidade reza por você</small></div>
-      </div>
+      <div class="secao"><h2>Cursos liberados</h2><a href="#cursos">Todos</a></div>
+      <a class="exc cartao" href="#aula"><div class="cap"><img src="../site/img/form-pregador.jpg" alt=""></div><div><span class="selo-s lib"><svg class="i"><use href="#i-check"/></svg>LIBERADO</span><h5>Escola de pregadores</h5><small>Aula 2 de 8</small></div></a>
+      <a class="exc cartao" href="#aula"><div class="cap"><img src="../site/img/adoracao.jpg" alt=""></div><div><span class="selo-s lib"><svg class="i"><use href="#i-check"/></svg>LIBERADO</span><h5>Retiro online do Ano Jubilar</h5><small>5 encontros</small></div></a>
       <div class="secao"><h2>Revista do mês</h2></div>
-      <div class="revista cartao"><div class="capa"><img src="../site/img/socio-capa.jpg" alt=""><b>Revista SIM</b></div><div><span class="tag">Outubro</span><h5>Edição do Ano Jubilar</h5><p>30 anos de misericórdia</p><span class="mini">Ler agora</span></div></div>
-      <div class="pad" style="margin-top:18px"><a class="btn btn-ouro" href="https://www.redesim.com.br/contribua/">Quero contribuir</a></div>
+      <div class="revista cartao"><div class="capa"><img src="../site/img/socio-capa.jpg" alt=""><b>Revista SIM</b></div><div><span class="tag">Outubro</span><h5>Edição do Ano Jubilar</h5><p>Só para sócios</p><span class="mini">Ler agora</span></div></div>
+      <div class="sep"><svg class="i"><use href="#i-cora"/></svg><span>Sua contribuição mantém a <b>evangelização da SIM</b>.</span></div>
+      <div class="pad" style="margin-top:14px"><a class="btn btn-ouro" href="https://www.redesim.com.br/contribua/">Minha contribuição</a></div>
     </div>
   </section>
 
   <!-- 10. PERFIL / MAIS -->
-  <section class="tela" id="perfil" data-aba="perfil">
+  <section class="tela" id="perfil" data-aba="inicio">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Sua conta</span><h1><em>Perfil</em></h1></div><span class="redondo"><svg class="i"><use href="#i-engr"/></svg></span></div>
+      <div class="topo" style="padding-top:110px"><a class="redondo voltar" href="#inicio"><svg class="i"><use href="#i-volta"/></svg></a><div><span class="eb">Sua conta</span><h1><em>Perfil</em></h1></div><span class="redondo"><svg class="i"><use href="#i-engr"/></svg></span></div>
       <div class="perfil-c"><div class="av"><div>S</div></div><b>Seu nome</b><small>Dracena-SP</small><span class="sel">SÓCIO SIM · 30 ANOS</span></div>
       <div class="menu-l cartao">
-        <a href="#cursos"><span><svg class="i"><use href="#i-livro"/></svg></span>Meus cursos<i class="badge">1</i></a>
+        <a href="#cursos"><span><svg class="i"><use href="#i-capelo"/></svg></span>Meus cursos<i class="badge">1</i></a>
         <a href="#evento"><span><svg class="i"><use href="#i-ticket"/></svg></span>Minhas inscrições<em>›</em></a>
-        <a href="#socio"><span><svg class="i"><use href="#i-estrela"/></svg></span>Carteira de sócio<em>›</em></a>
+        <a href="#socio"><span><svg class="i"><use href="#i-estrela"/></svg></span>Área do sócio<em>›</em></a>
         <a href="https://www.simlivraria.com.br/"><span><svg class="i"><use href="#i-sacola"/></svg></span>Loja SIM<em>›</em></a>
         <a href="#perfil"><span><svg class="i"><use href="#i-sino"/></svg></span>Notificações<em>›</em></a>
         <a href="https://wa.me/5518996708825"><span><svg class="i"><use href="#i-papo"/></svg></span>Fale conosco<em>›</em></a>
@@ -227,11 +275,12 @@
   </section>
 
   <nav class="abas">
-    <a href="#inicio" data-aba="inicio"><svg class="i"><use href="#i-casa"/></svg>Início</a>
     <a href="#eventos" data-aba="eventos"><svg class="i"><use href="#i-cal"/></svg>Eventos</a>
-    <a href="#cursos" data-aba="cursos"><svg class="i"><use href="#i-livro"/></svg>Cursos</a>
-    <a href="#oracao" data-aba="oracao"><svg class="i"><use href="#i-maos"/></svg>Oração</a>
-    <a href="#perfil" data-aba="perfil"><svg class="i"><use href="#i-user"/></svg>Perfil</a>
+    <a href="#liturgia" data-aba="liturgia"><svg class="i"><use href="#i-biblia"/></svg>Liturgia</a>
+    <a href="#oracoes" data-aba="oracoes"><svg class="i"><use href="#i-maos"/></svg>Orações</a>
+    <a href="#cursos" data-aba="cursos"><svg class="i"><use href="#i-capelo"/></svg>Cursos</a>
+    <a href="#formacao" data-aba="formacao"><svg class="i"><use href="#i-revista"/></svg>Formação</a>
+    <a href="#socio" data-aba="socio"><svg class="i"><use href="#i-estrela"/></svg>Sócio</a>
   </nav>
 </div>
 
