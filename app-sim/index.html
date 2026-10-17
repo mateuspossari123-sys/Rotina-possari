@@ -127,9 +127,9 @@
   </section>
 
   <!-- LITURGIA DIÁRIA -->
-  <section class="tela" id="liturgia" data-aba="liturgia">
+  <section class="tela" id="liturgia" data-aba="oracoes">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Palavra de Deus</span><h1>Liturgia <em>diária</em></h1></div><span class="redondo"><svg class="i"><use href="#i-cal"/></svg></span></div>
+      <div class="topo" style="padding-top:110px"><a class="redondo voltar" href="#oracoes"><svg class="i"><use href="#i-volta"/></svg></a><div><span class="eb">Minhas orações</span><h1>Liturgia <em>diária</em></h1></div><span class="redondo"><svg class="i"><use href="#i-cal"/></svg></span></div>
       <div class="dias"><span>QUI<b>15</b></span><span>SEX<b>16</b></span><span class="on">SÁB<b>17</b></span><span>DOM<b>18</b></span><span>SEG<b>19</b></span><span>TER<b>20</b></span></div>
       <div class="tempo-lit verm"><div><small>MEMÓRIA · COR VERMELHA</small><b>Sábado, 17 de outubro</b></div><i></i></div>
       <div class="santo cartao"><div class="ic"><svg class="i"><use href="#i-cruz"/></svg></div><div><span class="tag">Santo do dia</span><h4>Santo Inácio de Antioquia</h4><p>Bispo e mártir · séc. II</p></div><em>›</em></div>
@@ -143,9 +143,14 @@
   <!-- ORAÇÕES -->
   <section class="tela" id="oracoes" data-aba="oracoes">
     <div class="rolagem">
-      <div class="topo"><div><span class="eb">Vida de oração</span><h1>Nossas <em>orações</em></h1></div></div>
-      <a class="pedido-c" href="#oracao"><span><svg class="i"><use href="#i-maos"/></svg></span><div><b>Fazer um pedido de oração</b><small>A comunidade reza com você</small></div></a>
-      <div class="secao"><h2>Rezar agora</h2></div>
+      <div class="topo"><div><span class="eb">Vida de oração</span><h1>Minhas <em>orações</em></h1></div></div>
+      <a class="lit-c" href="#liturgia">
+        <div class="lit-top"><span><svg class="i"><use href="#i-biblia"/></svg></span><div><small>LITURGIA DIÁRIA</small><b>Sábado, 17 de outubro</b></div><i></i></div>
+        <div class="lit-lista"><p><em>1ª Leitura</em><em>Salmo</em><em>Evangelho</em></p></div>
+        <div class="lit-santo"><span class="ic"><svg class="i"><use href="#i-cruz"/></svg></span><div><small>Santo do dia</small><b>Santo Inácio de Antioquia</b></div><span class="mini">Ler</span></div>
+      </a>
+      <a class="pedido-c" href="#oracao" style="margin-top:12px"><span><svg class="i"><use href="#i-maos"/></svg></span><div><b>Fazer um pedido de oração</b><small>A comunidade reza com você</small></div></a>
+      <div class="secao" style="margin-top:20px"><h2>Rezar agora</h2></div>
       <a class="reza cartao"><img src="../site/img/confio.jpg" alt=""><div><h5>Terço da Misericórdia</h5><small>Áudio guiado · 15 min</small></div><em>15H</em></a>
       <a class="reza cartao"><img src="../site/img/form-nossa-senhora.jpg" alt=""><div><h5>Santo Terço</h5><small>Mistérios do dia</small></div><em>DIÁRIO</em></a>
       <a class="reza cartao"><img src="../site/img/santa-faustina.jpg" alt=""><div><h5>Novena a Santa Faustina</h5><small>Apóstola da Misericórdia</small></div><em>9 DIAS</em></a>
@@ -316,7 +321,6 @@
 
   <nav class="abas">
     <a href="#eventos" data-aba="eventos"><svg class="i"><use href="#i-cal"/></svg>Eventos</a>
-    <a href="#liturgia" data-aba="liturgia"><svg class="i"><use href="#i-biblia"/></svg>Liturgia</a>
     <a href="#oracoes" data-aba="oracoes"><svg class="i"><use href="#i-maos"/></svg>Orações</a>
     <a href="#agenda" data-aba="agenda"><svg class="i"><use href="#i-agenda"/></svg>Agenda</a>
     <a href="#cursos" data-aba="cursos"><svg class="i"><use href="#i-capelo"/></svg>Cursos</a>

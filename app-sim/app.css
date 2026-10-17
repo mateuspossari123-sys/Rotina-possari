@@ -370,3 +370,19 @@ body.prancha{display:block;padding:60px}
 .sem{display:flex;justify-content:space-between}
 .sem span{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:#fff;color:var(--suave)}
 .sem span.on{background:var(--noite);color:var(--o1)}
+/* abas: 6 itens novamente */
+.abas a{font-size:9.5px}
+/* orações: cartão da liturgia */
+.lit-c{display:block;margin:4px 20px 0;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 14px 30px -22px rgba(4,38,58,.6)}
+.lit-top{display:flex;gap:12px;align-items:center;padding:14px 16px;background:linear-gradient(110deg,#7c1d1d,#a32a2a);color:#fff}
+.lit-top span{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.15);display:grid;place-items:center;flex:none}
+.lit-top small{font-size:10px;font-weight:800;letter-spacing:.2em;opacity:.85}
+.lit-top b{display:block;font-family:var(--serif);font-size:18px}
+.lit-top i{margin-left:auto;width:12px;height:12px;border-radius:50%;background:#ff8a8a;box-shadow:0 0 0 4px rgba(255,255,255,.2)}
+.lit-lista p{display:flex;gap:8px;padding:12px 16px 0}
+.lit-lista em{font-style:normal;font-size:11px;font-weight:700;color:var(--noite);background:#fbf1e2;padding:6px 10px;border-radius:999px}
+.lit-santo{display:flex;gap:12px;align-items:center;padding:12px 16px 14px}
+.lit-santo .ic{width:40px;height:40px;border-radius:50%;background:var(--ouro);color:var(--noite);display:grid;place-items:center;flex:none}
+.lit-santo small{font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--o3);text-transform:uppercase}
+.lit-santo b{display:block;font-family:var(--serif);font-size:15px;color:var(--noite)}
+.lit-santo .mini{margin-left:auto;height:32px;padding:0 16px;border-radius:999px;background:var(--noite);color:var(--o1);font-size:12px;font-weight:800;display:flex;align-items:center}
