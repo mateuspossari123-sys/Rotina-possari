@@ -386,3 +386,25 @@ body.prancha{display:block;padding:60px}
 .lit-santo small{font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--o3);text-transform:uppercase}
 .lit-santo b{display:block;font-family:var(--serif);font-size:15px;color:var(--noite)}
 .lit-santo .mini{margin-left:auto;height:32px;padding:0 16px;border-radius:999px;background:var(--noite);color:var(--o1);font-size:12px;font-weight:800;display:flex;align-items:center}
+/* agenda: mini calendário */
+.mini-cal{margin:0 20px;padding:14px 14px 10px}
+.mc-topo{display:flex;align-items:center;justify-content:space-between;padding:0 4px 8px}
+.mc-topo b{font-family:var(--serif);font-size:18px;color:var(--noite)}
+.seta-m{width:32px;height:32px;border-radius:50%;background:#fbf1e2;color:var(--o3);display:grid;place-items:center}
+.seta-m svg{width:16px;height:16px}
+.mc-sem,.mc-dias{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
+.mc-sem span{font-size:10px;font-weight:800;color:var(--suave);padding:4px 0}
+.mc-dias button,.mc-dias span{height:36px;position:relative;font-size:13px;font-weight:700;color:var(--noite);border-radius:12px}
+.mc-dias button.passou{color:#a9b5ba}
+.mc-dias button.hoje{box-shadow:inset 0 0 0 1.5px var(--o2)}
+.mc-dias button.on{background:var(--noite);color:var(--o1);box-shadow:none}
+.mc-dias button i{position:absolute;left:50%;bottom:4px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%}
+.dia-sel{display:flex;justify-content:space-between;align-items:flex-end;margin:18px 20px 0}
+.dia-sel h3{font-family:var(--serif);font-size:20px;color:var(--noite);margin-top:2px}
+.meta-p{font-size:12px;font-weight:700;color:var(--noite);background:#fff;padding:7px 12px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--o2)}
+.meta-p b{color:var(--o3)}
+.legenda{padding-top:10px}
+/* novo: campo data */
+.data-l{gap:10px;color:var(--noite)!important;font-weight:700}
+.data-l svg{color:var(--o3)}
+.data-l em{margin-left:auto;font-style:normal;font-size:12px;color:var(--o3)}

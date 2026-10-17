@@ -163,11 +163,12 @@
   <section class="tela" id="agenda" data-aba="agenda">
     <div class="rolagem">
       <div class="topo"><div><span class="eb">Fé e rotina</span><h1>Minha <em>agenda</em></h1></div><a class="redondo" href="#novo" style="background:var(--noite);color:var(--o1)"><svg class="i"><use href="#i-mais"/></svg></a></div>
-      <div class="dias"><span>QUI<b>15</b></span><span>SEX<b>16</b></span><span class="on">SÁB<b>17</b></span><span>DOM<b>18</b></span><span>SEG<b>19</b></span><span>TER<b>20</b><i class="pt"></i></span></div>
-      <div class="meta cartao">
-        <div class="anel" style="--p:60"><b>3/5</b></div>
-        <div><span class="tag">Vida de oração hoje</span><h4>3 de 5 momentos rezados</h4><p>Faltam o Terço da Misericórdia e a oração da noite.</p></div>
+      <div class="mini-cal cartao" data-mes="2026-10">
+        <div class="mc-topo"><span class="seta-m"><svg class="i"><use href="#i-volta"/></svg></span><b>Outubro 2026</b><span class="seta-m"><svg class="i"><use href="#i-seta"/></svg></span></div>
+        <div class="mc-sem"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+        <div class="mc-dias"></div>
       </div>
+      <div class="dia-sel"><div><span class="tag">Dia selecionado</span><h3 id="dia-titulo">Sábado, 17 de outubro</h3></div><span class="meta-p"><b>3/5</b> orações</span></div>
       <div class="legenda"><span><i class="c-ora"></i>Oração</span><span><i class="c-pes"></i>Compromisso</span><span><i class="c-sim"></i>Comunidade SIM</span></div>
       <div class="linha-t">
         <div class="it ora feito"><time>06:00</time><div><b>Liturgia diária</b><small>Leituras e santo do dia</small></div><span class="ok"><svg class="i"><use href="#i-check"/></svg></span></div>
@@ -190,6 +191,7 @@
       <div class="campo"><label>Tipo</label><div class="tipos">
         <span class="on"><i class="c-ora"></i>Oração</span><span><i class="c-pes"></i>Compromisso</span><span><i class="c-sim"></i>Evento SIM</span></div></div>
       <div class="campo"><label>O que vou rezar</label><div class="chips"><span class="chip">Liturgia</span><span class="chip on">Terço da Misericórdia</span><span class="chip">Santo Terço</span><span class="chip">Ângelus</span><span class="chip">Adoração</span><span class="chip">Outra</span></div></div>
+      <div class="campo"><label>Data</label><a class="linha data-l" href="#agenda"><svg class="i"><use href="#i-cal"/></svg><span id="novo-data">Sábado, 17 de outubro</span><em>Trocar</em></a></div>
       <div class="dupla"><div class="campo" style="margin-right:0"><label>Horário</label><div class="linha">15:00</div></div><div class="campo" style="margin-left:0"><label>Duração</label><div class="linha">15 min</div></div></div>
       <div class="campo"><label>Repetir</label><div class="sem"><span class="on">D</span><span class="on">S</span><span class="on">T</span><span class="on">Q</span><span class="on">Q</span><span class="on">S</span><span class="on">S</span></div></div>
       <div class="opcao cartao"><p>Lembrete no celular<small>Avisar 5 minutos antes</small></p><span class="chave"></span></div>
@@ -346,6 +348,28 @@
     var r = t.querySelector('.rolagem'); if (r) r.scrollTop = 0;
   }
   window.addEventListener('hashchange', mostrar); mostrar();
+
+  // Mini calendário da agenda: tocar num dia seleciona a data do compromisso.
+  var semana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  var marcados = { 18: 'ora', 20: 'sim', 22: 'pes', 25: 'ora', 29: 'pes' };
+  var cal = document.querySelector('.mc-dias'), ini = new Date(2026, 9, 1).getDay(), sel = 17;
+  function desenhar() {
+    var h = '';
+    for (var i = 0; i < ini; i++) h += '<span></span>';
+    for (var d = 1; d <= 31; d++) {
+      var c = (d === sel ? 'on ' : '') + (d === 17 ? 'hoje ' : '') + (d < 17 ? 'passou' : '');
+      h += '<button class="' + c + '" data-d="' + d + '">' + d + (marcados[d] ? '<i class="c-' + marcados[d] + '"></i>' : '') + '</button>';
+    }
+    cal.innerHTML = h;
+  }
+  cal.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    sel = +b.getAttribute('data-d'); desenhar();
+    var txt = semana[new Date(2026, 9, sel).getDay()] + ', ' + sel + ' de outubro';
+    document.getElementById('dia-titulo').textContent = txt;
+    document.getElementById('novo-data').textContent = txt;
+  });
+  desenhar();
   if (!location.hash) setTimeout(function () { location.hash = 'inicio'; }, 1800);
 })();
 </script>
