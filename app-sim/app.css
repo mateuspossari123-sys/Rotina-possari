@@ -318,3 +318,21 @@ body.prancha{display:block;padding:60px}
 #cursos .c-sant .vis{height:96px}#cursos .c-sant .vis img{width:52px}#cursos .c-sant h3{font-size:36px}
 #cursos .curso .tx{padding:10px 16px 14px}#cursos .curso .seg{margin-top:10px}#cursos .curso .seg .btn{height:38px}
 #cursos .topo{padding-bottom:6px}#cursos .secao{margin-top:18px}
+/* início: carrossel de eventos */
+.carrossel{display:flex;gap:12px;overflow-x:auto;padding:0 20px;scroll-snap-type:x mandatory;scrollbar-width:none}.carrossel::-webkit-scrollbar{display:none}
+.slide{flex:none;width:300px;height:360px;border-radius:26px;overflow:hidden;position:relative;color:#fff;isolation:isolate;scroll-snap-align:start;box-shadow:0 20px 34px -22px rgba(4,38,58,.8)}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.slide::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(4,38,58,.95) 12%,rgba(4,38,58,0) 55%)}
+.slide .data-p{position:absolute;left:16px;top:16px;font-size:11px;font-weight:800;letter-spacing:.14em;padding:7px 12px;border-radius:999px;background:var(--ouro);color:var(--noite)}
+.slide .tx{position:absolute;left:18px;right:18px;bottom:18px}
+.slide .tag{color:var(--o1)}
+.slide h3{font-family:var(--serif);font-size:24px;line-height:1.1;margin-top:5px}
+.pontos{display:flex;gap:6px;justify-content:center;margin-top:12px}
+.pontos i{width:6px;height:6px;border-radius:6px;background:rgba(4,38,58,.2)}.pontos i.on{width:20px;background:var(--o2)}
+/* liturgia: santo do dia */
+.tempo-lit.verm{background:linear-gradient(110deg,#7c1d1d,#a32a2a)}.tempo-lit.verm i{background:#ff8a8a}
+.santo{margin:12px 20px 0;padding:14px 16px;display:flex;gap:14px;align-items:center}
+.santo .ic{width:56px;height:56px;border-radius:50%;background:var(--ouro);color:var(--noite);display:grid;place-items:center;flex:none;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--o2)}
+.santo h4{font-family:var(--serif);font-size:18px;color:var(--noite);line-height:1.15;margin-top:2px}
+.santo p{font-size:12px;color:var(--suave)}
+.santo em{margin-left:auto;font-style:normal;color:#b0bcc1;font-size:20px}
