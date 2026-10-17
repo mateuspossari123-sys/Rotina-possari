@@ -425,3 +425,7 @@ body.prancha{display:block;padding:60px}
 .dia-sel h3{font-size:18px}
 #agenda .topo{padding-bottom:6px}
 #agenda .legenda{display:none}
+/* agenda: semana fechada, mês ao tocar */
+.mc-mes{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--o3)}
+.mc-mes svg{width:13px;height:13px;transform:rotate(90deg);transition:transform .2s}
+.mini-cal.aberto .mc-mes svg{transform:rotate(-90deg)}

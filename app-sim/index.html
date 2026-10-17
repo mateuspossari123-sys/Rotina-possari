@@ -164,7 +164,7 @@
     <div class="rolagem">
       <div class="topo"><div><span class="eb">Fé e rotina</span><h1>Minha <em>agenda</em></h1></div><a class="redondo" href="#novo" style="background:var(--noite);color:var(--o1)"><svg class="i"><use href="#i-mais"/></svg></a></div>
       <div class="mini-cal cartao" data-mes="2026-10">
-        <div class="mc-topo"><span class="seta-m"><svg class="i"><use href="#i-volta"/></svg></span><b>Outubro 2026</b><span class="seta-m"><svg class="i"><use href="#i-seta"/></svg></span></div>
+        <div class="mc-topo"><span class="seta-m"><svg class="i"><use href="#i-volta"/></svg></span><button class="mc-mes" type="button">Outubro 2026<svg class="i"><use href="#i-seta"/></svg></button><span class="seta-m"><svg class="i"><use href="#i-seta"/></svg></span></div>
         <div class="mc-sem"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
         <div class="mc-dias"></div>
       </div>
@@ -353,18 +353,23 @@
   var semana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   var marcados = { 18: 'ora', 20: 'sim', 22: 'pes', 25: 'ora', 29: 'pes' };
   var cal = document.querySelector('.mc-dias'), ini = new Date(2026, 9, 1).getDay(), sel = 17;
+  // Fechado mostra só a semana do dia escolhido; tocar no mês abre o mês inteiro.
+  var aberto = false, caixa = document.querySelector('.mini-cal');
   function desenhar() {
-    var h = '';
-    for (var i = 0; i < ini; i++) h += '<span></span>';
+    var h = '', cel = [];
+    for (var i = 0; i < ini; i++) cel.push('<span></span>');
     for (var d = 1; d <= 31; d++) {
       var c = (d === sel ? 'on ' : '') + (d === 17 ? 'hoje ' : '') + (d < 17 ? 'passou' : '');
-      h += '<button class="' + c + '" data-d="' + d + '">' + d + (marcados[d] ? '<i class="c-' + marcados[d] + '"></i>' : '') + '</button>';
+      cel.push('<button class="' + c + '" data-d="' + d + '">' + d + (marcados[d] ? '<i class="c-' + marcados[d] + '"></i>' : '') + '</button>');
     }
-    cal.innerHTML = h;
+    if (!aberto) { var l = Math.floor((sel - 1 + ini) / 7) * 7; cel = cel.slice(l, l + 7); }
+    cal.innerHTML = cel.join('');
+    caixa.classList.toggle('aberto', aberto);
   }
+  document.querySelector('.mc-mes').addEventListener('click', function () { aberto = !aberto; desenhar(); });
   cal.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
-    sel = +b.getAttribute('data-d'); desenhar();
+    sel = +b.getAttribute('data-d'); aberto = false; desenhar();
     var txt = semana[new Date(2026, 9, sel).getDay()] + ', ' + sel + ' de outubro';
     document.getElementById('dia-titulo').textContent = txt;
     document.getElementById('novo-data').textContent = txt;
