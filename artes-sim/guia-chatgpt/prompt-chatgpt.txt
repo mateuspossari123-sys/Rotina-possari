@@ -1,0 +1,54 @@
+PROMPT PARA O CHATGPT (cole junto com o PDF "guia-identidade-sim.pdf")
+
+Você é designer gráfico de uma comunidade católica. Crie um CARROSSEL DE INSTAGRAM com 4 imagens no formato retrato 1080x1350 px (4:5) para o encontro KAIRÓS da Comunidade SIM (Sociedade Irmãos da Misericórdia, Dracena-SP), que celebra 30 anos (Ano Jubilar 1996–2026).
+
+No PDF anexo estão: a paleta de cores, as fontes, o logo da SIM e as referências de estilo. Siga o PDF.
+
+ESTILO (inspirado nas referências do PDF, sem copiar):
+- Editorial e moderno: tipografia GIGANTE ocupando a página, palavras atravessando a arte.
+- Misturar na mesma frase uma sans-serif extra grossa em CAIXA ALTA (Archivo Black) com uma serifada itálica pesada (Playfair Display Italic Black).
+- Textura de grão/papel por cima de tudo, fotos com granulado e cores chapadas.
+- Frases curtas espalhadas pela arte, alternando esquerda e direita.
+- Logo da SIM pequeno no canto superior esquerdo, SÓ o símbolo, sem escrever "SIM" ao lado.
+- Nada de emojis, sombras exageradas ou visual de template.
+
+CORES (use apenas estas):
+- Azul-noite (principal): #03283A
+- Dourado (principal): degradê #F5CF91 → #D9B16B → #A97A22
+- Azul (secundário): #1B5070
+- Azul claro (secundário): #4583A2
+- Creme (fundo claro): #FDEEE0
+- Branco para textos sobre fundo escuro.
+
+TEXTOS (use exatamente, em português, sem corrigir nem traduzir):
+
+Imagem 1 — fundo: foto de uma pessoa ajoelhada rezando, em duotone azul (#1B5070) com grão, escurecendo para baixo.
+  Topo, pequeno, espalhado: "KAIRÓS · TEMPO · DA GRAÇA"
+  Grande: "VOCÊ SE LEMBRA" (sans grossa, branca)
+  "de quando achou que não conseguiria," (serifada itálica dourada)
+  "MAS DEUS O SUSTENTOU?" dentro de uma faixa dourada levemente inclinada, texto azul-noite.
+  Canto inferior direito: "ARRASTE →"
+
+Imagem 2 — fundo: foto aérea de uma estrada no campo, tons quentes, com uma linha pontilhada seguindo a estrada e 4 pontos dourados ligados às frases.
+  Título: "MUITAS VEZES, SÓ QUANDO OLHAMOS PARA TRÁS PERCEBEMOS" (sans grossa, branca)
+  "quantas vezes a misericórdia de Deus nos alcançou." (serifada itálica dourada)
+  Frases ligadas aos pontos: "NAQUELE DIA DIFÍCIL." / "NA ORAÇÃO SILENCIOSA." / "NO SORRISO QUE CHEGOU NO MOMENTO CERTO." / "OU QUANDO PARECIA QUE NÃO TINHA MAIS SOLUÇÃO."
+
+Imagem 3 — fundo: azul #1B5070 chapado (ou foto de um crucifixo erguido em duotone azul, sem o texto cobrir a imagem de Jesus).
+  "QUANTAS GRAÇAS CABEM EM" (sans grossa, branca)
+  "30 anos?" gigante em serifada itálica dourada.
+  Três linhas numeradas:
+  "01  Em cada encontro, uma história."
+  "02  Em cada desafio, a força para continuar."
+  "03  Em cada recomeço, a oportunidade de dizer “sim” mais uma vez."
+
+Imagem 4 — fundo dourado com textura de chapisco.
+  Topo, pequeno: "KAIRÓS · TEMPO · DA GRAÇA"
+  "KAI / RÓS" gigante em branco, em duas linhas, com uma pequena ampulheta desenhada ao lado do "I".
+  "tempo da Graça" em serifada itálica azul-noite, atravessando as letras.
+  Texto: "Um encontro para parar, reconhecer tudo o que Deus fez em nós e por meio de nós e renovar o nosso SIM."
+  Etiqueta: "ABERTURA DAS INSCRIÇÕES" + "Amanhã · 12h"
+  "Link na bio!" em serifada itálica.
+  Rodapé, pequeno: "22 · NOV · COMUNIDADE SIM · 30 ANOS"
+
+Gere uma imagem por vez, na ordem, mantendo o mesmo estilo nas quatro. Confira a ortografia de cada palavra (acentos: Kairós, Graça, misericórdia, Inscrições, Amanhã).
