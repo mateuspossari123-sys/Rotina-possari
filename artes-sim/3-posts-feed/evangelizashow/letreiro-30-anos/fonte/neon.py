@@ -91,7 +91,7 @@ def ring(m, w):
 st = Image.new('L', (W, H), 0); sd = ImageDraw.Draw(st)
 roof_y = 1105
 for x in (250, 420, 660, 830):
-    sd.line([(x, 520), (x + (x - 540) * .04, roof_y)], fill=255, width=9)
+    sd.line([(x, 520), (x, 905)], fill=255, width=9)
 for x0, x1 in ((250, 420), (420, 660), (660, 830)):
     sd.line([(x0, 900), (x1, 1060)], fill=255, width=6); sd.line([(x1, 900), (x0, 1060)], fill=255, width=6)
 sd.line([(200, 905), (880, 905)], fill=255, width=8)
@@ -99,7 +99,24 @@ sd.line([(320, 560), (780, 560)], fill=255, width=7)
 for x in (340, 560, 760):
     sd.line([(x, 560), (x, 880)], fill=255, width=6)
 stru = np.array(st.filter(ImageFilter.GaussianBlur(.8))) / 255
+stru_flat = stru
 
+
+# ---------------- perspective (side view, like the reference) ----------------
+SRC = [(0, 0), (W, 0), (W, H), (0, H)]
+DST = [tuple(map(float, p.split(','))) for p in (sys.argv[3] if len(sys.argv) > 3 else '10,215;1075,-40;1095,1215;-10,1095').split(';')]
+def coeffs(dst, src):
+    A = []; B = []
+    for (x, y), (u, v) in zip(dst, src):
+        A += [[x, y, 1, 0, 0, 0, -u * x, -u * y], [0, 0, 0, x, y, 1, -v * x, -v * y]]; B += [u, v]
+    return np.linalg.solve(np.array(A, float), np.array(B, float))
+CO = coeffs(DST, SRC)
+def warp(m):
+    im = Image.fromarray((m.clip(0, 1) * 255).astype(np.uint8))
+    return np.array(im.transform((W, H), Image.PERSPECTIVE, tuple(CO), Image.BICUBIC)) / 255
+logo, t30, anos, word = warp(logo), warp(t30), warp(anos), warp(word)
+roof_y_flat = roof_y
+st2 = Image.new('L', (W, H), 0); sd2 = ImageDraw.Draw(st2)
 # channel backs
 def channel(m, grow):
     return nd.binary_dilation(binm(m), iterations=grow)
@@ -107,10 +124,10 @@ ch_logo = channel(logo, 16) | channel(t30, 14) | channel(anos, 12)
 # join top board: rounded plate behind logo + 30 anos
 ch_word = channel(word, 15)
 
-def draw_block(img, ch, depth=18):
+def draw_block(img, ch, depth=26):
     chf = ch.astype(float)
     for k in range(depth, 0, -1):
-        sh = np.roll(np.roll(chf, k, 0), -k // 3, 1)
+        sh = np.roll(np.roll(chf, k, 0), -int(k * .8), 1)
         a = sh * (sh > 0)
         col = hx('#03141d') * (0.6 + 0.4 * k / depth)
         img[:] = img * (1 - a[..., None]) + a[..., None] * col
@@ -120,6 +137,18 @@ def draw_block(img, ch, depth=18):
     img[:] += nd.gaussian_filter(edge, .8)[..., None] * hx('#4583A2') * .25
 
 # scaffold behind
+stru = warp(stru_flat)
+# legs from warped frame down to the roof
+FW = coeffs(SRC, DST)
+def fwd(x, y):
+    a, b, c, d, e, f, g, h = FW; den = g * x + h * y + 1
+    return ((a * x + b * y + c) / den, (d * x + e * y + f) / den)
+lg2 = Image.new('L', (W, H), 0); ld = ImageDraw.Draw(lg2)
+for x in (250, 420, 660, 830):
+    px, py = fwd(x, 900)
+    ld.line([(px, py), (px + (px - 540) * .03, roof_y)], fill=255, width=int(8 + 4 * (px / W)))
+legs = np.array(lg2.filter(ImageFilter.GaussianBlur(.8))) / 255
+img[:] = img * (1 - legs[..., None]) + legs[..., None] * hx('#041219')
 img[:] = img * (1 - stru[..., None]) + stru[..., None] * hx('#051720')
 draw_block(img, ch_logo)
 draw_block(img, ch_word)
