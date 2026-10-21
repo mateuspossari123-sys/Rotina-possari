@@ -1,0 +1,41 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: L,Archivo Black,80,&H00FFFFFF,&H00FFFFFF,&H003A2803,&H8C3A2803,0,0,0,0,100,100,0,0,1,7,3,2,100,100,430,1
+Style: M,Playfair Display,84,&H00E0EEFD,&H00E0EEFD,&H003A2803,&H8C3A2803,1,1,0,0,100,100,0,0,1,5,3,2,90,90,430,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:20.02,0:00:21.22,L,,0,0,0,,{\fad(80,60)\blur0.6}E NÓS CONVIDAMOS VOCÊ
+Dialogue: 0,0:00:21.22,0:00:22.22,L,,0,0,0,,{\fad(80,60)\blur0.6}PARA ESTAR COM A GENTE
+Dialogue: 0,0:00:22.22,0:00:23.62,L,,0,0,0,,{\fad(80,60)\blur0.6}DIA {\c&H6BB1D9&}21 DE NOVEMBRO{\c&HFFFFFF&}
+Dialogue: 0,0:00:23.62,0:00:24.92,L,,0,0,0,,{\fad(80,60)\blur0.6}ÀS {\c&H6BB1D9&}19H30{\c&HFFFFFF&}, AQUI NA {\c&H6BB1D9&}SIM{\c&HFFFFFF&}.
+Dialogue: 0,0:00:24.92,0:00:26.42,L,,0,0,0,,{\fad(80,60)\blur0.6}UMA GRANDE CELEBRAÇÃO,
+Dialogue: 0,0:00:26.42,0:00:28.32,L,,0,0,0,,{\fad(80,60)\blur0.6}UM GRANDE {\c&H6BB1D9&}SHOW DE EVANGELIZAÇÃO{\c&HFFFFFF&}
+Dialogue: 0,0:00:28.32,0:00:29.82,L,,0,0,0,,{\fad(80,60)\blur0.6}PARA VOCÊ CELEBRAR COM A GENTE
+Dialogue: 0,0:00:29.82,0:00:31.02,L,,0,0,0,,{\fad(80,60)\blur0.6}{\c&H6BB1D9&}30 ANOS DA SIM{\c&HFFFFFF&}
+Dialogue: 0,0:00:31.02,0:00:33.02,L,,0,0,0,,{\fad(80,60)\blur0.6}ACONTECENDO AGORA EM {\c&H6BB1D9&}2026{\c&HFFFFFF&}.
+Dialogue: 0,0:00:33.02,0:00:35.22,L,,0,0,0,,{\fad(80,60)\blur0.6}VEM COM A GENTE DIA {\c&H6BB1D9&}21{\c&HFFFFFF&},
+Dialogue: 0,0:00:35.22,0:00:38.02,L,,0,0,0,,{\fad(80,60)\blur0.6}ÀS {\c&H6BB1D9&}19H30{\c&HFFFFFF&}, AQUI NA {\c&H6BB1D9&}SIM{\c&HFFFFFF&}.
+Dialogue: 0,0:00:38.02,0:00:39.62,L,,0,0,0,,{\fad(80,60)\blur0.6}MINISTÉRIO DE MÚSICA,
+Dialogue: 0,0:00:39.62,0:00:41.82,L,,0,0,0,,{\fad(80,60)\blur0.6}MUITO LOUVOR, MUITA ORAÇÃO
+Dialogue: 0,0:00:41.82,0:00:43.62,L,,0,0,0,,{\fad(80,60)\blur0.6}E UM GRANDE SHOW DE CELEBRAÇÃO.
+Dialogue: 0,0:00:43.62,0:00:44.62,L,,0,0,0,,{\fad(80,60)\blur0.6}VEM COM A GENTE
+Dialogue: 0,0:00:44.62,0:00:46.42,L,,0,0,0,,{\fad(80,60)\blur0.6}NESSE {\c&H6BB1D9&}EVANGELIZASHOW!{\c&HFFFFFF&}
+Dialogue: 0,0:00:00.00,0:00:02.90,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Eu vivo só pra te adorar
+Dialogue: 0,0:00:03.00,0:00:07.60,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ em espírito e em verdade
+Dialogue: 0,0:00:08.50,0:00:11.90,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ eternamente vou te amar
+Dialogue: 0,0:00:12.00,0:00:17.60,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Tu és Senhor, digno de louvor
+Dialogue: 0,0:00:47.00,0:00:50.60,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Eu vivo só pra te adorar
+Dialogue: 0,0:00:51.50,0:00:55.40,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ em espírito e em verdade
+Dialogue: 0,0:00:56.00,0:00:59.70,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ eternamente vou te amar
+Dialogue: 0,0:01:00.00,0:01:03.80,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Tu és Senhor, digno de louvor
+Dialogue: 0,0:01:05.50,0:01:09.80,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Eu vivo só pra te adorar
+Dialogue: 0,0:01:10.80,0:01:14.80,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ em espírito e em verdade
+Dialogue: 0,0:01:15.80,0:01:19.80,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ eternamente vou te amar
+Dialogue: 0,0:01:20.00,0:01:24.00,M,,0,0,0,,{\fad(250,250)\blur0.8}♪ Tu és Senhor, digno de louvor
