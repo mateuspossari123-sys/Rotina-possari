@@ -32,11 +32,18 @@ cl = rng.random((H // 20, W // 20)); cl = np.array(Image.fromarray((cl * 255).as
 band = np.exp(-((np.linspace(0, 1, H) - .74) / .07) ** 2)[:, None]
 img += (cl * band * .10)[..., None] * hx('#4583A2')
 # stars
-for _ in range(230):
-    sx, sy = rng.integers(0, W), rng.integers(0, int(H * .65))
-    b = rng.random() ** 3 * .9 + .1
-    r = 1 if rng.random() < .85 else 2
+for _ in range(750):
+    sx, sy = rng.integers(0, W), int(rng.random() ** 1.4 * H * .8)
+    b = rng.random() ** 3 * .9 + .12
+    r = 1 if rng.random() < .88 else 2
     img[max(0, sy - r + 1):sy + r, max(0, sx - r + 1):sx + r] += b * .8
+# brighter stars with a soft glow, in 3 groups (they twinkle in the video)
+TW = [np.zeros((H, W), np.float32) for _ in range(3)]
+for i in range(60):
+    sx, sy = rng.integers(0, W), int(rng.random() ** 1.3 * H * .72)
+    TW[i % 3][sy, sx] = .6 + rng.random() * .6
+TW = [(nd.gaussian_filter(g, 1.2) * 14 + nd.gaussian_filter(g, 4) * 25).clip(0, 1.2) for g in TW]
+img += (sum(TW) * .6)[..., None] * hx('#FDEEE0')
 # moon (crescent)
 mx, my, mr = 820, 190, 46
 yy, xx = np.mgrid[0:H, 0:W]
