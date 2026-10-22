@@ -46,7 +46,7 @@ def sticker(im, border=12):
     out.alpha_composite(wh); out.alpha_composite(im, (pad, pad))
     return out
 
-def namecard(outdir, dur=3.2):
+def namecard(outdir, dur=3.8):
     os.makedirs(outdir, exist_ok=True)
     bg = Image.open(W3 + 'p7.png').convert('RGB').resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(18))
     bg = Image.blend(bg, Image.new('RGB', (W, H), NOITE), .62)
@@ -59,6 +59,15 @@ def namecard(outdir, dur=3.2):
     tg = Image.new('RGBA', (560, 70), OURO2 + (255,)); td = ImageDraw.Draw(tg)
     td.text((280, 36), 'PREGADOR DO KAIRÓS', font=font('Archivo_wght_700.ttf', 36, 800), fill=NOITE, anchor='mm')
     tg = tg.rotate(-3, expand=True, resample=Image.BICUBIC)
+    lg = Image.open(R + 'neon/logo-sim-ouro.png').convert('RGBA').resize((250, 300), Image.LANCZOS)
+    lga = np.array(lg)[..., 3].astype(np.float32) / 255
+    halo = Image.new('RGBA', (W, H), (0, 0, 0, 0)); hd = ImageDraw.Draw(halo)
+    hd.ellipse([W / 2 - 330, 330 - 300, W / 2 + 330, 330 + 300], fill=(245, 207, 145, 120)); halo = halo.filter(ImageFilter.GaussianBlur(90))
+    rays = Image.new('L', (W, H), 0); rd = ImageDraw.Draw(rays)
+    for k in range(18):
+        ang = k / 18 * 2 * np.pi
+        rd.polygon([(W / 2, 330), (W / 2 + np.cos(ang - .05) * 1400, 330 + np.sin(ang - .05) * 1400), (W / 2 + np.cos(ang + .05) * 1400, 330 + np.sin(ang + .05) * 1400)], fill=60)
+    rays = rays.filter(ImageFilter.GaussianBlur(14))
     for i in range(int(dur * FPS)):
         t = i / FPS
         fr = bg.copy().convert('RGBA')
@@ -66,6 +75,20 @@ def namecard(outdir, dur=3.2):
         k = eo(t / .3); sc = (1.12 - .12 * k) * z
         c2 = st.resize((int(st.width * sc), int(st.height * sc)), Image.LANCZOS)
         fr.alpha_composite(c2, (int(W / 2 - c2.width / 2 + 20), int(H - c2.height + 40)))
+        # SIM logo appears with light burst
+        ul = eo((t - .25) / .45)
+        if ul > 0:
+            pulse = max(0, 1 - abs(t - .55) / .35)
+            rr = rays.rotate(t * 12, center=(W / 2, 330))
+            ra = Image.new('RGBA', (W, H), (245, 207, 145, 0)); ra.putalpha(Image.fromarray((np.array(rr) * (ul * .6 + pulse)).clip(0, 255).astype(np.uint8)))
+            fr.alpha_composite(ra)
+            hh = halo.copy(); hh.putalpha(Image.fromarray((np.array(halo)[..., 3] * (ul * .8 + pulse * .8)).clip(0, 255).astype(np.uint8))); fr.alpha_composite(hh)
+            sc2 = .7 + .3 * ul + .06 * pulse
+            l2 = lg.resize((int(250 * sc2), int(300 * sc2)), Image.LANCZOS)
+            l2.putalpha(Image.fromarray((np.array(l2)[..., 3] * ul).astype(np.uint8)))
+            fr.alpha_composite(l2, (int(W / 2 - l2.width / 2), int(330 - l2.height / 2)))
+            if pulse > 0:
+                fl = Image.new('RGBA', (W, H), (255, 244, 226, int(120 * pulse ** 2))); fr.alpha_composite(fl)
         # quick colour flashes at the start (like the reference)
         if t < .27:
             col = [OURO2, AZ, OURO2, CREME, AZ, NOITE, OURO2, AZ][int(t * FPS) % 8]
