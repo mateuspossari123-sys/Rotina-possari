@@ -1,0 +1,70 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Roboto,sans-serif}
+section{width:1080px;height:1920px;position:relative;overflow:hidden;background:#0b141a;color:#e9edef}
+.wall{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(circle at 20% 30%,#fff 2px,transparent 3px),radial-gradient(circle at 70% 60%,#fff 2px,transparent 3px),radial-gradient(circle at 45% 85%,#fff 1.5px,transparent 2.5px);background-size:120px 120px,160px 160px,90px 90px}
+.status{height:92px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:38px;font-weight:500;background:#0b141a;position:relative;z-index:2}
+.top{height:150px;background:#0b141a;display:flex;align-items:center;padding:0 30px;gap:22px;position:relative;z-index:2;border-bottom:1px solid #1f2c34}
+.top img{width:96px;height:96px;border-radius:50%;object-fit:cover}
+.name{font-size:44px;font-weight:500;flex:1}
+.name small{display:block;font-size:28px;color:#8696a0;font-weight:400;margin-top:4px}
+.ic{width:56px;height:56px;margin-left:26px}
+.chat{position:absolute;left:0;right:0;top:242px;bottom:150px;padding:30px 34px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;z-index:1}
+.day{align-self:center;background:#182229;color:#8696a0;font-size:28px;padding:10px 26px;border-radius:14px;margin-bottom:26px}
+.b{max-width:800px;font-size:41px;line-height:1.32;padding:18px 26px 14px;border-radius:22px;position:relative}
+.b .m{font-size:26px;color:rgba(233,237,239,.6);float:right;margin:18px 0 -6px 26px;display:flex;align-items:center;gap:6px}
+.out{align-self:flex-end;background:#005c4b;border-top-right-radius:6px}
+.in{align-self:flex-start;background:#202c33;border-top-left-radius:6px}
+.tick{width:38px;height:22px}
+.st{align-self:flex-start;position:relative;margin-top:6px}
+.st img{width:330px;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.st .m{position:absolute;right:6px;bottom:6px;background:rgba(11,20,26,.7);font-size:26px;color:#e9edef;padding:4px 14px;border-radius:12px}
+.bar{position:absolute;left:0;right:0;bottom:0;height:150px;display:flex;align-items:center;gap:20px;padding:0 26px;z-index:2}
+.inp{flex:1;height:104px;border-radius:52px;background:#202c33;display:flex;align-items:center;padding:0 34px;color:#8696a0;font-size:40px;gap:26px}
+.mic{width:110px;height:110px;border-radius:50%;background:#21c063;display:flex;align-items:center;justify-content:center}
+b.g{color:#ffd279;font-weight:500}
+.d{display:inline-block;width:18px;height:18px;border-radius:50%;background:#8696a0;margin:0 6px}
+.mm,#ty{display:none;transform-origin:left bottom}.out{transform-origin:right bottom}.b.out+.b.out,.b.in+.b.in{border-radius:22px}
+</style></head><body><section>
+<div class="wall"></div>
+<div class="status"><span id="clk">09:45</span><span style="font-size:32px">▲ ▮▮▮ 87%</span></div>
+<div class="top">
+<svg class="ic" viewBox="0 0 24 24" style="margin-left:0;width:52px"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z" fill="#e9edef"/></svg>
+<img src="avatar.png"><div class="name">Frei Luan CMS<small id="stt">online</small></div>
+<svg class="ic" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11z" fill="none" stroke="#e9edef" stroke-width="1.8"/></svg>
+<svg class="ic" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="none" stroke="#e9edef" stroke-width="1.8"/></svg>
+<svg class="ic" viewBox="0 0 24 24" style="width:40px"><circle cx="12" cy="5" r="2" fill="#e9edef"/><circle cx="12" cy="12" r="2" fill="#e9edef"/><circle cx="12" cy="19" r="2" fill="#e9edef"/></svg>
+</div>
+<div class="chat">
+<div class="day">Hoje</div>
+<div class="b out mm" id="m0" data-t="0.8">A paz de Jesus, Frei! 🙏<span class="m">09:45 <svg class="tick" viewBox="0 0 18 11"><path d="M1 6l3 3 6-7M7 9l1 1 6-8" fill="none" stroke="#53bdeb" stroke-width="1.6"/></svg></span></div>
+<div class="b out mm" id="m1" data-t="1.9">Domingo, dia 22 de novembro, vamos ter nosso Kairós aqui na comunidade.<span class="m">09:45 <svg class="tick" viewBox="0 0 18 11"><path d="M1 6l3 3 6-7M7 9l1 1 6-8" fill="none" stroke="#53bdeb" stroke-width="1.6"/></svg></span></div>
+<div class="b out mm" id="m2" data-t="3.0">Você pode vir?<span class="m">09:45 <svg class="tick" viewBox="0 0 18 11"><path d="M1 6l3 3 6-7M7 9l1 1 6-8" fill="none" stroke="#53bdeb" stroke-width="1.6"/></svg></span></div>
+<div class="b in mm" id="m3" data-t="5.4">Conte comigo! 🙌<span class="m">09:46</span></div>
+<div class="b in mm" id="m4" data-t="7.4">Vou rezar com vocês, e veremos juntos a glória de Deus.<span class="m">09:46</span></div>
+<div class="b in mm" id="m5" data-t="8.6">Deus abençoe.<span class="m">09:46</span></div>
+<div class="st mm" id="m6" data-t="9.6"><img src="sticker.png"><span class="m">09:46</span></div>
+<div class="b in" id="ty" style="padding:26px 30px"><span class="d"></span><span class="d"></span><span class="d"></span></div>
+</div>
+<div class="bar"><div class="inp">☺&nbsp; Mensagem</div><div class="mic"><svg width="50" height="50" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z" fill="#0b141a"/></svg></div></div>
+</section><script>
+const TY=[[3.9,5.4],[6.1,7.4],[7.8,8.6]];
+const STILL=new URLSearchParams(location.search).has('still');
+function pop(el,t0,t){el.style.display='block';const u=Math.min(1,Math.max(0,(t-t0)/.28));const e=1-Math.pow(1-u,3);
+ const bounce=el.classList.contains('st')?1+Math.sin(Math.min(1,(t-t0)/.45)*Math.PI)*.12:1;
+ el.style.opacity=e;el.style.transform=`translateY(${(1-e)*30}px) scale(${(.85+.15*e)*bounce})`;}
+window.render=function(t){
+ let last='09:45';
+ document.querySelectorAll('.mm').forEach(el=>{const t0=+el.dataset.t;if(t>=t0){pop(el,t0,t);last=el.querySelector('.m').textContent.slice(0,5)}else el.style.display='none';
+   const tk=el.querySelector('.tick path');if(tk)tk.setAttribute('stroke',t<4.2?'#8696a0':'#53bdeb');});
+ const ty=document.getElementById('ty');let typing=false;
+ for(const [a,b] of TY){if(t>=a&&t<b){typing=true;ty.parentNode.appendChild(ty);pop(ty,a,t);
+   [...ty.children].forEach((d,i)=>{d.style.opacity=.35+.65*Math.max(0,Math.sin((t*6-i*.9)))})}}
+ if(!typing)ty.style.display='none';
+ const st=document.getElementById('stt');st.textContent=typing?'digitando...':'online';st.style.color=typing?'#21c063':'#8696a0';
+ document.getElementById('clk').textContent=last;
+};
+window.TEND=13;
+</script></body></html>
