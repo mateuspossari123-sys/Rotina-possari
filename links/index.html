@@ -149,12 +149,11 @@
   .c-santificai .pomba-s { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 74%; width: auto;
     filter: drop-shadow(0 8px 14px rgba(201,89,42,.35)); }
 
-  /* 5 · Eventos — texto à esquerda, foto à direita */
-  .c-eventos { background: #050505; }
-  .c-eventos .foto { width: 64%; object-position: 50% 95%;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
-  .c-eventos .txt { text-align: left; }
-  .c-eventos strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
+  /* 5 · Formação — texto à esquerda, foto à direita */
+  .c-formacao { background: linear-gradient(110deg, var(--azul-noite) 35%, var(--azul)); }
+  .c-formacao .foto { width: 60%; object-position: 30% 30%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+  .c-formacao strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
 
   /* botões */
   .rapidos { display: grid; gap: 12px; margin-top: 32px; }
@@ -182,17 +181,6 @@
     Troque href="#" pelo link de destino (formulário, Sympla, WhatsApp, post…).
   -->
   <ul class="abas">
-    <li>
-      <a class="card c-socio" href="../site/socio.html">
-        <img class="foto" src="img/socio.jpg" alt="" loading="eager">
-        <span class="txt">
-          <small>Jesus espera o seu sim</small>
-          <strong>Seja um sócio <em class="ouro">benfeitor</em></strong>
-          <span class="info">Ajude a missão a continuar</span>
-          <span class="cta">Quero ser</span>
-        </span>
-      </a>
-    </li>
     <li>
       <a class="card c-kairos" href="../site/kairos.html">
         <img class="bg" src="img/igreja.jpg" alt="" loading="eager">
@@ -225,12 +213,23 @@
       </a>
     </li>
     <li>
-      <a class="card c-eventos" href="../site/eventos.html">
-        <img class="foto" src="img/adoracao.jpg" alt="" loading="lazy">
+      <a class="card c-formacao" href="../proposta-site/formacao.html">
+        <img class="foto" src="img/formacao.jpg" alt="" loading="lazy">
         <span class="txt">
-          <small>Agenda da comunidade</small>
-          <strong>EVENTOS</strong>
-          <span class="info">Retiros, encontros e celebrações</span>
+          <small>Para aprofundar a fé</small>
+          <strong>FORMAÇÃO</strong>
+          <span class="info">Conteúdos para crescer na fé</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="card c-socio" href="../site/socio.html">
+        <img class="foto" src="img/socio.jpg" alt="" loading="lazy">
+        <span class="txt">
+          <small>Jesus espera o seu sim</small>
+          <strong>Seja um sócio <em class="ouro">benfeitor</em></strong>
+          <span class="info">Ajude a missão a continuar</span>
+          <span class="cta">Quero ser</span>
         </span>
       </a>
     </li>
