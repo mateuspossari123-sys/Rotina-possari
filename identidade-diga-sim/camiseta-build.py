@@ -86,10 +86,10 @@ def globo(cx, cy, r, sw, cor):
 # ---------- FRENTE (área 260 mm de largura) ----------
 import json
 AMARELO = "#ffc46b"
-W = 260
+W = 290
 partes_b, partes_l, partes_a = [], [], []
 pc = json.load(open(C + "/pomba-camadas.json"))
-pw = 220; ps = pw / pc["w"]; ph = pc["h"] * ps
+pw = 280; ps = pw / pc["w"]; ph = pc["h"] * ps
 px = W / 2 - pw / 2
 tr = f'transform="translate({px:.2f} 0) scale({ps:.5f})"'
 partes_l.append(f'<path fill="{LARANJA}" fill-rule="evenodd" {tr} d="{pc["laranja"]}"/>')
@@ -117,15 +117,17 @@ partes_l.append(globo(round(x0 + gr, 2), round(y, 2), gr, 0.9, LARANJA))
 d, _ = archivo.path(ref, rc, x0 + gr * 2 + 3, y + rc / 2, .3)
 partes_b.append(f'<path fill="{BRANCO}" d="{d}"/>')
 H_front = round(y + gr + 3, 1)
+WF = W
 
 # ---------- COSTAS (área 260 mm) ----------
+W = 260
 logo_d = re.search(r' d="([^"]*)"', open(LOGO_SVG).read()).group(1)
 lw, lh = 497, 594
-logo_h = 150; ls = logo_h / lh; lx = W / 2 - lw * ls / 2
+logo_h = 95; ls = logo_h / lh; lx = W / 2 - lw * ls / 2
 costas = [f'<path fill="{BRANCO}" fill-rule="evenodd" transform="translate({lx:.2f} 4) scale({ls:.5f})" d="{logo_d}"/>']
-yb = 4 + logo_h + 22
-for txt in ("SOCIEDADE IRMÃOS", "DA MISERICÓRDIA"):
-    cap = fit_cap(archivo, txt, 200, .12)
+yb = 4 + logo_h + 16
+for txt in ("SOCIEDADE IRMÃOS DA MISERICÓRDIA",):
+    cap = fit_cap(archivo, txt, 240, .12)
     yb += cap
     tw = archivo.width(txt, cap, .12)
     d, _ = archivo.path(txt, cap, W / 2 - tw / 2, yb, .12)
@@ -142,12 +144,12 @@ def sep(body, cor):  # fotolito: tinta em preto sobre branco
 
 out = C + "/out"
 import os; os.makedirs(out, exist_ok=True)
-open(out + "/frente.svg", "w").write(svg(W, H_front, partes_l + partes_a + partes_b))
-open(out + "/frente-sobre-preto.svg", "w").write(svg(W, H_front, partes_l + partes_a + partes_b, CAMISA))
-open(out + "/frente-tela-amarelo.svg", "w").write(svg(W, H_front, sep(partes_a, AMARELO), "#ffffff"))
-open(out + "/frente-tela-branco.svg", "w").write(svg(W, H_front, sep(partes_b, BRANCO), "#ffffff"))
-open(out + "/frente-tela-laranja.svg", "w").write(svg(W, H_front, sep(partes_l, LARANJA), "#ffffff"))
+open(out + "/frente.svg", "w").write(svg(WF, H_front, partes_l + partes_a + partes_b))
+open(out + "/frente-sobre-preto.svg", "w").write(svg(WF, H_front, partes_l + partes_a + partes_b, CAMISA))
+open(out + "/frente-tela-amarelo.svg", "w").write(svg(WF, H_front, sep(partes_a, AMARELO), "#ffffff"))
+open(out + "/frente-tela-branco.svg", "w").write(svg(WF, H_front, sep(partes_b, BRANCO), "#ffffff"))
+open(out + "/frente-tela-laranja.svg", "w").write(svg(WF, H_front, sep(partes_l, LARANJA), "#ffffff"))
 open(out + "/costas.svg", "w").write(svg(W, H_back, costas))
 open(out + "/costas-sobre-preto.svg", "w").write(svg(W, H_back, costas, CAMISA))
 open(out + "/costas-tela-branco.svg", "w").write(svg(W, H_back, sep(costas, BRANCO), "#ffffff"))
-print("frente", W, "x", H_front, "mm | costas", W, "x", H_back, "mm")
+print("frente", WF, "x", H_front, "mm | costas", W, "x", H_back, "mm")
