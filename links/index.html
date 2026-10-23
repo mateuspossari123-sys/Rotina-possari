@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="img/logo-sim.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
 <style>
   /* Paleta da apresentação "30 anos" */
   :root {
@@ -107,13 +107,25 @@
   .c-kairos { --veu: linear-gradient(90deg, rgba(4,38,58,.94) 0%, rgba(4,38,58,.6) 55%, rgba(4,38,58,.1)); }
   .c-kairos .selo { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); height: 82%; width: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
 
-  /* 3 · Seminário Diga SIM a Deus — pomba de fogo */
-  .c-seminario { background: #000; }
-  .c-seminario .foto { width: 46%; height: auto; aspect-ratio: 700 / 880; top: 50%; right: 3%; transform: translateY(-50%);
-    -webkit-mask-image: radial-gradient(farthest-side, #000 55%, transparent 92%); mask-image: radial-gradient(farthest-side, #000 55%, transparent 92%); }
-  .c-seminario small { color: #f5a01a; }
-  .c-seminario strong { font-family: var(--sans); font-weight: 800; letter-spacing: -.01em; font-size: clamp(22px, 6.8vw, 30px); }
-  .c-seminario strong span { color: #f5a01a; }
+  /* 3 · Seminário Diga SIM a Deus — identidade própria: fogo no escuro */
+  .c-seminario {
+    --d-noite: #0c0a09; --d-fogo: #f47a2a; --d-brasa: #d9401a; --d-brilho: #ffc46b; --d-marfim: #f6f1ec; --d-cinza: #b9aca1;
+    background:
+      radial-gradient(40% 80% at 0% 100%, rgba(217,64,26,.35), transparent 70%),
+      var(--d-noite);
+    color: var(--d-marfim);
+  }
+  .c-seminario .foto { width: 58%; object-position: 50% 52%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
+  .c-seminario small { font-family: "Archivo", var(--sans); font-weight: 800; letter-spacing: .3em; color: var(--d-fogo); }
+  .c-seminario strong { font-family: "Anton", var(--sans); font-weight: 400; text-transform: uppercase; letter-spacing: .01em;
+    font-size: clamp(30px, 9.6vw, 42px); line-height: .98; margin-top: 4px; }
+  .c-seminario strong span { color: var(--d-fogo); }
+  /* divisor com faísca */
+  .c-seminario .faisca { display: block; position: relative; width: 132px; height: 2px; margin-top: 10px;
+    background: linear-gradient(90deg, transparent, var(--d-fogo) 20%, var(--d-fogo) 80%, transparent); }
+  .c-seminario .faisca::after { content: ""; position: absolute; left: 50%; top: 50%; width: 26px; height: 4px; border-radius: 4px;
+    transform: translate(-50%, -50%); background: var(--d-brilho); box-shadow: 0 0 10px 2px rgba(255,196,107,.8); }
 
   /* 4 · Curso Santificai-vos — identidade própria (Névoa, Laranja, Marrom) */
   .c-santificai {
@@ -194,10 +206,11 @@
     </li>
     <li>
       <a class="card c-seminario" href="../site/diga-sim.html">
-        <img class="foto" src="img/pomba.jpg" alt="" loading="lazy">
+        <img class="foto" src="img/diga-sim-pomba.jpg" alt="" loading="lazy">
         <span class="txt">
-          <small>Seminário de Vida · Curso</small>
+          <small>Seminário de Vida</small>
           <strong>Diga <span>SIM</span><br>a Deus</strong>
+          <span class="faisca" aria-hidden="true"></span>
         </span>
       </a>
     </li>
