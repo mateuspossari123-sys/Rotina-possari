@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunidade SIM · Contribua</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  .ct .wrap { display: grid; grid-template-columns: 1fr 440px; gap: 56px; align-items: start; }
+  .ct p { font-size: 16.5px; margin-top: 14px; }
+  .video { margin-top: 28px; position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 16/9; background: var(--azul-noite); outline: 2px solid rgba(201,154,78,.6); outline-offset: 6px; }
+  .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .4; }
+  .video span { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 84px; height: 84px; border-radius: 50%; background: var(--ouro); display: grid; place-items: center; font-size: 28px; color: var(--azul-noite); }
+  .cit { margin-top: 30px; padding: 24px 26px; border-radius: 18px; background: var(--azul-noite); color: var(--creme); font-family: var(--serif); font-style: italic; font-size: 21px; }
+  .cit small { display: block; font-family: var(--sans); font-style: normal; font-size: 11px; letter-spacing: .24em; color: var(--ouro-1); margin-top: 8px; }
+  .beneficios { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+  .beneficios div { padding: 20px; border-radius: 18px; background: #fff; box-shadow: 0 14px 30px -24px rgba(4,38,58,.7); }
+  .beneficios b { font-family: var(--serif); font-size: 18px; color: var(--azul-noite); display: block; }
+  .beneficios span { font-size: 14px; color: #52646c; }
+  .doar { padding: 30px; position: sticky; top: 100px; }
+  .doar h3 { font-family: var(--serif); font-size: 26px; color: var(--azul-noite); }
+  .tipo { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; border-radius: 999px; background: #f2ebe2; margin-top: 16px; }
+  .tipo span { text-align: center; padding: 10px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--azul-noite); }
+  .tipo span.on { background: var(--azul-noite); color: var(--ouro-1); }
+  .valores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+  .valores span { text-align: center; padding: 14px 0; border-radius: 14px; font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--azul-noite); box-shadow: inset 0 0 0 1.5px #ead9c6; }
+  .valores span.on { box-shadow: inset 0 0 0 2px var(--azul-noite); background: #f7f3ee; }
+  .pag { display: flex; gap: 8px; margin-top: 16px; }
+  .pag span { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-size: 13px; font-weight: 700; box-shadow: inset 0 0 0 1.5px #ead9c6; color: var(--azul-noite); }
+  .pag span.on { background: var(--azul-noite); color: var(--ouro-1); box-shadow: none; }
+  .doar .btn { width: 100%; margin-top: 20px; padding: 16px; }
+  .doar .seg { font-size: 12px; color: #6b7d85; text-align: center; margin-top: 10px; }
+  @media (max-width: 860px) { .ct .wrap, .beneficios { grid-template-columns: 1fr; } .doar { position: static; padding: 22px; } }
+  .capa-socio { padding: 120px 0 90px; }
+  .capa-socio::before { background: linear-gradient(90deg, rgba(4,38,58,.94), rgba(4,38,58,.6) 45%, rgba(4,38,58,.15)); }
+  @media (max-width: 860px) { .capa-socio > img { object-position: 48% 70% !important; } .capa-socio { padding: 180px 0 40px; } .capa-socio::before { background: linear-gradient(0deg, rgba(4,38,58,.96) 20%, rgba(4,38,58,.15) 75%); } }
+</style></head>
+<body data-ativo="socio">
+<section class="capa-int capa-socio"><img src="../site/img/socio-capa.jpg" alt="Pregação para milhares de jovens no Ou Santo ou Nada" style="object-position:50% 60%"><div class="wrap"><span class="migalha">Início › Seja sócio</span><h1>Seja um <em>sócio SIM</em></h1><p>Há 30 anos somos sustentados pela misericórdia de Deus e pelas mãos generosas de inúmeros irmãos.</p></div></section>
+<section class="ct">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Programa de sócios</span>
+      <h2 class="titulo">Sua ajuda <em>evangeliza</em></h2>
+      <p>Nossas obras são sustentadas pela doação de irmãos. Assista ao vídeo e entenda a importância de um sócio para a nossa missão.</p>
+      <div class="video"><img src="../site/img/multidao.jpg" alt=""><span>▶</span></div>
+      <div class="cit">“Quem ajuda na evangelização tem os mesmos méritos do evangelizador.”<small>PAPA PAULO VI</small></div>
+      <div class="beneficios"><div><b>Revista mensal</b><span>Todo mês você recebe em casa uma revista com conteúdos formativos de evangelização.</span></div></div>
+    </div>
+    <div class="doar cartao">
+      <h3>Quero contribuir</h3>
+      <div class="tipo"><span class="on">Mensal (sócio)</span><span>Doação única</span></div>
+      <div class="valores"><span>R$ 30</span><span class="on">R$ 50</span><span>R$ 100</span><span>R$ 150</span><span>R$ 200</span><span style="font-family:var(--sans);font-size:14px">Outro</span></div>
+      <div class="campo-f"><label>Nome completo</label><span>Seu nome</span></div>
+      <div class="campo-f"><label>Endereço (para a revista)</label><span>Rua, número, cidade</span></div>
+      <div class="pag"><span class="on">Pix</span><span>Cartão</span><span>Boleto</span></div>
+      <a class="btn btn-ouro">Tornar-me sócio · R$ 50/mês</a>
+      <p class="seg">🔒 Pagamento seguro · cancele quando quiser</p>
+    </div>
+  </div>
+</section>
+<script src="partes.js"></script>
+</body></html>

@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="img/logo-sim.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
 <style>
   /* Paleta da apresentação "30 anos" */
   :root {
@@ -48,9 +48,9 @@
   }
   main { position: relative; max-width: 560px; margin: 0 auto; padding: 32px 16px 48px; }
 
-  header { text-align: center; margin-bottom: 32px; }
+  header { text-align: center; margin-bottom: 22px; }
   .logo {
-    width: 116px; height: 116px; border-radius: 50%; object-fit: cover;
+    width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
     padding: 4px; background: linear-gradient(45deg, var(--ouro-1), var(--ouro-3));
     box-shadow: 0 12px 28px rgba(0,0,0,.45);
   }
@@ -90,43 +90,98 @@
             mask-image: linear-gradient(90deg, transparent, #000 45%);
   }
 
-  /* 1 · Sócio benfeitor — "O seu sim" */
-  .c-socio { background: linear-gradient(110deg, var(--azul-noite), var(--azul) 70%); }
-  .c-socio .foto { width: 46%; object-position: 50% 25%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+  /* Sócio benfeitor — faixa compacta, sem foto */
+  .c-socio { min-height: 0; padding: 14px 16px 14px 0; background: linear-gradient(110deg, var(--azul-noite), var(--azul) 80%); }
   .c-socio small { white-space: nowrap; letter-spacing: .2em; }
-  .c-socio .txt { padding-top: 16px; padding-bottom: 16px; }
-  .c-socio strong { font-size: clamp(24px, 7vw, 32px); }
-  .c-socio strong em { display: block; }
+  .c-socio strong { font-size: clamp(18px, 5.4vw, 22px); margin-top: 3px; }
   .c-socio .cta {
-    display: inline-block; margin-top: 10px; padding: 8px 14px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    flex: none; padding: 9px 14px; border-radius: 999px; font-size: 10.5px; font-weight: 700;
     letter-spacing: .06em; text-transform: uppercase; color: var(--azul-noite); background: var(--ouro);
+    box-shadow: 0 6px 14px -6px rgba(0,0,0,.6); white-space: nowrap;
+  }
+
+  /* 0 · Celebrai 2026 */
+  .c-celebrai { background: linear-gradient(110deg, var(--azul-noite) 30%, #2a1450); }
+  .c-celebrai .foto { width: 54%; object-position: 70% 50%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 50%); mask-image: linear-gradient(90deg, transparent, #000 50%); }
+  .c-celebrai .txt { padding-top: 18px; padding-bottom: 18px; }
+  .c-celebrai strong { font-size: clamp(24px, 7vw, 31px); letter-spacing: .01em; }
+  .c-celebrai .cta {
+    display: inline-block; margin-top: 10px; padding: 9px 16px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--azul-noite); background: var(--ouro);
     box-shadow: 0 6px 14px -6px rgba(0,0,0,.6);
   }
 
-  /* 2 · Kairós 30 anos */
-  .c-kairos { --veu: linear-gradient(90deg, rgba(4,38,58,.94) 0%, rgba(4,38,58,.6) 55%, rgba(4,38,58,.1)); }
-  .c-kairos .selo { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); height: 82%; width: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
+  /* 2 · Kairós 30 anos — arte oficial do evento */
+  .c-kairos { background: linear-gradient(110deg, var(--azul-noite) 40%, #3a2d14); }
+  .c-kairos .foto { width: 58%; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 42%); mask-image: linear-gradient(90deg, transparent, #000 42%); }
+  .c-kairos .txt { padding-top: 16px; padding-bottom: 16px; }
 
-  /* 3 · Seminário Diga SIM a Deus — pomba de fogo */
-  .c-seminario { background: #000; }
-  .c-seminario .foto { width: 62%; object-position: 50% 35%; }
-  .c-seminario small { color: #f5a01a; }
-  .c-seminario strong { font-family: var(--sans); font-weight: 800; letter-spacing: -.01em; font-size: clamp(22px, 6.8vw, 30px); }
-  .c-seminario strong span { color: #f5a01a; }
+  /* Evangelizashow — só divulgação, sem link */
+  .c-evangeliza { background: #020f18; cursor: default; }
+  .c-evangeliza:hover { transform: none; box-shadow: 0 14px 30px -12px rgba(0,0,0,.6), inset 0 0 0 1px rgba(243,209,151,.18); }
+  .c-evangeliza .foto { width: 66%; object-position: 50% 45%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
+  .c-evangeliza .txt { padding-top: 16px; padding-bottom: 16px; max-width: 48%; padding-right: 0; }
+  .c-evangeliza small { letter-spacing: .18em; }
+  .c-evangeliza strong { font-size: clamp(22px, 6.6vw, 28px); line-height: 1; }
+  .c-evangeliza strong b { display: block; }
+  .c-evangeliza strong b { font-family: var(--sans); font-weight: 800; font-style: normal; color: var(--ouro-1); letter-spacing: .02em; }
 
-  /* 4 · Curso Santificai-vos */
-  .c-santificai { background: radial-gradient(90% 120% at 0% 0%, rgba(231,120,48,.45), transparent 60%), #fbeee2; color: #7a3b1d; }
-  .c-santificai .foto { width: 46%; object-position: 50% 18%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%); mask-image: linear-gradient(90deg, transparent, #000 35%); }
-  .c-santificai small { color: #8a5a3c; }
-  .c-santificai strong { font-family: var(--script); font-weight: 400; font-size: clamp(38px, 12vw, 52px); line-height: 1; color: #8c3f1c; margin: 2px 0 -2px; }
-  .c-santificai .info { color: #5a3a2a; }
-  .c-santificai .txt { max-width: 64%; padding-right: 0; }
-  .c-santificai strong { font-size: clamp(34px, 10.5vw, 48px); }
+  /* 3 · Seminário Diga SIM a Deus — identidade própria: fogo no escuro */
+  .c-seminario {
+    --d-noite: #0c0a09; --d-fogo: #f47a2a; --d-brasa: #d9401a; --d-brilho: #ffc46b; --d-marfim: #f6f1ec; --d-cinza: #b9aca1;
+    background:
+      radial-gradient(40% 80% at 0% 100%, rgba(217,64,26,.35), transparent 70%),
+      var(--d-noite);
+    color: var(--d-marfim);
+  }
+  .c-seminario .foto { width: 58%; object-position: 50% 78%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
+  .c-seminario small { font-family: "Archivo", var(--sans); font-weight: 800; letter-spacing: .3em; color: var(--d-fogo); }
+  .c-seminario strong { font-family: "Anton", var(--sans); font-weight: 400; text-transform: uppercase; letter-spacing: .01em;
+    font-size: clamp(30px, 9.6vw, 42px); line-height: .98; margin-top: 4px; }
+  .c-seminario strong span { color: var(--d-fogo); }
+  /* divisor com faísca */
+  .c-seminario .faisca { display: block; position: relative; width: 132px; height: 2px; margin-top: 10px;
+    background: linear-gradient(90deg, transparent, var(--d-fogo) 20%, var(--d-fogo) 80%, transparent); }
+  .c-seminario .faisca::after { content: ""; position: absolute; left: 50%; top: 50%; width: 26px; height: 4px; border-radius: 4px;
+    transform: translate(-50%, -50%); background: var(--d-brilho); box-shadow: 0 0 10px 2px rgba(255,196,107,.8); }
 
-  /* 5 · Eventos */
-  .c-eventos { --veu: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,.85) 62%); }
-  .c-eventos .txt { text-align: right; }
-  .c-eventos strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
+  /* 4 · Curso Santificai-vos — identidade própria (Névoa, Laranja, Marrom) */
+  .c-santificai {
+    --s-nevoa: #e6e6e6; --s-laranja: #eb6b2c; --s-brasa: #c9592a; --s-marrom: #62321b; --s-cafe: #3a1c10;
+    background: var(--s-nevoa); color: var(--s-marrom);
+  }
+  /* granulado laranja nos cantos */
+  .c-santificai::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(38% 70% at 0% 0%, rgba(235,107,44,.85), transparent 70%),
+      radial-gradient(34% 60% at 100% 100%, rgba(235,107,44,.75), transparent 70%);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+  .c-santificai .txt { padding-right: 104px; padding-top: 16px; padding-bottom: 16px; }
+  .c-seminario .txt { padding-top: 16px; padding-bottom: 16px; }
+  .c-santificai small { color: var(--s-marrom); letter-spacing: .42em; }
+  .c-santificai .logo-s { display: block; width: min(100%, 250px); height: auto; margin: 6px 0 4px -4px; }
+  .c-santificai .info { color: var(--s-marrom); opacity: .85; }
+  /* pomba da identidade, em laranja */
+  .c-santificai .pomba-s { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 62%; max-height: 104px; width: auto;
+    filter: drop-shadow(0 8px 14px rgba(201,89,42,.35)); }
+
+  /* 5 · Formação — texto à esquerda, foto à direita */
+  .c-formacao { background: linear-gradient(110deg, var(--azul-noite) 35%, var(--azul)); }
+  .c-formacao .foto { width: 52%; object-position: 40% 22%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+  .c-formacao strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
+
+  /* selo "Em breve" para eventos que ainda não abriram */
+  .card .breve { display: inline-block; margin-top: 9px; padding: 5px 11px; border-radius: 999px;
+    font-family: var(--sans); font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .c-seminario .breve { color: #0c0a09; background: #f47a2a; }
+  .c-santificai .breve { color: #fff; background: #eb6b2c; }
 
   /* botões */
   .rapidos { display: grid; gap: 12px; margin-top: 32px; }
@@ -144,9 +199,7 @@
 <body>
 <main>
   <header>
-    <img class="logo" src="img/logo-sim.jpg" alt="Logo SIM" width="360" height="360">
-    <h1 class="nome">SIM Dracena</h1>
-    <p class="lema">Alcançados pela Misericórdia</p>
+    <h1 style="margin:0"><img class="logo" src="img/logo-sim.jpg" alt="SIM Dracena" width="360" height="360"></h1>
   </header>
 
   <!--
@@ -155,54 +208,74 @@
   -->
   <ul class="abas">
     <li>
-      <a class="card c-socio" href="../site/socio.html">
-        <img class="foto" src="img/socio.jpg" alt="" loading="eager">
+      <div class="card c-evangeliza">
+        <img class="foto" src="img/evangelizashow.jpg" alt="" loading="eager">
         <span class="txt">
-          <small>Jesus espera o seu sim</small>
-          <strong>Seja um sócio <em class="ouro">benfeitor</em></strong>
-          <span class="info">Ajude a missão a continuar</span>
-          <span class="cta">Quero ser</span>
+          <small>Sáb · 21/11 · 19h30</small>
+          <strong><em>evangeliza</em><b>SHOW</b></strong>
+          <span class="info">Louvor, oração e muita música</span>
         </span>
-      </a>
+      </div>
     </li>
     <li>
       <a class="card c-kairos" href="../site/kairos.html">
-        <img class="bg" src="img/igreja.jpg" alt="" loading="eager">
+        <img class="foto" src="img/kairos-arte.jpg" alt="" loading="eager">
         <span class="txt">
           <small>22 de novembro · 8h</small>
           <strong>Kairós<br><span class="ouro">30 anos</span></strong>
           <span class="info">Alcançados pela Misericórdia</span>
         </span>
-        <img class="selo" src="img/selo-30-anos.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a class="card c-celebrai" href="../site/eventos.html">
+        <img class="foto" src="img/celebrai.jpg" alt="" loading="eager">
+        <span class="txt">
+          <strong>CELEBRAI 2026</strong>
+          <span class="info">Inscrições abertas até 12/12</span>
+          <span class="cta">Inscreva-se</span>
+        </span>
       </a>
     </li>
     <li>
       <a class="card c-seminario" href="../site/diga-sim.html">
-        <img class="foto" src="img/pomba.jpg" alt="" loading="lazy">
+        <img class="foto" src="img/diga-sim-pomba.jpg" alt="" loading="lazy">
         <span class="txt">
-          <small>Seminário de Vida · Curso</small>
+          <small>Seminário de Vida</small>
           <strong>Diga <span>SIM</span><br>a Deus</strong>
+          <span class="faisca" aria-hidden="true"></span>
+          <span class="breve">Em breve</span>
         </span>
       </a>
     </li>
     <li>
       <a class="card c-santificai" href="../site/santificai.html">
-        <img class="foto" src="img/santificai.jpg" alt="" loading="lazy">
         <span class="txt">
-          <small>Curso de formação</small>
-          <strong>Santificai-vos</strong>
+          <small>Curso</small>
+          <img class="logo-s" src="img/santificai-logo.png" alt="Santificai-vos" width="763" height="192">
           <span class="info">Uma escola de santidade</span>
+          <span class="breve">Em breve</span>
+        </span>
+        <img class="pomba-s" src="img/santificai-pomba.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a class="card c-formacao" href="../proposta-site/formacao.html">
+        <img class="foto" src="img/formacao.jpg" alt="" loading="lazy">
+        <span class="txt">
+          <small>Para aprofundar a fé</small>
+          <strong>FORMAÇÃO</strong>
+          <span class="info">Conteúdos para crescer na fé</span>
         </span>
       </a>
     </li>
     <li>
-      <a class="card c-eventos" href="../site/eventos.html">
-        <img class="bg" src="img/adoracao.jpg" alt="" loading="lazy">
+      <a class="card c-socio" href="../site/socio.html">
         <span class="txt">
-          <small>Agenda da comunidade</small>
-          <strong>EVENTOS</strong>
-          <span class="info">Retiros, encontros e celebrações</span>
+          <small>Jesus espera o seu sim</small>
+          <strong>Seja um sócio <em class="ouro">benfeitor</em></strong>
         </span>
+        <span class="cta">Quero ser</span>
       </a>
     </li>
   </ul>
