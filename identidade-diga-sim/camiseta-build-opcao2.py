@@ -5,7 +5,7 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
 
 C = sys.argv[1]; LOGO_SVG = sys.argv[2]
-PW, SIDE, INSET, R1, R2 = [float(v) for v in sys.argv[3:8]]
+PW, SIDE, INS_L, INS_R, R1, R2, WFR = [float(v) for v in sys.argv[3:10]]
 BRANCO = "#ffffff"; LARANJA = "#f47a2a"; CAMISA = "#0b0b0b"
 
 class Font:
@@ -87,7 +87,7 @@ def globo(cx, cy, r, sw, cor):
 # ---------- FRENTE "DESCERÁ SOBRE VÓS" ----------
 import json
 AMARELO = "#ffc46b"
-W = 300
+W = WFR
 partes_b, partes_l, partes_a = [], [], []
 pc = json.load(open(C + "/pomba-camadas.json"))
 pw = PW; ps = pw / pc["w"]; ph = pc["h"] * ps
@@ -103,17 +103,17 @@ def palavra(txt, cap, x, base, alinhar, cor=BRANCO, track=.02):
     (partes_b if cor == BRANCO else partes_l).append(f'<path fill="{cor}" d="{d}"/>')
 COL = SIDE
 cap_lado = fit_cap(anton, "DESCERÁ", COL, .02)
-xl = px + INSET; xr = px + pw - INSET
+xl = px + INS_L; xr = px + pw - INS_R
 palavra("DESCERÁ", cap_lado, xl, ph * R1, "dir")
 palavra("SOBRE", cap_lado, xr, ph * R1, "esq")
 palavra("VÓS", cap_lado, xl, ph * R2, "dir")
 palavra("O", cap_lado, xr, ph * R2, "esq")
-y = ph + 2
-cap_es = fit_cap(anton, "ESPÍRITO SANTO", 250, .02)
+y = ph * .97 + 2
+cap_es = fit_cap(anton, "ESPÍRITO SANTO", 165, .02)
 y += cap_es
 palavra("ESPÍRITO SANTO", cap_es, W / 2, y, "centro")
 y += 4
-cap_f = fit_cap(anton, "E VOS DARÁ FORÇA", 170, .02)
+cap_f = fit_cap(anton, "E VOS DARÁ FORÇA", 125, .02)
 y += cap_f
 palavra("E VOS DARÁ FORÇA", cap_f, W / 2, y, "centro", LARANJA)
 H_front = round(y + 3, 1)
