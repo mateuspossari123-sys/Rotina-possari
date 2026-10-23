@@ -84,18 +84,21 @@ def globo(cx, cy, r, sw, cor):
             f'<line x1="{cx-h:.2f}" y1="{cy+r/2}" x2="{cx+h:.2f}" y2="{cy+r/2}"/></g>')
 
 # ---------- FRENTE (área 260 mm de largura) ----------
-W = 260; L = 10; R = W - 10; TW = R - L
-y = 0
-partes_b, partes_l = [], []
-# símbolo: pomba branca sobre o globo laranja
-dove_w = 72; dove_scale = dove_w / 100
-dx = W / 2 - dove_w / 2; dy = 4
-partes_b.append(f'<path fill="{BRANCO}" d="{pomba_path(dx, dy, dove_scale)}"/>')
-gr = 23; gcy = dy + 59 * dove_scale + 3 + gr
-partes_l.append(globo(W / 2, round(gcy, 2), gr, 2.2, LARANJA))
-y = gcy + gr + 16
+import json
+AMARELO = "#ffc46b"
+W = 260
+partes_b, partes_l, partes_a = [], [], []
+pc = json.load(open(C + "/pomba-camadas.json"))
+pw = 220; ps = pw / pc["w"]; ph = pc["h"] * ps
+px = W / 2 - pw / 2
+tr = f'transform="translate({px:.2f} 0) scale({ps:.5f})"'
+partes_l.append(f'<path fill="{LARANJA}" fill-rule="evenodd" {tr} d="{pc["laranja"]}"/>')
+partes_a.append(f'<path fill="{AMARELO}" fill-rule="evenodd" {tr} d="{pc["amarelo"]}"/>')
+partes_b.append(f'<path fill="{BRANCO}" fill-rule="evenodd" {tr} d="{pc["branco"]}"/>')
+y = ph + 4
+TW = 150
 linhas = [("IDE POR TODO O MUNDO", BRANCO), ("E PREGAI O", BRANCO), ("EVANGELHO", LARANJA)]
-gap = 5
+gap = 3.2
 cap_peq = fit_cap(anton, linhas[0][0], TW, .02)
 for txt, cor in linhas:
     cap = cap_peq if cor == BRANCO else fit_cap(anton, txt, TW, .02)
@@ -104,12 +107,16 @@ for txt, cor in linhas:
     d, w = anton.path(txt, cap, W / 2 - tw / 2, y, .02)
     (partes_b if cor == BRANCO else partes_l).append(f'<path fill="{cor}" d="{d}"/>')
     y += gap
-ref = "MARCOS 16,15"; rc = 4.2
-y += 2 + rc
+# globo pequeno + referência na mesma linha
+ref = "MARCOS 16,15"; rc = 3.6; gr = 4.2
 rw = archivo.width(ref, rc, .3)
-d, _ = archivo.path(ref, rc, W / 2 - rw / 2, y, .3)
+total = gr * 2 + 3 + rw
+x0 = W / 2 - total / 2
+y += 3 + gr
+partes_l.append(globo(round(x0 + gr, 2), round(y, 2), gr, 0.9, LARANJA))
+d, _ = archivo.path(ref, rc, x0 + gr * 2 + 3, y + rc / 2, .3)
 partes_b.append(f'<path fill="{BRANCO}" d="{d}"/>')
-H_front = round(y + 6, 1)
+H_front = round(y + gr + 3, 1)
 
 # ---------- COSTAS (área 260 mm) ----------
 logo_d = re.search(r' d="([^"]*)"', open(LOGO_SVG).read()).group(1)
@@ -135,8 +142,9 @@ def sep(body, cor):  # fotolito: tinta em preto sobre branco
 
 out = C + "/out"
 import os; os.makedirs(out, exist_ok=True)
-open(out + "/frente.svg", "w").write(svg(W, H_front, partes_l + partes_b))
-open(out + "/frente-sobre-preto.svg", "w").write(svg(W, H_front, partes_l + partes_b, CAMISA))
+open(out + "/frente.svg", "w").write(svg(W, H_front, partes_l + partes_a + partes_b))
+open(out + "/frente-sobre-preto.svg", "w").write(svg(W, H_front, partes_l + partes_a + partes_b, CAMISA))
+open(out + "/frente-tela-amarelo.svg", "w").write(svg(W, H_front, sep(partes_a, AMARELO), "#ffffff"))
 open(out + "/frente-tela-branco.svg", "w").write(svg(W, H_front, sep(partes_b, BRANCO), "#ffffff"))
 open(out + "/frente-tela-laranja.svg", "w").write(svg(W, H_front, sep(partes_l, LARANJA), "#ffffff"))
 open(out + "/costas.svg", "w").write(svg(W, H_back, costas))
