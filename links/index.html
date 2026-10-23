@@ -141,12 +141,13 @@
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   }
-  .c-santificai .txt { padding-right: 104px; }
+  .c-santificai .txt { padding-right: 104px; padding-top: 16px; padding-bottom: 16px; }
+  .c-seminario .txt { padding-top: 16px; padding-bottom: 16px; }
   .c-santificai small { color: var(--s-marrom); letter-spacing: .42em; }
   .c-santificai .logo-s { display: block; width: min(100%, 250px); height: auto; margin: 6px 0 4px -4px; }
   .c-santificai .info { color: var(--s-marrom); opacity: .85; }
   /* pomba da identidade, em laranja */
-  .c-santificai .pomba-s { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 74%; width: auto;
+  .c-santificai .pomba-s { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 62%; max-height: 104px; width: auto;
     filter: drop-shadow(0 8px 14px rgba(201,89,42,.35)); }
 
   /* 5 · Formação — texto à esquerda, foto à direita */
@@ -154,6 +155,12 @@
   .c-formacao .foto { width: 52%; object-position: 40% 22%;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
   .c-formacao strong { font-family: var(--sans); font-weight: 700; letter-spacing: .04em; }
+
+  /* selo "Em breve" para eventos que ainda não abriram */
+  .card .breve { display: inline-block; margin-top: 9px; padding: 5px 11px; border-radius: 999px;
+    font-family: var(--sans); font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .c-seminario .breve { color: #0c0a09; background: #f47a2a; }
+  .c-santificai .breve { color: #fff; background: #eb6b2c; }
 
   /* botões */
   .rapidos { display: grid; gap: 12px; margin-top: 32px; }
@@ -199,6 +206,7 @@
           <small>Seminário de Vida</small>
           <strong>Diga <span>SIM</span><br>a Deus</strong>
           <span class="faisca" aria-hidden="true"></span>
+          <span class="breve">Em breve</span>
         </span>
       </a>
     </li>
@@ -208,6 +216,7 @@
           <small>Curso</small>
           <img class="logo-s" src="img/santificai-logo.png" alt="Santificai-vos" width="763" height="192">
           <span class="info">Uma escola de santidade</span>
+          <span class="breve">Em breve</span>
         </span>
         <img class="pomba-s" src="img/santificai-pomba.png" alt="">
       </a>
