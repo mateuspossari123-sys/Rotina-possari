@@ -109,7 +109,8 @@
 
   /* 3 · Seminário Diga SIM a Deus — pomba de fogo */
   .c-seminario { background: #000; }
-  .c-seminario .foto { width: 62%; object-position: 50% 88%; }
+  .c-seminario .foto { width: 46%; height: auto; aspect-ratio: 700 / 880; top: 50%; right: 3%; transform: translateY(-50%);
+    -webkit-mask-image: radial-gradient(farthest-side, #000 55%, transparent 92%); mask-image: radial-gradient(farthest-side, #000 55%, transparent 92%); }
   .c-seminario small { color: #f5a01a; }
   .c-seminario strong { font-family: var(--sans); font-weight: 800; letter-spacing: -.01em; font-size: clamp(22px, 6.8vw, 30px); }
   .c-seminario strong span { color: #f5a01a; }
@@ -128,25 +129,13 @@
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.4 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   }
-  .c-santificai .txt { padding-right: 120px; }
+  .c-santificai .txt { padding-right: 104px; }
   .c-santificai small { color: var(--s-marrom); letter-spacing: .42em; }
-  .c-santificai strong {
-    font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--s-marrom);
-    font-size: clamp(28px, 8.6vw, 40px); line-height: 1.1; margin: 4px 0 0; padding-left: .12em;
-  }
-  .c-santificai strong .ini {
-    font-family: var(--script); font-style: normal; font-weight: 400; color: var(--s-laranja);
-    font-size: 1.55em; line-height: 0; margin-right: -.12em; vertical-align: -.08em;
-  }
+  .c-santificai .logo-s { display: block; width: min(100%, 250px); height: auto; margin: 6px 0 4px -4px; }
   .c-santificai .info { color: var(--s-marrom); opacity: .85; }
-  /* selo SIM em laranja (o logo nunca vai no azul original) */
-  .c-santificai .selo-s {
-    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-    width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center;
-    background: radial-gradient(circle at 35% 30%, #f28a4f, var(--s-laranja) 55%, var(--s-brasa));
-    box-shadow: 0 10px 22px -8px rgba(201,89,42,.7), 0 0 0 6px rgba(235,107,44,.14);
-  }
-  .c-santificai .selo-s img { width: 52%; filter: brightness(0) invert(1); }
+  /* pomba da identidade, em laranja */
+  .c-santificai .pomba-s { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 74%; width: auto;
+    filter: drop-shadow(0 8px 14px rgba(201,89,42,.35)); }
 
   /* 5 · Eventos — texto à esquerda, foto à direita */
   .c-eventos { background: #050505; }
@@ -216,10 +205,10 @@
       <a class="card c-santificai" href="../site/santificai.html">
         <span class="txt">
           <small>Curso</small>
-          <strong><span class="ini">S</span>antificai-vos</strong>
+          <img class="logo-s" src="img/santificai-logo.png" alt="Santificai-vos" width="763" height="192">
           <span class="info">Uma escola de santidade</span>
         </span>
-        <span class="selo-s" aria-hidden="true"><img src="img/logo-sim-ouro.png" alt=""></span>
+        <img class="pomba-s" src="img/santificai-pomba.png" alt="">
       </a>
     </li>
     <li>
