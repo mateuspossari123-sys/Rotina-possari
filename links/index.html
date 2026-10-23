@@ -103,6 +103,17 @@
     box-shadow: 0 6px 14px -6px rgba(0,0,0,.6);
   }
 
+  /* 0 · Celebrai 2026 */
+  .c-celebrai { background: linear-gradient(110deg, var(--azul-noite) 30%, #2a1450); }
+  .c-celebrai .foto { width: 54%; object-position: 70% 50%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 50%); mask-image: linear-gradient(90deg, transparent, #000 50%); }
+  .c-celebrai .txt { padding-top: 18px; padding-bottom: 18px; }
+  .c-celebrai strong { font-size: clamp(24px, 7vw, 31px); letter-spacing: .01em; }
+  .c-celebrai .cta {
+    display: inline-block; margin-top: 10px; padding: 9px 16px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--azul-noite); background: var(--ouro);
+    box-shadow: 0 6px 14px -6px rgba(0,0,0,.6);
+  }
+
   /* 2 · Kairós 30 anos */
   .c-kairos { --veu: linear-gradient(90deg, rgba(4,38,58,.94) 0%, rgba(4,38,58,.6) 55%, rgba(4,38,58,.1)); }
   .c-kairos .selo { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); height: 82%; width: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
@@ -188,6 +199,16 @@
     Troque href="#" pelo link de destino (formulário, Sympla, WhatsApp, post…).
   -->
   <ul class="abas">
+    <li>
+      <a class="card c-celebrai" href="../site/eventos.html">
+        <img class="foto" src="img/celebrai.jpg" alt="" loading="eager">
+        <span class="txt">
+          <strong>CELEBRAI 2026</strong>
+          <span class="info">Inscrições abertas até 12/12</span>
+          <span class="cta">Inscreva-se</span>
+        </span>
+      </a>
+    </li>
     <li>
       <a class="card c-kairos" href="../site/kairos.html">
         <img class="bg" src="img/igreja.jpg" alt="" loading="eager">
