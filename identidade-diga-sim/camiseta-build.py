@@ -123,11 +123,11 @@ WF = W
 W = 260
 logo_d = re.search(r' d="([^"]*)"', open(LOGO_SVG).read()).group(1)
 lw, lh = 497, 594
-logo_h = 95; ls = logo_h / lh; lx = W / 2 - lw * ls / 2
+logo_h = 60; ls = logo_h / lh; lx = W / 2 - lw * ls / 2
 costas = [f'<path fill="{BRANCO}" fill-rule="evenodd" transform="translate({lx:.2f} 4) scale({ls:.5f})" d="{logo_d}"/>']
-yb = 4 + logo_h + 16
+yb = 4 + logo_h + 12
 for txt in ("SOCIEDADE IRMÃOS DA MISERICÓRDIA",):
-    cap = fit_cap(archivo, txt, 240, .12)
+    cap = fit_cap(archivo, txt, 170, .12)
     yb += cap
     tw = archivo.width(txt, cap, .12)
     d, _ = archivo.path(txt, cap, W / 2 - tw / 2, yb, .12)
