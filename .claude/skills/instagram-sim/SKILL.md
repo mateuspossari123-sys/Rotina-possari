@@ -13,6 +13,7 @@ A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem
 2. Pergunte (ou deduza) o **formato**: feed 4:5 (1080×1350), story 9:16 (1080×1920) ou carrossel. Padrão: feed 4:5.
 3. Se o usuário contar qual foi o post anterior (ou mandar print do feed), escolha um modelo/fundo que contraste com ele — veja "Ritmo do feed" em `references/modelos.md`.
 4. Leia em `references/modelos.md` só a seção do pilar escolhido.
+5. Para variar de verdade, consulte `references/inspiracoes.md` (perfis que o usuário admira: Minha Biblioteca Católica, Padre Paulo Ricardo, Colo de Deus, Dunamis) e escolha um dos "formatos novos" quando o feed estiver repetitivo. Sugira ao usuário o formato antes de produzir se houver dúvida.
 
 | Pilar | Quando | Cara do post |
 |---|---|---|
@@ -59,6 +60,9 @@ Sempre: renderize, **olhe o resultado** (reduza e leia a imagem) e corrija sobre
 - Citações bíblicas com referência (livro capítulo,versículo). Frases de santos só se forem conhecidas e de autoria confiável; na dúvida, prefira a Bíblia ou o Catecismo e diga ao usuário.
 - Tom: acolhedor, jovem, sem ser informal demais; textos curtos no feed.
 - Se o usuário não mandar o texto, proponha uma versão e deixe claro que é sugestão para ele ajustar.
+
+## Arte sacra
+- Pinturas clássicas (antigas, domínio público) funcionam muito bem como imagem nobre. Prefira obras antigas conhecidas; cite o pintor quando souber. Se precisar de uma imagem específica, peça ao usuário ou procure em acervos de domínio público.
 
 ## Fotos
 - Banco de fotos da comunidade: `assets/fotos/` (24 fotos; veja `assets/fotos/INDICE.md` para escolher pelo tema). Para o pilar 3, use dessas; se precisar de mais, peça ao usuário (ele pode baixar do Facebook da comunidade). Evite repetir a mesma foto em posts próximos.
