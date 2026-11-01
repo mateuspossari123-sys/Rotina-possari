@@ -12,7 +12,7 @@ O feed atual já é bom e reconhecível. A skill NÃO é para refazer o perfil �
 5. **Mockup de outdoor/cenário** — "Evangeliza Show" num billboard. Bom para grandes eventos.
 6. **Fotos puras de evento** — pregação, louvor, multidão, com legenda pequena ou nenhum texto. O feed mais recente já alterna arte e foto: manter isso.
 7. **Santos com recorte** — "São João Paulo II · O amor me explicou tudo".
-8. **Campanhas com sub-identidade** — Kairós (dourado/creme + ampulheta), Evangeliza Show (azul + neon/dourado), Ou Santo Ou Nada, Santificai-vos (creme/pêssego). Quando o post for de uma campanha, siga a cara DA CAMPANHA, não force o padrão marinho/creme.
+8. **Campanhas com sub-identidade** — Kairós (dourado/creme + ampulheta), Evangeliza Show (azul + neon/dourado), Ou Santo Ou Nada, Santificai-vos (creme/pêssego). Quando o post for de uma campanha, siga a cara DA CAMPANHA (detalhes em `references/campanhas.md`), não force o padrão marinho/creme.
 
 ## O que estava repetindo demais
 - Muitos posts seguidos com fundo azul-marinho + título serifado + dourado (Todos os Santos, JPII, Kairós azul, Evangeliza Show azul vieram em sequência).

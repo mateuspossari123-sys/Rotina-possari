@@ -1,19 +1,30 @@
 ---
 name: instagram-sim
-description: Cria posts, carrosséis e stories para o Instagram da SIM (comunidade/missão católica), seguindo a identidade visual da SIM (azul-marinho, creme e dourado, Playfair + Montserrat, logo de Nossa Senhora com a cruz) e variando o formato para o feed não ficar repetitivo. Use sempre que o usuário pedir arte, post, story, carrossel, capa, convite, aviso ou qualquer peça para o Instagram/redes da SIM, ou falar de datas litúrgicas, santos, orações, formação ou eventos da missão — mesmo que não diga "Instagram" ou "SIM" explicitamente.
+description: Cria posts, carrosséis e stories para o Instagram da SIM (comunidade/missão católica) e para seus retiros e encontros com identidade própria (Diga SIM a Deus, Santificai-vos, Kairós, Evangeliza Show, Ou Santo Ou Nada, Celebrai 30 anos), sempre perguntando antes para que é a arte, e seguindo a identidade visual da SIM (azul-marinho, creme e dourado, Playfair + Montserrat, logo de Nossa Senhora com a cruz) e variando o formato para o feed não ficar repetitivo. Use sempre que o usuário pedir arte, post, story, carrossel, capa, convite, aviso ou qualquer peça para o Instagram/redes da SIM, ou falar de datas litúrgicas, santos, orações, formação ou eventos da missão — mesmo que não diga "Instagram" ou "SIM" explicitamente.
 ---
 
 # Instagram da SIM
 
 A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem identidade visual definida, mas o feed estava ficando "tudo igual": mesmo fundo, mesmo título serifado, mesmo dourado em todo post. Esta skill existe para **manter a identidade e variar o formato**.
 
-## Antes de criar
-0. Leia `references/feed-atual.md`: o feed já tem formatos que funcionam e campanhas com cara própria (Kairós, Evangeliza Show, Ou Santo Ou Nada, Santificai-vos). Evolua o que existe; não substitua.
-1. Identifique o **pilar** do pedido (tabela abaixo). Se não estiver claro, escolha o mais provável e diga qual escolheu.
-2. Pergunte (ou deduza) o **formato**: feed 4:5 (1080×1350), story 9:16 (1080×1920) ou carrossel. Padrão: feed 4:5.
-3. Se o usuário contar qual foi o post anterior (ou mandar print do feed), escolha um modelo/fundo que contraste com ele — veja "Ritmo do feed" em `references/modelos.md`.
-4. Leia em `references/modelos.md` só a seção do pilar escolhido.
-5. Para variar de verdade, consulte `references/inspiracoes.md` (perfis que o usuário admira: Minha Biblioteca Católica, Padre Paulo Ricardo, Colo de Deus, Dunamis) e escolha um dos "formatos novos" quando o feed estiver repetitivo. Sugira ao usuário o formato antes de produzir se houver dúvida.
+## Primeiro passo: perguntar para que é a arte
+O usuário pediu que **toda arte comece com perguntas**, para acertar na montagem e manter o feed organizado. Antes de desenhar qualquer coisa, pergunte (de preferência numa única mensagem curta, ou com a ferramenta de perguntas de múltipla escolha, se houver) o que ainda não estiver claro no pedido:
+
+1. **Para que é?** É de alguma **campanha/retiro/encontro** com identidade própria — Diga SIM a Deus, Santificai-vos, Kairós, Evangeliza Show, Ou Santo Ou Nada, Celebrai 30 anos — ou é um post do **perfil da SIM** (liturgia, formação, missão, oração, santos, aviso)?
+2. **Onde vai?** Feed (4:5), story (9:16) ou carrossel? Quantas lâminas?
+3. **Quando vai ao ar e qual foi o último post do feed?** (ou peça um print do feed) — para escolher um fundo/formato que contraste.
+4. **Texto e informações:** frase principal, data, hora, local, link/inscrição. Se não houver texto, ofereça escrever uma proposta.
+5. **Imagens:** usar foto do banco (`assets/fotos/`), arte sacra, foto que o usuário vai mandar, ou só tipografia?
+
+Não pergunte o que o pedido já respondeu. Se a resposta for "tanto faz", decida você e diga o que escolheu.
+
+## Depois das respostas
+0. Leia `references/feed-atual.md`: o feed já tem formatos que funcionam. Evolua o que existe; não substitua.
+1. **Se for campanha:** leia a seção dela em `references/campanhas.md`, abra as referências em `assets/campanhas/<nome>/` e siga a identidade DA CAMPANHA (cores, fontes, elementos). O logo SIM entra pequeno como assinatura. As regras de cor da SIM abaixo não se aplicam a ela.
+2. **Se for post do perfil:** identifique o **pilar** (tabela abaixo) e leia em `references/modelos.md` só a seção dele.
+3. Use o último post informado para escolher contraste — veja "Ritmo do feed" em `references/modelos.md`.
+4. Para variar de verdade, consulte `references/inspiracoes.md` (Minha Biblioteca Católica, Padre Paulo Ricardo, Colo de Deus, Dunamis) e escolha um dos "formatos novos" quando o feed estiver repetitivo.
+5. Antes de renderizar, diga em 2–3 linhas o plano (pilar/campanha, formato, layout); se o usuário já foi claro, siga direto.
 
 | Pilar | Quando | Cara do post |
 |---|---|---|
@@ -24,7 +35,7 @@ A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem
 | 5. Santos | memória, testemunho, frase de santo | santo recortado + nome grande + frase |
 | 6. Convites e avisos | eventos, inscrições, horários | gráfico ousado (retrô/blocos), mais livre |
 
-## Identidade visual (não negociável)
+## Identidade visual da SIM (posts do perfil; campanhas seguem `references/campanhas.md`)
 - Cores: azul-marinho `#03283B`, creme `#FDEFE2`, dourado `#C9A055`; apoio: azul `#1B4F6B`, azul claro `#4682A0`. Amarelo vivo `#F5B828` só no pilar 6.
 - Fontes (em `assets/fonts`): Playfair Display (títulos 900, destaques em itálico 700, orações 500), Montserrat (sobretítulos espaçados, rodapés, tópicos) e uma sans condensada pesada — `Anton` ou `Oswald700` — para manchetes de campanha e frases-gancho, como já aparece no feed. A fonte oficial Awesome Serif é paga; Playfair é a substituta aprovada.
 - Logo: `assets/logo_sim_mask.png` (traço; recolorir em creme ou marinho). Selo 30 anos: `assets/selo_30anos.png` (só em peças de aniversário).
