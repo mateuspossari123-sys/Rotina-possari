@@ -56,3 +56,16 @@ Use como repertório de FORMATOS, sempre traduzido para a identidade SIM (marinh
 | Só texto minimalista | 2, 6 | fundo marinho liso, uma frase curta Montserrat/Playfair — usar raramente, gera curiosidade |
 
 Regra de ouro: posts sacros (liturgia, santos, oração) mantêm a reverência; os formatos com humor/colagem ficam para convites, juventude e eventos.
+
+## Estilo "DSM" aprovado para carrosséis (adaptado às cores SIM)
+Exemplo pronto: `exemplo_carrossel_estilo_dsm.py` → `carrossel_estilo_dsm.jpg` (carrossel de Finados).
+Cores: azul SIM `#1B4F6B` / marinho no lugar do azul royal; laranja `#E07A45` / terracota `#C8553D`; off-white `#F3EEE4`; caneta vermelha `#C44632` nas anotações.
+Elementos (variar entre lâminas, um por lâmina):
+- **Granulado forte** em todas as lâminas (`grao()`), fotos em P&B com contraste alto.
+- **Capa:** foto P&B + título gigante em Anton, linhas alternando laranja/creme e esquerda/direita.
+- **Cartão sobre foto:** foto P&B desfocada + retângulo azul; texto em Archivo 900 justificado que **ultrapassa** a borda do cartão.
+- **Papel anotado:** folha off-white com fita adesiva e dobra, textos em Archivo/Playfair, anotações de caneta (colchetes, sublinhado à mão, checkbox, asterisco). Não riscar por cima das letras.
+- **Bolha de cor:** fundo off-white com mancha radial laranja granulada + uma palavra gigante em Anton marinho; textos pequenos nos cantos.
+- **Bilhete:** fundo azul com frase espalhada em Archivo 900 + post-it amarelo inclinado com a oração.
+- Contador "1/5" em pílula escura no canto e logo SIM pequeno no canto inferior.
+Usar em formação/reflexão para jovens; posts sacros solenes continuam no estilo clássico.
