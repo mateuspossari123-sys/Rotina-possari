@@ -35,7 +35,7 @@ Para: encontros, missões, retiros, bastidores, pessoas da comunidade. É o pila
 - Pouco texto: no máximo 1 frase curta em Playfair itálico (60–80 px) + linha Montserrat pequena (local/data).
 - Texto onde a foto tiver "respiro" (céu, parede, chão); escurecer só aquela faixa com `degrade`.
 - Logo pequeno num canto (não no centro), 60–70 px.
-- Textura `linho` leve.
+- Textura `linho` leve é opcional (fotos aceitam bem).
 - Variações já usadas no feed: (a) foto pura sem texto; (b) foto + **moldura branca fina** recortando parte da cena; (c) **frase-gancho** em sans condensada branca (Anton/Oswald) + itálico dourado sobre a foto escurecida ("VOCÊ SE LEMBRA...").
 - Fotos: `assets/fotos/` + `INDICE.md`.
 

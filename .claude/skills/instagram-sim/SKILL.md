@@ -33,7 +33,7 @@ A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem
 ## Preferências já aprovadas pelo usuário
 - Sublinhado **reto** e dourado, só na palavra-chave (nunca curvo/pincel, nunca em tudo).
 - Logo pequeno; quando há foto em cima, logo **embaixo**, não sobre a imagem.
-- Texturas **bem leves**: linho na foto (`save(..., textura='linho')`) e quase imperceptível em fundo liso (`textura='linho-sutil'`). Papel de missal antigo foi recusado.
+- Textura **não faz parte da identidade** — é opcional e com moderação. Padrão: fundo **liso**. Use linho bem leve só onde reforça o sentido: peças orantes/sóbrias (oração, luto, santinho) e fotos (`textura='linho'` na foto, `'linho-sutil'` em fundo liso). Em formação, convites e campanhas, deixe liso. Num carrossel, só algumas lâminas (ex.: a da foto e a da oração). Papel de missal antigo foi recusado.
 - Texto nunca cobrindo rosto, mãos ou o elemento principal da foto — mover o texto para a área de "respiro".
 - Stories: deixar margem segura no topo e embaixo (barra de resposta do Instagram).
 
