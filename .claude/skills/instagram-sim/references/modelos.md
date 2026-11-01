@@ -36,7 +36,8 @@ Para: encontros, missões, retiros, bastidores, pessoas da comunidade. É o pila
 - Texto onde a foto tiver "respiro" (céu, parede, chão); escurecer só aquela faixa com `degrade`.
 - Logo pequeno num canto (não no centro), 60–70 px.
 - Textura `linho` leve.
-- Fotos: pasta `assets/fotos/` (banco da comunidade). Se estiver vazia, pedir fotos ao usuário.
+- Variações já usadas no feed: (a) foto pura sem texto; (b) foto + **moldura branca fina** recortando parte da cena; (c) **frase-gancho** em sans condensada branca (Anton/Oswald) + itálico dourado sobre a foto escurecida ("VOCÊ SE LEMBRA...").
+- Fotos: `assets/fotos/` + `INDICE.md`.
 
 ## 4. Palavra e oração — "santinho"
 Para: versículo, jaculatória, oração curta, frase do dia.
@@ -59,6 +60,7 @@ Para: eventos, inscrições, horários, campanhas. Pode fugir um pouco do cláss
 - Estilo retrô de janelas de computador (barra azul claro/amarela, sombra dura NAVY, botões ✕▢_), OU blocos de cor chapada.
 - Título em letras grandes; informações (data · hora · local) numa faixa NAVY embaixo.
 - Pode usar amarelo vivo `#F5B828` como cor de destaque NESTE pilar.
+- Formato da casa: tipografia condensada enorme (Anton) em fundo dourado/creme + Playfair itálico + **pílulas arredondadas** no rodapé ("Kairós · Comunidade SIM"), como o post do Kairós. Se o evento for de uma campanha existente, use as cores da campanha.
 - Exemplo aprovado: vídeo "Ou santo ou nada" versão retrô SIM.
 
 ---

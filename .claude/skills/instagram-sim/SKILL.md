@@ -8,6 +8,7 @@ description: Cria posts, carrosséis e stories para o Instagram da SIM (comunida
 A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem identidade visual definida, mas o feed estava ficando "tudo igual": mesmo fundo, mesmo título serifado, mesmo dourado em todo post. Esta skill existe para **manter a identidade e variar o formato**.
 
 ## Antes de criar
+0. Leia `references/feed-atual.md`: o feed já tem formatos que funcionam e campanhas com cara própria (Kairós, Evangeliza Show, Ou Santo Ou Nada, Santificai-vos). Evolua o que existe; não substitua.
 1. Identifique o **pilar** do pedido (tabela abaixo). Se não estiver claro, escolha o mais provável e diga qual escolheu.
 2. Pergunte (ou deduza) o **formato**: feed 4:5 (1080×1350), story 9:16 (1080×1920) ou carrossel. Padrão: feed 4:5.
 3. Se o usuário contar qual foi o post anterior (ou mandar print do feed), escolha um modelo/fundo que contraste com ele — veja "Ritmo do feed" em `references/modelos.md`.
@@ -24,7 +25,7 @@ A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem
 
 ## Identidade visual (não negociável)
 - Cores: azul-marinho `#03283B`, creme `#FDEFE2`, dourado `#C9A055`; apoio: azul `#1B4F6B`, azul claro `#4682A0`. Amarelo vivo `#F5B828` só no pilar 6.
-- Fontes (em `assets/fonts`): Playfair Display (títulos 900, destaques em itálico 700, orações 500) e Montserrat (sobretítulos espaçados, rodapés, tópicos). A fonte oficial Awesome Serif é paga; Playfair é a substituta aprovada.
+- Fontes (em `assets/fonts`): Playfair Display (títulos 900, destaques em itálico 700, orações 500), Montserrat (sobretítulos espaçados, rodapés, tópicos) e uma sans condensada pesada — `Anton` ou `Oswald700` — para manchetes de campanha e frases-gancho, como já aparece no feed. A fonte oficial Awesome Serif é paga; Playfair é a substituta aprovada.
 - Logo: `assets/logo_sim_mask.png` (traço; recolorir em creme ou marinho). Selo 30 anos: `assets/selo_30anos.png` (só em peças de aniversário).
 - Não colocar o @ do Instagram nas artes.
 
@@ -60,6 +61,6 @@ Sempre: renderize, **olhe o resultado** (reduza e leia a imagem) e corrija sobre
 - Se o usuário não mandar o texto, proponha uma versão e deixe claro que é sugestão para ele ajustar.
 
 ## Fotos
-- Banco de fotos da comunidade: `assets/fotos/` (pode estar vazio). Para o pilar 3, use dessas; se não houver, peça ao usuário (ele pode baixar do Facebook da comunidade e enviar).
+- Banco de fotos da comunidade: `assets/fotos/` (24 fotos; veja `assets/fotos/INDICE.md` para escolher pelo tema). Para o pilar 3, use dessas; se precisar de mais, peça ao usuário (ele pode baixar do Facebook da comunidade). Evite repetir a mesma foto em posts próximos.
 - Tratamento padrão: `tratamento(im, 'quente')`; datas de luto/oração: `'frio'`.
 - Imagens de santos da internet podem ter direitos autorais — avise se a peça for para venda/impressão.
