@@ -50,7 +50,7 @@ d.text((540, 430), 'Oração pelos', font=font('PF900', 90), fill=NAVY, anchor='
 save(img, 'post.jpg')
 ```
 
-Exemplo completo de um post por pilar: `references/exemplo_6_pilares.py` (resultado em `references/feed_simulado.jpg`).
+Exemplos prontos: `references/exemplo_formatos_novos.py` (resultado em `references/feed_formatos_novos.jpg`; fonte manuscrita `Caveat700`) e, um post por pilar, `references/exemplo_6_pilares.py` (resultado em `references/feed_simulado.jpg`).
 
 Cuidados técnicos: as fontes só têm caracteres latinos — evite setas (→) e emojis; use » ou —. Ao sublinhar palavra numa linha de título grande, confira se o traço não encosta na linha de baixo.
 
