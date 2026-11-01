@@ -22,7 +22,7 @@ Para: solenidades, festas, tempos litúrgicos, datas da Igreja.
 - Exemplo aprovado: story "Fiéis Defuntos" (anjo + título), arte "Dia de Todos os Santos".
 
 ## 2. Formação — "carrossel claro"
-Para: explicar algo da fé (por que, como, o que é). Preferir CARROSSEL de 3–6 lâminas no feed.
+Para: explicar algo da fé (por que, como, o que é). Preferir CARROSSEL de **4 a 5 lâminas no máximo** (preferência do usuário: conteúdo enxuto). Junte ideias em vez de criar lâmina nova; no máximo ~2 parágrafos curtos + 1 frase de destaque por lâmina.
 - Fundo: `creme` (variar com `claro` em uma das lâminas).
 - Capa: pergunta grande em Playfair 900 NAVY + segunda linha em itálico GOLD.
 - Lâminas internas: número grande dourado (01, 02…) à esquerda + texto Montserrat 600 (34–38 px) NAVY, fios dourados finos separando.

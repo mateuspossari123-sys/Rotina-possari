@@ -11,7 +11,7 @@ A SIM é uma comunidade/missão católica (30 anos em 1996–2026). O perfil tem
 O usuário pediu que **toda arte comece com perguntas**, para acertar na montagem e manter o feed organizado. Antes de desenhar qualquer coisa, pergunte (de preferência numa única mensagem curta, ou com a ferramenta de perguntas de múltipla escolha, se houver) o que ainda não estiver claro no pedido:
 
 1. **Para que é?** É de alguma **campanha/retiro/encontro** com identidade própria — Diga SIM a Deus, Santificai-vos, Kairós, Evangeliza Show, Ou Santo Ou Nada, Celebrai 30 anos — ou é um post do **perfil da SIM** (liturgia, formação, missão, oração, santos, aviso)?
-2. **Onde vai?** Feed (4:5), story (9:16) ou carrossel? Quantas lâminas?
+2. **Onde vai?** Feed (4:5), story (9:16) ou carrossel? Carrossel: **4 a 5 lâminas no máximo**, conteúdo enxuto (capa + 2–3 de conteúdo + fechamento).
 3. **Quando vai ao ar e qual foi o último post do feed?** (ou peça um print do feed) — para escolher um fundo/formato que contraste.
 4. **Texto e informações:** frase principal, data, hora, local, link/inscrição. Se não houver texto, ofereça escrever uma proposta.
 5. **Cor:** não pergunte em aberto — **sugira** uma cor da paleta (`references/paletas.md`) com 1 linha de motivo (tempo litúrgico, tipo de post, contraste com o último post) e peça confirmação. Em campanhas, as cores são as da campanha.
