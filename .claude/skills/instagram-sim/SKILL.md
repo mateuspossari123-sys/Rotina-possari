@@ -14,7 +14,8 @@ O usuário pediu que **toda arte comece com perguntas**, para acertar na montage
 2. **Onde vai?** Feed (4:5), story (9:16) ou carrossel? Quantas lâminas?
 3. **Quando vai ao ar e qual foi o último post do feed?** (ou peça um print do feed) — para escolher um fundo/formato que contraste.
 4. **Texto e informações:** frase principal, data, hora, local, link/inscrição. Se não houver texto, ofereça escrever uma proposta.
-5. **Imagens:** usar foto do banco (`assets/fotos/`), arte sacra, foto que o usuário vai mandar, ou só tipografia?
+5. **Cor:** não pergunte em aberto — **sugira** uma cor da paleta (`references/paletas.md`) com 1 linha de motivo (tempo litúrgico, tipo de post, contraste com o último post) e peça confirmação. Em campanhas, as cores são as da campanha.
+6. **Imagens:** usar foto do banco (`assets/fotos/`), arte sacra, foto que o usuário vai mandar, ou só tipografia?
 
 Não pergunte o que o pedido já respondeu. Se a resposta for "tanto faz", decida você e diga o que escolheu.
 
@@ -36,7 +37,8 @@ Não pergunte o que o pedido já respondeu. Se a resposta for "tanto faz", decid
 | 6. Convites e avisos | eventos, inscrições, horários | gráfico ousado (retrô/blocos), mais livre |
 
 ## Identidade visual da SIM (posts do perfil; campanhas seguem `references/campanhas.md`)
-- Cores: azul-marinho `#03283B`, creme `#FDEFE2`, dourado `#C9A055`; apoio: azul `#1B4F6B`, azul claro `#4682A0`. Amarelo vivo `#F5B828` só no pilar 6.
+- Cores base: azul-marinho `#03283B`, creme `#FDEFE2`, dourado `#C9A055`; apoio: azul `#1B4F6B`, azul claro `#4682A0`.
+- Cores vivas aprovadas (litúrgicas + apoio): veja `references/paletas.md` — uma por post, para dar cor ao feed.
 - Fontes (em `assets/fonts`): Playfair Display (títulos 900, destaques em itálico 700, orações 500), Montserrat (sobretítulos espaçados, rodapés, tópicos) e uma sans condensada pesada — `Anton` ou `Oswald700` — para manchetes de campanha e frases-gancho, como já aparece no feed. A fonte oficial Awesome Serif é paga; Playfair é a substituta aprovada.
 - Logo: `assets/logo_sim_mask.png` (traço; recolorir em creme ou marinho). Selo 30 anos: `assets/selo_30anos.png` (só em peças de aniversário).
 - Não colocar o @ do Instagram nas artes.

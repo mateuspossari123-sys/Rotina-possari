@@ -27,6 +27,10 @@ GOLD = (201, 160, 85)     # #C9A055  dourado
 CREAM = (253, 239, 226)   # #FDEFE2  creme
 INK = NAVY
 
+# cores vivas (references/paletas.md)
+ROXO = (91, 44, 131); OLIVA = (79, 122, 58); VINHO = (158, 43, 37); ROSA = (217, 121, 139); OURO_CL = (233, 196, 106)
+TERRACOTA = (200, 85, 61); LARANJA = (224, 122, 69); CEU = (127, 183, 217); TURQUESA = (42, 157, 143); MOSTARDA = (245, 184, 40)
+
 FORMATOS = {'feed': (1080, 1350), 'story': (1080, 1920), 'quadrado': (1080, 1080)}
 
 # ---------- fontes ----------
@@ -59,7 +63,8 @@ def canvas(formato='feed', fundo='navy'):
         vig = 1 - 0.18 * np.clip(((xx - W / 2) / (W * .6)) ** 2 + ((yy - H / 2) / (H * .6)) ** 2, 0, 1)
         img[..., :3] *= vig[..., None]
         return Image.fromarray(img.astype(np.uint8))
-    cor = {'azul': BLUE, 'claro': LIGHT, 'dourado': GOLD}.get(fundo, fundo)
+    cor = {'azul': BLUE, 'claro': LIGHT, 'dourado': GOLD, 'roxo': ROXO, 'oliva': OLIVA, 'vinho': VINHO, 'rosa': ROSA,
+           'ouro': OURO_CL, 'terracota': TERRACOTA, 'laranja': LARANJA, 'ceu': CEU, 'turquesa': TURQUESA, 'mostarda': MOSTARDA}.get(fundo, fundo)
     return grain(Image.new('RGB', (W, H), cor), 5)
 
 # ---------- foto ----------
